@@ -51,7 +51,7 @@ export const Login = ({
       >
         <WebstudioIcon size={48} />
         <Text variant="brandSectionTitle" as="h1" align="center">
-          Welcome to Webstudio
+          مرحبًا بك في Webstudio
         </Text>
 
         <TooltipProvider>
@@ -64,7 +64,7 @@ export const Login = ({
                 css={{ height: theme.spacing[15] }}
                 formAction={authPath({ provider: "google" })}
               >
-                Sign in with Google
+                تسجيل الدخول عبر Google
               </Button>
               <Button
                 disabled={isGithubEnabled === false}
@@ -76,7 +76,7 @@ export const Login = ({
                 }}
                 formAction={authPath({ provider: "github" })}
               >
-                Sign in with GitHub
+                تسجيل الدخول عبر GitHub
               </Button>
             </Form>
             {isSecretLoginEnabled && (

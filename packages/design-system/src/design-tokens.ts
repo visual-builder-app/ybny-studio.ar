@@ -10,7 +10,7 @@ export const boxShadow = {
 
 export const fontFamilies = {
   inter:
-    "Inter Variable, InterVariable, Inter, -apple-system, system-ui, sans-serif",
+    "Inter Variable, InterVariable, Inter, IBM Plex Sans Arabic, Noto Sans Arabic, Tahoma, -apple-system, system-ui, sans-serif",
   manrope: "Manrope Variable, ManropeVariable, Manrope, sans-serif",
   robotoMono: "Roboto Mono, RobotoMono, menlo, monospace",
 } as const;
