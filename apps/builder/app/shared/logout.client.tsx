@@ -78,7 +78,7 @@ const Logout = (props: LogoutProps) => {
         justifyItems: "center",
       }}
     >
-      <Text variant={"bigTitle"}>Logging out ...</Text>
+      <Text variant={"bigTitle"}>جارٍ تسجيل الخروج ...</Text>
     </Grid>
   );
 };
@@ -104,8 +104,8 @@ export const LogoutPage = (props: LogoutPageProps) => {
 
     if (false === response.ok) {
       throw {
-        message: "Logout failed. Please try again later.",
-        description: `Logout request failed with status ${response.status}: ${await response.text()}`,
+        message: "فشل تسجيل الخروج. يرجى المحاولة لاحقًا.",
+        description: `فشل طلب تسجيل الخروج بالحالة ${response.status}: ${await response.text()}`,
       };
     }
 
@@ -114,8 +114,8 @@ export const LogoutPage = (props: LogoutPageProps) => {
 
     if (false === parsedData.success) {
       throw {
-        message: "Logout failed. Please try again later",
-        description: "Logout request failed: Unsupported endpoint response",
+        message: "فشل تسجيل الخروج. يرجى المحاولة لاحقًا",
+        description: "فشل طلب تسجيل الخروج: استجابة غير مدعومة من الخادم",
       };
     }
 
@@ -127,8 +127,8 @@ export const LogoutPage = (props: LogoutPageProps) => {
         .join("\n");
 
       throw {
-        message: "Logout failed. Please try again later",
-        description: `Something went wrong during the projects logout. Please try again later.\nProjects failed to logout:\n${failedProjects}`,
+        message: "فشل تسجيل الخروج. يرجى المحاولة لاحقًا",
+        description: `حدث خطأ أثناء تسجيل الخروج من المشاريع. يرجى المحاولة لاحقًا.\nمشاريع فشل تسجيل الخروج منها:\n${failedProjects}`,
       };
     }
 

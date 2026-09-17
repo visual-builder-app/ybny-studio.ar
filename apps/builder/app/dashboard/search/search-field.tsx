@@ -41,7 +41,7 @@ export const Search = () => {
       }}
       onAbort={handleAbortSearch}
       autoFocus
-      placeholder="Search for anything"
+      placeholder="ابحث عن أي شيء"
     />
   );
 };

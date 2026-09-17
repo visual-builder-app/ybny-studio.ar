@@ -59,11 +59,11 @@ const ConnectSourceDialog = ({
 }) => (
   <Dialog open onOpenChange={(open) => open === false && onClose()}>
     <DialogContent>
-      <DialogTitle>Connect content source</DialogTitle>
+      <DialogTitle>ربط مصدر المحتوى</DialogTitle>
       <DialogDescription asChild>
         <PanelContent as={Text}>
-          Connecting this file will replace the existing Content Block content.
-          The MDX file will not be changed.
+          سيؤدي ربط هذا الملف إلى استبدال محتوى كتلة المحتوى الحالي.
+          لن يتم تغيير ملف MDX.
         </PanelContent>
       </DialogDescription>
       {error !== undefined && (
@@ -144,12 +144,12 @@ export const ContentBlockSourceControl = ({
   const sourceLabel = resolvedAsset
     ? formatAssetName(resolvedAsset)
     : loading
-      ? "Loading content source…"
+      ? "جارٍ تحميل مصدر المحتوى…"
       : source?.type === "expression"
-        ? "Dynamic content source"
+        ? "مصدر محتوى ديناميكي"
         : source?.type === "asset"
-          ? "Missing MDX Asset"
-          : "No content source";
+          ? "وسيط MDX مفقود"
+          : "لا يوجد مصدر محتوى";
 
   const beginOperation = () => {
     if (disabled || loading || busyRef.current) {
@@ -191,7 +191,7 @@ export const ContentBlockSourceControl = ({
       }
       setPendingSource(undefined);
     } catch (error) {
-      setRequestError(getErrorMessage(error, "Unable to change source"));
+      setRequestError(getErrorMessage(error, "تعذر تغيير المصدر"));
     } finally {
       finishOperation();
     }
@@ -208,7 +208,7 @@ export const ContentBlockSourceControl = ({
             bindingError ??
             (!connected || (typeof value === "string" && value !== "")
               ? undefined
-              : "Content source must resolve to an Asset ID")
+              : "يجب أن يُترجم مصدر المحتوى إلى معرّف وسيط (Asset ID)")
           }
           onChangeValue={(value) => {
             if (typeof value === "string" && value !== "") {
@@ -225,12 +225,12 @@ export const ContentBlockSourceControl = ({
           }}
           renderControl={() =>
             connected ? (
-              <Grid columns={2} gap="2" aria-label="Content source actions">
+              <Grid columns={2} gap="2" aria-label="إجراءات مصدر المحتوى">
                 <Flex align="center" gap="1">
                   <Box css={{ flex: 1 }}>
                     <SelectAsset
                       assetId={resolvedAsset?.id}
-                      title="Switch MDX file"
+                      title="تبديل ملف MDX"
                       accept=".mdx"
                       disabled={isSourceMutationDisabled}
                       triggerLabel={sourceLabel}
@@ -248,8 +248,7 @@ export const ContentBlockSourceControl = ({
                           </Text>
                           {uniqueDiagnostics.length > 1 && (
                             <Text>
-                              {uniqueDiagnostics.length - 1} more diagnostic
-                              {uniqueDiagnostics.length === 2 ? "" : "s"}
+                              {uniqueDiagnostics.length - 1} رسالة تشخيص إضافية
                             </Text>
                           )}
                         </Grid>
@@ -260,7 +259,7 @@ export const ContentBlockSourceControl = ({
                         align="center"
                         role="img"
                         tabIndex={0}
-                        aria-label={`MDX source warning: ${formatContentBlockDiagnostic(uniqueDiagnostics[0])}${uniqueDiagnostics.length > 1 ? ` ${uniqueDiagnostics.length - 1} more diagnostic${uniqueDiagnostics.length === 2 ? "" : "s"}.` : ""}`}
+                        aria-label={`تحذير مصدر MDX: ${formatContentBlockDiagnostic(uniqueDiagnostics[0])}${uniqueDiagnostics.length > 1 ? ` و${uniqueDiagnostics.length - 1} رسالة تشخيص إضافية.` : ""}`}
                         css={{
                           color: cssVar("--foreground-warning"),
                           flexShrink: 0,
@@ -281,15 +280,15 @@ export const ContentBlockSourceControl = ({
                     }
                   }}
                 >
-                  Open
+                  فتح
                 </Button>
               </Grid>
             ) : readOnly ? null : (
               <SelectAsset
-                title="Choose MDX file"
+                title="اختيار ملف MDX"
                 accept=".mdx"
                 disabled={isDisabled}
-                triggerLabel="Connect .mdx file"
+                triggerLabel="ربط ملف ‎.mdx"
                 onChange={(assetId) =>
                   void requestSource({ type: "asset", assetId })
                 }
@@ -307,14 +306,14 @@ export const ContentBlockSourceControl = ({
         {(persistenceStatus === "pending" ||
           persistenceStatus === "saving") && (
           <Text role="status" variant="tiny">
-            Saving content source…
+            جارٍ حفظ مصدر المحتوى…
           </Text>
         )}
 
         {persistenceStatus === "failed" && (
           <Flex gap="2" align="center" wrap="wrap">
             <Text role="alert" color="destructive" variant="tiny">
-              {persistenceError ?? "Unable to save content source."}
+              {persistenceError ?? "تعذر حفظ مصدر المحتوى."}
             </Text>
             {onRetry !== undefined && (
               <Button
@@ -327,13 +326,13 @@ export const ContentBlockSourceControl = ({
                   void onRetry()
                     .catch((error) =>
                       setLocalError(
-                        getErrorMessage(error, "Unable to retry save")
+                        getErrorMessage(error, "تعذرت إعادة محاولة الحفظ")
                       )
                     )
                     .finally(finishOperation);
                 }}
               >
-                Retry
+                إعادة المحاولة
               </Button>
             )}
           </Flex>
@@ -341,7 +340,7 @@ export const ContentBlockSourceControl = ({
 
         {busy && (
           <Text role="status" variant="tiny">
-            Updating content source…
+            جارٍ تحديث مصدر المحتوى…
           </Text>
         )}
 

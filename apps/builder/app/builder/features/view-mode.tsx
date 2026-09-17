@@ -11,7 +11,7 @@ export const ViewMode = () => {
   }
 
   return (
-    <Tooltip content={"View mode. Your changes will not be saved"}>
+    <Tooltip content={"وضع العرض. لن يتم حفظ تغييراتك"}>
       <Flex
         align="center"
         justify="center"
@@ -20,7 +20,7 @@ export const ViewMode = () => {
       >
         <CloudIcon
           color={cssVar("--foreground-warning")}
-          aria-label="View mode. Your changes will not be saved"
+          aria-label="وضع العرض. لن يتم حفظ تغييراتك"
         />
       </Flex>
     </Tooltip>

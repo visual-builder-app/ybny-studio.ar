@@ -79,7 +79,7 @@ export const createContentBlockSourceController = ({
       open: openAsset,
       reload: (assetId, options) => {
         if (options?.expectedName === undefined) {
-          throw new Error("The expected Asset name is required for reload");
+          throw new Error("اسم الوسيط المتوقع مطلوب لإعادة التحميل");
         }
         return reloadAsset(assetId, options.expectedName);
       },
@@ -143,7 +143,7 @@ export const createContentBlockSourceController = ({
       ) {
         return {
           status: "blocked",
-          message: "The Content Block changed while the source was loading.",
+          message: "تغيرت كتلة المحتوى أثناء تحميل المصدر.",
         };
       }
       commitProjectPayload(prepared.projectPayload);
@@ -159,7 +159,7 @@ export const createContentBlockSourceController = ({
         pending = undefined;
         return {
           status: "blocked",
-          message: "The Content Block changed before connection was confirmed.",
+          message: "تغيرت كتلة المحتوى قبل تأكيد الربط.",
         };
       }
       await reloadAsset(pending.assetId, pending.expectedName);
@@ -178,7 +178,7 @@ export const createContentBlockSourceController = ({
       pending = undefined;
       return {
         status: "blocked",
-        message: "The Content Block changed while the source was loading.",
+        message: "تغيرت كتلة المحتوى أثناء تحميل المصدر.",
       };
     }
     if (prepared.requiresConfirmation && confirmed === false) {
@@ -212,7 +212,7 @@ export const createContentBlockSourceController = ({
     ) {
       return {
         status: "blocked",
-        message: "The Content Block changed while it was disconnecting.",
+        message: "تغيرت كتلة المحتوى أثناء فصل المصدر.",
       };
     }
     commitProjectPayload(prepared.projectPayload);

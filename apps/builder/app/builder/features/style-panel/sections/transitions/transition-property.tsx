@@ -218,7 +218,7 @@ export const TransitionProperty = ({
                 <>
                   {propertiesDefinedOnInstance.length > 0 && (
                     <>
-                      <ComboboxLabel>Defined</ComboboxLabel>
+                      <ComboboxLabel>معرّفة</ComboboxLabel>
                       {propertiesDefinedOnInstance.map((property, index) =>
                         renderItem(property, index)
                       )}
@@ -226,7 +226,7 @@ export const TransitionProperty = ({
                     </>
                   )}
 
-                  <ComboboxLabel>Common</ComboboxLabel>
+                  <ComboboxLabel>شائعة</ComboboxLabel>
                   {commonProperties.map((property, index) =>
                     renderItem(
                       property,

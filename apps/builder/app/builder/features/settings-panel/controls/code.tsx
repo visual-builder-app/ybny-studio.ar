@@ -266,7 +266,7 @@ export const CodeControl = ({
                 }
               >
                 <Flex gap="1" align="center">
-                  <Text variant="labels">Code editor</Text>
+                  <Text variant="labels">محرر الشيفرة</Text>
                   {errorInfo}
                 </Flex>
               </DialogTitle>

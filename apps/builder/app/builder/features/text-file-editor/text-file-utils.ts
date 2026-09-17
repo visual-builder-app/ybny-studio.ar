@@ -182,7 +182,7 @@ export const getMdxPersistenceFeedback = (
   if (state.status === "failed") {
     return {
       kind: "failed",
-      message: state.error?.message ?? "Unable to save this file.",
+      message: state.error?.message ?? "تعذّر حفظ هذا الملف.",
     };
   }
   if (state.status === "conflicting") {
@@ -190,7 +190,7 @@ export const getMdxPersistenceFeedback = (
       kind: "conflicting",
       message:
         state.error?.message ??
-        "This file changed elsewhere. Reload before continuing.",
+        "تغيّر هذا الملف في مكان آخر. أعد التحميل قبل المتابعة.",
     };
   }
 };
@@ -341,7 +341,7 @@ export const normalizeTextFileContent = (
 
   const value = parseJsonExpression(content);
   if (value === undefined) {
-    return { error: "Enter a JSON-compatible value." };
+    return { error: "أدخل قيمة متوافقة مع JSON." };
   }
 
   return { content: `${JSON.stringify(value, undefined, 2)}\n` };

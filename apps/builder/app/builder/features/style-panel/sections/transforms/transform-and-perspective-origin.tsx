@@ -177,7 +177,7 @@ export const TransformAndPerspectiveOrigin = ({
               <PropertyInlineLabel
                 label="X"
                 title={
-                  property === "transform-origin" ? "X offset" : "X position"
+                  property === "transform-origin" ? "إزاحة X" : "موضع X"
                 }
                 description={
                   property === "transform-origin"
@@ -205,7 +205,7 @@ export const TransformAndPerspectiveOrigin = ({
               <PropertyInlineLabel
                 label="Y"
                 title={
-                  property === "transform-origin" ? "Y offset" : "Y position"
+                  property === "transform-origin" ? "إزاحة Y" : "موضع Y"
                 }
                 description={
                   property === "transform-origin"
@@ -233,7 +233,7 @@ export const TransformAndPerspectiveOrigin = ({
               >
                 <PropertyInlineLabel
                   label="Z"
-                  title="Z offset"
+                  title="إزاحة Z"
                   description={propertySyntaxes.transformOriginZ}
                 />
                 <CssValueInputContainer

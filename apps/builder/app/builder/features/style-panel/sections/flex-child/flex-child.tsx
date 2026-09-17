@@ -51,11 +51,11 @@ export const Section = () => {
 
   return (
     <StyleSection
-      label="Flex child"
+      label="عنصر مرن"
       properties={properties}
       suffix={
         parentInstance && (
-          <Tooltip content="Select flex container">
+          <Tooltip content="تحديد الحاوية المرنة">
             <SectionTitleButton
               prefix={<ExternalLinkIcon />}
               onClick={() => selectInstance(parentInstance.instanceSelector)}
@@ -102,7 +102,7 @@ const FlexChildSectionSizing = () => {
   const items = [
     {
       child: <XSmallIcon />,
-      description: "Don't grow or shrink",
+      description: "بدون نمو أو انكماش",
       value: "none",
       codeLines: ["flex-grow: 0;", "flex-shrink: 0;"],
     },
@@ -110,7 +110,7 @@ const FlexChildSectionSizing = () => {
       child: <GrowIcon />,
       title: "Flex",
       description:
-        "Item will expand to take up available space within a flex container if needed, but it will not shrink if there is limited space.",
+        "سيتمدد العنصر لشغل المساحة المتاحة داخل الحاوية المرنة عند الحاجة، لكنه لن ينكمش إذا كانت المساحة محدودة.",
       value: "grow",
       codeLines: ["flex-grow: 1;", "flex-shrink: 0;"],
     },
@@ -118,7 +118,7 @@ const FlexChildSectionSizing = () => {
       child: <ShrinkIcon />,
       title: "Flex",
       description:
-        "Item will not grow to take up available space within a flex container, but it will shrink if there is limited space",
+        "لن ينمو العنصر لشغل المساحة المتاحة داخل الحاوية المرنة، لكنه سينكمش إذا كانت المساحة محدودة",
       value: "shrink",
       codeLines: ["flex-grow: 0;", "flex-shrink: 1;"],
     },
@@ -126,7 +126,7 @@ const FlexChildSectionSizing = () => {
       child: <FlexChildSectionSizingPopover />,
       title: "Flex",
       description:
-        "More sizing options, set flex-basis, flex-grow, flex-shrink individually",
+        "خيارات تحجيم إضافية، اضبط flex-basis و flex-grow و flex-shrink بشكل فردي",
       value: "",
       codeLines: [
         `flex-basis: ${toValue(flexBasis.cascadedValue)};`,
@@ -144,8 +144,8 @@ const FlexChildSectionSizing = () => {
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="Sizing"
-        description="Specifies the ability of a flex item to grow, shrink, or set its initial size within a flex container."
+        label="التحجيم"
+        description="يحدّد قدرة العنصر المرن على النمو أو الانكماش أو ضبط حجمه الأولي داخل الحاوية المرنة."
         properties={["flex-grow", "flex-shrink", "flex-basis"]}
       />
 
@@ -195,7 +195,7 @@ const FlexChildSectionSizing = () => {
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={item.value === selectedValue}
-            label="Sizing"
+            label="التحجيم"
             code={item.codeLines.join("\n")}
             description={item.description}
             properties={["flex-grow", "flex-shrink", "flex-basis"]}
@@ -222,7 +222,7 @@ const FlexChildSectionSizing = () => {
 const FlexChildSectionSizingPopover = () => {
   return (
     <FloatingPanel
-      title="Sizing"
+      title="التحجيم"
       placement="bottom-within"
       content={
         <PanelContent
@@ -236,13 +236,13 @@ const FlexChildSectionSizingPopover = () => {
             <PropertyLabel
               properties={["flex-grow"]}
               description={propertyDescriptions.flexGrow}
-              label="Grow"
+              label="النمو"
             />
             <TextControl property="flex-grow" />
           </Grid>
           <Grid css={{ gridTemplateColumns: "auto", gap: theme.spacing[3] }}>
             <PropertyLabel
-              label="Shrink"
+              label="الانكماش"
               description={propertyDescriptions.flexShrink}
               properties={["flex-shrink"]}
             />
@@ -250,7 +250,7 @@ const FlexChildSectionSizingPopover = () => {
           </Grid>
           <Grid css={{ gridTemplateColumns: "auto", gap: theme.spacing[3] }}>
             <PropertyLabel
-              label="Basis"
+              label="الأساس"
               description={propertyDescriptions.flexBasis}
               properties={["flex-basis"]}
             />

@@ -103,7 +103,7 @@ type CardProps = {
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    { image, title = "Untitled", suffix, state = "initial" as const, ...props },
+    { image, title = "بلا عنوان", suffix, state = "initial" as const, ...props },
     ref
   ) => {
     return (

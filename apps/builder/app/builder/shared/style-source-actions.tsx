@@ -148,9 +148,9 @@ export const DeleteStyleSourceDialog = ({
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete confirmation</DialogTitle>
+        <DialogTitle>تأكيد الحذف</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
-          <Text>{`Delete "${styleSource?.name}" token from the project including all of its styles?`}</Text>
+          <Text>{`حذف الرمز "${styleSource?.name}" من المشروع بما في ذلك كل أنماطه؟`}</Text>
         </PanelContent>
         <DialogActions>
           <Button
@@ -161,10 +161,10 @@ export const DeleteStyleSourceDialog = ({
               onClose();
             }}
           >
-            Delete
+            حذف
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -198,9 +198,9 @@ export const RenameStyleSourceDialog = ({
     const renameError = renameStyleSource(styleSource!.id, name);
     if (renameError) {
       if (renameError.type === "minlength") {
-        setError("Token name cannot be empty");
+        setError("لا يمكن أن يكون اسم الرمز فارغًا");
       } else if (renameError.type === "duplicate") {
-        setError("A token with this name already exists");
+        setError("يوجد بالفعل رمز بهذا الاسم");
       }
       return;
     }
@@ -226,7 +226,7 @@ export const RenameStyleSourceDialog = ({
           }
         }}
       >
-        <DialogTitle>Rename token</DialogTitle>
+        <DialogTitle>إعادة تسمية الرمز</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           <Flex direction="column" gap="1">
             <InputField
@@ -246,10 +246,10 @@ export const RenameStyleSourceDialog = ({
         </PanelContent>
         <DialogActions>
           <Button color="primary" onClick={handleConfirm}>
-            Rename
+            إعادة تسمية
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -290,16 +290,16 @@ export const DeleteUnusedTokensDialog = () => {
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete unused tokens</DialogTitle>
+        <DialogTitle>حذف الرموز غير المستخدمة</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           {unusedTokens.length === 0 ? (
-            <Text>There are no unused tokens to delete.</Text>
+            <Text>لا توجد رموز غير مستخدمة لحذفها.</Text>
           ) : (
             <>
               <Text>
-                Delete {unusedTokens.length} unused{" "}
-                {unusedTokens.length === 1 ? "token" : "tokens"} from the
-                project?
+                حذف {unusedTokens.length}{" "}
+                {unusedTokens.length === 1 ? "رمز غير مستخدم" : "رموز غير مستخدمة"} من
+                المشروع؟
               </Text>
               <Text
                 variant="mono"
@@ -325,20 +325,20 @@ export const DeleteUnusedTokensDialog = () => {
                 const deletedCount = deleteUnusedTokens();
                 handleClose();
                 if (deletedCount === 0) {
-                  toast.info("No unused tokens to delete");
+                  toast.info("لا توجد رموز غير مستخدمة لحذفها");
                 } else {
                   toast.success(
-                    `Deleted ${deletedCount} unused ${deletedCount === 1 ? "token" : "tokens"}`
+                    `تم حذف ${deletedCount} ${deletedCount === 1 ? "رمز غير مستخدم" : "رموز غير مستخدمة"}`
                   );
                 }
               }}
             >
-              Delete
+              حذف
             </Button>
           )}
           <DialogClose>
             <Button color="ghost">
-              {unusedTokens.length > 0 ? "Cancel" : "Close"}
+              {unusedTokens.length > 0 ? "إلغاء" : "إغلاق"}
             </Button>
           </DialogClose>
         </DialogActions>

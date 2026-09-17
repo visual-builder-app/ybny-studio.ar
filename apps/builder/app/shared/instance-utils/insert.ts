@@ -35,25 +35,25 @@ import { executeRuntimeMutation, executeRuntimeMutationSequence } from "./data";
 const getRootInstanceId = () => $selectedPage.get()?.rootInstanceId;
 
 const onMissingTarget = () => {
-  toast.error("Cannot insert: the target no longer exists.");
+  toast.error("تعذّر الإدراج: الهدف لم يعد موجودًا.");
 };
 
 const onRootTarget = () => {
-  toast.error(`Cannot insert into Global root`);
+  toast.error(`لا يمكن الإدراج في الجذر العام`);
 };
 
 const onNoInsertMatch = (fragment: Pick<WebstudioFragment, "instances">) => {
   return (message: string) => {
     const component = fragment.instances[0].component;
     const label = getInstanceLabel({ component });
-    toast.warn(message || `"${label}" has no place here`);
+    toast.warn(message || `لا يوجد مكان لـ "${label}" هنا`);
   };
 };
 
 const onNoComponentInsertMatch = (component: string) => {
   return (message: string) => {
     const label = getInstanceLabel({ component });
-    toast.warn(message || `"${label}" has no place here`);
+    toast.warn(message || `لا يوجد مكان لـ "${label}" هنا`);
   };
 };
 
@@ -168,7 +168,7 @@ export const insertWebstudioComponentAt = (
   }
   if (result?.result.didMergeBreakpointsDueToLimit === true) {
     toast.info(
-      "Some breakpoints were merged because the project reached the breakpoint limit."
+      "تم دمج بعض نقاط التوقف لأن المشروع وصل إلى الحد الأقصى لنقاط التوقف."
     );
   }
   return result !== undefined;

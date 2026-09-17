@@ -64,7 +64,7 @@ export const CheckControl = ({
             Array.isArray(value) &&
             value.every((item) => typeof item === "string");
           if (value !== undefined && valid === false) {
-            return `${label} expects an array of strings`;
+            return `${label} يتوقع مصفوفة من النصوص`;
           }
         }}
         onRemove={(value) =>

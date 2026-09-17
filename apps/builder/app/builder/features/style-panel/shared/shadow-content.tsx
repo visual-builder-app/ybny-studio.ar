@@ -228,7 +228,7 @@ export const ShadowContent = ({
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
             label="X"
-            title="Offset X"
+            title="الإزاحة X"
             description={shadowPropertySyntaxes[property].x}
           />
           <CssValueInputContainer
@@ -252,7 +252,7 @@ export const ShadowContent = ({
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
             label="Y"
-            title="Offset Y"
+            title="الإزاحة Y"
             description={shadowPropertySyntaxes[property].y}
           />
           <CssValueInputContainer
@@ -275,8 +275,8 @@ export const ShadowContent = ({
 
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="Blur"
-            title="Blur radius"
+            label="التمويه"
+            title="نصف قطر التمويه"
             description={shadowPropertySyntaxes[property].blur}
           />
           <CssValueInputContainer
@@ -300,8 +300,8 @@ export const ShadowContent = ({
         {property === "box-shadow" ? (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="Spread"
-              title="Spread radius"
+              label="الانتشار"
+              title="نصف قطر الانتشار"
               description={shadowPropertySyntaxes["box-shadow"].spread}
             />
             <CssValueInputContainer
@@ -337,7 +337,7 @@ export const ShadowContent = ({
       >
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="Color"
+            label="اللون"
             description={shadowPropertySyntaxes[property].color}
           />
           <ColorPickerControl
@@ -390,12 +390,12 @@ export const ShadowContent = ({
                 updateShadow({ position: value as ShadowValue["position"] })
               }
             >
-              <Tooltip content="Outset">
+              <Tooltip content="خارجي">
                 <ToggleGroupButton value="outset">
                   <ShadowNormalIcon />
                 </ToggleGroupButton>
               </Tooltip>
-              <Tooltip content="Inset">
+              <Tooltip content="داخلي">
                 <ToggleGroupButton value="inset">
                   <ShadowInsetIcon />
                 </ToggleGroupButton>
@@ -418,13 +418,13 @@ export const ShadowContent = ({
           >
             <Label>
               <Flex align={"center"} gap={1}>
-                Code
+                الكود
                 <Tooltip
                   variant="wrapped"
                   content={
                     <Text>
-                      Paste a {property} CSS code without the property name, for
-                      example:
+                      الصق كود CSS الخاص بـ {property} دون اسم الخاصية، على
+                      سبيل المثال:
                       <br /> <br />
                       <Text variant="monoBold">
                         0px 2px 5px 0px rgba(0, 0, 0, 0.2)

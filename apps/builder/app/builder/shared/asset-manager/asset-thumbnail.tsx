@@ -125,7 +125,7 @@ const GenericFilePreview = ({
             placeItems: "center",
           }}
         >
-          <ListViewIcon size={16} aria-label="Collection file" />
+          <ListViewIcon size={16} aria-label="ملف المجموعة" />
         </Box>
       ) : (
         showExtension && (
@@ -457,7 +457,7 @@ export const AssetThumbnail = ({
               {entryError !== undefined && (
                 <Tooltip content={entryError} variant="wrapped">
                   <IconButton
-                    aria-label={`Review errors in ${formatAssetName(asset)}`}
+                    aria-label={`مراجعة الأخطاء في ${formatAssetName(asset)}`}
                     css={{ pointerEvents: "auto" }}
                     onClick={onEntrySettings ?? onOpen}
                   >
@@ -492,7 +492,7 @@ export const AssetThumbnail = ({
                 <AssetManagerThumbnailMenu
                   actions={displayedActions}
                   disabledActions={disabledActions}
-                  label={`Actions for ${formatAssetName(asset)}`}
+                  label={`إجراءات ${formatAssetName(asset)}`}
                   onPointerDown={() =>
                     interactions.onContextMenuSelection(item)
                   }

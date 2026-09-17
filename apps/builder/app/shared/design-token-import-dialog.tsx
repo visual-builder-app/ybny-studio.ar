@@ -18,15 +18,15 @@ export type DesignTokenImportDialogResult = DesignTokenImportTarget | "cancel";
 const importTargetOptions = [
   {
     value: "design-token",
-    label: "Design tokens",
+    label: "رموز التصميم",
     description:
-      "Create reusable style tokens for composite and unambiguous values. Keep other primitive values as CSS variables.",
+      "أنشئ رموز أنماط قابلة لإعادة الاستخدام للقيم المركبة وغير الغامضة. احتفظ بالقيم الأولية الأخرى كمتغيرات CSS."
   },
   {
     value: "css-variable",
-    label: "CSS variables",
+    label: "متغيرات CSS",
     description:
-      "Create custom properties that can be used in individual styles.",
+      "أنشئ خصائص مخصصة يمكن استخدامها في الأنماط الفردية."
   },
 ] as const satisfies ReadonlyArray<{
   value: DesignTokenImportTarget;
@@ -77,10 +77,10 @@ export const DesignTokenImportDialog = () => {
       }}
     >
       <DialogContent css={{ minWidth: "40ch" }}>
-        <DialogTitle>Import tokens</DialogTitle>
+        <DialogTitle>استيراد الرموز</DialogTitle>
         <PanelContent as={Flex} direction="column" gap="2">
           <DialogDescription>
-            Choose how these tokens should be represented in Webstudio.
+            اختر كيفية تمثيل هذه الرموز في Webstudio.
           </DialogDescription>
           <DialogRadioOptions
             value={target}
@@ -94,10 +94,10 @@ export const DesignTokenImportDialog = () => {
         </PanelContent>
         <DialogActions>
           <Button autoFocus color="primary" onClick={() => finish(target)}>
-            Import
+            استيراد
           </Button>
           <Button color="ghost" onClick={() => finish("cancel")}>
-            Cancel
+            إلغاء
           </Button>
         </DialogActions>
       </DialogContent>

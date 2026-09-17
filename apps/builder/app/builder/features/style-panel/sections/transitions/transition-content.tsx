@@ -131,7 +131,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         }}
       >
         <PropertyInlineLabel
-          label="Property"
+          label="الخاصية"
           description={propertyDescriptions.transitionProperty}
           properties={["transition-property"]}
         />
@@ -145,7 +145,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="Duration"
+          label="المدة"
           description={propertyDescriptions.transitionDuration}
           properties={["transition-duration"]}
         />
@@ -171,7 +171,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="Delay"
+          label="التأخير"
           description={propertyDescriptions.transitionDelay}
           properties={["transition-delay"]}
         />
@@ -197,7 +197,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="Easing"
+          label="التخفيف"
           description={propertyDescriptions.transitionTimingFunction}
           properties={["transition-timing-function"]}
         />
@@ -256,13 +256,13 @@ export const TransitionContent = ({ index }: { index: number }) => {
       >
         <Label>
           <Flex align="center" gap="1">
-            Code
+            الكود
             <Tooltip
               variant="wrapped"
               content={
                 <Text>
-                  Paste CSS code for a transition or part of a transition, for
-                  example:
+                  الصق كود CSS لانتقال كامل أو جزء من انتقال، على سبيل
+                  المثال:
                   <br />
                   <br />
                   <Text variant="monoBold">opacity 200ms ease 0s</Text>

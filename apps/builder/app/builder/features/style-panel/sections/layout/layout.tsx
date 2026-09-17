@@ -75,7 +75,7 @@ const GapLinked = ({
   onChange: (isLinked: boolean) => void;
   disabled?: boolean;
 }) => (
-  <EnhancedTooltip content={isLinked ? "Unlink gap values" : "Link gap values"}>
+  <EnhancedTooltip content={isLinked ? "إلغاء ربط قيم التباعد" : "ربط قيم التباعد"}>
     <SmallToggleButton
       disabled={disabled}
       pressed={isLinked}
@@ -402,23 +402,23 @@ const AlignmentControls = ({
         items={[
           {
             name: "start",
-            label: "Start",
+            label: "البداية",
             icon: AlignStartHorizontalIcon,
           },
           {
             name: "center",
-            label: "Center",
+            label: "الوسط",
             icon: AlignCenterHorizontalIcon,
           },
-          { name: "end", label: "End", icon: AlignEndHorizontalIcon },
+          { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
           {
             name: "stretch",
-            label: "Stretch",
+            label: "تمديد",
             icon: StretchVerticalIcon,
           },
           {
             name: "baseline",
-            label: "Baseline",
+            label: "خط الأساس",
             icon: AlignBaselineIcon,
           },
         ]}
@@ -428,27 +428,27 @@ const AlignmentControls = ({
         items={[
           {
             name: "start",
-            label: "Start",
+            label: "البداية",
             icon: AlignHorizontalJustifyStartIcon,
           },
           {
             name: "center",
-            label: "Center",
+            label: "الوسط",
             icon: AlignHorizontalJustifyCenterIcon,
           },
           {
             name: "end",
-            label: "End",
+            label: "النهاية",
             icon: AlignHorizontalJustifyEndIcon,
           },
           {
             name: "space-between",
-            label: "Space between",
+            label: "مسافات بينية",
             icon: AlignHorizontalSpaceBetweenIcon,
           },
           {
             name: "space-around",
-            label: "Space around",
+            label: "مسافات محيطة",
             icon: AlignHorizontalSpaceAroundIcon,
           },
         ]}
@@ -459,28 +459,28 @@ const AlignmentControls = ({
           items={[
             {
               name: "start",
-              label: "Start",
+              label: "البداية",
               icon: AlignContentStartIcon,
             },
             {
               name: "center",
-              label: "Center",
+              label: "الوسط",
               icon: AlignContentCenterIcon,
             },
-            { name: "end", label: "End", icon: AlignContentEndIcon },
+            { name: "end", label: "النهاية", icon: AlignContentEndIcon },
             {
               name: "stretch",
-              label: "Stretch",
+              label: "تمديد",
               icon: AlignContentStretchIcon,
             },
             {
               name: "space-between",
-              label: "Space between",
+              label: "مسافات بينية",
               icon: AlignContentSpaceBetweenIcon,
             },
             {
               name: "space-around",
-              label: "Space around",
+              label: "مسافات محيطة",
               icon: AlignContentSpaceAroundIcon,
             },
           ]}
@@ -513,16 +513,16 @@ const LayoutSectionFlex = () => {
           <MenuControl
             property="flex-direction"
             items={[
-              { name: "row", label: "Row", icon: ArrowRightIcon },
+              { name: "row", label: "صف", icon: ArrowRightIcon },
               {
                 name: "row-reverse",
-                label: "Row reverse",
+                label: "صف عكسي",
                 icon: ArrowLeftIcon,
               },
-              { name: "column", label: "Column", icon: ArrowDownIcon },
+              { name: "column", label: "عمود", icon: ArrowDownIcon },
               {
                 name: "column-reverse",
-                label: "Column reverse",
+                label: "عمود عكسي",
                 icon: ArrowUpIcon,
               },
             ]}
@@ -530,8 +530,8 @@ const LayoutSectionFlex = () => {
           <ToggleControl
             property="flex-wrap"
             items={[
-              { name: "nowrap", label: "No wrap", icon: NoWrapIcon },
-              { name: "wrap", label: "Wrap", icon: WrapIcon },
+              { name: "nowrap", label: "بدون التفاف", icon: NoWrapIcon },
+              { name: "wrap", label: "التفاف", icon: WrapIcon },
             ]}
           />
           <Box css={{ gridColumn: "1 / -1" }}>
@@ -619,12 +619,12 @@ const LayoutSectionGrid = () => {
             <MenuControl
               property="grid-auto-flow"
               items={[
-                { name: "row", label: "Row", icon: ArrowRightIcon },
-                { name: "column", label: "Column", icon: ArrowDownIcon },
-                { name: "row dense", label: "Row dense", icon: RepeatGridIcon },
+                { name: "row", label: "صف", icon: ArrowRightIcon },
+                { name: "column", label: "عمود", icon: ArrowDownIcon },
+                { name: "row dense", label: "صف كثيف", icon: RepeatGridIcon },
                 {
                   name: "column dense",
-                  label: "Column dense",
+                  label: "عمود كثيف",
                   icon: RepeatGridIcon,
                 },
               ]}
@@ -634,28 +634,28 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "Start",
+                  label: "البداية",
                   icon: AlignContentStartIcon,
                 },
                 {
                   name: "center",
-                  label: "Center",
+                  label: "الوسط",
                   icon: AlignContentCenterIcon,
                 },
-                { name: "end", label: "End", icon: AlignContentEndIcon },
+                { name: "end", label: "النهاية", icon: AlignContentEndIcon },
                 {
                   name: "stretch",
-                  label: "Stretch",
+                  label: "تمديد",
                   icon: AlignContentStretchIcon,
                 },
                 {
                   name: "space-between",
-                  label: "Space between",
+                  label: "مسافات بينية",
                   icon: AlignContentSpaceBetweenIcon,
                 },
                 {
                   name: "space-around",
-                  label: "Space around",
+                  label: "مسافات محيطة",
                   icon: AlignContentSpaceAroundIcon,
                 },
               ]}
@@ -667,23 +667,23 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "Start",
+                  label: "البداية",
                   icon: AlignStartHorizontalIcon,
                 },
                 {
                   name: "center",
-                  label: "Center",
+                  label: "الوسط",
                   icon: AlignCenterHorizontalIcon,
                 },
-                { name: "end", label: "End", icon: AlignEndHorizontalIcon },
+                { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
                 {
                   name: "stretch",
-                  label: "Stretch",
+                  label: "تمديد",
                   icon: StretchVerticalIcon,
                 },
                 {
                   name: "baseline",
-                  label: "Baseline",
+                  label: "خط الأساس",
                   icon: AlignBaselineIcon,
                 },
               ]}
@@ -693,23 +693,23 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "Start",
+                  label: "البداية",
                   icon: AlignStartHorizontalIcon,
                 },
                 {
                   name: "center",
-                  label: "Center",
+                  label: "الوسط",
                   icon: AlignCenterHorizontalIcon,
                 },
-                { name: "end", label: "End", icon: AlignEndHorizontalIcon },
+                { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
                 {
                   name: "stretch",
-                  label: "Stretch",
+                  label: "تمديد",
                   icon: StretchVerticalIcon,
                 },
                 {
                   name: "baseline",
-                  label: "Baseline",
+                  label: "خط الأساس",
                   icon: AlignBaselineIcon,
                 },
               ]}
@@ -719,27 +719,27 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "Start",
+                  label: "البداية",
                   icon: AlignHorizontalJustifyStartIcon,
                 },
                 {
                   name: "center",
-                  label: "Center",
+                  label: "الوسط",
                   icon: AlignHorizontalJustifyCenterIcon,
                 },
                 {
                   name: "end",
-                  label: "End",
+                  label: "النهاية",
                   icon: AlignHorizontalJustifyEndIcon,
                 },
                 {
                   name: "space-between",
-                  label: "Space between",
+                  label: "مسافات بينية",
                   icon: AlignHorizontalSpaceBetweenIcon,
                 },
                 {
                   name: "space-around",
-                  label: "Space around",
+                  label: "مسافات محيطة",
                   icon: AlignHorizontalSpaceAroundIcon,
                 },
               ]}
@@ -815,7 +815,7 @@ export const Section = () => {
   }, [displayValue, instanceKey, columnsValue, rowsValue]);
 
   return (
-    <StyleSection label="Layout" properties={properties}>
+    <StyleSection label="التخطيط" properties={properties}>
       <Flex direction="column" gap="2">
         <Grid
           css={{
@@ -824,7 +824,7 @@ export const Section = () => {
           }}
         >
           <PropertyLabel
-            label="Display"
+            label="العرض (Display)"
             description={propertyDescriptions.display}
             properties={["display"]}
           />

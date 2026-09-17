@@ -52,7 +52,7 @@ type AxisControlProps = {
 };
 
 export const BackgroundPositionControl = ({
-  label = "Position",
+  label = "الموضع",
   description = propertyDescriptions.backgroundPosition,
   disabled,
   xAxis,
@@ -189,8 +189,8 @@ export const BackgroundPosition = ({
     <BackgroundPositionControl
       disabled={disabled}
       xAxis={{
-        label: "Left",
-        description: "Left position offset",
+        label: "يسار",
+        description: "إزاحة الموضع الأيسر",
         property: "background-position-x",
         properties: ["background-position-x"],
         value: xValue,
@@ -203,8 +203,8 @@ export const BackgroundPosition = ({
         onDelete: (options) => resetValue(xValue, setValueX, options),
       }}
       yAxis={{
-        label: "Top",
-        description: "Top position offset",
+        label: "أعلى",
+        description: "إزاحة الموضع العلوي",
         property: "background-position-y",
         properties: ["background-position-y"],
         value: yValue,

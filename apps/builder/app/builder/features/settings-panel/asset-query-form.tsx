@@ -59,7 +59,7 @@ const loadAssetQueryDefinition = async (
 ) => {
   const response = await fetchDescription(assetsOpenApiUrl);
   if (response.ok === false) {
-    throw new Error("Builder Assets OpenAPI request failed");
+    throw new Error("فشل طلب OpenAPI لوسائط المحرر");
   }
   const descriptionUrl =
     response.url || new URL(assetsOpenApiUrl, window.location.href).href;
@@ -70,11 +70,11 @@ const loadAssetQueryDefinition = async (
     operationId: "queryAssets",
     loadReference: async (url) => {
       if (new URL(url).origin !== descriptionOrigin) {
-        throw new Error("Cross-origin OpenAPI references are unsupported");
+        throw new Error("مراجع OpenAPI عبر الأصول غير مدعومة");
       }
       const reference = await fetchDescription(url);
       if (reference.ok === false) {
-        throw new Error("Builder Assets query schema request failed");
+        throw new Error("فشل طلب مخطط استعلام وسائط المحرر");
       }
       return await reference.json();
     },
@@ -195,7 +195,7 @@ const getAssetQueryConfigurationValidation = ({
       issues.push(
         createConfigurationIssue(
           "INVALID_QUERY_EXPRESSION",
-          "Enter a valid query expression.",
+          "أدخل تعبير استعلام صالحًا.",
           path
         )
       );
@@ -210,7 +210,7 @@ const getAssetQueryConfigurationValidation = ({
           "INVALID_QUERY_EXPRESSION",
           error instanceof Error
             ? error.message
-            : "The Assets query expression cannot be evaluated.",
+            : "لا يمكن تقييم تعبير استعلام الوسائط.",
           path
         )
       );
@@ -282,7 +282,7 @@ const getAssetQueryConfigurationValidation = ({
         "INVALID_QUERY_SOURCE",
         error instanceof Error
           ? error.message
-          : "The Assets query configuration cannot be saved."
+          : "لا يمكن حفظ إعداد استعلام الوسائط."
       )
     );
     return { issues };
@@ -408,7 +408,7 @@ export const AssetQueryForm = ({
       })
       .catch(() => {
         if (ignore === false) {
-          setDescriptionError("Unable to load the Assets API description.");
+          setDescriptionError("تعذر تحميل وصف واجهة الوسائط (API).");
         }
       });
     return () => {
@@ -464,7 +464,7 @@ export const AssetQueryForm = ({
           }}
         />
       ) : (
-        <CenteredPanelMessage>Loading query editor…</CenteredPanelMessage>
+        <CenteredPanelMessage>جارٍ تحميل محرر الاستعلام…</CenteredPanelMessage>
       )}
       {descriptionError === undefined &&
         configurationIssues.map((issue, index) => (

@@ -93,7 +93,7 @@ export const AddDomain = ({
         {isOpen && (
           <>
             <Label htmlFor={id} text="title">
-              New Domain
+              نطاق جديد
             </Label>
             <InputField
               id={id}
@@ -136,7 +136,7 @@ export const AddDomain = ({
               }
             }}
           >
-            {isOpen ? "Add domain" : "Add a new domain"}
+            {isOpen ? "إضافة النطاق" : "إضافة نطاق جديد"}
           </Button>
 
           <Button
@@ -144,7 +144,7 @@ export const AddDomain = ({
             type="button"
             onClick={onExportClick}
           >
-            Export
+            تصدير
           </Button>
         </Grid>
       </Flex>

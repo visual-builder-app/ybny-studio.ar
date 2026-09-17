@@ -79,7 +79,7 @@ export const DateControl = ({
             content={
               binding.fieldError ??
               (input.utc
-                ? "Date and time in UTC. Display formatting and time zone are configured separately."
+                ? "التاريخ والوقت بالتوقيت العالمي المنسق (UTC). يتم ضبط تنسيق العرض والمنطقة الزمنية بشكل منفصل."
                 : "")
             }
             open={

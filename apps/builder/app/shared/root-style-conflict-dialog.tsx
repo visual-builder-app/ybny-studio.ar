@@ -18,13 +18,13 @@ export type RootStyleConflictDialogConflict = Pick<
 const conflictResolutionOptions = [
   {
     value: "ours",
-    label: "Keep existing",
-    description: "Preserve your project's current global style values",
+    label: "الاحتفاظ بالموجود",
+    description: "الحفاظ على قيم الأنماط العامة الحالية في مشروعك",
   },
   {
     value: "theirs",
-    label: "Use incoming",
-    description: "Replace conflicting global style values with pasted values",
+    label: "استخدام الوارد",
+    description: "استبدال قيم الأنماط العامة المتعارضة بالقيم الملصوقة",
   },
 ] as const satisfies ReadonlyArray<{
   value: RootStyleConflictResolution;
@@ -72,13 +72,13 @@ export const RootStyleConflictDialog = () => {
 
   return (
     <ConflictResolutionDialog
-      title="Global style conflict detected"
+      title="تم اكتشاف تعارض في الأنماط العامة"
       description={
         conflicts.length === 1
-          ? "A pasted global style conflicts with an existing value. Global styles affect every page."
-          : `${conflicts.length} pasted global styles conflict with existing values. Global styles affect every page.`
+          ? "نمط عام ملصوق يتعارض مع قيمة موجودة. الأنماط العامة تؤثر على كل صفحة."
+          : `تتعارض ${conflicts.length} أنماط عامة ملصوقة مع قيم موجودة. الأنماط العامة تؤثر على كل صفحة.`
       }
-      detailsLabel="Show conflicting styles"
+      detailsLabel="إظهار الأنماط المتعارضة"
       details={conflicts
         .map(({ existingStyle, incomingStyle, breakpointLabel }) => {
           const property = hyphenateProperty(incomingStyle.property);

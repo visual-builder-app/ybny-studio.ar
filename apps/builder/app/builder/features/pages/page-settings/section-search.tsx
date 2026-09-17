@@ -44,7 +44,7 @@ const LanguageField = ({
   const { variableValues, scope, aliases } = useStore($pageRootScope);
   return (
     <Grid gap={1}>
-      <Label htmlFor={id}>Language</Label>
+      <Label htmlFor={id}>اللغة</Label>
       <BindableExpressionControl
         expression={value}
         value={computePageSettingsText(value, variableValues)}
@@ -112,10 +112,10 @@ export const SearchSection = ({
     <Grid gap={2}>
       <Grid gap={2}>
         <Text color="subtle">
-          Optimize the way this page appears in search engine results pages.
+          حسّن طريقة ظهور هذه الصفحة في صفحات نتائج محركات البحث.
         </Text>
         <Grid gap={1}>
-          <Label>Search result preview</Label>
+          <Label>معاينة نتيجة البحث</Label>
           <Box
             css={{
               padding: theme.spacing[5],
@@ -145,7 +145,7 @@ export const SearchSection = ({
       </Grid>
 
       <Grid gap={1}>
-        <Label htmlFor={titleId}>Title</Label>
+        <Label htmlFor={titleId}>العنوان</Label>
         <BindableExpressionControl
           expression={values.title}
           value={title}
@@ -166,7 +166,7 @@ export const SearchSection = ({
                 color={errors.title && "error"}
                 id={titleId}
                 name="title"
-                placeholder="My awesome project - About"
+                placeholder="مشروعي الرائع - حول"
                 disabled={canEditTitle === false || readOnly}
                 value={value}
                 onChange={(event) => onChangeValue(event.target.value)}
@@ -177,7 +177,7 @@ export const SearchSection = ({
       </Grid>
 
       <Grid gap={1}>
-        <Label htmlFor={descriptionId}>Description</Label>
+        <Label htmlFor={descriptionId}>الوصف</Label>
         <BindableExpressionControl
           expression={values.description}
           value={description}
@@ -251,7 +251,7 @@ export const SearchSection = ({
 
               <InputErrorsTooltip errors={errors.excludePageFromSearch}>
                 <Label htmlFor={excludePageFromSearchId}>
-                  Exclude this page from search results
+                  استبعاد هذه الصفحة من نتائج البحث
                 </Label>
               </InputErrorsTooltip>
             </Grid>

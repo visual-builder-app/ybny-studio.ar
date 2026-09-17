@@ -6,11 +6,11 @@ type PropertyStatus = (typeof propertyStatuses)[keyof typeof propertyStatuses];
 
 const statusDescriptions = {
   experimental:
-    "This CSS property is experimental. Browser support may be limited, and its behavior may change.",
+    "خاصية CSS هذه تجريبية. قد يكون دعم المتصفحات محدودًا، وقد يتغير سلوكها.",
   nonstandard:
-    "This CSS property is non-standard. It may work only in specific browsers and can change or be removed without notice.",
+    "خاصية CSS هذه غير قياسية. قد تعمل فقط في متصفحات محددة، ويمكن أن تتغير أو تُزال دون إشعار.",
   obsolete:
-    "This CSS property is obsolete. Browsers may no longer support it, and it should not be used in new projects.",
+    "خاصية CSS هذه قديمة. قد لا تدعمها المتصفحات بعد الآن، ولا ينبغي استخدامها في المشاريع الجديدة.",
 } satisfies Record<Exclude<PropertyStatus, "standard">, string>;
 
 export const getPropertyStatusDetails = (property: string) => {
@@ -47,7 +47,7 @@ export const PropertyStatusDescription = ({
         rel="noreferrer"
         color="inherit"
       >
-        Learn more on MDN
+        اعرف المزيد على MDN
       </Link>
     </Flex>
   );
@@ -63,7 +63,7 @@ export const PropertyStatusIcon = ({ property }: { property: string }) => {
     <Flex
       as="span"
       align="center"
-      aria-label={`${property} is ${details.status}`}
+      aria-label={`${property} حالته ${details.status}`}
       css={{ color: cssVar("--foreground-warning") }}
     >
       <AlertIcon size={12} />

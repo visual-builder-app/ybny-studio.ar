@@ -131,10 +131,10 @@ export const DataVariablesGroup = ({
           </CommandGroupHeading>
         }
         actions={[
-          { name: "select", label: "Select" },
-          { name: "findUsages", label: "Find usages" },
-          { name: "rename", label: "Rename" },
-          { name: "delete", label: "Delete" },
+          { name: "select", label: "تحديد" },
+          { name: "findUsages", label: "البحث عن الاستخدامات" },
+          { name: "rename", label: "إعادة تسمية" },
+          { name: "delete", label: "حذف" },
         ]}
       >
         {options.map((option) => {
@@ -185,7 +185,7 @@ export const DataVariablesGroup = ({
         }}
         onConfirm={(_variableId, newName) => {
           toast.success(
-            `Variable renamed from "${variableDialog?.name}" to "${newName}"`
+            `أُعيدت تسمية المتغير من "${variableDialog?.name}" إلى "${newName}"`
           );
           setVariableDialog(undefined);
         }}
@@ -201,7 +201,7 @@ export const DataVariablesGroup = ({
         }}
         onConfirm={(variableId) => {
           deleteDataVariable(variableId);
-          toast.success(`Variable "${variableDialog?.name}" deleted`);
+          toast.success(`تم حذف المتغير "${variableDialog?.name}"`);
           setVariableDialog(undefined);
         }}
       />

@@ -21,7 +21,7 @@ type TimeZoneItem = {
 
 const visitorTimeZone = "visitor";
 const defaultTimeZone = "UTC";
-const defaultDatetime = "dateTime attribute is not set";
+const defaultDatetime = "سمة dateTime غير مضبوطة";
 const defaultLanguage = "en";
 const defaultCountry = "GB";
 const defaultDateStyle = "medium";
@@ -54,7 +54,7 @@ const getSupportedTimeZones = () => {
 
 const getTimeZoneItem = (value: string): TimeZoneItem => ({
   value,
-  label: value === visitorTimeZone ? "Visitor's timezone" : value,
+  label: value === visitorTimeZone ? "المنطقة الزمنية للزائر" : value,
 });
 
 const getTimeZoneItems = (options: string[]) => {
@@ -150,16 +150,16 @@ const getTimeZonePreview = ({
     return;
   }
   if (item.value === visitorTimeZone) {
-    return "Uses each visitor's browser timezone after the page loads.";
+    return "يستخدم المنطقة الزمنية لمتصفح كل زائر بعد تحميل الصفحة.";
   }
   if (isValidTimeZone(item.value) === false) {
-    return "Unknown timezone. Use an IANA timezone like Europe/Berlin.";
+    return "منطقة زمنية غير معروفة. استخدم منطقة زمنية بصيغة IANA مثل Europe/Berlin.";
   }
   if (date === undefined) {
-    return "Select or type an IANA timezone.";
+    return "حدد أو اكتب منطقة زمنية بصيغة IANA.";
   }
   if (format.trim() !== "") {
-    return "Preview uses the custom format on canvas.";
+    return "تستخدم المعاينة التنسيق المخصص على اللوحة.";
   }
   try {
     const formatted = new Intl.DateTimeFormat(locale, {
@@ -175,7 +175,7 @@ const getTimeZonePreview = ({
       .find((part) => part.type === "timeZoneName")?.value;
     return [offset, formatted].filter(Boolean).join(" · ");
   } catch {
-    return "Unable to preview this timezone.";
+    return "تعذرت معاينة هذه المنطقة الزمنية.";
   }
 };
 
@@ -280,7 +280,7 @@ export const TimeZoneControl = ({
               });
               return (
                 <Box css={{ width: theme.spacing[28] }}>
-                  <Text>{preview ?? "Select or type an IANA timezone."}</Text>
+                  <Text>{preview ?? "حدد أو اكتب منطقة زمنية بصيغة IANA."}</Text>
                 </Box>
               );
             }}

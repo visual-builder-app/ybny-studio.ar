@@ -103,7 +103,7 @@ export const SettingsSection = () => {
   return (
     <Row>
       {isTemplate && (
-        <HorizontalLayout label={<Label htmlFor={nameId}>Name</Label>}>
+        <HorizontalLayout label={<Label htmlFor={nameId}>الاسم</Label>}>
           <Tooltip content={nameError} delayDuration={0}>
             <InputField
               id={nameId}
@@ -121,7 +121,7 @@ export const SettingsSection = () => {
           </Tooltip>
         </HorizontalLayout>
       )}
-      <HorizontalLayout label={<Label htmlFor={labelId}>Label</Label>}>
+      <HorizontalLayout label={<Label htmlFor={labelId}>التسمية</Label>}>
         <Tooltip
           content={
             isNameEditable ? labelError : externalContentInstanceNameMessage

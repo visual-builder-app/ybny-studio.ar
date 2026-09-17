@@ -21,14 +21,14 @@ export const properties = ["backdrop-filter"] satisfies [
   ...CssProperty[],
 ];
 
-const label = "Backdrop filters";
+const label = "مرشحات الخلفية";
 const initialBackdropFilter = "blur(0px)";
 
 const getItemProps = (_index: number, value: StyleValue) => {
   const label =
     value.type === "function"
       ? `${humanizeString(value.name)}: ${toValue(value.args)}`
-      : "Unknown filter";
+      : "مرشح غير معروف";
   return { label };
 };
 
@@ -38,7 +38,7 @@ export const Section = () => {
   return (
     <RepeatedStyleSection
       label={label}
-      description="Backdrop filters are similar to filters, but are applied to the area behind an element. This can be useful for creating frosted glass effects."
+      description="مرشحات الخلفية مشابهة للمرشحات، لكنها تُطبَّق على المنطقة خلف العنصر. تفيد في إنشاء تأثير الزجاج المصنفر."
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -73,8 +73,8 @@ export const Section = () => {
                     <Text variant="regularBold">{label}</Text>
                     <Text variant="monoBold">backdrop-filter</Text>
                     <Text>
-                      Applies graphical effects like blur or color shift to the
-                      area behind an element
+                      يطبّق مؤثرات رسومية مثل التمويه أو تغيير اللون على
+                      المنطقة خلف العنصر
                       <br /> <br />
                       <Text variant="mono">{initialBackdropFilter}</Text>
                     </Text>

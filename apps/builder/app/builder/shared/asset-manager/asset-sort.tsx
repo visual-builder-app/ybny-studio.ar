@@ -34,8 +34,8 @@ export const AssetSortSelect = ({
     sortBy === "name"
       ? "Alphabetical"
       : sortBy === "size"
-        ? "File size"
-        : "Date created";
+        ? "حجم الملف"
+        : "تاريخ الإنشاء";
 
   const sortIcon =
     sortBy === "name" ? (
@@ -75,23 +75,23 @@ export const AssetSortSelect = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Sort</DropdownMenuLabel>
+        <DropdownMenuLabel>ترتيب</DropdownMenuLabel>
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={(value) => handleSortChange(value as SortField, order)}
         >
           <DropdownMenuRadioItem value="name" icon={<MenuCheckedIcon />}>
-            Alphabetical
+            أبجدي
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="createdAt" icon={<MenuCheckedIcon />}>
-            Date created
+            تاريخ الإنشاء
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="size" icon={<MenuCheckedIcon />}>
-            File size
+            حجم الملف
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuLabel>Order</DropdownMenuLabel>
+        <DropdownMenuLabel>الترتيب</DropdownMenuLabel>
         <DropdownMenuRadioGroup
           value={order}
           onValueChange={(value) =>
@@ -101,28 +101,28 @@ export const AssetSortSelect = ({
           {sortBy === "name" ? (
             <>
               <DropdownMenuRadioItem value="asc" icon={<MenuCheckedIcon />}>
-                A→Z
+                أ→ي
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="desc" icon={<MenuCheckedIcon />}>
-                Z→A
+                ي→أ
               </DropdownMenuRadioItem>
             </>
           ) : sortBy === "size" ? (
             <>
               <DropdownMenuRadioItem value="desc" icon={<MenuCheckedIcon />}>
-                Largest first
+                الأكبر أولًا
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="asc" icon={<MenuCheckedIcon />}>
-                Smallest first
+                الأصغر أولًا
               </DropdownMenuRadioItem>
             </>
           ) : (
             <>
               <DropdownMenuRadioItem value="desc" icon={<MenuCheckedIcon />}>
-                Newest first
+                الأحدث أولًا
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="asc" icon={<MenuCheckedIcon />}>
-                Oldest first
+                الأقدم أولًا
               </DropdownMenuRadioItem>
             </>
           )}

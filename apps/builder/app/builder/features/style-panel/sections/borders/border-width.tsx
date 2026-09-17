@@ -33,8 +33,8 @@ const borderPropertyOptions = {
 export const BorderWidth = () => {
   return (
     <BorderProperty
-      label="Width"
-      description="Sets the width of the border"
+      label="العرض"
+      description="يضبط عرض الحدود"
       borderPropertyOptions={borderPropertyOptions}
       individualModeIcon={<BorderWidthIndividualIcon />}
     />

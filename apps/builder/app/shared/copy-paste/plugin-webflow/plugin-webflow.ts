@@ -139,7 +139,7 @@ const parse = (clipboardData: string): WebflowParseResult => {
   );
 
   if (unsupportedNodeTypes.size !== 0) {
-    const message = `Skipping unsupported elements: ${[...unsupportedNodeTypes.values()].join(", ")}`;
+    const message = `تم تخطي عناصر غير مدعومة: ${[...unsupportedNodeTypes.values()].join("، ")}`;
     toast.info(message);
     console.info(message);
   }
@@ -168,7 +168,7 @@ const parse = (clipboardData: string): WebflowParseResult => {
     }
 
     if (unparsedTypes.size !== 0) {
-      const message = `The following types were skipped due to a parsing error: ${[...unparsedTypes.values()].join(", ")}`;
+      const message = `تم تخطي الأنواع التالية بسبب خطأ في التحليل: ${[...unparsedTypes.values()].join("، ")}`;
       toast.info(message);
       console.info(message);
     }

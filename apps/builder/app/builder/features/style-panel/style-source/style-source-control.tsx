@@ -203,8 +203,8 @@ const LocalStyleIcon = ({ size = 16, showDot = true }) => {
 };
 
 const errors = {
-  minlength: "Token must be at least 1 character long",
-  duplicate: "Token already exists",
+  minlength: "يجب ألا يقل طول الرمز عن حرف واحد",
+  duplicate: "الرمز موجود بالفعل",
 } as const;
 
 export type StyleSourceError = {

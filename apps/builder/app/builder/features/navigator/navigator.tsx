@@ -9,7 +9,7 @@ export const NavigatorPanel = (_props: { onClose: () => void }) => {
   const isDesignMode = useStore($isDesignMode);
   return (
     <>
-      <PanelTitle>Navigator</PanelTitle>
+      <PanelTitle>شجرة العناصر</PanelTitle>
       <Separator />
       <InstanceContextMenu>
         <Flex grow direction="column" justify="end">

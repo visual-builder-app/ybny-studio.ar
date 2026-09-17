@@ -52,8 +52,8 @@ import { ProjectSettingsDataRow } from "./data-row";
 const statusCodeOptions = ["301", "302"] as const;
 
 const statusCodeDescriptions: Record<string, string> = {
-  "301": "Moved permanently. SEO ranking transfers to new URL.",
-  "302": "Moved temporarily. SEO ranking stays with original URL.",
+  "301": "نقل دائم. ينتقل تصنيف SEO إلى الرابط الجديد.",
+  "302": "نقل مؤقت. يبقى تصنيف SEO مع الرابط الأصلي.",
 };
 
 const deleteRedirect = (
@@ -213,21 +213,21 @@ export const SectionRedirects = () => {
 
       <Grid gap={3} css={sectionSpacing}>
         <Flex gap={1} align="center">
-          <Text variant="titles">Redirects</Text>
+          <Text variant="titles">إعادة التوجيه</Text>
           <Tooltip
             variant="wrapped"
             content={
               <Flex direction="column" gap="2">
                 <Text>
-                  Redirect old URLs to new ones so you don't lose traffic or
-                  search engine rankings.
+                  وجّه الروابط القديمة إلى روابط جديدة حتى لا تفقد الزيارات
+                  أو تصنيفات محركات البحث.
                 </Text>
                 <Flex direction="column" gap="1">
-                  <Text>Supported patterns:</Text>
-                  <Text>/path → Exact match</Text>
-                  <Text>/blog/* → All paths under /blog/</Text>
-                  <Text>/:slug → Dynamic segment</Text>
-                  <Text>/:id? → Optional segment</Text>
+                  <Text>الأنماط المدعومة:</Text>
+                  <Text>/path → مطابقة تامة</Text>
+                  <Text>/blog/* → جميع المسارات تحت /blog/</Text>
+                  <Text>/:slug → جزء ديناميكي</Text>
+                  <Text>/:id? → جزء اختياري</Text>
                 </Flex>
               </Flex>
             }
@@ -241,7 +241,7 @@ export const SectionRedirects = () => {
 
         <Flex gap="2" justify="between">
           <SearchField
-            placeholder="Search"
+            placeholder="بحث"
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             onAbort={() => setSearchQuery("")}
@@ -254,14 +254,14 @@ export const SectionRedirects = () => {
               onClick={() => setIsDeleteAllDialogOpen(true)}
               disabled={redirects.length === 0}
             >
-              Delete all
+              حذف الكل
             </Button>
             <Button
               color="ghost"
               prefix={<UploadIcon />}
               onClick={() => setIsImportDialogOpen(true)}
             >
-              Import
+              استيراد
             </Button>
           </Flex>
         </Flex>
@@ -271,20 +271,20 @@ export const SectionRedirects = () => {
           onOpenChange={setIsDeleteAllDialogOpen}
         >
           <DialogContent>
-            <DialogTitle>Delete all redirects</DialogTitle>
+            <DialogTitle>حذف كل عمليات إعادة التوجيه</DialogTitle>
             <PanelContent as={Flex}>
               <Text>
-                Are you sure you want to delete all {redirects.length} redirect
-                {redirects.length !== 1 ? "s" : ""}? This action cannot be
-                undone.
+                هل أنت متأكد أنك تريد حذف جميع عمليات إعادة التوجيه
+                {redirects.length !== 1 ? "" : ""} ({redirects.length})؟ لا يمكن
+                التراجع عن هذا الإجراء.
               </Text>
             </PanelContent>
             <DialogActions>
               <Button color="destructive" onClick={handleDeleteAll}>
-                Delete all
+                حذف الكل
               </Button>
               <DialogClose>
-                <Button color="ghost">Cancel</Button>
+                <Button color="ghost">إلغاء</Button>
               </DialogClose>
             </DialogActions>
           </DialogContent>
@@ -355,7 +355,7 @@ export const SectionRedirects = () => {
             onClick={handleAddRedirect}
             css={{ flexShrink: 0 }}
           >
-            Add
+            إضافة
           </Button>
         </Flex>
         {fromPathWarnings.length > 0 && (
@@ -422,7 +422,7 @@ export const SectionRedirects = () => {
                         <SmallIconButton
                           variant="destructive"
                           icon={<TrashIcon />}
-                          aria-label={`Delete redirect from ${redirect.old}`}
+                          aria-label={`حذف إعادة التوجيه من ${redirect.old}`}
                           onClick={() => handleDeleteRedirect(redirect)}
                         />
                       </ProjectSettingsDataRow>

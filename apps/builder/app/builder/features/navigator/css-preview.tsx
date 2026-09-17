@@ -64,9 +64,9 @@ const getCssText = (
     result.push(generateStyleMap(mergeStyles(style)));
   };
 
-  add("Style sources", sourceStyles);
-  add("Cascaded", cascadedStyles);
-  add("Preset", presetStyles);
+  add("مصادر الأنماط", sourceStyles);
+  add("الأنماط المتتالية", cascadedStyles);
+  add("الإعداد المسبق", presetStyles);
 
   return result.join("\n");
 };
@@ -92,7 +92,7 @@ export const CssPreview = () => {
     return null;
   }
   return (
-    <CollapsibleSection label="CSS preview" fullWidth showSeparator={false}>
+    <CollapsibleSection label="معاينة CSS" fullWidth showSeparator={false}>
       <PanelContent as={ScrollArea}>
         <pre tabIndex={0} className={preStyle()}>
           <div

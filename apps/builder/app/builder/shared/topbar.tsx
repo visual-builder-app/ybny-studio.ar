@@ -131,7 +131,7 @@ const PagesButton = () => {
     <Tooltip
       content={
         <Text>
-          {"Pages or page settings "}
+          {"الصفحات أو إعدادات الصفحة "}
           <Kbd value={["alt", "click"]} color="moreSubtle" />
         </Text>
       }
@@ -144,7 +144,7 @@ const PagesButton = () => {
           paddingInline: theme.panel.paddingInline,
           "& > span": { maxWidth: theme.spacing[24] },
         }}
-        aria-label="Toggle pages"
+        aria-label="تبديل الصفحات"
         onClick={(event) => {
           $editingPageId.set(
             event.altKey && isPage(page) ? page.id : undefined

@@ -104,7 +104,7 @@ export const Entri = ({ domain, dnsRecords, onClose }: EntriProps) => {
           showDialog();
         }}
       >
-        Setup automatically with Entri
+        الإعداد تلقائيًا باستخدام Entri
       </Button>
     </>
   );

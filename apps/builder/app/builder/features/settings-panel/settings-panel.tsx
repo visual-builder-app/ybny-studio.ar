@@ -41,15 +41,15 @@ export const SettingsPanel = ({
         <PanelBanner>
           <img
             src={cmsUpgradeBanner}
-            alt="Upgrade for CMS"
+            alt="الترقية لأجل CMS"
             width={rawTheme.spacing[28]}
             style={{ aspectRatio: "4.1" }}
           />
-          <Text variant="regularBold">Upgrade for CMS on custom domains</Text>
+          <Text variant="regularBold">قم بالترقية لأجل CMS على النطاقات المخصصة</Text>
           <Text>
-            Integrate content from other tools to create blogs, directories, and
-            any other structured content. You can preview CMS on staging without
-            upgrading.
+            ادمج المحتوى من أدوات أخرى لإنشاء المدونات والأدلة وأي
+            محتوى منظم آخر. يمكنك معاينة CMS على بيئة التجربة دون
+            ترقية.
           </Text>
           <Flex align="center" gap={1}>
             <UpgradeIcon />
@@ -58,7 +58,7 @@ export const SettingsPanel = ({
               target="_blank"
               href="https://webstudio.is/pricing"
             >
-              Upgrade to Pro
+              الترقية إلى Pro
             </Link>
           </Flex>
         </PanelBanner>

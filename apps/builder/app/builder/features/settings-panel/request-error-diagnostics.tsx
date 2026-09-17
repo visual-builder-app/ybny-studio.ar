@@ -182,8 +182,8 @@ export const getRequestErrorDiagnostics = (
     errorMessage ??
     statusText ??
     (status === undefined
-      ? "Request failed"
-      : `Request failed with status ${status}`);
+      ? "فشل الطلب"
+      : `فشل الطلب برمز الحالة ${status}`);
   return {
     status,
     statusText,
@@ -282,43 +282,43 @@ export const getRequestSourceDiagnosticDetails = (
   const details: { label: string; value: string }[] = [];
   if (diagnostic.scope !== undefined) {
     details.push({
-      label: "Context",
+      label: "السياق",
       value:
-        diagnostic.scope === "query" ? "Current query" : "Published database",
+        diagnostic.scope === "query" ? "الاستعلام الحالي" : "قاعدة البيانات المنشورة",
     });
   }
   if (diagnostic.phase !== undefined) {
     details.push({
-      label: "Phase",
+      label: "المرحلة",
       value:
         diagnostic.phase === "metadata"
-          ? "Metadata"
+          ? "البيانات الوصفية"
           : diagnostic.phase === "reference"
-            ? "Reference"
-            : "Source",
+            ? "المرجع"
+            : "المصدر",
     });
   }
-  details.push({ label: "Code", value: diagnostic.code });
+  details.push({ label: "الرمز", value: diagnostic.code });
   if (diagnostic.assetId !== undefined) {
-    details.push({ label: "Asset ID", value: diagnostic.assetId });
+    details.push({ label: "معرّف الوسيط", value: diagnostic.assetId });
   }
   if (diagnostic.reference !== undefined) {
-    details.push({ label: "Reference", value: diagnostic.reference });
+    details.push({ label: "المرجع", value: diagnostic.reference });
   }
   if (diagnostic.nodeType !== undefined) {
-    details.push({ label: "Node type", value: diagnostic.nodeType });
+    details.push({ label: "نوع العقدة", value: diagnostic.nodeType });
   }
   const startOffset = diagnostic.sourceRange?.start.offset;
   const endOffset = diagnostic.sourceRange?.end.offset;
   if (startOffset !== undefined && endOffset !== undefined) {
     details.push({
-      label: "Source offsets",
+      label: "إزاحات المصدر",
       value: `${startOffset}–${endOffset}`,
     });
   } else if (startOffset !== undefined) {
-    details.push({ label: "Source start offset", value: `${startOffset}` });
+    details.push({ label: "إزاحة بداية المصدر", value: `${startOffset}` });
   } else if (endOffset !== undefined) {
-    details.push({ label: "Source end offset", value: `${endOffset}` });
+    details.push({ label: "إزاحة نهاية المصدر", value: `${endOffset}` });
   }
   return details;
 };
@@ -353,16 +353,16 @@ export const RequestErrorDiagnostics = ({
       <RequestDiagnosticsTable>
         {value.status !== undefined && (
           <RequestDiagnosticsRow
-            label="HTTP status"
+            label="حالة HTTP"
             value={`${value.status}${
               value.statusText === undefined ? "" : ` ${value.statusText}`
             }`}
           />
         )}
         {value.code !== undefined && (
-          <RequestDiagnosticsRow label="Error code" value={value.code} />
+          <RequestDiagnosticsRow label="رمز الخطأ" value={value.code} />
         )}
-        <RequestDiagnosticsRow label="Message" value={value.message} />
+        <RequestDiagnosticsRow label="الرسالة" value={value.message} />
         {sourceDiagnostics.map((diagnostic, index) => (
           <RequestDiagnosticDisclosure
             key={`${diagnostic.path}:${diagnostic.code}:${index}`}
@@ -380,21 +380,21 @@ export const RequestErrorDiagnostics = ({
             title={diagnostic.message}
             location={`${
               diagnostic.context === "diagnostics"
-                ? "Diagnostics response"
-                : "Query"
+                ? "استجابة التشخيصات"
+                : "الاستعلام"
             }${
               diagnostic.path.length === 0
                 ? ""
                 : ` · ${diagnostic.path.join(".")}`
             }`}
             reason={diagnostic.message}
-            details={[{ label: "Code", value: diagnostic.code }]}
+            details={[{ label: "الرمز", value: diagnostic.code }]}
           />
         ))}
         {value.retryable !== undefined && (
           <RequestDiagnosticsRow
-            label="Retryable"
-            value={value.retryable ? "Yes" : "No"}
+            label="قابل لإعادة المحاولة"
+            value={value.retryable ? "نعم" : "لا"}
           />
         )}
         {Object.entries(value.details ?? {})
@@ -402,7 +402,7 @@ export const RequestErrorDiagnostics = ({
           .map(([key, detail]) => (
             <RequestDiagnosticsRow
               key={key}
-              label={`Details · ${key}`}
+              label={`التفاصيل · ${key}`}
               value={formatDetail(detail)}
             />
           ))}

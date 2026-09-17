@@ -131,7 +131,7 @@ export const WidthInput = ({ min }: { min: number }) => {
 
   return (
     <Flex gap="2" align="center">
-      <Label htmlFor={id}>Width</Label>
+      <Label htmlFor={id}>العرض</Label>
       <InputField
         {...inputProps}
         id={id}

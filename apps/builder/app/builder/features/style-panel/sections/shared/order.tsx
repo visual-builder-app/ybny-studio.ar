@@ -25,7 +25,7 @@ import { useReadonly } from "../../shared/readonly";
 const OrderPopover = () => {
   return (
     <FloatingPanel
-      title="Order"
+      title="الترتيب"
       placement="bottom-within"
       content={
         <PanelContent
@@ -36,7 +36,7 @@ const OrderPopover = () => {
           gap={2}
         >
           <PropertyLabel
-            label="Order"
+            label="الترتيب"
             description={propertyDescriptions.order}
             properties={["order"]}
           />
@@ -58,25 +58,25 @@ export const OrderControl = () => {
   const items = [
     {
       child: <XSmallIcon />,
-      description: "Don't change",
+      description: "بدون تغيير",
       value: "0",
       code: "order: 0;",
     },
     {
       child: <OrderFirstIcon />,
-      description: "Make first",
+      description: "جعله أولًا",
       value: "-1",
       code: "order: -1;",
     },
     {
       child: <OrderLastIcon />,
-      description: "Make last",
+      description: "جعله آخرًا",
       value: "1",
       code: "order: 1;",
     },
     {
       child: <OrderPopover />,
-      description: "Customize order",
+      description: "تخصيص الترتيب",
       value: "",
       code: `order: ${selectedValue};`,
     },
@@ -90,7 +90,7 @@ export const OrderControl = () => {
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="Order"
+        label="الترتيب"
         description={propertyDescriptions.order}
         properties={["order"]}
       />
@@ -122,7 +122,7 @@ export const OrderControl = () => {
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={item.value === selectedValue}
-            label="Order"
+            label="الترتيب"
             code={item.code}
             description={item.description}
             properties={["order"]}

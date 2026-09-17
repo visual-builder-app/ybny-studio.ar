@@ -80,42 +80,42 @@ type BackgroundTypeOption = {
 const backgroundTypeOptions: BackgroundTypeOption[] = [
   {
     value: "image",
-    label: "Image",
+    label: "صورة",
     description:
-      "Use an image asset, remote URL, or data URI as the layer background.",
+      "استخدم وسيط صورة أو رابطًا بعيدًا أو data URI كخلفية للطبقة.",
     code: "background-image: url(...);",
     icon: <ImageIcon />,
     autoFocus: true,
   },
   {
     value: "solid",
-    label: "Solid",
+    label: "لون ثابت",
     description:
-      "Use a single color layer while keeping control over stacking order.",
+      "استخدم طبقة بلون واحد مع الاحتفاظ بالتحكم في ترتيب التراص.",
     code: "background-image: linear-gradient(color, color);",
     icon: <ColorSwatchIcon />,
   },
   {
     value: "linearGradient",
-    label: "Linear gradient",
+    label: "تدرج خطي",
     description:
-      "Blend multiple colors along a line to create smooth transitions.",
+      "امزج عدة ألوان على طول خط لإنشاء انتقالات سلسة.",
     code: "background-image: linear-gradient(...);",
     icon: <GradientLinearIcon />,
   },
   {
     value: "radialGradient",
-    label: "Radial gradient",
+    label: "تدرج شعاعي",
     description:
-      "Blend multiple colors in a circular pattern to create smooth transitions.",
+      "امزج عدة ألوان بنمط دائري لإنشاء انتقالات سلسة.",
     code: "background-image: radial-gradient(...);",
     icon: <GradientRadialIcon />,
   },
   {
     value: "conicGradient",
-    label: "Conic gradient",
+    label: "تدرج مخروطي",
     description:
-      "Spin colors around a center point for charts, dials, and spotlight effects.",
+      "لفّ الألوان حول نقطة مركزية للمخططات والأقراص وتأثيرات الإضاءة الموجهة.",
     code: "background-image: conic-gradient(...);",
     icon: <GradientConicIcon />,
   },
@@ -190,7 +190,7 @@ const BackgroundTypeToggle = ({
       type="single"
       disabled={disabled}
       value={value}
-      aria-label="Background type"
+      aria-label="نوع الخلفية"
       onValueChange={handleValueChange}
     >
       {backgroundTypeOptions.map(
@@ -223,25 +223,25 @@ const BackgroundRepeat = ({
     {
       child: <XSmallIcon />,
       description:
-        "This value indicates that the background image will not be repeated and will appear only once.",
+        "تشير هذه القيمة إلى أن صورة الخلفية لن تُكرر وستظهر مرة واحدة فقط.",
       value: "no-repeat",
     },
     {
       child: <RepeatGridIcon />,
       description:
-        "This value indicates that the background image will be repeated both horizontally and vertically to fill the entire background area.",
+        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا وعموديًا لتملأ منطقة الخلفية بالكامل.",
       value: "repeat",
     },
     {
       child: <RepeatColumnIcon />,
       description:
-        "This value indicates that the background image will be repeated only vertically.",
+        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر عموديًا فقط.",
       value: "repeat-y",
     },
     {
       child: <RepeatRowIcon />,
       description:
-        "This value indicates that the background image will be repeated only horizontally.",
+        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا فقط.",
       value: "repeat-x",
     },
   ];
@@ -253,7 +253,7 @@ const BackgroundRepeat = ({
   const [activeTooltip, setActiveTooltip] = useState<undefined | string>();
   return (
     <PropertyValueTooltip
-      label="Repeat"
+      label="التكرار"
       description={propertyDescriptions.backgroundRepeat}
       properties={["background-repeat"]}
     >
@@ -261,7 +261,7 @@ const BackgroundRepeat = ({
         type="single"
         disabled={disabled}
         value={toValue(value)}
-        aria-label="Background repeat"
+        aria-label="تكرار الخلفية"
         onValueChange={(value) => {
           setRepeatedStyleItem(styleDecl, index, { type: "keyword", value });
         }}
@@ -274,7 +274,7 @@ const BackgroundRepeat = ({
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={false}
-            label="Background repeat"
+            label="تكرار الخلفية"
             code={`background-repeat: ${item.value};`}
             description={item.description}
             properties={["background-repeat"]}
@@ -283,12 +283,12 @@ const BackgroundRepeat = ({
               value={item.value}
               aria-label={
                 item.value === "no-repeat"
-                  ? "Do not repeat background"
+                  ? "عدم تكرار الخلفية"
                   : item.value === "repeat"
-                    ? "Repeat background"
+                    ? "تكرار الخلفية"
                     : item.value === "repeat-y"
-                      ? "Repeat background vertically"
-                      : "Repeat background horizontally"
+                      ? "تكرار الخلفية عموديًا"
+                      : "تكرار الخلفية أفقيًا"
               }
               onMouseEnter={() =>
                 // reset only when highlighted is not active
@@ -317,7 +317,7 @@ const BackgroundAttachment = ({
   const value = getRepeatedStyleItem(styleDecl, index);
   return (
     <PropertyValueTooltip
-      label="Attachment"
+      label="التثبيت"
       description={propertyDescriptions.backgroundAttachment}
       properties={["background-attachment"]}
     >
@@ -325,16 +325,16 @@ const BackgroundAttachment = ({
         type="single"
         disabled={disabled}
         value={toValue(value)}
-        aria-label="Background attachment"
+        aria-label="تثبيت الخلفية"
         onValueChange={(value) => {
           setRepeatedStyleItem(styleDecl, index, { type: "keyword", value });
         }}
       >
         <ToggleGroupButton value={"scroll"}>
-          <Flex css={{ px: theme.spacing[3] }}>Scroll</Flex>
+          <Flex css={{ px: theme.spacing[3] }}>تمرير</Flex>
         </ToggleGroupButton>
         <ToggleGroupButton value={"fixed"}>
-          <Flex css={{ px: theme.spacing[3] }}>Fixed</Flex>
+          <Flex css={{ px: theme.spacing[3] }}>ثابت</Flex>
         </ToggleGroupButton>
       </ToggleGroup>
     </PropertyValueTooltip>
@@ -344,7 +344,7 @@ const BackgroundAttachment = ({
 const OtherLayerProperties = ({ index }: { index: number }) => {
   const readonly = useReadonly();
   return (
-    <CollapsibleSectionRoot label={"More properties"} fullWidth={true}>
+    <CollapsibleSectionRoot label={"خصائص إضافية"} fullWidth={true}>
       <Flex
         gap="2"
         direction="column"
@@ -352,7 +352,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
       >
         <Grid columns={2} gap={2}>
           <PropertyLabel
-            label="Blend mode"
+            label="وضع المزج"
             description={propertyDescriptions.backgroundBlendMode}
             properties={["background-blend-mode"]}
           />
@@ -366,14 +366,14 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
         <BackgroundPosition disabled={readonly} index={index} />
         <Grid columns={2} align="center" gap={2}>
           <PropertyLabel
-            label="Repeat"
+            label="التكرار"
             description={propertyDescriptions.backgroundRepeat}
             properties={["background-repeat"]}
           />
           <BackgroundRepeat disabled={readonly} index={index} />
 
           <PropertyLabel
-            label="Attachment"
+            label="التثبيت"
             description={propertyDescriptions.backgroundAttachment}
             properties={["background-attachment"]}
           />
@@ -381,7 +381,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
         </Grid>
         <Grid columns={2} align="center" gap={2}>
           <PropertyLabel
-            label="Clip"
+            label="القص"
             description={propertyDescriptions.backgroundClip}
             properties={["background-clip"]}
           />
@@ -392,7 +392,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
           />
 
           <PropertyLabel
-            label="Origin"
+            label="المنشأ"
             description={propertyDescriptions.backgroundOrigin}
             properties={["background-origin"]}
           />
@@ -431,7 +431,7 @@ export const BackgroundContent = ({ index }: { index: number }) => {
         shrink={false}
       >
         <PropertyInlineLabel
-          label="Type"
+          label="النوع"
           description={propertyDescriptions.backgroundImage}
         />
         <BackgroundTypeToggle

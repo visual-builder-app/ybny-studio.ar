@@ -65,12 +65,12 @@ const fillModeDescriptions: Record<
   NonNullable<ViewAnimation["timing"]["fill"]>,
   string
 > = {
-  both: "The animation state is applied before and after the active period. Set if unsure whether it's In or Out",
+  both: "تُطبَّق حالة الحركة قبل الفترة النشطة وبعدها. اخترها إذا كنت غير متأكد مما إذا كانت للدخول أو الخروج",
   backwards:
-    "The animation state is applied before the active period. Prefered for In Animations",
+    "تُطبَّق حالة الحركة قبل الفترة النشطة. مفضّلة لحركات الدخول",
   forwards:
-    "The animation state is applied after the active period. Prefered for Out Animations",
-  none: "No animation is applied before or after the active period",
+    "تُطبَّق حالة الحركة بعد الفترة النشطة. مفضّلة لحركات الخروج",
+  none: "لا تُطبَّق أي حركة قبل الفترة النشطة أو بعدها",
 };
 
 const fillModeNames = Object.keys(fillModeDescriptions) as NonNullable<
@@ -84,16 +84,16 @@ const fillModeNames = Object.keys(fillModeDescriptions) as NonNullable<
  **/
 const viewTimelineRangeName = {
   entry:
-    "Animates during the subject element entry (starts entering → fully visible)",
-  exit: "Animates during the subject element exit (starts exiting → fully hidden)",
+    "تتحرك أثناء دخول العنصر الهدف (من بدء الدخول ← إلى الظهور الكامل)",
+  exit: "تتحرك أثناء خروج العنصر الهدف (من بدء الخروج ← إلى الاختفاء الكامل)",
   contain:
-    "Animates only while the subject element is fully in view (fullly visible after entering → starts exiting)",
+    "تتحرك فقط أثناء وجود العنصر الهدف بالكامل في العرض (مرئي بالكامل بعد الدخول ← يبدأ الخروج)",
   cover:
-    "Animates entire time the subject element is visible (starts entering → ends after exiting)",
+    "تتحرك طوال فترة ظهور العنصر الهدف (من بدء الدخول ← حتى بعد الخروج)",
   "entry-crossing":
-    "Animates as the subject element enters (leading edge → trailing edge enters view)",
+    "تتحرك أثناء دخول العنصر الهدف (من الحافة الأمامية ← حتى تدخل الحافة الخلفية إلى العرض)",
   "exit-crossing":
-    "Animates as the subject element exits (leading edge → trailing edge leaves view)",
+    "تتحرك أثناء خروج العنصر الهدف (من الحافة الأمامية ← حتى تغادر الحافة الخلفية العرض)",
 };
 
 /**
@@ -104,8 +104,8 @@ const viewTimelineRangeName = {
  * - "end" → `calc(100% - range)`
  */
 const scrollTimelineRangeName = {
-  start: "Distance from the top of the scroll container where animation begins",
-  end: "Distance from the bottom of the scroll container where animation ends",
+  start: "المسافة من أعلى حاوية التمرير حيث تبدأ الحركة",
+  end: "المسافة من أسفل حاوية التمرير حيث تنتهي الحركة",
 };
 
 type ValidatedCssValueInputProps<T> = Omit<
@@ -362,19 +362,19 @@ const simplifiedRanges = [
     "cover 0%",
     <RangeCoverIcon />,
     ["cover", { type: "unit", unit: "%", value: 0 }],
-    "the subject just begins to appear in view",
+    "عندما يبدأ العنصر الهدف بالظهور في العرض",
   ],
   [
     "contain 0%",
     <RangeContainIcon />,
     ["contain", { type: "unit", unit: "%", value: 0 }],
-    "when the subject becomes fully visible",
+    "عندما يصبح العنصر الهدف مرئيًا بالكامل",
   ],
   [
     "contain 50%",
     <RangeContain50Icon />,
     ["contain", { type: "unit", unit: "%", value: 50 }],
-    "when the subject is centered in the view",
+    "عندما يتمركز العنصر الهدف في منتصف العرض",
   ],
 
   [
@@ -383,7 +383,7 @@ const simplifiedRanges = [
       <RangeContainIcon />
     </RotateIcon180>,
     ["contain", { type: "unit", unit: "%", value: 100 }],
-    "when the subject begins to leave the view but is still fully visible",
+    "عندما يبدأ العنصر الهدف بمغادرة العرض مع بقائه مرئيًا بالكامل",
   ],
 
   [
@@ -392,7 +392,7 @@ const simplifiedRanges = [
       <RangeCoverIcon />
     </RotateIcon180>,
     ["cover", { type: "unit", unit: "%", value: 100 }],
-    "when the subject is completely out of view",
+    "عندما يخرج العنصر الهدف تمامًا من العرض",
   ],
 ] as const;
 
@@ -489,7 +489,7 @@ export const AnimationPanelContent = ({
     }
 
     console.error(parsedValue.error.format());
-    toast.error("Animation schema is incompatible, try fix");
+    toast.error("مخطط الحركة غير متوافق، حاول الإصلاح");
   };
 
   // Flex is used to allow the Keyframes to overflow without setting
@@ -501,8 +501,8 @@ export const AnimationPanelContent = ({
         align="center"
         css={{ paddingInline: theme.panel.paddingInline }}
       >
-        <FieldLabel description="A meaningful label to identify this animation">
-          Name
+        <FieldLabel description="تسمية ذات معنى للتعرف على هذه الحركة">
+          الاسم
         </FieldLabel>
         <InputField
           css={{
@@ -510,7 +510,7 @@ export const AnimationPanelContent = ({
             fontWeight: `inherit`,
           }}
           value={value.name}
-          placeholder="Enter animation name"
+          placeholder="أدخل اسم الحركة"
           onChange={(event) => {
             const name = event.currentTarget.value;
 
@@ -534,11 +534,11 @@ export const AnimationPanelContent = ({
           flexShrink: 0,
         }}
       >
-        <FieldLabel description="Controls how styles apply before and after the animation">
-          Fill Mode
+        <FieldLabel description="يتحكم في كيفية تطبيق الأنماط قبل الحركة وبعدها">
+          وضع التعبئة
         </FieldLabel>
-        <FieldLabel description="Controls how fast the animation moves at different times">
-          Easing
+        <FieldLabel description="يتحكم في سرعة الحركة في أوقات مختلفة">
+          التدرج
         </FieldLabel>
 
         <Select
@@ -618,8 +618,8 @@ export const AnimationPanelContent = ({
           gap={2}
           align={"center"}
         >
-          <FieldLabel description="When the animation ends, based on how much of the subject is visible">
-            Range End
+          <FieldLabel description="متى تنتهي الحركة، بناءً على مقدار ظهور العنصر الهدف">
+            نهاية المدى
           </FieldLabel>
           {!isScrollAnimation && (
             <ToggleGroup
@@ -632,7 +632,7 @@ export const AnimationPanelContent = ({
                 ([toggleValue, icon, range, description], index) => (
                   <Tooltip
                     key={toggleValue}
-                    content={`The animation ends ${description}`}
+                    content={`تنتهي الحركة ${description}`}
                     variant="wrapped"
                   >
                     <ToggleGroupButton
@@ -662,7 +662,7 @@ export const AnimationPanelContent = ({
                 )
               )}
 
-              <Tooltip content="Set custom range">
+              <Tooltip content="تعيين مدى مخصص">
                 <ToggleGroupButton
                   disabled={!isRangeEndEnabled}
                   onClick={() => {
@@ -775,8 +775,8 @@ export const AnimationPanelContent = ({
             </Grid>
           )}
 
-          <FieldLabel description="When the animation begins, based on how much of the subject is visible">
-            Range Start
+          <FieldLabel description="متى تبدأ الحركة، بناءً على مقدار ظهور العنصر الهدف">
+            بداية المدى
           </FieldLabel>
 
           {!isScrollAnimation && (
@@ -792,7 +792,7 @@ export const AnimationPanelContent = ({
                 ([toggleValue, icon, range, description], index) => (
                   <Tooltip
                     key={toggleValue}
-                    content={`The animation starts ${description}`}
+                    content={`تبدأ الحركة ${description}`}
                     variant="wrapped"
                   >
                     <ToggleGroupButton
@@ -823,7 +823,7 @@ export const AnimationPanelContent = ({
                 )
               )}
 
-              <Tooltip content="Set custom range">
+              <Tooltip content="تعيين مدى مخصص">
                 <ToggleGroupButton
                   disabled={!isRangeStartEnabled}
                   onClick={() => {
@@ -939,8 +939,8 @@ export const AnimationPanelContent = ({
         </Grid>
         <Grid gap="2" columns="3">
           <Box>
-            <FieldLabel description="Sets a fixed duration instead of using range end.">
-              Duration
+            <FieldLabel description="يضبط مدة ثابتة بدلاً من استخدام نهاية المدى.">
+              المدة
             </FieldLabel>
             <DurationInput
               value={value.timing.duration}
@@ -965,8 +965,8 @@ export const AnimationPanelContent = ({
           </Box>
 
           <Box>
-            <FieldLabel description="Sets a fixed delay before the animation starts instead of using range start.">
-              Delay
+            <FieldLabel description="يضبط تأخيرًا ثابتًا قبل بدء الحركة بدلاً من استخدام بداية المدى.">
+              التأخير
             </FieldLabel>
             <DurationInput
               value={value.timing.delay}
@@ -991,8 +991,8 @@ export const AnimationPanelContent = ({
           </Box>
 
           <Box>
-            <FieldLabel description="Number of times the animation should repeat. Use 'infinite' for continuous loop. Requires duration to be set.">
-              Iterations
+            <FieldLabel description="عدد مرات تكرار الحركة. استخدم 'infinite' للتكرار المستمر. يتطلب ضبط المدة.">
+              التكرارات
             </FieldLabel>
             <IterationsInput
               disabled={!isIterationsEnabled}

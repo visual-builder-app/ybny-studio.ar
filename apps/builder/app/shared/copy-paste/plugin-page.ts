@@ -165,7 +165,7 @@ const preparePageTransferItem = async ({
     )
   ) {
     toast.warn(
-      "Dynamic MDX sources are copied from the Collection items currently rendered on the canvas."
+      "تُنسخ مصادر MDX الديناميكية من عناصر المجموعة (Collection) المعروضة حاليًا على لوحة الرسم."
     );
   }
   const warnings = { skippedDependencies: false };
@@ -180,7 +180,7 @@ const preparePageTransferItem = async ({
   });
   if (warnings.skippedDependencies) {
     toast.warn(
-      "Some MDX dependencies could not be inspected and were skipped while copying."
+      "تعذّر فحص بعض تبعيات MDX وتم تخطيها أثناء النسخ."
     );
   }
   return prepared;
@@ -526,7 +526,7 @@ export const handlePastePage = async (
           });
         if (skippedInvalidAssetIds.length > 0) {
           toast.warn(
-            "Some invalid content files were copied unchanged. Open them to review their diagnostics."
+            "تم نسخ بعض ملفات المحتوى غير الصالحة دون تغيير. افتحها لمراجعة تشخيصاتها."
           );
         }
       } catch {
@@ -565,10 +565,10 @@ export const handlePastePage = async (
     if (newId) {
       toast.success(
         item.type === "page"
-          ? "Page pasted"
+          ? "تم لصق الصفحة"
           : item.type === "template"
-            ? "Template pasted"
-            : "Folder pasted"
+            ? "تم لصق القالب"
+            : "تم لصق المجلد"
       );
       return pasteHandled;
     }

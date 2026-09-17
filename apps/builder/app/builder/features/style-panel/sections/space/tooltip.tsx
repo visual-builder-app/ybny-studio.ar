@@ -24,16 +24,16 @@ const propertyContents: {
   // Padding
   {
     properties: ["padding-top", "padding-bottom"],
-    label: "Vertical padding",
+    label: "الهامش الداخلي العمودي",
     description:
-      "Defines the space between the content of an element and its top and bottom border. Can affect layout height.",
+      "يحدّد المسافة بين محتوى العنصر وحدّه العلوي والسفلي. قد يؤثر على ارتفاع التخطيط.",
   },
 
   {
     properties: ["padding-left", "padding-right"],
-    label: "Horizontal padding",
+    label: "الهامش الداخلي الأفقي",
     description:
-      "Defines the space between the content of an element and its left and right border. Can affect layout width.",
+      "يحدّد المسافة بين محتوى العنصر وحدّه الأيسر والأيمن. قد يؤثر على عرض التخطيط.",
   },
 
   {
@@ -43,27 +43,27 @@ const propertyContents: {
       "padding-left",
       "padding-right",
     ],
-    label: "Padding",
+    label: "الهامش الداخلي",
     description:
-      "Defines the space between the content of an element and its border. Can affect layout size.",
+      "يحدّد المسافة بين محتوى العنصر وحدّه. قد يؤثر على حجم التخطيط.",
   },
   // Margin
   {
     properties: ["margin-top", "margin-bottom"],
-    label: "Vertical margin",
-    description: "Sets the margin at the top and bottom of an element.",
+    label: "الهامش الخارجي العمودي",
+    description: "يضبط الهامش الخارجي أعلى العنصر وأسفله.",
   },
 
   {
     properties: ["margin-left", "margin-right"],
-    label: "Horizontal margin",
-    description: "Sets the margin at the left and right of an element.",
+    label: "الهامش الخارجي الأفقي",
+    description: "يضبط الهامش الخارجي على يسار العنصر ويمينه.",
   },
 
   {
     properties: ["margin-top", "margin-bottom", "margin-left", "margin-right"],
-    label: "Margin",
-    description: "Sets the margin of an element.",
+    label: "الهامش الخارجي",
+    description: "يضبط الهامش الخارجي للعنصر.",
   },
 ];
 

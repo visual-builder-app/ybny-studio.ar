@@ -81,7 +81,7 @@ const retry = async function* () {
       const delay = backoff.next();
 
       toast.error(
-        `Builder is offline. Retry in ${Math.round(delay / 1000)} seconds.`
+        `المحرر غير متصل. ستتم إعادة المحاولة بعد ${Math.round(delay / 1000)} ثانية.`
       );
 
       await pause(delay);
@@ -191,7 +191,7 @@ const pollQueue = async (signal: AbortSignal) => {
 
         if (shouldReload === false) {
           toast.error(
-            "Synchronization has been paused. Please reload to continue.",
+            "تم إيقاف المزامنة مؤقتًا. يرجى إعادة التحميل للمتابعة.",
             { id: "outdated-error", duration: Number.POSITIVE_INFINITY }
           );
         }
@@ -307,7 +307,7 @@ const pollQueue = async (signal: AbortSignal) => {
 
             if (shouldReload === false) {
               toast.error(
-                "Synchronization has been paused. Please reload to continue.",
+                "تم إيقاف المزامنة مؤقتًا. يرجى إعادة التحميل للمتابعة.",
                 { duration: Number.POSITIVE_INFINITY }
               );
             }

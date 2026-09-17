@@ -55,9 +55,9 @@ type SearchItem = {
 };
 
 const getNewPropertyDescription = (item: null | SearchItem) => {
-  let description: string | undefined = "Add CSS property.";
+  let description: string | undefined = "إضافة خاصية CSS.";
   if (item?.property.startsWith("--")) {
-    description = "Create CSS variable.";
+    description = "إنشاء متغير CSS.";
   }
   if (item && propertyDescriptions[item.property]) {
     description = propertyDescriptions[item.property];
@@ -149,7 +149,7 @@ const matchOrSuggestToCreate = (search: string, items: Array<SearchItem>) => {
       matched.push({
         key: "",
         property: search,
-        label: `Create "${search}"`,
+        label: `إنشاء "${search}"`,
       });
     }
     // Now we will suggest to insert each longhand separately.
@@ -158,7 +158,7 @@ const matchOrSuggestToCreate = (search: string, items: Array<SearchItem>) => {
         key: "",
         property,
         value: toValue(value),
-        label: `Create "${generateStyleMap(new Map([[property, value]]))}"`,
+        label: `إنشاء "${generateStyleMap(new Map([[property, value]]))}"`,
       });
     }
   }
@@ -255,7 +255,7 @@ export const AddStyleInput = forwardRef<
           // For duplicate variables, show warning and continue updating the values
           if (error.type === "duplicate") {
             toast.warn(
-              `CSS variable "${property}" already exists. Its value will be updated.`
+              `متغير CSS "${property}" موجود بالفعل. سيتم تحديث قيمته.`
             );
           } else {
             // Show error via toast and block submission
@@ -309,12 +309,12 @@ export const AddStyleInput = forwardRef<
         <ComboboxAnchor>
           <InputField
             {...inputProps}
-            aria-label="Add styles"
+            aria-label="إضافة أنماط"
             onFocus={onFocus}
             onBlur={handleBlur}
             inputRef={forwardedRef}
             onKeyDown={handleKeyDown}
-            placeholder="Add styles"
+            placeholder="إضافة أنماط"
             suffix={<NestedInputButton {...combobox.getToggleButtonProps()} />}
           />
         </ComboboxAnchor>

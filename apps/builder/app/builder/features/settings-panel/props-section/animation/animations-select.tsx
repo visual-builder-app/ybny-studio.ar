@@ -136,7 +136,7 @@ const AnimationContextMenu = ({
         }
       })
       .catch((error) => {
-        toast.error("Pasted data is not valid animation");
+        toast.error("البيانات الملصقة ليست حركة صالحة");
         console.error(error);
       });
   };
@@ -167,16 +167,16 @@ const AnimationContextMenu = ({
       </ContextMenuTrigger>
       <ContextMenuContent css={{ width: theme.spacing[25] }}>
         <ContextMenuItem onSelect={copyAnimation}>
-          Copy animation
+          نسخ الحركة
         </ContextMenuItem>
         <ContextMenuItem onSelect={copyAllAnimations}>
-          Copy all animations
+          نسخ جميع الحركات
         </ContextMenuItem>
         <ContextMenuItem onSelect={pasteAnimations}>
-          Paste animations
+          لصق الحركات
         </ContextMenuItem>
         <ContextMenuItem destructive onSelect={deleteAnimation}>
-          Delete animation
+          حذف الحركة
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
@@ -233,7 +233,7 @@ export const AnimationsSelect = ({
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <SectionTitleButton
-                      aria-label="Add animation"
+                      aria-label="إضافة حركة"
                       prefix={<PlusIcon />}
                       tabIndex={0}
                     />
@@ -285,7 +285,7 @@ export const AnimationsSelect = ({
                         }}
                       >
                         {newAnimationHint ??
-                          "Add new or select existing animation"}
+                          "أضف حركة جديدة أو اختر حركة موجودة"}
                       </Box>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -293,7 +293,7 @@ export const AnimationsSelect = ({
               </Flex>
             }
           >
-            <SectionTitleLabel>Animations</SectionTitleLabel>
+            <SectionTitleLabel>الحركات</SectionTitleLabel>
           </SectionTitle>
         }
       >
@@ -338,7 +338,7 @@ export const AnimationsSelect = ({
                     {...{ [copyAttribute]: index }}
                     label={
                       <Label disabled={false} truncate>
-                        {animation.name ?? "Unnamed"}
+                        {animation.name ?? "بلا اسم"}
                       </Label>
                     }
                     hidden={!isEnabled}
@@ -352,8 +352,8 @@ export const AnimationsSelect = ({
                         <Tooltip
                           content={
                             isEnabled
-                              ? "Disable animation at breakpoint"
-                              : "Enable animation at breakpoint"
+                              ? "تعطيل الحركة عند نقطة التوقف"
+                              : "تمكين الحركة عند نقطة التوقف"
                           }
                         >
                           <SmallToggleButton

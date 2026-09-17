@@ -119,19 +119,19 @@ export const CssEditorContextMenu = ({
       </ContextMenuTrigger>
       <ContextMenuContent css={{ width: theme.spacing[25] }}>
         <ContextMenuItem onSelect={handleCopy}>
-          Copy declaration
+          نسخ التصريح
         </ContextMenuItem>
         <ContextMenuItem onSelect={handleCopyAll}>
-          Copy all declarations
+          نسخ كل التصريحات
         </ContextMenuItem>
         <ContextMenuItem onSelect={handlePaste}>
-          Paste declarations
+          لصق التصريحات
         </ContextMenuItem>
         <ContextMenuItem destructive onSelect={handleDelete}>
-          Delete declaration
+          حذف التصريح
         </ContextMenuItem>
         <ContextMenuItem destructive onSelect={handleDeleteAllDeclarations}>
-          Delete all declarations
+          حذف كل التصريحات
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

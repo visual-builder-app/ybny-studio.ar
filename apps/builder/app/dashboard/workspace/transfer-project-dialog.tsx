@@ -169,7 +169,7 @@ export const TransferProjectDialog = ({
           setError(result.error);
           return;
         }
-        toast.info(`"${title}" moved successfully`);
+        toast.info(`تم نقل "${title}" بنجاح`);
         onOpenChange(false);
         revalidator.revalidate();
         return;
@@ -186,15 +186,15 @@ export const TransferProjectDialog = ({
           setError(result.error);
           return;
         }
-        toast.info("Transfer request sent");
+        toast.info("تم إرسال طلب النقل");
         onOpenChange(false);
         revalidator.revalidate();
         return;
       }
 
-      setError("Select a workspace or enter an email address");
+      setError("حدد مساحة عمل أو أدخل عنوان بريد إلكتروني");
     } catch {
-      setError("Something went wrong");
+      setError("حدث خطأ ما");
     } finally {
       setIsSubmitting(false);
     }
@@ -216,14 +216,14 @@ export const TransferProjectDialog = ({
     ? filteredWorkspaces.length > 0
       ? [
           {
-            label: "Their workspaces you have access to",
+            label: "مساحات عملهم التي يمكنك الوصول إليها",
             items: sortWorkspaces(filteredWorkspaces),
           },
         ]
       : []
     : [
         ...(ownedWorkspaces.length > 0
-          ? [{ label: "My workspaces", items: ownedWorkspaces }]
+          ? [{ label: "مساحات عملي", items: ownedWorkspaces }]
           : []),
       ];
 
@@ -234,16 +234,16 @@ export const TransferProjectDialog = ({
           <PanelContent as={Flex} direction="column" gap="3">
             <DialogDescription asChild>
               <Text as="p">
-                Move &ldquo;{title}&rdquo; to another workspace, or transfer it
-                to another user by entering their email.
+                انقل &ldquo;{title}&rdquo; إلى مساحة عمل أخرى، أو حوّله إلى
+                مستخدم آخر بإدخال بريده الإلكتروني.
               </Text>
             </DialogDescription>
 
             <Flex direction="column" gap="1" align="start">
               <Label>
                 {isFiltered
-                  ? "Their workspaces you have access to"
-                  : "Workspace"}
+                  ? "مساحات عملهم التي يمكنك الوصول إليها"
+                  : "مساحة العمل"}
               </Label>
               {dropdownGroups.length > 0 ? (
                 <WorkspaceDropdown
@@ -254,9 +254,8 @@ export const TransferProjectDialog = ({
                 />
               ) : isFiltered && hasEmail ? (
                 <Text color="subtle" variant="labels">
-                  No shared workspaces found. The project will be transferred
-                  without a target workspace — the recipient will choose where
-                  to place it.
+                  لم يتم العثور على مساحات عمل مشتركة. سيتم نقل المشروع دون
+                  مساحة عمل وجهة — سيختار المستلم مكان وضعه.
                 </Text>
               ) : undefined}
             </Flex>
@@ -264,13 +263,13 @@ export const TransferProjectDialog = ({
 
           <div className={orSeparatorStyle()}>
             <Text color="subtle" variant="tiny">
-              OR
+              أو
             </Text>
           </div>
 
           <PanelContent as={Flex} direction="column" gap="3">
             <Flex direction="column" gap="1">
-              <Label htmlFor="transfer-email">Recipient</Label>
+              <Label htmlFor="transfer-email">المستلم</Label>
               <SearchField
                 id="transfer-email"
                 placeholder="user@example.com"
@@ -292,14 +291,14 @@ export const TransferProjectDialog = ({
 
             {isSelfTransfer && (
               <Text color="destructive">
-                You can&apos;t transfer a project to yourself. Use the workspace
-                selector above to move it.
+                لا يمكنك نقل المشروع إلى نفسك. استخدم محدد مساحة العمل أعلاه
+                لنقله.
               </Text>
             )}
           </PanelContent>
         </Flex>
 
-        <DialogTitle>Transfer project</DialogTitle>
+        <DialogTitle>نقل المشروع</DialogTitle>
         <DialogActions>
           <Button
             color="primary"
@@ -307,10 +306,10 @@ export const TransferProjectDialog = ({
             state={isSubmitting ? "pending" : undefined}
             onClick={handleSubmit}
           >
-            {hasEmail ? "Transfer" : "Move"}
+            {hasEmail ? "نقل" : "نقل"}
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>

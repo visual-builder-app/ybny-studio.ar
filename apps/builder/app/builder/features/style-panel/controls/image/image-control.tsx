@@ -99,7 +99,7 @@ export const ImageControl = ({
         type="text"
         disabled={disabled}
         color={remoteImageURL?.type === "invalid" ? "error" : undefined}
-        placeholder="Enter image URL..."
+        placeholder="أدخل رابط الصورة..."
         value={remoteImageURL?.value ?? ""}
         onChange={handleImageURLInput}
         onKeyDown={(event) => {
@@ -110,7 +110,7 @@ export const ImageControl = ({
         onBlur={handleImageURLComplete}
       />
       <FloatingPanel
-        title="Images"
+        title="الصور"
         titleSuffix={disabled ? undefined : <AssetUpload type="image" />}
         content={
           <AssetManager
@@ -128,7 +128,7 @@ export const ImageControl = ({
           disabled={disabled}
           css={{ maxWidth: "100%", justifySelf: "right" }}
         >
-          {asset ? formatAssetName(asset) : "Choose image..."}
+          {asset ? formatAssetName(asset) : "اختيار صورة..."}
         </Button>
       </FloatingPanel>
     </Flex>

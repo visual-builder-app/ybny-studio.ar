@@ -120,7 +120,7 @@ export const UrlField = ({
       >
         URL
         <Tooltip
-          content="You can paste a URL or cURL. cURL is a format that can be executed directly in your terminal because it contains the entire Resource configuration."
+          content="يمكنك لصق URL أو cURL. صيغة cURL يمكن تنفيذها مباشرة في الطرفية لأنها تحتوي على إعداد المورد بالكامل."
           variant="wrapped"
           disableHoverableContent={true}
         >
@@ -196,7 +196,7 @@ export const MethodField = ({
 }) => {
   return (
     <Grid gap={1}>
-      <Label>Method</Label>
+      <Label>الطريقة</Label>
       <Select<Resource["method"]>
         options={["get", "post", "put", "delete"]}
         getLabel={humanizeString}
@@ -238,7 +238,7 @@ const ExpressionNameValuePair = ({
       <InputField
         // autofocus only new fields
         autoFocus={name === ""}
-        placeholder="Name"
+        placeholder="الاسم"
         name={kind === "header" ? "header-name" : "search-param-name"}
         value={name}
         onChange={(event) => onChange(event.target.value, value)}
@@ -260,7 +260,7 @@ const ExpressionNameValuePair = ({
         onRemove={(value) => onChange(name, JSON.stringify(value))}
         renderControl={({ value, readOnly, onChangeValue }) => (
           <InputField
-            placeholder="Value"
+            placeholder="القيمة"
             name={
               kind === "header"
                 ? "header-value-validator"
@@ -295,7 +295,7 @@ const ExpressionPairs = ({
   values: ExpressionPair[];
   onChange: (values: ExpressionPair[]) => void;
 }) => {
-  const label = kind === "header" ? "Headers" : "Search params";
+  const label = kind === "header" ? "الترويسات" : "معاملات البحث";
   return (
     <Grid gap={1}>
       <Flex justify="between" align="center">
@@ -328,7 +328,7 @@ const ExpressionPairs = ({
         ))}
         {values.length === 0 && (
           <Text color="subtle" align="center">
-            No {label.toLowerCase()}
+            لا توجد {label.toLowerCase()}
           </Text>
         )}
       </Grid>
@@ -365,12 +365,12 @@ const CacheMaxAge = ({
 }) => {
   return (
     <Grid gap={1}>
-      <Label htmlFor="resource-panel-max-age">Cache max age</Label>
+      <Label htmlFor="resource-panel-max-age">أقصى مدة للتخزين المؤقت</Label>
       <InputField
         id="resource-panel-max-age"
         suffix={
           <Text variant="small" color="subtle" css={{ paddingInline: "2px" }}>
-            S
+            ث
           </Text>
         }
         value={value ?? ""}
@@ -571,9 +571,9 @@ const BodyField = ({
 
   return (
     <Grid gap={1}>
-      <Label>Body</Label>
+      <Label>الجسم</Label>
       <Select<BodyType | "">
-        placeholder="Type"
+        placeholder="النوع"
         value={bodyType ?? ""}
         options={["text", "json"]}
         onChange={(newBodyType) => {
@@ -854,7 +854,7 @@ const AssetQueryLoadingFallback = ({
     onPendingChange?.(true);
     return () => onPendingChange?.(false);
   }, [onPendingChange]);
-  return <CenteredPanelMessage>Loading query editor…</CenteredPanelMessage>;
+  return <CenteredPanelMessage>جارٍ تحميل محرر الاستعلام…</CenteredPanelMessage>;
 };
 
 export const SystemResourceForm = forwardRef<
@@ -879,22 +879,22 @@ export const SystemResourceForm = forwardRef<
     resource !== undefined && isAssetsResourceRecord(resource);
 
   const assetsLocalResource = {
-    label: "Assets",
+    label: "الوسائط",
     value: JSON.stringify(assetsResourceUrl),
     description:
-      "Loads all project assets by default, with optional filters, sorting, pagination, and file content.",
+      "يحمّل جميع وسائط المشروع افتراضيًا، مع خيارات للتصفية والترتيب وترقيم الصفحات ومحتوى الملفات.",
   };
   const localResources = [
     {
-      label: "Sitemap",
+      label: "خريطة الموقع",
       value: JSON.stringify(sitemapResourceUrl),
-      description: "Resource that loads the sitemap data of the current site.",
+      description: "مورد يحمّل بيانات خريطة الموقع للموقع الحالي.",
     },
     {
-      label: "Current date",
+      label: "التاريخ الحالي",
       value: JSON.stringify(currentDateResourceUrl),
       description:
-        "Provides current date information (year, month, day) normalized to midnight UTC. Time components are set to 00:00:00 to prevent React hydration errors.",
+        "يوفر معلومات التاريخ الحالي (السنة، الشهر، اليوم) مضبوطة على منتصف الليل بتوقيت UTC. تُضبط مكونات الوقت على 00:00:00 لمنع أخطاء React hydration.",
     },
     assetsLocalResource,
   ];
@@ -963,7 +963,7 @@ export const SystemResourceForm = forwardRef<
       <input type="hidden" name="url" value={localResource.value} />
       <Row>
         <Grid gap={1}>
-          <Label htmlFor={resourceId}>Resource</Label>
+          <Label htmlFor={resourceId}>المورد</Label>
           <Select
             options={localResources}
             getLabel={(option) => (
@@ -1050,7 +1050,7 @@ export const GraphqlResourceForm = forwardRef<
     variablesRef.current?.setCustomValidity(
       typeof evaluatedValue === "object" && evaluatedValue !== null
         ? ""
-        : "Expected valid JSON object in GraphQL variables"
+        : "يُتوقع كائن JSON صالح في متغيرات GraphQL"
     );
     setVariablesError("");
   }, [variables, scope]);
@@ -1132,7 +1132,7 @@ export const GraphqlResourceForm = forwardRef<
 
       <Row>
         <Grid gap={1}>
-          <Label htmlFor={queryId}>Query</Label>
+          <Label htmlFor={queryId}>الاستعلام</Label>
           <EditorDialogControl>
             <TextArea
               name="query"
@@ -1144,7 +1144,7 @@ export const GraphqlResourceForm = forwardRef<
               onChange={setQuery}
             />
             <EditorDialog
-              title="GraphQL query"
+              title="استعلام GraphQL"
               content={
                 <TextArea grow={true} value={query} onChange={setQuery} />
               }
@@ -1157,7 +1157,7 @@ export const GraphqlResourceForm = forwardRef<
 
       <Row>
         <Grid gap={1}>
-          <Label>GraphQL variables</Label>
+          <Label>متغيرات GraphQL</Label>
           {/* use invisible text input to reflect expression editor in form
             type=hidden does not emit invalid event */}
           <input

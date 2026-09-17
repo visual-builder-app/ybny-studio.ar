@@ -102,7 +102,7 @@ export const SelectControl = ({
           declarationDescriptions[`${camelCaseProperty(property)}:${option}`];
         return (
           <Box css={{ width: theme.spacing[26] }}>
-            {description ?? `The ${property} is ${option}`}
+            {description ?? `قيمة ${property} هي ${option}`}
           </Box>
         );
       }}

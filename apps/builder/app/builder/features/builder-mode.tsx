@@ -43,15 +43,15 @@ export const BuilderModeDropDown = () => {
   const menuItems = {
     design: {
       icon: <PaintBrushIcon />,
-      description: "Edit components, styles, and properties",
-      title: "Design",
+      description: "تعديل المكوّنات والأنماط والخصائص",
+      title: "التصميم",
       shortcut: ["meta", "shift", "d"],
       enabled: isDesignModeAllowed,
     },
     content: {
       icon: <NotebookAndPenIcon />,
-      description: "Modify the page content",
-      title: "Content",
+      description: "تعديل محتوى الصفحة",
+      title: "المحتوى",
       shortcut: ["meta", "shift", "c"],
       enabled: isContentModeAllowed,
     },
@@ -74,13 +74,13 @@ export const BuilderModeDropDown = () => {
       <Tooltip
         content={
           <Flex gap="1">
-            <Text variant="regular">Toggle preview</Text>
+            <Text variant="regular">تبديل المعاينة</Text>
             <Kbd value={["meta", "shift", "p"]} />
           </Flex>
         }
       >
         <IconToggleButton
-          aria-label="Toggle preview"
+          aria-label="تبديل المعاينة"
           pressed={builderMode === "preview"}
           onPressedChange={() => {
             emitCommand("togglePreviewMode");
@@ -90,9 +90,9 @@ export const BuilderModeDropDown = () => {
         </IconToggleButton>
       </Tooltip>
       <DropdownMenu>
-        <Tooltip content={"Choose mode"}>
+        <Tooltip content={"اختر الوضع"}>
           <DropdownMenuTrigger asChild>
-            <SplitButtonMenuButton type="button" aria-label="Choose mode">
+            <SplitButtonMenuButton type="button" aria-label="اختر الوضع">
               <ChevronDownIcon />
             </SplitButtonMenuButton>
           </DropdownMenuTrigger>
@@ -133,7 +133,7 @@ export const BuilderModeDropDown = () => {
             <Box css={{ width: theme.spacing[25] }}>
               {activeMode
                 ? menuItems[activeMode].description
-                : "Select Design or Content mode"}
+                : "اختر وضع التصميم أو المحتوى"}
             </Box>
           </div>
         </DropdownMenuContent>

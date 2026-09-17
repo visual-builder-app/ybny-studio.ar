@@ -140,13 +140,13 @@ export const AssetsShell = ({
   const [dropTargetState, setDropTargetState] = useState<DropTargetState>(IDLE);
   const dropMessage = allowExternalDrop
     ? allowFolderDrop
-      ? "Drop files or folders here"
-      : "Drop files here"
-    : "Uploads are unavailable here";
+      ? "أفلت الملفات أو المجلدات هنا"
+      : "أفلت الملفات هنا"
+    : "الرفع غير متاح هنا";
   const dropDescription = allowExternalDrop
     ? allowFolderDrop
-      ? "Drop files or folders from your computer into this panel."
-      : "Drop files from anywhere into this panel."
+      ? "أفلت الملفات أو المجلدات من حاسوبك في هذه اللوحة."
+      : "أفلت الملفات من أي مكان في هذه اللوحة."
     : undefined;
   const resolvedEmptyMessage = emptyMessage ?? dropMessage;
 
@@ -255,7 +255,7 @@ export const AssetsShell = ({
                     });
                     if (result === undefined) {
                       throw new Error(
-                        `Unable to create asset folder "${name}"`
+                        `تعذّر إنشاء مجلد الوسائط "${name}"`
                       );
                     }
                     return result.result.folderId;
@@ -267,7 +267,7 @@ export const AssetsShell = ({
               allowFolderDrop === false &&
               droppedItems.directories.length > 0
             ) {
-              toast.error("Folder upload is only available in Assets.");
+              toast.error("رفع المجلدات متاح فقط في الوسائط.");
             }
 
             const uploadFolderFiles = () => {
@@ -332,7 +332,7 @@ export const AssetsShell = ({
           css={{ flexGrow: 1 }}
           {...searchProps}
           autoFocus
-          placeholder="Search"
+          placeholder="بحث"
         />
         {filters}
       </PanelContent>

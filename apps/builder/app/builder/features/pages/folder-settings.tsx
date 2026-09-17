@@ -83,7 +83,7 @@ const FormFields = ({
       <ScrollArea>
         <PanelContent as={Grid} gap={3}>
           <Grid gap={1}>
-            <Label htmlFor={fieldIds.name}>Folder name</Label>
+            <Label htmlFor={fieldIds.name}>اسم المجلد</Label>
             <InputErrorsTooltip errors={errors.name}>
               <InputField
                 tabIndex={1}
@@ -92,7 +92,7 @@ const FormFields = ({
                 autoFocus
                 onFocus={autoSelect ? autoSelectHandler : undefined}
                 name="name"
-                placeholder="About"
+                placeholder="حول"
                 disabled={disabled}
                 value={values.name}
                 onChange={(event) => {
@@ -104,9 +104,9 @@ const FormFields = ({
 
           <Grid gap={1}>
             <Flex align="center" css={{ gap: theme.spacing[3] }}>
-              <Label htmlFor={fieldIds.slug}>Slug</Label>
+              <Label htmlFor={fieldIds.slug}>المعرّف</Label>
               <Tooltip
-                content={"Slug will be used as part of the path to the page"}
+                content={"سيُستخدم المعرّف كجزء من مسار الصفحة"}
                 variant="wrapped"
               >
                 <InfoCircleIcon
@@ -121,7 +121,7 @@ const FormFields = ({
                 color={errors.slug && "error"}
                 id={fieldIds.slug}
                 name="slug"
-                placeholder="folder"
+                placeholder="مجلد"
                 disabled={disabled}
                 value={values?.slug}
                 onChange={(event) => {
@@ -182,12 +182,12 @@ export const NewFolderSettings = ({
         suffix={
           <DialogTitleActions>
             {isDesignMode && onRequestDelete && (
-              <Tooltip content="Delete folder" side="bottom">
+              <Tooltip content="حذف المجلد" side="bottom">
                 <Button
                   color="ghost"
                   prefix={<TrashIcon />}
                   onClick={handleRequestDelete}
-                  aria-label="Delete folder"
+                  aria-label="حذف المجلد"
                   tabIndex={2}
                 />
               </Tooltip>
@@ -199,13 +199,13 @@ export const NewFolderSettings = ({
               onClick={handleSubmit}
               tabIndex={2}
             >
-              {isSubmitting ? "Creating" : "Create folder"}
+              {isSubmitting ? "جارٍ الإنشاء" : "إنشاء مجلد"}
             </Button>
             <DialogClose />
           </DialogTitleActions>
         }
       >
-        New folder settings
+        إعدادات مجلد جديد
       </DialogTitle>
       <Form onSubmit={handleSubmit}>
         <FormFields
@@ -330,7 +330,7 @@ export const FolderSettings = ({
           <DialogTitleActions>
             {isDesignMode && (
               <PageItemActionsDropdown
-                label="Folder actions"
+                label="إجراءات المجلد"
                 actions={{
                   copy: handleCopy,
                   duplicate: onDuplicate ? handleDuplicate : undefined,
@@ -342,7 +342,7 @@ export const FolderSettings = ({
           </DialogTitleActions>
         }
       >
-        Folder settings
+        إعدادات المجلد
       </DialogTitle>
       <Form onSubmit={onClose}>
         <FormFields

@@ -70,9 +70,9 @@ export const SectionBackups = ({
 
   return (
     <Grid gap={2} css={sectionSpacing}>
-      <Text variant="titles">Backups</Text>
+      <Text variant="titles">النسخ الاحتياطية</Text>
       <Select
-        placeholder="No backups"
+        placeholder="لا توجد نسخ احتياطية"
         options={options}
         getValue={(option) => option.buildId ?? ""}
         getLabel={(option) => {
@@ -95,29 +95,29 @@ export const SectionBackups = ({
             css={{ justifySelf: "start" }}
             disabled={canRestoreBackups === false || options.length === 0}
           >
-            Restore
+            استعادة
           </Button>
         </DialogTrigger>
         <DialogContent width={320}>
-          <DialogTitle>Restore published version</DialogTitle>
+          <DialogTitle>استعادة الإصدار المنشور</DialogTitle>
           <PanelContent as={Flex} direction="column" gap={2}>
             <Text>
-              Are you sure you want to restore the project to its published
-              version?
+              هل أنت متأكد أنك تريد استعادة المشروع إلى إصداره
+              المنشور؟
             </Text>
             {backupBuild?.createdAt && (
               <Text color="destructive">
-                All changes made after{" "}
-                {formatPublishDate(backupBuild.createdAt)} will be lost.
+                ستُفقد جميع التغييرات التي أُجريت بعد{" "}
+                {formatPublishDate(backupBuild.createdAt)}.
               </Text>
             )}
             <Flex gap="2" justify="end">
               <DialogClose>
-                <Button color="ghost">Cancel</Button>
+                <Button color="ghost">إلغاء</Button>
               </DialogClose>
               <DialogClose>
                 <Button color="destructive" onClick={restore}>
-                  Restore
+                  استعادة
                 </Button>
               </DialogClose>
             </Flex>
@@ -128,11 +128,11 @@ export const SectionBackups = ({
         <PanelBanner>
           <img
             src={cmsUpgradeBanner}
-            alt="Upgrade for backups"
+            alt="قم بالترقية للحصول على النسخ الاحتياطية"
             width={rawTheme.spacing[28]}
             style={{ aspectRatio: "4.1" }}
           />
-          <Text variant="regularBold">Upgrade to restore from backups</Text>
+          <Text variant="regularBold">قم بالترقية للاستعادة من النسخ الاحتياطية</Text>
           <Flex align="center" gap={1}>
             <UpgradeIcon />
             <Link
@@ -140,7 +140,7 @@ export const SectionBackups = ({
               target="_blank"
               href="https://webstudio.is/pricing"
             >
-              Upgrade to Pro
+              الترقية إلى Pro
             </Link>
           </Flex>
         </PanelBanner>

@@ -30,8 +30,8 @@ export const Section = () => {
 
   return (
     <RepeatedStyleSection
-      label="Backgrounds"
-      description="Add one or more backgrounds to the instance such as a color, image, or gradient."
+      label="الخلفيات"
+      description="أضف خلفية واحدة أو أكثر إلى النسخة مثل لون أو صورة أو تدرج."
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -43,7 +43,7 @@ export const Section = () => {
     >
       <Flex gap={1} direction="column">
         <RepeatedStyle
-          label="Background layer"
+          label="طبقة الخلفية"
           styles={styles}
           floatingPanelOffset={{ alignmentAxis: -100 }}
           getItemProps={(_index, primaryValue) => ({
@@ -59,7 +59,7 @@ export const Section = () => {
           }}
         >
           <PropertyLabel
-            label="Color"
+            label="اللون"
             description={propertyDescriptions.backgroundColor}
             properties={["background-color"]}
           />

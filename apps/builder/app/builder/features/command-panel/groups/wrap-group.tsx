@@ -181,8 +181,8 @@ const WrapComponentsList = () => {
   return (
     <>
       <CommandInput
-        action={{ name: "wrap", label: "Wrap" }}
-        placeholder="Search components to wrap with..."
+        action={{ name: "wrap", label: "تغليف" }}
+        placeholder="البحث عن مكوّنات للتغليف بها..."
         value={search}
         onValueChange={setSearch}
         prefix={<CommandBackButton onClick={goBack} />}
@@ -194,13 +194,13 @@ const WrapComponentsList = () => {
             {matches.length === 0 ? (
               <Flex justify="center" align="center" css={{ minHeight: 100 }}>
                 <Text color="subtle" align="center">
-                  No components found that are allowed to wrap this instance
+                  لم يتم العثور على مكوّنات يُسمح لها بتغليف هذه النسخة
                 </Text>
               </Flex>
             ) : (
               <CommandGroup
                 name="wrap-components"
-                actions={[{ name: "wrap", label: "Wrap" }]}
+                actions={[{ name: "wrap", label: "تغليف" }]}
               >
                 {matches.map(({ component, tag, label }) => {
                   const key = tag ? `${component}:${tag}` : component;

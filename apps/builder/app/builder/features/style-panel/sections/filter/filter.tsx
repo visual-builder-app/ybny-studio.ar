@@ -18,14 +18,14 @@ import { humanizeString } from "~/shared/string-utils";
 
 export const properties = ["filter"] satisfies [CssProperty, ...CssProperty[]];
 
-const label = "Filters";
+const label = "المرشحات";
 const initialFilter = "blur(0px)";
 
 const getItemProps = (_index: number, value: StyleValue) => {
   const label =
     value.type === "function"
       ? `${humanizeString(value.name)}: ${toValue(value.args)}`
-      : "Unknown filter";
+      : "مرشح غير معروف";
   return { label };
 };
 
@@ -35,7 +35,7 @@ export const Section = () => {
   return (
     <RepeatedStyleSection
       label={label}
-      description="Filter effects allow you to apply graphical effects like blurring, color shifting, and more to elements."
+      description="تتيح لك تأثيرات المرشحات تطبيق مؤثرات رسومية مثل التمويه وتغيير الألوان وغيرها على العناصر."
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -70,8 +70,8 @@ export const Section = () => {
                     <Text variant="regularBold">{label}</Text>
                     <Text variant="monoBold">filter</Text>
                     <Text>
-                      Applies graphical effects like blur or color shift to an
-                      element, for example:
+                      يطبّق مؤثرات رسومية مثل التمويه أو تغيير اللون على
+                      العنصر، على سبيل المثال:
                       <br /> <br />
                       <Text variant="mono">{initialFilter}</Text>
                     </Text>

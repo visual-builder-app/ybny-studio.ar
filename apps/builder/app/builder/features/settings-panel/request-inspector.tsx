@@ -146,7 +146,7 @@ export const RequestDiagnosticDisclosure = ({
         showSeparator={false}
         trigger={
           <SectionTitle
-            aria-label={`${severity === "error" ? "Error" : "Warning"}: ${title}`}
+            aria-label={`${severity === "error" ? "خطأ" : "تحذير"}: ${title}`}
           >
             {severity === "warning" && (
               <AlertIcon
@@ -156,7 +156,7 @@ export const RequestDiagnosticDisclosure = ({
               />
             )}
             <SectionTitleLabel onClick={() => setIsOpen((value) => !value)}>
-              {severity === "error" ? `Error · ${title}` : title}
+              {severity === "error" ? `خطأ · ${title}` : title}
             </SectionTitleLabel>
           </SectionTitle>
         }
@@ -175,9 +175,9 @@ export const RequestDiagnosticDisclosure = ({
             },
           }}
         >
-          <Text color="moreSubtle">Location</Text>
+          <Text color="moreSubtle">الموقع</Text>
           <Text userSelect="text">{location}</Text>
-          <Text color="moreSubtle">Reason</Text>
+          <Text color="moreSubtle">السبب</Text>
           <Text userSelect="text" css={{ whiteSpace: "pre-wrap" }}>
             {reason}
           </Text>
@@ -237,18 +237,18 @@ export const RequestInspector = ({
     css={{ height: "100%", minWidth: 0, overflow: "hidden" }}
   >
     <PanelTabsList
-      aria-label="Request details"
+      aria-label="تفاصيل الطلب"
       css={{
         flexShrink: 0,
         borderBottom: `1px solid ${cssVar("--border-default")}`,
       }}
     >
       {queryContainerRef !== undefined && (
-        <PanelTabsTrigger value="query">Query</PanelTabsTrigger>
+        <PanelTabsTrigger value="query">الاستعلام</PanelTabsTrigger>
       )}
-      <PanelTabsTrigger value="preview">Preview</PanelTabsTrigger>
+      <PanelTabsTrigger value="preview">المعاينة</PanelTabsTrigger>
       <PanelTabsTrigger value="diagnostics" onClick={onDiagnosticsOpen}>
-        Diagnostics
+        التشخيصات
       </PanelTabsTrigger>
     </PanelTabsList>
     {queryContainerRef !== undefined && (
@@ -267,7 +267,7 @@ export const RequestInspector = ({
             position: "relative",
           }}
         />
-        {queryPending && <RequestInspectorLoading label="Loading query…" />}
+        {queryPending && <RequestInspectorLoading label="جارٍ تحميل الاستعلام…" />}
       </PanelTabsContent>
     )}
     <PanelTabsContent
@@ -276,7 +276,7 @@ export const RequestInspector = ({
       css={{ flex: 1, position: "relative", overflow: "hidden" }}
     >
       {preview}
-      {previewPending && <RequestInspectorLoading label="Loading preview…" />}
+      {previewPending && <RequestInspectorLoading label="جارٍ تحميل المعاينة…" />}
     </PanelTabsContent>
     <PanelTabsContent
       value="diagnostics"
@@ -285,11 +285,11 @@ export const RequestInspector = ({
     >
       {diagnostics ?? (
         <Flex align="center" justify="center" css={{ height: "100%" }}>
-          <Text color="moreSubtle">No diagnostics available</Text>
+          <Text color="moreSubtle">لا تتوفر تشخيصات</Text>
         </Flex>
       )}
       {diagnosticsPending && (
-        <RequestInspectorLoading label="Loading diagnostics…" />
+        <RequestInspectorLoading label="جارٍ تحميل التشخيص…" />
       )}
     </PanelTabsContent>
   </PanelTabs>

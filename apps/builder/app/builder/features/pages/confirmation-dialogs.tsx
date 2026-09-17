@@ -33,12 +33,11 @@ export const DeletePageConfirmationDialog = ({
       }}
     >
       <DialogContent>
-        <DialogTitle>Delete page</DialogTitle>
+        <DialogTitle>حذف صفحة</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
-          <Text>{`Are you sure you want to delete "${getPageDisplayName(page)}"?`}</Text>
+          <Text>{`هل أنت متأكد من حذف "${getPageDisplayName(page)}"؟`}</Text>
           <Text>
-            You can undo it even if you delete the page as long as you don't
-            reload.
+            يمكنك التراجع عن الحذف ما لم تُعِد تحميل الصفحة.
           </Text>
         </PanelContent>
         <DialogActions>
@@ -49,10 +48,10 @@ export const DeletePageConfirmationDialog = ({
               onConfirm();
             }}
           >
-            Delete Page
+            حذف الصفحة
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -81,9 +80,9 @@ export const DeleteFolderConfirmationDialog = ({
       }}
     >
       <DialogContent>
-        <DialogTitle>Delete confirmation</DialogTitle>
+        <DialogTitle>تأكيد الحذف</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
-          <Text>{`Delete folder "${folder.name}" including all of its pages?`}</Text>
+          <Text>{`حذف المجلد "${folder.name}" مع جميع صفحاته؟`}</Text>
         </PanelContent>
         <DialogActions>
           <Button
@@ -93,10 +92,10 @@ export const DeleteFolderConfirmationDialog = ({
               onConfirm();
             }}
           >
-            Delete
+            حذف
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -125,12 +124,11 @@ export const DeleteTemplateConfirmationDialog = ({
       }}
     >
       <DialogContent>
-        <DialogTitle>Delete template</DialogTitle>
+        <DialogTitle>حذف قالب</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
-          <Text>{`Are you sure you want to delete the template "${template.name}"?`}</Text>
+          <Text>{`هل أنت متأكد من حذف القالب "${template.name}"؟`}</Text>
           <Text>
-            You can undo it even if you delete the template as long as you don't
-            reload.
+            يمكنك التراجع عن الحذف ما لم تُعِد تحميل الصفحة.
           </Text>
         </PanelContent>
         <DialogActions>
@@ -141,10 +139,10 @@ export const DeleteTemplateConfirmationDialog = ({
               onConfirm();
             }}
           >
-            Delete Template
+            حذف القالب
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>

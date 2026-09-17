@@ -3,8 +3,8 @@ import { useState } from "react";
 
 export const CopyToClipboard = ({
   text,
-  copyText = "Copy to clipboard",
-  copiedText = "Copied",
+  copyText = "نسخ إلى الحافظة",
+  copiedText = "تم النسخ",
   children,
 }: {
   text: string;

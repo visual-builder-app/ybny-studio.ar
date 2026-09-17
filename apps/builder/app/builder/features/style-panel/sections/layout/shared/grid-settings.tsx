@@ -56,8 +56,8 @@ const computeAutoTrackCount = (
   );
 
 const trackTypeLabels = {
-  column: { singular: "Column", plural: "Columns" },
-  row: { singular: "Row", plural: "Rows" },
+  column: { singular: "عمود", plural: "أعمدة" },
+  row: { singular: "صف", plural: "صفوف" },
 } as const;
 
 const serializeTrackList = (tracks: GridTrack[]): StyleValue => {
@@ -152,13 +152,13 @@ const TrackItem = ({
   return (
     <FloatingPanel
       placement="bottom-within"
-      title={`Edit ${trackType}`}
+      title={`تعديل ${trackTypeLabels[trackType].singular}`}
       content={
         <PanelContent as={Flex} direction="column" gap="2">
           {isMinmax ? (
             <Grid columns={2} gap="2">
               <Flex direction="column" gap="1">
-                <Label>Min</Label>
+                <Label>الأدنى</Label>
                 <CssValueInputContainer
                   disabled={disabled}
                   styleSource="local"
@@ -178,7 +178,7 @@ const TrackItem = ({
                 />
               </Flex>
               <Flex direction="column" gap="1">
-                <Label>Max</Label>
+                <Label>الأقصى</Label>
                 <CssValueInputContainer
                   disabled={disabled}
                   styleSource="local"
@@ -200,7 +200,7 @@ const TrackItem = ({
             </Grid>
           ) : (
             <Flex direction="column" gap="1">
-              <Label>Value</Label>
+              <Label>القيمة</Label>
               <CssValueInputContainer
                 disabled={disabled}
                 styleSource="local"
@@ -227,7 +227,7 @@ const TrackItem = ({
               checked={isMinmax}
               onCheckedChange={handleMinmaxToggle}
             />
-            <Label htmlFor={`minmax-${id}`}>Use min/max</Label>
+            <Label htmlFor={`minmax-${id}`}>استخدام الأدنى/الأقصى</Label>
           </Flex>
         </PanelContent>
       }
@@ -411,7 +411,7 @@ const TrackEditor = ({
         <Flex direction="column" ref={sortableRefCallback}>
           {tracks.length === 0 && (
             <PanelContent as={Text} color="subtle" align="center">
-              No {trackType}
+              {trackType === "row" ? "لا توجد صفوف" : "لا توجد أعمدة"}
             </PanelContent>
           )}
           {tracks.map((track, index) => {
@@ -488,13 +488,13 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
 
   const editGridButton = (
     <Button disabled={readonly} css={{ width: "100%" }}>
-      Configure grid
+      تكوين الشبكة
     </Button>
   );
 
   return (
     <FloatingPanel
-      title="Grid settings"
+      title="إعدادات الشبكة"
       placement="bottom-within"
       content={
         <Flex
@@ -510,7 +510,7 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
           <TrackEditor
             property="grid-auto-columns"
             trackType="column"
-            label="Auto columns"
+            label="أعمدة تلقائية"
             autoTrackCount={autoColumnCount}
           />
           <TrackEditor
@@ -521,7 +521,7 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
           <TrackEditor
             property="grid-auto-rows"
             trackType="row"
-            label="Auto rows"
+            label="صفوف تلقائية"
             defaultTrackValue="auto"
             autoTrackCount={autoRowCount}
           />

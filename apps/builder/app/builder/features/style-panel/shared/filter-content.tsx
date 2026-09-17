@@ -182,12 +182,12 @@ export const FilterSectionContent = ({
           }}
         >
           <Flex align="center">
-            <Label>Function</Label>
+            <Label>الدالة</Label>
           </Flex>
           <Select
             disabled={readonly}
             name="filterFunction"
-            placeholder="Select filter"
+            placeholder="حدد مرشحًا"
             options={Object.keys(filterFunctions) as FilterFunction[]}
             value={filterFunction ?? "blur"}
             onChange={handleFilterFunctionChange}
@@ -202,7 +202,7 @@ export const FilterSectionContent = ({
             }}
           >
             <Flex align="center">
-              <Label>Value</Label>
+              <Label>القيمة</Label>
             </Flex>
             <CssValueInputContainer
               disabled={readonly}
@@ -254,7 +254,7 @@ export const FilterSectionContent = ({
       >
         <Label>
           <Flex align={"center"} gap={1}>
-            Code
+            الكود
             {tooltip}
           </Flex>
         </Label>

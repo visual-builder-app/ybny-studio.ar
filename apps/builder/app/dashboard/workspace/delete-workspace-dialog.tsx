@@ -55,15 +55,15 @@ export const DeleteWorkspaceDialog = ({
         >
           <DialogDescription asChild>
             <Text as="p">
-              Are you sure you want to delete{" "}
+              هل أنت متأكد من حذف{" "}
               <Text as="span" variant="titles">
                 {workspace.name}
               </Text>
-              ?{" "}
+              ؟ سيتم حذف{" "}
               <Text as="span" color="destructive">
-                All projects
+                جميع المشاريع
               </Text>{" "}
-              in this workspace will be deleted. This action cannot be undone.
+              في مساحة العمل هذه. لا يمكن التراجع عن هذا الإجراء.
             </Text>
           </DialogDescription>
           {error && <Text color="destructive">{error}</Text>}
@@ -87,13 +87,13 @@ export const DeleteWorkspaceDialog = ({
               );
             }}
           >
-            Delete forever
+            حذف نهائي
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
-        <DialogTitle>Delete workspace</DialogTitle>
+        <DialogTitle>حذف مساحة العمل</DialogTitle>
       </DialogContent>
     </Dialog>
   );

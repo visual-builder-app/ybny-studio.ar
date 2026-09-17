@@ -47,7 +47,7 @@ const safeDeleteAssets = (assetIds: Asset["id"][], projectId: string) => {
   const currentProjectId = $project.get()?.id;
 
   if (currentProjectId !== projectId) {
-    toast.error("Project has been changed, files will not be uploaded");
+    toast.error("تم تغيير المشروع، لن يتم رفع الملفات");
     // Can cause data corruption
     return;
   }
@@ -66,7 +66,7 @@ const safeSetAsset = (asset: Asset, projectId: string) => {
   const currentProjectId = $project.get()?.id;
 
   if (currentProjectId !== projectId) {
-    toast.error("Project has been changed, files will not be uploaded");
+    toast.error("تم تغيير المشروع، لن يتم رفع الملفات");
     // Can cause data corrupiton
     return;
   }
@@ -200,7 +200,7 @@ export const waitForAssetUpload = (assetId: string): Promise<Asset> => {
         .some((fileData) => fileData.assetId === assetId);
       if (isUploading === false) {
         cleanup();
-        reject(new Error("Failed to upload asset"));
+        reject(new Error("فشل رفع الوسيط"));
       }
     };
     const unsubscribeAssets = $assets.listen(check);
@@ -222,7 +222,7 @@ const getVideoDimensions = async (file: File) => {
     };
     vid.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error("Invalid video file"));
+      reject(new Error("ملف فيديو غير صالح"));
     };
   });
 };
@@ -385,7 +385,7 @@ const handleAfterSubmit = (
 
   if (uploadedAsset === undefined) {
     warnOnce(true, "An uploaded asset is undefined");
-    toast.error("Could not upload an asset");
+    toast.error("تعذّر رفع الوسيط");
     safeDeleteAssets([assetId], projectId);
     return;
   }
@@ -442,7 +442,7 @@ const processUpload = async (
 
     const currentProjectId = $project.get()?.id;
     if (currentProjectId !== projectId) {
-      toast.error("Project has been changed, files will not be uploaded");
+      toast.error("تم تغيير المشروع، لن يتم رفع الملفات");
       for (const fileData of filesData) {
         URL.revokeObjectURL(fileData.objectURL);
         deleteUploadingFileData(fileData.assetId);
@@ -458,7 +458,7 @@ const processUpload = async (
         if (existingAsset !== undefined) {
           moveExistingAsset(existingAsset, fileData.folderId);
         }
-        toast.info("Asset already exists", {
+        toast.info("الوسيط موجود بالفعل", {
           icon: <ToastImageInfo objectURL={fileData.objectURL} />,
         });
 
@@ -526,7 +526,7 @@ export const uploadAssets = async <T extends File | URL>(
     if (existingAsset !== undefined) {
       moveExistingAsset(existingAsset, fileData.folderId);
     }
-    toast.info("Asset already exists", {
+    toast.info("الوسيط موجود بالفعل", {
       icon: <ToastImageInfo objectURL={existingFileData.objectURL} />,
     });
   }
@@ -561,7 +561,7 @@ export const uploadAssets = async <T extends File | URL>(
           projectId
         );
         moveExistingAsset(ticket.asset, fileData.folderId);
-        toast.info("Asset already exists");
+        toast.info("الوسيط موجود بالفعل");
         continue;
       }
       ticketedFilesData.push(fileData);
@@ -623,7 +623,7 @@ export const importAssets = async (
 
   for (const source of sources) {
     if ($project.get()?.id !== projectId) {
-      throw new Error("Project changed while importing assets");
+      throw new Error("تغيّر المشروع أثناء استيراد الوسائط");
     }
     const url = source.url === undefined ? undefined : new URL(source.url);
     const existingAsset = $assets.get().get(source.asset.id);
@@ -637,7 +637,7 @@ export const importAssets = async (
       continue;
     }
     if (url === undefined) {
-      throw new Error("Asset source URL is missing");
+      throw new Error("رابط مصدر الوسيط مفقود");
     }
     let options: UploadAssetsOptions = {};
     if (source.asset.type === "video") {
@@ -658,11 +658,11 @@ export const importAssets = async (
     }
     const assetId = (await upload(source.asset.type, [url], options)).get(url);
     if (assetId === undefined) {
-      throw new Error("Failed to import asset");
+      throw new Error("فشل استيراد الوسيط");
     }
     const importedAsset = await waitForUpload(assetId);
     if (importedAsset.type !== source.asset.type) {
-      throw new Error("Imported asset type does not match its source");
+      throw new Error("نوع الوسيط المستورد لا يطابق مصدره");
     }
     importedAssets.set(source.asset.id, importedAsset);
   }

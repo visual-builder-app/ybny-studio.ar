@@ -45,23 +45,23 @@ const propertyContents: {
 }[] = [
   {
     properties: ["top", "bottom"],
-    label: "Vertical position",
+    label: "الموضع العمودي",
     description:
-      "Sets the top and bottom position of an element relative to its nearest positioned ancestor.",
+      "يضبط الموضع العلوي والسفلي للعنصر نسبةً إلى أقرب سلف محدد الموضع.",
   },
 
   {
     properties: ["left", "right"],
-    label: "Horizontal position",
+    label: "الموضع الأفقي",
     description:
-      "Sets the left and right position of an element relative to its nearest positioned ancestor.",
+      "يضبط الموضع الأيسر والأيمن للعنصر نسبةً إلى أقرب سلف محدد الموضع.",
   },
 
   {
     properties: ["top", "right", "bottom", "left"],
-    label: "Inset position",
+    label: "موضع الإدراج",
     description:
-      "Sets the top, right, bottom and left position of an element relative to its nearest positioned ancestor.",
+      "يضبط مواضع العنصر العليا واليمنى والسفلى واليسرى نسبةً إلى أقرب سلف محدد الموضع.",
   },
 ];
 

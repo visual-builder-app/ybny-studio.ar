@@ -46,7 +46,13 @@ const sections = new Map<
 ] as const);
 
 const sectionLabels = new Map<SectionName, string>([
-  ["auth", "Authentication"],
+  ["general", "عام"],
+  ["agents", "الوكلاء"],
+  ["redirects", "إعادة التوجيه"],
+  ["publish", "النشر"],
+  ["marketplace", "السوق"],
+  ["backups", "النسخ الاحتياطية"],
+  ["auth", "المصادقة"],
 ]);
 
 export const ProjectSettingsDialog = ({
@@ -134,7 +140,7 @@ export const ProjectSettingsDialog = ({
           {/* Title is at the end intentionally,
            * to make the close button last in the tab order
            */}
-          <DialogTitle>Project settings</DialogTitle>
+          <DialogTitle>إعدادات المشروع</DialogTitle>
         </fieldset>
       </DialogContent>
     </Dialog>

@@ -193,18 +193,18 @@ export const ProjectCard = ({
               variant="wrapped"
               content={
                 <Text variant="small">
-                  Created: {formatDate(createdAt)}
+                  تاريخ الإنشاء: {formatDate(createdAt)}
                   {latestBuildVirtual?.updatedAt && (
                     <>
                       <br />
-                      Last modified: {formatDate(latestBuildVirtual.updatedAt)}
+                      آخر تعديل: {formatDate(latestBuildVirtual.updatedAt)}
                     </>
                   )}
                   <br />
                   {isPublished && latestBuildVirtual ? (
-                    <>Published: {formatDate(latestBuildVirtual.createdAt)}</>
+                    <>تاريخ النشر: {formatDate(latestBuildVirtual.createdAt)}</>
                   ) : (
-                    <>Not published</>
+                    <>غير منشور</>
                   )}
                 </Text>
               }
@@ -215,7 +215,7 @@ export const ProjectCard = ({
           {isPublished ? (
             <PublishedLink domain={displayDomain} tabIndex={-1} />
           ) : (
-            <Text color="subtle">Not published</Text>
+            <Text color="subtle">غير منشور</Text>
           )}
         </Flex>
         <ProjectMenu projectId={id} onOpenChange={setOpenDialog} />

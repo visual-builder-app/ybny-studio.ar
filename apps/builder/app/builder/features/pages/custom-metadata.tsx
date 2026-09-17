@@ -56,7 +56,7 @@ const MetadataItem = (props: {
       align={"center"}
     >
       <Label htmlFor={propertyId} css={{ gridArea: "property" }}>
-        Property
+        الخاصية
       </Label>
       <InputErrorsTooltip errors={undefined}>
         <InputField
@@ -71,7 +71,7 @@ const MetadataItem = (props: {
         />
       </InputErrorsTooltip>
       <Label htmlFor={contentId} css={{ gridArea: "content" }}>
-        Content
+        المحتوى
       </Label>
       <BindableExpressionControl
         expression={props.content}
@@ -145,20 +145,19 @@ export const CustomMetadata = (props: CustomMetadataProps) => {
   return (
     <Grid gap={2}>
       <Text color="subtle">
-        Use this section to input metadata for the document, which will be used
-        to generate{" "}
+        استخدم هذا القسم لإدخال البيانات الوصفية للمستند، والتي ستُستخدم لإنشاء وسوم{" "}
         <Text as="b" variant={"regularBold"}>
           &lt;meta&gt;
         </Text>{" "}
-        tags. Each pair consists of a{" "}
+        . يتكون كل زوج من سمة{" "}
         <Text as="b" variant={"regularBold"}>
           property
         </Text>{" "}
-        attribute, indicating the type of metadata, and a{" "}
+        تحدد نوع البيانات الوصفية، وسمة{" "}
         <Text as="b" variant={"regularBold"}>
           content
         </Text>{" "}
-        attribute, specifying its value.
+        تحدد قيمتها.
       </Text>
       <Grid gap={3}>
         {props.customMetas.map((meta, index) => (
@@ -196,7 +195,7 @@ export const CustomMetadata = (props: CustomMetadataProps) => {
             props.onChange(newCustomMetas);
           }}
         >
-          Add another metadata pair
+          إضافة زوج بيانات وصفية آخر
         </Button>
       </Grid>
     </Grid>

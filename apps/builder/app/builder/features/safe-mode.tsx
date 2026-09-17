@@ -30,7 +30,7 @@ export const SafeModeButton = () => {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <IconButton type="button" aria-label="Safe mode active">
+        <IconButton type="button" aria-label="الوضع الآمن نشط">
           <ShieldIcon stroke={cssVar("--foreground-negative")} />
         </IconButton>
       </PopoverTrigger>
@@ -43,14 +43,13 @@ export const SafeModeButton = () => {
             width: theme.spacing[30],
           }}
         >
-          <Text variant="regularBold">Safe mode active</Text>
+          <Text variant="regularBold">الوضع الآمن نشط</Text>
           <Text>
-            Safe mode prevents all external JavaScript from executing. HTML
-            embeds will not run scripts even if "Run scripts on canvas" is
-            enabled.
+            يمنع الوضع الآمن تنفيذ أي JavaScript خارجي. لن تشغّل تضمينات HTML
+            السكربتات حتى لو كان خيار "تشغيل السكربتات على اللوحة" مفعّلًا.
           </Text>
           <Button color="destructive" onClick={handleExitSafeMode}>
-            Exit safe mode
+            الخروج من الوضع الآمن
           </Button>
         </PanelContent>
       </PopoverContent>

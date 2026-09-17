@@ -104,11 +104,11 @@ const BindingPanel = ({
     >
       <Box css={{ paddingBottom: theme.spacing[5] }}>
         <PanelContent as={Flex} gap="1">
-          <Text variant="labels">Variables</Text>
+          <Text variant="labels">المتغيرات</Text>
           <Tooltip
             variant="wrapped"
             content={
-              "Click on the available variables in this scope to insert them into the Expression Editor."
+              "انقر على المتغيرات المتاحة في هذا النطاق لإدراجها في محرر التعبيرات."
             }
           >
             <InfoCircleIcon
@@ -120,7 +120,7 @@ const BindingPanel = ({
         {scopeEntries.length === 0 && (
           <Flex justify="center" align="center" css={{ py: theme.spacing[5] }}>
             <Text variant="labels" align="center">
-              No variables available
+              لا توجد متغيرات متاحة
             </Text>
           </Flex>
         )}
@@ -160,15 +160,15 @@ const BindingPanel = ({
         </ScrollAreaNative>
       </Box>
       <PanelContent as={Flex} gap="1">
-        <Text variant="labels">Expression editor</Text>
+        <Text variant="labels">محرر التعبيرات</Text>
         <Tooltip
           variant="wrapped"
           content={
             <Text>
-              Use JavaScript syntax to access variables along with comparison
-              and arithmetic operators.
+              استخدم صيغة JavaScript للوصول إلى المتغيرات مع عوامل المقارنة
+              والعمليات الحسابية.
               <br />
-              Use the dot notation to access nested object values:
+              استخدم التدوين النقطي للوصول إلى قيم الكائنات المتداخلة:
               <Text variant="mono">Variable.nested.value</Text>
             </Text>
           }
@@ -371,11 +371,11 @@ export const BindingPopover = ({
         <DialogTitle
           suffix={
             <DialogTitleActions>
-              <Tooltip content="Reset binding" side="bottom">
+              <Tooltip content="إعادة تعيين الربط" side="bottom">
                 {/* automatically close popover when remove expression */}
                 <DialogClose>
                   <Button
-                    aria-label="Reset binding"
+                    aria-label="إعادة تعيين الربط"
                     prefix={<TrashIcon />}
                     color="ghost"
                     disabled={variant === "default" || onRemove === undefined}
@@ -402,7 +402,7 @@ export const BindingPopover = ({
             </DialogTitleActions>
           }
         >
-          Binding
+          الربط
         </DialogTitle>
       }
       content={

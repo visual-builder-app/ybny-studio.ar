@@ -130,7 +130,7 @@ export const Projects = (props: ProjectsProps) => {
     <Main>
       <Header variant="main">
         <Text variant="brandSectionTitle" as="h2">
-          Projects
+          المشاريع
         </Text>
         <Flex gap="2">
           <ToggleGroup
@@ -138,10 +138,10 @@ export const Projects = (props: ProjectsProps) => {
             value={viewMode}
             onValueChange={handleViewChange}
           >
-            <ToggleGroupButton value="grid" aria-label="Grid view">
+            <ToggleGroupButton value="grid" aria-label="عرض الشبكة">
               <RepeatGridIcon />
             </ToggleGroupButton>
-            <ToggleGroupButton value="list" aria-label="List view">
+            <ToggleGroupButton value="list" aria-label="عرض القائمة">
               <ListViewIcon />
             </ToggleGroupButton>
           </ToggleGroup>
@@ -150,7 +150,7 @@ export const Projects = (props: ProjectsProps) => {
             href="https://webstudio.is/marketplace/templates/"
             target="_blank"
           >
-            Use template
+            استخدام قالب
           </LinkButton>
           {permissions.canCreateProject && (
             <CreateProject workspaceId={props.currentWorkspaceId} />
@@ -195,7 +195,7 @@ export const Projects = (props: ProjectsProps) => {
               <PanelBanner variant="warning" css={{ maxWidth: 400 }}>
                 <Flex align="center" gap="1">
                   <AlertIcon color={panelBannerIconColor} />
-                  <Text variant="regularBold">Workspace suspended</Text>
+                  <Text variant="regularBold">مساحة العمل موقوفة</Text>
                 </Flex>
                 <Text variant="regular">
                   {getSeatSuspendedMessage(props.workspace.name)}
@@ -211,7 +211,7 @@ export const Projects = (props: ProjectsProps) => {
                 flexGrow: 1,
               }}
             >
-              No projects found
+              لم يتم العثور على مشاريع
             </Text>
           )
         ) : viewMode === "grid" ? (

@@ -36,21 +36,21 @@ export const About = ({ item }: { item?: MarketplaceOverviewItem }) => {
           <Text truncate>Author: {item.author}</Text>
           {item.website && (
             <Flex gap="1">
-              <Text css={{ flexShrink: 0 }}>Website:</Text>
+              <Text css={{ flexShrink: 0 }}>الموقع:</Text>
               <Link href={item.website} target="_blank" css={truncate()}>
                 {item.website}
               </Link>
             </Flex>
           )}
           <Flex gap="1">
-            <Text css={{ flexShrink: 0 }}>Email:</Text>
+            <Text css={{ flexShrink: 0 }}>البريد:</Text>
             <Link href={`mailto:${item.email}`} css={truncate()}>
               {item.email}
             </Link>
           </Flex>
           {item.issues && (
             <Flex gap="1">
-              <Text css={{ flexShrink: 0 }}>Issues tracker:</Text>
+              <Text css={{ flexShrink: 0 }}>متتبع المشاكل:</Text>
               <Link href={item.issues} target="_blank" css={truncate()}>
                 {item.issues}
               </Link>
@@ -65,7 +65,7 @@ export const About = ({ item }: { item?: MarketplaceOverviewItem }) => {
           content={
             hasAuthToken
               ? undefined
-              : 'The project does not have a shared link with "View" permission.'
+              : 'لا يملك المشروع رابط مشاركة بصلاحية "العرض".'
           }
         >
           <LinkButton
@@ -82,7 +82,7 @@ export const About = ({ item }: { item?: MarketplaceOverviewItem }) => {
             target="_blank"
             aria-disabled={hasAuthToken ? undefined : "true"}
           >
-            <ExternalLinkIcon aria-hidden /> Open project
+            <ExternalLinkIcon aria-hidden /> فتح المشروع
           </LinkButton>
         </Tooltip>
       </Flex>

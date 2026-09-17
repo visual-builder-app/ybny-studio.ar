@@ -37,13 +37,13 @@ export const getHumanizedTextFromTransformLayer = (
   switch (panel) {
     case "translate":
       return {
-        label: `Translate: ${toValue({ ...value, hidden: false })}`,
+        label: `الإزاحة: ${toValue({ ...value, hidden: false })}`,
         value,
       };
 
     case "scale":
       return {
-        label: `Scale: ${toValue({ ...value, hidden: false })}`,
+        label: `التحجيم: ${toValue({ ...value, hidden: false })}`,
         value,
       };
 
@@ -59,7 +59,7 @@ export const getHumanizedTextFromTransformLayer = (
       }
 
       return {
-        label: `Rotate: ${toValue(rotateX.args)} ${toValue(rotateY.args)} ${toValue(rotateZ.args)}`,
+        label: `الدوران: ${toValue(rotateX.args)} ${toValue(rotateY.args)} ${toValue(rotateZ.args)}`,
         value: {
           type: "tuple",
           value: [rotateX, rotateY, rotateZ],
@@ -77,7 +77,7 @@ export const getHumanizedTextFromTransformLayer = (
       }
 
       return {
-        label: `Skew: ${toValue(skewX.args)} ${toValue(skewY.args)}`,
+        label: `الإمالة: ${toValue(skewX.args)} ${toValue(skewY.args)}`,
         value: {
           type: "tuple",
           value: [skewX, skewY],

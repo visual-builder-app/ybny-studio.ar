@@ -53,7 +53,7 @@ export const SelectAsset = ({
       <FloatingPanel
         open={open}
         onOpenChange={setOpen}
-        title={title ?? (acceptsImages ? "Images" : "Assets")}
+        title={title ?? (acceptsImages ? "الصور" : "الوسائط")}
         titleSuffix={
           acceptsImages ? (
             <AssetUpload type="image" accept={accept} />
@@ -70,7 +70,7 @@ export const SelectAsset = ({
         }
       >
         <Button css={{ flex: 1 }} disabled={disabled}>
-          {triggerLabel ?? (asset ? formatAssetName(asset) : "Choose source")}
+          {triggerLabel ?? (asset ? formatAssetName(asset) : "اختيار مصدر")}
         </Button>
       </FloatingPanel>
     </Flex>

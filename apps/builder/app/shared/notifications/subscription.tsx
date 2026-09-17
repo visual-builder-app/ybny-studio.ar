@@ -78,7 +78,7 @@ export const startSubscription = () => {
       const newIds = new Set(
         known.filter((n) => prevIds.has(n.id) === false).map((n) => n.id)
       );
-      toast.info("You have new notifications", {
+      toast.info("لديك إشعارات جديدة", {
         duration: NEW_NOTIFICATIONS_TOAST_DURATION,
       });
       // Best-effort browser notification (may be silenced by the OS).
@@ -90,7 +90,7 @@ export const startSubscription = () => {
             .some((n) => newIds.has(n.id));
           if (hasUnresolvedNewNotification) {
             showBrowserNotification("Webstudio", {
-              body: "You have new notifications",
+              body: "لديك إشعارات جديدة",
               showWhenFocused: true,
             });
           }
@@ -98,7 +98,7 @@ export const startSubscription = () => {
         pendingBrowserNotificationTimeouts.add(timeoutId);
       } else {
         showBrowserNotification("Webstudio", {
-          body: "You have new notifications",
+          body: "لديك إشعارات جديدة",
         });
       }
     }
@@ -122,11 +122,11 @@ export const startSubscription = () => {
   manager.subscribe("builderVersion", (serverVersion) => {
     if (serverVersion !== publicStaticEnv.VERSION) {
       const message =
-        "A new version of Webstudio is available. Reload to get the latest - see what's new at https://wstd.us/changelog";
+        "يتوفر إصدار جديد من Webstudio. أعد التحميل للحصول على أحدث إصدار - اطّلع على الجديد في https://wstd.us/changelog";
       toast.info(
         <>
-          A new version of Webstudio is available. Reload to get the latest —
-          see what&apos;s new at{" "}
+          يتوفر إصدار جديد من Webstudio. أعد التحميل للحصول على أحدث إصدار —
+          اطّلع على الجديد في{" "}
           <Link
             href="https://wstd.us/changelog"
             target="_blank"

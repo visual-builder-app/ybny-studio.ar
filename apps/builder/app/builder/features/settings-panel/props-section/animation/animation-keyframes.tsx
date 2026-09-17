@@ -153,7 +153,7 @@ const Keyframe = ({
 
   return (
     <FloatingPanel
-      title="Keyframe"
+      title="الإطار المفتاحي"
       content={
         <Grid css={{ paddingBlock: theme.panel.paddingBlock }}>
           <Grid
@@ -164,7 +164,7 @@ const Keyframe = ({
               paddingInline: theme.panel.paddingInline,
             }}
           >
-            <Label htmlFor={offsetId}>Offset</Label>
+            <Label htmlFor={offsetId}>الإزاحة</Label>
             <OffsetInput
               id={offsetId}
               value={value.offset}
@@ -236,7 +236,7 @@ const Keyframe = ({
           </Label>
         }
         buttons={
-          <Tooltip content="Remove keyframe">
+          <Tooltip content="إزالة الإطار المفتاحي">
             <SmallIconButton
               variant="destructive"
               tabIndex={-1}
@@ -290,7 +290,7 @@ export const Keyframes = ({
           />
         }
       >
-        <SectionTitleLabel>Keyframes</SectionTitleLabel>
+        <SectionTitleLabel>الإطارات المفتاحية</SectionTitleLabel>
       </SectionTitle>
       <CssValueListArrowFocus>
         {keyframes.map((value, index) => (

@@ -47,7 +47,7 @@ const ItemMenu = ({
 
   const isDeleteDisabled = authPermit === "view";
   const tooltipContent = isDeleteDisabled
-    ? "View mode. You can't delete assets."
+    ? "وضع العرض. لا يمكنك حذف الوسائط."
     : undefined;
 
   return (
@@ -64,7 +64,7 @@ const ItemMenu = ({
     >
       <DropdownMenuTrigger asChild>
         <MenuButton
-          aria-label="Font menu"
+          aria-label="قائمة الخط"
           onFocus={onFocusTrigger}
           onBlur={onBlurTrigger}
           tabIndex={0}
@@ -87,7 +87,7 @@ const ItemMenu = ({
               onDelete();
             }}
           >
-            <Text>Delete font</Text>
+            <Text>حذف الخط</Text>
           </DropdownMenuItem>
         </Tooltip>
       </DropdownMenuContent>

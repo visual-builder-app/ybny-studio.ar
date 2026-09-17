@@ -75,7 +75,7 @@ export const assertCollectionSetupProject = ({
 }) => {
   if (currentProjectId !== expectedProjectId) {
     throw new Error(
-      "The project changed before collection setup finished. Return to the original project to retry."
+      "تغيّر المشروع قبل اكتمال إعداد المجموعة. عُد إلى المشروع الأصلي لإعادة المحاولة."
     );
   }
 };
@@ -119,7 +119,7 @@ export const createContentCollectionFolder = async ({
     throw new Error(
       "errors" in payload && typeof payload.errors === "string"
         ? payload.errors
-        : "The collection could not be created."
+        : "تعذّر إنشاء المجموعة."
     );
   }
   assertCollectionSetupProject({
@@ -241,7 +241,7 @@ const AssetFolderForm = ({
   return (
     <PanelContent as={Grid} gap={3}>
       <Grid gap={1}>
-        <Label htmlFor={id}>Name</Label>
+        <Label htmlFor={id}>الاسم</Label>
         <InputField
           id={id}
           autoFocus
@@ -259,7 +259,7 @@ const AssetFolderForm = ({
         />
         {duplicate && (
           <Text color="destructive" variant="tiny">
-            A folder with this name already exists here.
+            يوجد بالفعل مجلد بهذا الاسم هنا.
           </Text>
         )}
       </Grid>
@@ -268,7 +268,7 @@ const AssetFolderForm = ({
         onChange={(parentId) => draft.set({ ...draft.value, parentId })}
         deferChangesUntilBlur={folderId !== undefined}
         excludedFolderIds={excludedFolderIds}
-        rootLabel="Parent folder"
+        rootLabel="المجلد الأصل"
       />
       {showCollectionOption && (
         <CheckboxAndLabel>
@@ -280,7 +280,7 @@ const AssetFolderForm = ({
             }
           />
           <Label htmlFor="asset-folder-content-collection">
-            Use as content collection
+            استخدام كمجموعة محتوى
           </Label>
         </CheckboxAndLabel>
       )}
@@ -295,7 +295,7 @@ const AssetFolderForm = ({
               <Flex justify="center" css={{ paddingInline: theme.spacing[2] }}>
                 <CopyToClipboard text={folderId}>
                   <SmallIconButton
-                    aria-label="Copy folder ID"
+                    aria-label="نسخ معرّف المجلد"
                     icon={<CopyIcon />}
                   />
                 </CopyToClipboard>
@@ -305,7 +305,7 @@ const AssetFolderForm = ({
         </Grid>
       )}
       {onUseAsCollection !== undefined && (
-        <Button onClick={onUseAsCollection}>Use as content collection</Button>
+        <Button onClick={onUseAsCollection}>استخدام كمجموعة محتوى</Button>
       )}
       {(secondaryAction !== undefined || submitLabel !== undefined) && (
         <Flex justify="end" gap={2}>
@@ -380,13 +380,13 @@ export const CreateAssetFolderDialog = ({
       .then(() => {
         setPendingCollection(undefined);
         setCreatedCollectionFolderId(pending.folderId);
-        toast.success("Collection folder created.");
+        toast.success("تم إنشاء مجلد المجموعة.");
       })
       .catch((error) => {
         const message =
           error instanceof Error
             ? error.message
-            : "The collection could not be created.";
+            : "تعذّر إنشاء المجموعة.";
         setInitializationError(message);
         toast.error(message);
       })
@@ -396,7 +396,7 @@ export const CreateAssetFolderDialog = ({
   const create = (values: AssetFolderFormValues) => {
     const projectId = $project.get()?.id;
     if (projectId === undefined) {
-      toast.error("Project not found");
+      toast.error("المشروع غير موجود");
       return;
     }
     if (values.useAsContentCollection !== true) {
@@ -436,18 +436,18 @@ export const CreateAssetFolderDialog = ({
       >
         <DialogTitle>
           {createdCollectionFolderId !== undefined
-            ? "Collection created"
+            ? "تم إنشاء المجموعة"
             : pendingCollection === undefined
               ? existingFolder === undefined
-                ? "New folder"
-                : "Use as content collection"
-              : "Finish collection setup"}
+                ? "مجلد جديد"
+                : "استخدام كمجموعة محتوى"
+              : "إنهاء إعداد المجموعة"}
         </DialogTitle>
         {createdCollectionFolderId !== undefined ? (
           <PanelContent as={Grid} gap={3}>
             <Text>
-              The collection files are ready. You can configure its fields and
-              entry rules now.
+              ملفات المجموعة جاهزة. يمكنك إعداد حقولها وقواعد
+              المدخلات الآن.
             </Text>
             <Flex justify="end" gap={2}>
               <Button
@@ -457,7 +457,7 @@ export const CreateAssetFolderDialog = ({
                   onOpenChange(false);
                 }}
               >
-                Done
+                تم
               </Button>
               {onConfigureCollection !== undefined && (
                 <Button
@@ -469,7 +469,7 @@ export const CreateAssetFolderDialog = ({
                     onConfigureCollection(createdCollectionFolderId);
                   }}
                 >
-                  Configure collection
+                  إعداد المجموعة
                 </Button>
               )}
             </Flex>
@@ -494,7 +494,7 @@ export const CreateAssetFolderDialog = ({
                   })
                 }
               >
-                Use as content collection
+                استخدام كمجموعة محتوى
               </Button>
             </Flex>
           </PanelContent>
@@ -503,7 +503,7 @@ export const CreateAssetFolderDialog = ({
             id="asset-folder-name"
             initialName=""
             initialParentId={currentFolderId}
-            submitLabel="Create folder"
+            submitLabel="إنشاء مجلد"
             showCollectionOption={canCreateContentCollection}
             onSubmit={create}
           />
@@ -511,8 +511,8 @@ export const CreateAssetFolderDialog = ({
           <PanelContent as={Grid} gap={3}>
             <Text>
               {initializing
-                ? "Creating the collection template and configuration…"
-                : "The folder was created, but its collection files are incomplete."}
+                ? "جارٍ إنشاء قالب المجموعة وإعداداتها…"
+                : "تم إنشاء المجلد، لكن ملفات مجموعته غير مكتملة."}
             </Text>
             {initializationError !== undefined && (
               <Text role="alert" color="destructive" variant="tiny">
@@ -526,7 +526,7 @@ export const CreateAssetFolderDialog = ({
                     onOpenChange(false);
                   }}
                 >
-                  Finish later
+                  إنهاء لاحقًا
                 </Button>
               )}
               <Button
@@ -534,7 +534,7 @@ export const CreateAssetFolderDialog = ({
                 disabled={initializing}
                 onClick={() => finishCollectionSetup(pendingCollection)}
               >
-                {initializing ? "Setting up…" : "Retry setup"}
+                {initializing ? "جارٍ الإعداد…" : "إعادة محاولة الإعداد"}
               </Button>
             </Flex>
           </PanelContent>
@@ -596,7 +596,7 @@ export const AssetFolderSettingsDialog = ({
         onKeyDown={stopEscapePropagation}
       >
         <DialogTitle>
-          {confirmDelete ? "Delete folder" : "Folder settings"}
+          {confirmDelete ? "حذف المجلد" : "إعدادات المجلد"}
         </DialogTitle>
         {canDelete && confirmDelete ? (
           <PanelContent as={Box}>
@@ -611,7 +611,7 @@ export const AssetFolderSettingsDialog = ({
                 prefix={<TrashIcon />}
                 onClick={remove}
               >
-                Delete folder
+                حذف المجلد
               </Button>
             </Flex>
           </PanelContent>
@@ -631,7 +631,7 @@ export const AssetFolderSettingsDialog = ({
                   prefix={<TrashIcon />}
                   onClick={() => setConfirmDelete(true)}
                 >
-                  Delete
+                  حذف
                 </Button>
               ) : undefined
             }
@@ -671,13 +671,13 @@ export const MoveAssetManagerItemsDialog = ({
         aria-describedby={undefined}
         onKeyDown={stopEscapePropagation}
       >
-        <DialogTitle>Move items</DialogTitle>
+        <DialogTitle>نقل العناصر</DialogTitle>
         <PanelContent as={Grid} gap={3}>
           <AssetFolderSelector
             value={folderId}
             onChange={setFolderId}
             excludedFolderIds={excludedFolderIds}
-            rootLabel="Folder"
+            rootLabel="مجلد"
           />
           <Flex justify="end">
             <Button
@@ -689,7 +689,7 @@ export const MoveAssetManagerItemsDialog = ({
                 onClose();
               }}
             >
-              Move
+              نقل
             </Button>
           </Flex>
         </PanelContent>

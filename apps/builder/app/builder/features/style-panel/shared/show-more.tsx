@@ -20,7 +20,7 @@ export const ShowMore = ({
             css={{ width: "100%" }}
             prefix={isOpen ? <ChevronDownIcon /> : <ChevronRightIcon />}
           >
-            Show more
+            عرض المزيد
           </Button>
         </Collapsible.Trigger>
         <Collapsible.Content asChild>

@@ -39,7 +39,7 @@ export const MarketplacePanel = (_props: { onClose: () => void }) => {
 
   return (
     <div data-floating-panel-container>
-      <PanelTitle>Marketplace</PanelTitle>
+      <PanelTitle>السوق</PanelTitle>
       <Separator />
       <Overview
         items={items}

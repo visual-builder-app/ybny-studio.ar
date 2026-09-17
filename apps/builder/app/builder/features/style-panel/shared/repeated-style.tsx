@@ -139,7 +139,7 @@ export const addRepeatedStyleItem = (
   if (styles[0].cascadedValue.type === "var") {
     const primaryValue = reparseComputedValue(styles[0]);
     if (isRepeatedValue(primaryValue) && primaryValue.value.length > 1) {
-      toast.error("Cannot add styles to css variable");
+      toast.error("لا يمكن إضافة أنماط إلى متغير CSS");
       return;
     }
   }
@@ -334,7 +334,7 @@ export const swapRepeatedStyleItems = (
   newIndex: number
 ) => {
   if (styles[0].cascadedValue.type === "var") {
-    toast.error("Cannot reorder styles from css variable");
+    toast.error("لا يمكن إعادة ترتيب الأنماط من متغير CSS");
     return;
   }
   const batch = createBatchUpdate();

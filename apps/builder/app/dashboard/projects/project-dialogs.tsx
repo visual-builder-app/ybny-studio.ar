@@ -129,7 +129,7 @@ const DialogContent = ({
       <DialogActions>
         {primaryButton}
         <DialogClose>
-          <Button color="ghost">Cancel</Button>
+          <Button color="ghost">إلغاء</Button>
         </DialogClose>
       </DialogActions>
     </form>
@@ -172,7 +172,7 @@ const useCreateProject = (workspaceId?: string) => {
 };
 
 export const CreateProject = ({
-  buttonText = "New project",
+  buttonText = "مشروع جديد",
   workspaceId,
 }: {
   buttonText?: string;
@@ -183,7 +183,7 @@ export const CreateProject = ({
 
   return (
     <Dialog
-      title="New project"
+      title="مشروع جديد"
       trigger={
         <Button color="primary" prefix={<PlusIcon size={12} />}>
           {buttonText}
@@ -193,8 +193,8 @@ export const CreateProject = ({
     >
       <DialogContent
         onSubmit={handleSubmit}
-        placeholder="My project"
-        label="Project title"
+        placeholder="مشروعي"
+        label="عنوان المشروع"
         errors={errors}
         primaryButton={
           <Button
@@ -202,7 +202,7 @@ export const CreateProject = ({
             state={state === "idle" ? undefined : "pending"}
             type="submit"
           >
-            Create Project
+            إنشاء المشروع
           </Button>
         }
       />
@@ -259,19 +259,19 @@ export const RenameProjectDialog = ({
     onOpenChange,
   });
   return (
-    <Dialog title="Rename" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Dialog title="إعادة تسمية" isOpen={isOpen} onOpenChange={onOpenChange}>
       <DialogContent
         onSubmit={handleSubmit}
         errors={errors}
         title={title}
-        label="Project title"
+        label="عنوان المشروع"
         primaryButton={
           <Button
             color="primary"
             type="submit"
             state={state === "idle" ? undefined : "pending"}
           >
-            Rename Project
+            إعادة تسمية المشروع
           </Button>
         }
       />
@@ -349,7 +349,7 @@ export const DeleteProjectDialog = ({
     });
   return (
     <Dialog
-      title="Delete confirmation"
+      title="تأكيد الحذف"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
     >
@@ -359,7 +359,7 @@ export const DeleteProjectDialog = ({
         errors={errors}
         label={
           <Label css={{ userSelect: "text" }}>
-            Confirm by typing
+            للتأكيد اكتب
             <Text
               as="span"
               color="destructive"
@@ -368,10 +368,10 @@ export const DeleteProjectDialog = ({
             >
               {` ${title} `}
             </Text>
-            below.
+            أدناه.
           </Label>
         }
-        description="This project and its styles, pages and images will be deleted permanently."
+        description="سيتم حذف هذا المشروع وأنماطه وصفحاته وصوره نهائيًا."
         primaryButton={
           <Button
             type="submit"
@@ -379,7 +379,7 @@ export const DeleteProjectDialog = ({
             disabled={isMatch === false}
             state={state === "idle" ? undefined : "pending"}
           >
-            Delete Forever
+            حذف نهائي
           </Button>
         }
         width={theme.spacing["33"]}
@@ -409,7 +409,7 @@ export const ShareProjectDialog = ({
   projectId: string;
 }) => {
   return (
-    <Dialog title="Share project" isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Dialog title="مشاركة المشروع" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ShareProjectContainer projectId={projectId} />
     </Dialog>
   );

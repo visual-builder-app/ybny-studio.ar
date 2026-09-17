@@ -12,7 +12,7 @@ export const Breadcrumbs = () => {
   return (
     <Flex align="center" css={{ height: "100%", px: theme.spacing[3] }}>
       {instancePath === undefined ? (
-        <Text>No instance selected</Text>
+        <Text>لم يتم تحديد أي عنصر</Text>
       ) : (
         instancePath
           // start breadcrumbs from the root

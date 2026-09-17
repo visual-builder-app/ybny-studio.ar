@@ -90,13 +90,13 @@ const DeleteUnusedAssetsDialogContent = ({
       <PanelContent as={Flex} gap="3" direction="column">
         {unusedAssets.length === 0 ? (
           <DialogDescription asChild>
-            <Text>There are no unused assets to delete.</Text>
+            <Text>لا توجد وسائط غير مستخدمة لحذفها.</Text>
           </DialogDescription>
         ) : (
           <>
             <DialogDescription asChild>
               <Text>
-                Select which unused assets to delete from the project.
+                اختر الوسائط غير المستخدمة لحذفها من المشروع.
               </Text>
             </DialogDescription>
 
@@ -149,17 +149,17 @@ const DeleteUnusedAssetsDialogContent = ({
               deleteAssets(assetIds, { force: false });
               onClose();
               toast.success(
-                `Deleted ${count} unused ${count === 1 ? "asset" : "assets"}`
+                `تم حذف ${count} ${count === 1 ? "وسيط غير مستخدم" : "وسائط غير مستخدمة"}`
               );
             }}
             autoFocus
           >
-            Delete
+            حذف
           </Button>
         )}
         <DialogClose>
           <Button color="ghost">
-            {unusedAssets.length > 0 ? "Cancel" : "Close"}
+            {unusedAssets.length > 0 ? "إلغاء" : "إغلاق"}
           </Button>
         </DialogClose>
         {unusedAssets.length > 0 && (
@@ -176,7 +176,7 @@ const DeleteUnusedAssetsDialogContent = ({
                   );
                 }}
               />
-              <Label htmlFor="select-all-unused-assets">Select all</Label>
+              <Label htmlFor="select-all-unused-assets">تحديد الكل</Label>
             </CheckboxAndLabel>
           </Box>
         )}
@@ -206,7 +206,7 @@ export const DeleteUnusedAssetsDialog = () => {
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete unused assets</DialogTitle>
+        <DialogTitle>حذف الوسائط غير المستخدمة</DialogTitle>
         <DeleteUnusedAssetsDialogContent onClose={handleClose} />
       </DialogContent>
     </Dialog>

@@ -8,11 +8,11 @@ export const AUTH_PROVIDERS = {
 } as const;
 
 export const LOGIN_ERROR_MESSAGES = {
-  [AUTH_PROVIDERS.LOGIN_DEV]: "There has been an issue logging you in with dev",
+  [AUTH_PROVIDERS.LOGIN_DEV]: "حدثت مشكلة أثناء تسجيل دخولك عبر dev",
   [AUTH_PROVIDERS.LOGIN_GITHUB]:
-    "There has been an issue logging you in with Github",
+    "حدثت مشكلة أثناء تسجيل دخولك عبر Github",
   [AUTH_PROVIDERS.LOGIN_GOOGLE]:
-    "There has been an issue logging you in with Google",
+    "حدثت مشكلة أثناء تسجيل دخولك عبر Google",
 };
 
 export const useLoginErrorMessage = (): string => {

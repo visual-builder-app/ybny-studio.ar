@@ -58,7 +58,7 @@ export const WorkspaceDropdown = ({
     .flatMap((group) => group.items)
     .find((item) => item.id === selectedId);
 
-  const triggerLabel = selectedItem?.name ?? "Select workspace";
+  const triggerLabel = selectedItem?.name ?? "تحديد مساحة العمل";
 
   return (
     <DropdownMenu>
@@ -163,15 +163,15 @@ export const WorkspaceSelector = ({
     name: workspace.name,
     suffix: workspace.isDowngraded ? (
       <Flex css={{ marginInlineStart: theme.spacing[4], flexShrink: 0 }}>
-        <ProChip>Suspended</ProChip>
+        <ProChip>موقوفة</ProChip>
       </Flex>
     ) : undefined,
   });
 
   const groups: Array<WorkspaceDropdownGroup> = [
-    { label: "My workspaces", items: owned.map(toDropdownItem) },
+    { label: "مساحات عملي", items: owned.map(toDropdownItem) },
     ...(shared.length > 0
-      ? [{ label: "Shared with me", items: shared.map(toDropdownItem) }]
+      ? [{ label: "المشتركة معي", items: shared.map(toDropdownItem) }]
       : []),
   ];
 
@@ -207,7 +207,7 @@ export const WorkspaceSelector = ({
             disabled={isSuspended}
             onSelect={() => setCreateOpen(true)}
           >
-            Create new
+            إنشاء جديدة
           </DropdownMenuItem>
         )}
         <DropdownMenuItem
@@ -215,14 +215,14 @@ export const WorkspaceSelector = ({
           disabled={isSuspended || currentWorkspace?.userId !== userId}
           onSelect={() => setRenameOpen(true)}
         >
-          Rename
+          إعادة تسمية
         </DropdownMenuItem>
         <DropdownMenuItem
           withIndicator
           disabled={isSuspended || permissions.canInviteMembers === false}
           onSelect={() => setInviteOpen(true)}
         >
-          Members
+          الأعضاء
         </DropdownMenuItem>
         {isOwner ? (
           <DropdownMenuItem
@@ -230,11 +230,11 @@ export const WorkspaceSelector = ({
             disabled={isSuspended || currentWorkspace?.isDefault === true}
             onSelect={() => setDeleteOpen(true)}
           >
-            Delete
+            حذف
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem withIndicator onSelect={() => setLeaveOpen(true)}>
-            Leave
+            مغادرة
           </DropdownMenuItem>
         )}
         {permissions.canCreateWorkspace === false && (
@@ -247,7 +247,7 @@ export const WorkspaceSelector = ({
             >
               <Flex align="center" gap="1">
                 <UpgradeIcon />
-                <Text truncate>Upgrade</Text>
+                <Text truncate>ترقية</Text>
               </Flex>
             </DropdownMenuItem>
           </>

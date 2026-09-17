@@ -65,10 +65,10 @@ export const ConflictResolutionDialog = <Resolution extends string>({
       </PanelContent>
       <DialogActions>
         <Button autoFocus color="primary" onClick={onResolve}>
-          Continue
+          متابعة
         </Button>
         <Button color="ghost" onClick={onCancel}>
-          Cancel
+          إلغاء
         </Button>
       </DialogActions>
     </DialogContent>

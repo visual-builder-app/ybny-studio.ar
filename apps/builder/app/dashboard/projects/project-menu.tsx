@@ -36,7 +36,7 @@ export const ProjectMenu = ({ projectId, onOpenChange }: ProjectMenuProps) => {
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <IconButton
-          aria-label="Menu"
+          aria-label="القائمة"
           tabIndex={-1}
           css={{ alignSelf: "center", position: "relative", zIndex: 1 }}
         >
@@ -50,41 +50,41 @@ export const ProjectMenu = ({ projectId, onOpenChange }: ProjectMenuProps) => {
       >
         {permissions.canDuplicate && (
           <DropdownMenuItem onSelect={handleDuplicateProject}>
-            Duplicate
+            إنشاء نسخة
           </DropdownMenuItem>
         )}
         {permissions.canRename && (
           <DropdownMenuItem onSelect={() => onOpenChange("rename")}>
-            Rename
+            إعادة تسمية
           </DropdownMenuItem>
         )}
         {permissions.canShare && (
           <DropdownMenuItem onSelect={() => onOpenChange("share")}>
-            Share
+            مشاركة
           </DropdownMenuItem>
         )}
         {permissions.canDelete && (
           <DropdownMenuItem onSelect={() => onOpenChange("delete")}>
-            Delete
+            حذف
           </DropdownMenuItem>
         )}
         {permissions.canTransfer && (
           <DropdownMenuItem onSelect={() => onOpenChange("transfer")}>
-            Transfer
+            نقل
           </DropdownMenuItem>
         )}
         {permissions.canEditTags && (
           <DropdownMenuItem onSelect={() => onOpenChange("tags")}>
-            Tags
+            وسوم
           </DropdownMenuItem>
         )}
         {permissions.canOpenSettings && (
           <DropdownMenuItem onSelect={() => onOpenChange("settings")}>
-            Settings
+            الإعدادات
           </DropdownMenuItem>
         )}
         <DropdownMenuItem onSelect={handleOpenInSafeMode}>
-          Open in safe mode
+          فتح في الوضع الآمن
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

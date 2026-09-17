@@ -66,7 +66,7 @@ const parseResponse = async (response: Response): Promise<Asset> => {
   throw new Error(
     "errors" in payload && typeof payload.errors === "string"
       ? payload.errors
-      : "The entry could not be created."
+      : "تعذّر إنشاء المدخل."
   );
 };
 
@@ -180,7 +180,7 @@ export const CreateCollectionEntryDialog = ({
     try {
       const projectId = $project.get()?.id;
       if (projectId === undefined) {
-        throw new Error("Project not found");
+        throw new Error("المشروع غير موجود");
       }
       const submittedValues = Object.fromEntries(
         config.fields.flatMap((field) => {
@@ -239,7 +239,7 @@ export const CreateCollectionEntryDialog = ({
       });
       if ($project.get()?.id !== projectId) {
         throw new Error(
-          "The entry was created in the previous project. Return to that project to view it."
+          "تم إنشاء المدخل في المشروع السابق. عُد إلى ذلك المشروع لعرضه."
         );
       }
       if ($assets.get().has(asset.id)) {
@@ -257,13 +257,13 @@ export const CreateCollectionEntryDialog = ({
         onNextTransactionComplete(invalidateAssets);
       }
       onOpenChange(false);
-      toast.success("Entry created.");
+      toast.success("تم إنشاء المدخل.");
     } catch (error) {
       setError({
         message:
           error instanceof Error
             ? error.message
-            : "The entry could not be created.",
+            : "تعذّر إنشاء المدخل.",
       });
     } finally {
       setCreating(false);
@@ -302,7 +302,7 @@ export const CreateCollectionEntryDialog = ({
           }
         }}
       >
-        <DialogTitle>New entry</DialogTitle>
+        <DialogTitle>مدخل جديد</DialogTitle>
         <Flex
           as="form"
           ref={formRef}
@@ -346,7 +346,7 @@ export const CreateCollectionEntryDialog = ({
             )}
             <Flex justify="end">
               <Button type="submit" color="primary" disabled={creating}>
-                {creating ? "Creating…" : "Create entry"}
+                {creating ? "جارٍ الإنشاء…" : "إنشاء المدخل"}
               </Button>
             </Flex>
           </PanelContent>
@@ -354,12 +354,12 @@ export const CreateCollectionEntryDialog = ({
       </DialogContent>
       <Dialog open={confirmDiscard} onOpenChange={setConfirmDiscard}>
         <DialogContent aria-describedby={undefined} width={420}>
-          <DialogTitle>Discard entry?</DialogTitle>
+          <DialogTitle>تجاهل المدخل؟</DialogTitle>
           <PanelContent as={Grid} gap={3}>
-            <Text>Your unsaved entry values will be lost.</Text>
+            <Text>ستفقد قيم المدخل غير المحفوظة.</Text>
             <Flex justify="end" gap={2}>
               <Button onClick={() => setConfirmDiscard(false)}>
-                Keep editing
+                مواصلة التعديل
               </Button>
               <Button
                 color="destructive"
@@ -368,7 +368,7 @@ export const CreateCollectionEntryDialog = ({
                   onOpenChange(false);
                 }}
               >
-                Discard entry
+                تجاهل المدخل
               </Button>
             </Flex>
           </PanelContent>

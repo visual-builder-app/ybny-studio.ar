@@ -27,7 +27,7 @@ const initSubjects = () => {
   const subjects = [
     {
       value: "self",
-      label: "Self",
+      label: "العنصر نفسه",
       isTimelineExists: true,
       instanceId: selectedInstanceSelector.at(0)!,
       selector: selectedInstanceSelector,
@@ -122,7 +122,7 @@ export const SubjectSelect = ({
         const subjectItem = subjects.find((s) => s.value === subject);
 
         if (subjectItem === undefined) {
-          toast.error(`Subject "${newValue.subject}" not found`);
+          toast.error(`لم يتم العثور على العنصر الهدف "${newValue.subject}"`);
           return;
         }
 

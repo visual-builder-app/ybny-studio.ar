@@ -45,7 +45,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisRotateIcon />
         <PropertyInlineLabel
-          label="Rotate X"
+          label="دوران X"
           description={propertySyntaxes.rotateX}
         />
         <CssValueInputContainer
@@ -66,7 +66,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisRotateIcon />
         <PropertyInlineLabel
-          label="Rotate Y"
+          label="دوران Y"
           description={propertySyntaxes.rotateY}
         />
         <CssValueInputContainer
@@ -87,7 +87,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <ZAxisRotateIcon />
         <PropertyInlineLabel
-          label="Rotate Z"
+          label="دوران Z"
           description={propertySyntaxes.rotateZ}
         />
         <CssValueInputContainer

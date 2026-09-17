@@ -20,7 +20,7 @@ import { nameToPath } from "@webstudio-is/project-build/runtime";
 import { $selectedPage, getInstanceKey } from "~/shared/nano-states";
 
 export const getPageDisplayName = (page: Page) =>
-  isPageDraft(page) ? `[Draft] ${page.name}` : page.name;
+  isPageDraft(page) ? `[مسودة] ${page.name}` : page.name;
 
 export const $pageRootScope = computed(
   [$selectedPage, $variableValuesByInstanceSelector, $dataSources],

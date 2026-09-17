@@ -37,7 +37,7 @@ export const getTextFileNameError = ({
   allowedExtensions?: readonly string[];
 }) => {
   if (isValidFilename(name) === false) {
-    return "Enter a valid file name.";
+    return "أدخل اسم ملف صالحًا.";
   }
   const extension = getFileExtension(name)?.toLowerCase() ?? "";
   if (
@@ -47,17 +47,17 @@ export const getTextFileNameError = ({
         (allowedExtension) => allowedExtension.toLowerCase() === extension
       ) === false)
   ) {
-    return "Use a supported editable text extension.";
+    return "استخدم امتداد نص مدعومًا وقابلًا للتعديل.";
   }
   if (
     folderId !== undefined &&
     canCreateCollectionConfig === false &&
     name === collectionConfigFilename
   ) {
-    return "You don't have permission to create a content collection.";
+    return "ليس لديك صلاحية لإنشاء مجموعة محتوى.";
   }
   if (isAssetFilenameUsed({ assets, filename: name, folderId })) {
-    return "A file with this name already exists.";
+    return "يوجد بالفعل ملف بهذا الاسم.";
   }
 };
 
@@ -98,7 +98,7 @@ export const CreateTextFileDialog = ({
   folderId,
   defaultName = "untitled.md",
   allowedExtensions,
-  title = "New text file",
+  title = "ملف نصي جديد",
   disabled = false,
   canCreateCollectionConfig = false,
   onOpenChange,
@@ -148,7 +148,7 @@ export const CreateTextFileDialog = ({
     try {
       const asset = await createTextFile({ name: normalizedName, folderId });
       if (asset === undefined) {
-        setError("The file could not be created.");
+        setError("تعذّر إنشاء الملف.");
         return;
       }
       onOpenChange(false);
@@ -157,7 +157,7 @@ export const CreateTextFileDialog = ({
       setError(
         error instanceof Error
           ? error.message
-          : "The file could not be created."
+          : "تعذّر إنشاء الملف."
       );
     } finally {
       setCreating(false);
@@ -185,7 +185,7 @@ export const CreateTextFileDialog = ({
         <DialogTitle>{title}</DialogTitle>
         <PanelContent as={Grid} gap={3}>
           <Grid gap={1}>
-            <Label htmlFor="asset-text-file-name">File name</Label>
+            <Label htmlFor="asset-text-file-name">اسم الملف</Label>
             <InputField
               id="asset-text-file-name"
               inputRef={nameInputRef}
@@ -214,7 +214,7 @@ export const CreateTextFileDialog = ({
               disabled={creating || disabled}
               onClick={() => void submit()}
             >
-              {creating ? "Creating…" : "Create file"}
+              {creating ? "جارٍ الإنشاء…" : "إنشاء الملف"}
             </Button>
           </Flex>
         </PanelContent>

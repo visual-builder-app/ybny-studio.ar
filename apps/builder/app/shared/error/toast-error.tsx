@@ -26,6 +26,6 @@ export const useToastErrors = () => {
 export const toastError = (_error: string) => {
   $toastErrors.set([
     ...$toastErrors.get(),
-    "Copying has been disabled by the project owner",
+    "تم تعطيل النسخ من قبل مالك المشروع",
   ]);
 };

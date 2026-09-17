@@ -1,7 +1,7 @@
 import { TRPCClientError } from "@trpc/client";
 
 export const prePublishTimeoutMessage =
-  "Pre-publish checks timed out. Publishing was not started. Please try again.";
+  "انتهت مهلة فحوصات ما قبل النشر. لم يبدأ النشر. يرجى المحاولة مرة أخرى.";
 
 export const getPrePublishErrorMessage = (error: unknown) => {
   const response =
@@ -17,5 +17,5 @@ export const getPrePublishErrorMessage = (error: unknown) => {
   }
   return error instanceof Error
     ? error.message
-    : "Content database validation failed";
+    : "فشل التحقق من قاعدة بيانات المحتوى";
 };

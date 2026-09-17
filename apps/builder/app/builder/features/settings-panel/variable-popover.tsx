@@ -138,7 +138,7 @@ const NameField = ({
   }, [value, validateName]);
   return (
     <Grid gap={1}>
-      <Label htmlFor={nameId}>Name</Label>
+      <Label htmlFor={nameId}>الاسم</Label>
       <InputErrorsTooltip errors={error ? [error] : undefined}>
         <Combobox<string>
           inputRef={ref}
@@ -148,11 +148,11 @@ const NameField = ({
           itemToString={(item) => item ?? ""}
           getDescription={() => (
             <>
-              Enter a new variable or select
+              أدخل متغيرًا جديدًا أو حدد
               <br />
-              a variable that has been used
+              متغيرًا استُخدم
               <br />
-              in expressions but not yet created
+              في تعابير ولم يُنشأ بعد
             </>
           )}
           getItems={() => {
@@ -216,34 +216,34 @@ const TypeField = ({
   }> = [
     {
       value: "string",
-      label: "String",
-      description: "Any alphanumeric text.",
+      label: "نص",
+      description: "أي نص أبجدي رقمي.",
     },
     {
       value: "number",
-      label: "Number",
-      description: "Any number, can be used in math expressions.",
+      label: "رقم",
+      description: "أي رقم، يمكن استخدامه في التعابير الرياضية.",
     },
     {
       value: "boolean",
-      label: "Boolean",
-      description: "A boolean is a true/false switch.",
+      label: "منطقي",
+      description: "القيمة المنطقية هي مفتاح صحيح/خطأ.",
     },
     {
       value: "json",
       label: "JSON",
-      description: "Any JSON value",
+      description: "أي قيمة JSON",
     },
     {
       value: "resource",
       label: (
         <Flex direction="row" gap="2" align="center">
-          Resource
+          المورد
           {allowDynamicData === false && <ProChip>Pro</ProChip>}
         </Flex>
       ),
       description:
-        "A Resource is a configuration for secure data fetching. You can safely use secrets in any field.",
+        "المورد هو إعداد لجلب البيانات بشكل آمن. يمكنك استخدام الأسرار بأمان في أي حقل.",
     },
     {
       value: "graphql-resource",
@@ -254,24 +254,24 @@ const TypeField = ({
         </Flex>
       ),
       description:
-        "A Resource is a configuration for secure data fetching. You can safely use secrets in any field.",
+        "المورد هو إعداد لجلب البيانات بشكل آمن. يمكنك استخدام الأسرار بأمان في أي حقل.",
     },
     {
       value: "system-resource",
       label: (
         <Flex direction="row" gap="2" align="center">
-          System resource
+          مورد النظام
           {allowDynamicData === false && <ProChip>Pro</ProChip>}
         </Flex>
       ),
-      description: "A system resource is a configuration for Webstudio data.",
+      description: "مورد النظام هو إعداد لبيانات Webstudio.",
     },
   ];
   const options = new Map(optionsList.map((option) => [option.value, option]));
 
   return (
     <Grid gap="1">
-      <Label>Type</Label>
+      <Label>النوع</Label>
       <Select
         options={Array.from(options.keys())}
         getLabel={(option: VariableType) => options.get(option)?.label}
@@ -392,7 +392,7 @@ const StringForm = forwardRef<
   const valueId = useId();
   return (
     <Flex direction="column" css={{ gap: theme.spacing[3] }}>
-      <Label htmlFor={valueId}>Value</Label>
+      <Label htmlFor={valueId}>القيمة</Label>
       <EditorDialogControl>
         <TextArea
           name="value"
@@ -404,7 +404,7 @@ const StringForm = forwardRef<
           onChange={onChange}
         />
         <EditorDialog
-          title="Variable value"
+          title="قيمة المتغير"
           content={
             <TextArea
               grow={true}
@@ -445,7 +445,7 @@ const NumberForm = forwardRef<
   return (
     <>
       <Flex direction="column" css={{ gap: theme.spacing[3] }}>
-        <Label htmlFor={valueId}>Value</Label>
+        <Label htmlFor={valueId}>القيمة</Label>
         <InputErrorsTooltip errors={valueError ? [valueError] : undefined}>
           <InputField
             inputRef={valueRef}
@@ -481,7 +481,7 @@ const BooleanForm = forwardRef<
   return (
     <>
       <Flex direction="column" css={{ gap: theme.spacing[3] }}>
-        <Label htmlFor={valueId}>Value</Label>
+        <Label htmlFor={valueId}>القيمة</Label>
         <Switch
           name="value"
           value="on"
@@ -525,7 +525,7 @@ const JsonForm = forwardRef<
         }
       />
       <Flex direction="column" css={{ gap: theme.spacing[3] }}>
-        <Label>Value</Label>
+        <Label>القيمة</Label>
         <ExpressionEditor
           color={valueError ? "error" : undefined}
           value={value}
@@ -764,7 +764,7 @@ const VariablePreview = ({
             disabled={hasPendingResources}
             onClick={onLoadData}
           >
-            {hasPendingResources ? "Loading..." : "Load data"}
+            {hasPendingResources ? "جارٍ التحميل..." : "تحميل البيانات"}
           </Button>
         </Flex>
       )}
@@ -933,7 +933,7 @@ const VariablePopoverContent = ({
         defaultSize={{ value: 320, unit: "px" }}
         minimumStartSize={240}
         minimumEndSize={240}
-        separatorLabel="Resize variable configuration"
+        separatorLabel="تغيير حجم إعداد المتغير"
         start={
           <ScrollArea
             // flex fixes content overflowing artificial scroll area
@@ -1008,10 +1008,10 @@ const VariablePopoverContent = ({
           <DialogTitleActions>
             {(variableType === "resource" ||
               variableType === "graphql-resource") && (
-              <Tooltip content="Copy resource as cURL command" side="bottom">
+              <Tooltip content="نسخ المورد كأمر cURL" side="bottom">
                 <Button
                   type="button"
-                  aria-label="Copy resource as cURL command"
+                  aria-label="نسخ المورد كأمر cURL"
                   prefix={<CopyIcon />}
                   color="ghost"
                   onClick={copyAsCurl}
@@ -1021,10 +1021,10 @@ const VariablePopoverContent = ({
             {(variableType === "resource" ||
               variableType === "graphql-resource" ||
               variableType === "system-resource") && (
-              <Tooltip content="Refresh resource data" side="bottom">
+              <Tooltip content="تحديث بيانات المورد" side="bottom">
                 <Button
                   type="button"
-                  aria-label="Refresh resource data"
+                  aria-label="تحديث بيانات المورد"
                   prefix={<RefreshIcon />}
                   color="ghost"
                   disabled={hasPendingResources}
@@ -1037,7 +1037,7 @@ const VariablePopoverContent = ({
           </DialogTitleActions>
         }
       >
-        {variable ? "Edit variable" : "New variable"}
+        {variable ? "تعديل المتغير" : "متغير جديد"}
       </DialogTitle>
     </>
   );

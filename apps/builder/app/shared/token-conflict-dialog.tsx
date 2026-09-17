@@ -12,21 +12,21 @@ export type TokenConflictDialogConflict = Pick<TokenConflict, "tokenName">;
 const conflictResolutionOptions = [
   {
     value: "theirs",
-    label: "Theirs",
+    label: "الوارد",
     description:
-      'Keep incoming tokens with a suffix added to their names (e.g., "primary-color-1")',
+      'الاحتفاظ بالرموز الواردة مع إضافة لاحقة إلى أسمائها (مثل "primary-color-1")',
   },
   {
     value: "ours",
-    label: "Ours",
+    label: "الحالي",
     description:
-      "Discard incoming tokens and use your existing project tokens instead",
+      "تجاهل الرموز الواردة واستخدام رموز مشروعك الموجودة بدلًا منها",
   },
   {
     value: "merge",
-    label: "Merge",
+    label: "دمج",
     description:
-      "Combine both into your existing token (incoming styles override existing ones)",
+      "دمج الاثنين في الرمز الموجود لديك (الأنماط الواردة تتجاوز الأنماط الموجودة)",
   },
 ] as const satisfies ReadonlyArray<{
   value: ConflictResolution;
@@ -81,13 +81,13 @@ export const TokenConflictDialog = () => {
 
   return (
     <ConflictResolutionDialog
-      title="Token conflict detected"
+      title="تم اكتشاف تعارض في الرموز"
       description={
         conflictCount === 1
-          ? `The token "${firstConflict.tokenName}" already exists with different styles.`
-          : `${conflictCount} tokens already exist with the same names but different styles.`
+          ? `الرمز "${firstConflict.tokenName}" موجود بالفعل بأنماط مختلفة.`
+          : `توجد ${conflictCount} رموز بنفس الأسماء ولكن بأنماط مختلفة.`
       }
-      detailsLabel="Show conflicting tokens"
+      detailsLabel="إظهار الرموز المتعارضة"
       details={conflicts.map((conflict) => conflict.tokenName).join(", ")}
       resolution={resolution}
       options={conflictResolutionOptions}

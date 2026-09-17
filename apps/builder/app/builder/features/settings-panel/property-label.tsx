@@ -122,7 +122,7 @@ export const PropertyLabel = ({
     <ResettableLabel
       color={prop ? "local" : "default"}
       onReset={canDelete ? handleDelete : undefined}
-      resetLabel={isResettable ? "Reset value" : "Delete property"}
+      resetLabel={isResettable ? "إعادة تعيين القيمة" : "حذف الخاصية"}
       content={
         <>
           <Text variant="titles">{label}</Text>
@@ -134,7 +134,7 @@ export const PropertyLabel = ({
                 style={{ flexShrink: 0 }}
               />
               <Text>
-                The value is controlled by an expression and cannot be changed.
+                القيمة مضبوطة بواسطة تعبير ولا يمكن تغييرها.
               </Text>
             </Flex>
           )}

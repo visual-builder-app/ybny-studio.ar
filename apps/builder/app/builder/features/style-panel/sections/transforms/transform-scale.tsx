@@ -94,7 +94,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <XAxisIcon />
           <PropertyInlineLabel
-            label="Scale X"
+            label="تحجيم X"
             description={propertySyntaxes.scaleX}
           />
           <CssValueInput
@@ -139,7 +139,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <YAxisIcon />
           <PropertyInlineLabel
-            label="Scale Y"
+            label="تحجيم Y"
             description={propertySyntaxes.scaleY}
           />
           <CssValueInput
@@ -184,7 +184,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <ZAxisIcon />
           <PropertyInlineLabel
-            label="Scale Z"
+            label="تحجيم Z"
             description={propertySyntaxes.scaleZ}
           />
           <CssValueInput
@@ -230,8 +230,8 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         <EnhancedTooltip
           content={
             isScalingLocked === true
-              ? "Unlink scale-x and scale-y values"
-              : "Link scale-x and scale-y values"
+              ? "إلغاء ربط قيمتَي scale-x و scale-y"
+              : "ربط قيمتَي scale-x و scale-y"
           }
         >
           <SmallToggleButton

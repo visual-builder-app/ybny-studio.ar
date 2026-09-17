@@ -31,7 +31,7 @@ export const CollectionRetryButton = ({
         onCheckAgain();
       }}
     >
-      {checking ? "Retrying…" : "Retry"}
+      {checking ? "جارٍ إعادة المحاولة…" : "إعادة المحاولة"}
     </Button>
   );
 };
@@ -47,7 +47,7 @@ export const CollectionUnavailableNotice = ({
     <PanelBanner role="alert" variant="error" css={{ flexShrink: 0 }}>
       <Flex align="center" justify="between" gap={2}>
         <Text>
-          Couldn’t load collection settings. Retry to use collection actions.
+          تعذر تحميل إعدادات المجموعة. أعد المحاولة لاستخدام إجراءات المجموعة.
         </Text>
         <Flex>
           <CollectionRetryButton

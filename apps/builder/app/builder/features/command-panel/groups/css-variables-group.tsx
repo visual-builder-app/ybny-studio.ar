@@ -105,10 +105,10 @@ export const CssVariablesGroup = ({
           </CommandGroupHeading>
         }
         actions={[
-          { name: "select", label: "Select" },
-          { name: "findUsages", label: "Find usages" },
-          { name: "rename", label: "Rename" },
-          { name: "delete", label: "Delete" },
+          { name: "select", label: "تحديد" },
+          { name: "findUsages", label: "البحث عن الاستخدامات" },
+          { name: "rename", label: "إعادة تسمية" },
+          { name: "delete", label: "حذف" },
         ]}
       >
         {options.map(({ property, instanceId, usages, terms }) => {
@@ -165,7 +165,7 @@ export const CssVariablesGroup = ({
         }}
         onConfirm={(_oldProperty, newProperty) => {
           toast.success(
-            `CSS variable renamed from "${variableDialog?.property}" to "${newProperty}"`
+            `أُعيدت تسمية متغير CSS من "${variableDialog?.property}" إلى "${newProperty}"`
           );
           setVariableDialog(undefined);
         }}
@@ -181,7 +181,7 @@ export const CssVariablesGroup = ({
         }}
         onConfirm={(property) => {
           deleteCssVariable(property);
-          toast.success(`CSS variable "${variableDialog?.property}" deleted`);
+          toast.success(`تم حذف متغير CSS "${variableDialog?.property}"`);
           setVariableDialog(undefined);
         }}
       />

@@ -225,11 +225,11 @@ export const Section = () => {
 
   return (
     <StyleSection
-      label="Grid child"
+      label="عنصر الشبكة"
       properties={properties}
       suffix={
         parentInstance && (
-          <Tooltip content="Select grid container">
+          <Tooltip content="تحديد حاوية الشبكة">
             <SectionTitleButton
               prefix={<ExternalLinkIcon />}
               onClick={() => selectInstance(parentInstance.instanceSelector)}
@@ -266,20 +266,20 @@ const GridChildPositionMode = ({
   const items = [
     {
       value: "auto" as const,
-      label: "Auto",
-      description: "Let the grid automatically place this item.",
+      label: "تلقائي",
+      description: "اترك الشبكة تضع هذا العنصر تلقائيًا.",
       code: "grid-column: auto;\ngrid-row: auto;",
     },
     {
       value: "area" as const,
-      label: "Area",
-      description: "Place the item in a named grid area.",
+      label: "منطقة",
+      description: "ضع العنصر في منطقة شبكة مسماة.",
       code: "grid-area: <area-name>;",
     },
     {
       value: "manual" as const,
-      label: "Manual",
-      description: "Manually specify the item's position using grid lines.",
+      label: "يدوي",
+      description: "حدّد موضع العنصر يدويًا باستخدام خطوط الشبكة.",
       code: "grid-column: <start> / <end>;\ngrid-row: <start> / <end>;",
     },
   ];
@@ -287,8 +287,8 @@ const GridChildPositionMode = ({
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="Position"
-        description="How the grid item is positioned within the grid"
+        label="الموضع"
+        description="كيفية وضع عنصر الشبكة داخل الشبكة"
         properties={[
           "grid-column-start",
           "grid-column-end",
@@ -347,13 +347,13 @@ const GridChildPositionAuto = () => {
             startProperty="grid-column-start"
           />
           <Text variant="small" color="subtle">
-            Column span
+            امتداد الأعمدة
           </Text>
         </Grid>
         <Grid css={{ gap: theme.spacing[3] }}>
           <SpanInput property="grid-row-end" startProperty="grid-row-start" />
           <Text variant="small" color="subtle">
-            Row span
+            امتداد الصفوف
           </Text>
         </Grid>
       </Grid>
@@ -530,7 +530,7 @@ const GridChildPositionArea = () => {
   if (areaNames.length === 0) {
     return (
       <Text color="moreSubtle">
-        No named areas defined. Add areas in the parent grid's template.
+        لا توجد مناطق مسماة. أضف مناطق في قالب الشبكة الأب.
       </Text>
     );
   }
@@ -543,7 +543,7 @@ const GridChildPositionArea = () => {
         options={areaNames}
         value={selectedArea}
         onChange={handleAreaChange}
-        placeholder="Select area"
+        placeholder="اختر منطقة"
       />
     </Grid>
   );

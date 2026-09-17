@@ -55,7 +55,7 @@ const UpgradeLink = () => (
   <Flex align="center" gap={1}>
     <UpgradeIcon />
     <Link color="inherit" target="_blank" href="https://webstudio.is/pricing">
-      Upgrade
+      ترقية
     </Link>
   </Flex>
 );
@@ -63,8 +63,8 @@ const UpgradeLink = () => (
 export const ShareLinkSecurityNotice = () => (
   <PanelBanner variant="warning">
     <Text>
-      Sharing links over insecure channels can expose project access. Upgrade to
-      the Team plan for safer collaboration.
+      مشاركة الروابط عبر قنوات غير آمنة قد تكشف الوصول إلى المشروع. قم بالترقية
+      إلى خطة Team لتعاون أكثر أمانًا.
     </Text>
     <UpgradeLink />
   </PanelBanner>
@@ -116,14 +116,14 @@ const getApiPermissionDescription = ({
 }) => {
   const descriptions: Record<Role, string> = {
     viewers:
-      "Allows read-only API access: inspect permissions, project/build snapshots, pages, folders, instances, text, styles, variables, resources, assets, publish history, domains, and asset usage.",
+      "يسمح بوصول API للقراءة فقط: فحص الأذونات، لقطات المشروع/البناء، الصفحات، المجلدات، النسخ، النصوص، الأنماط، المتغيرات، الموارد، الوسائط، سجل النشر، النطاقات، واستخدام الوسائط.",
     editors: canPublish
-      ? "Allows viewer API access, content-mode text and prop changes, plus publishing and unpublishing project and custom domains. It cannot change pages, design data, assets, variables, resources, or domains."
-      : "Allows viewer API access and content-mode text and prop changes. Enable Can publish to allow publishing and unpublishing. It cannot change pages, design data, assets, variables, resources, or domains.",
+      ? "يسمح بوصول API كمشاهد، وتعديل النصوص والخصائص في وضع المحتوى، إضافةً إلى نشر المشروع والنطاقات المخصصة وإلغاء نشرها. لا يمكنه تغيير الصفحات أو بيانات التصميم أو الوسائط أو المتغيرات أو الموارد أو النطاقات."
+      : "يسمح بوصول API كمشاهد وتعديل النصوص والخصائص في وضع المحتوى. فعّل «يمكنه النشر» للسماح بالنشر وإلغاء النشر. لا يمكنه تغيير الصفحات أو بيانات التصميم أو الوسائط أو المتغيرات أو الموارد أو النطاقات.",
     builders:
-      "Allows read and build API access: pages, folders, instances, text, props, styles, design tokens, CSS variables, data variables, resources, assets, patches, and project-domain publish/unpublish.",
+      "يسمح بوصول API للقراءة والبناء: الصفحات، المجلدات، النسخ، النصوص، الخصائص، الأنماط، رموز التصميم، متغيرات CSS، متغيرات البيانات، الموارد، الوسائط، التصحيحات، ونشر/إلغاء نشر المشروع والنطاقات.",
     administrators:
-      "Allows full project API access: all read, content, build, asset, publish/unpublish, and domain management operations.",
+      "يسمح بوصول API كامل للمشروع: جميع عمليات القراءة والمحتوى والبناء والوسائط والنشر/إلغاء النشر وإدارة النطاقات.",
   };
   return descriptions[role];
 };
@@ -320,18 +320,18 @@ const Menu = ({
         <Button
           prefix={<EllipsesIcon />}
           color="ghost"
-          aria-label="Options menu"
+          aria-label="قائمة الخيارات"
         ></Button>
       </PopoverTrigger>
       <PopoverContent
-        aria-label={`Share link options ${name}`}
+        aria-label={`خيارات رابط المشاركة ${name}`}
         css={{
           width: theme.spacing[28],
         }}
         sideOffset={0}
       >
         <Item>
-          <Label htmlFor={ids.name}>Name</Label>
+          <Label htmlFor={ids.name}>الاسم</Label>
           <InputField
             id={ids.name}
             inputRef={nameInputRef}
@@ -347,14 +347,14 @@ const Menu = ({
                 setIsOpen(false);
               }
             }}
-            placeholder="Share project"
+            placeholder="مشاركة المشروع"
             name="Name"
             autoFocus
           />
         </Item>
         <Separator />
         <Item>
-          <Label>Permissions</Label>
+          <Label>الأذونات</Label>
           <Permission
             checked={draftLink.relation === "viewers"}
             onCheckedChange={handleCheckedChange("viewers")}
@@ -366,7 +366,7 @@ const Menu = ({
             <>
               <Capability
                 id={ids.canClone}
-                title="Can clone"
+                title="يمكنه الاستنساخ"
                 checked={draftLink.canClone}
                 disabled={!allowAdditionalPermissions}
                 onCheckedChange={(canClone) => updateDraftLink({ canClone })}
@@ -374,13 +374,13 @@ const Menu = ({
                   <PermissionTooltipContent
                     upgrade={!allowAdditionalPermissions}
                   >
-                    Allows viewers to clone the project from this share link.
+                    يسمح للمشاهدين باستنساخ المشروع من رابط المشاركة هذا.
                   </PermissionTooltipContent>
                 }
               />
               <Capability
                 id={ids.canCopy}
-                title="Can copy"
+                title="يمكنه النسخ"
                 checked={draftLink.canCopy}
                 disabled={!allowAdditionalPermissions}
                 onCheckedChange={(canCopy) => updateDraftLink({ canCopy })}
@@ -388,7 +388,7 @@ const Menu = ({
                   <PermissionTooltipContent
                     upgrade={!allowAdditionalPermissions}
                   >
-                    Allows viewers to copy project content from this share link.
+                    يسمح للمشاهدين بنسخ محتوى المشروع من رابط المشاركة هذا.
                   </PermissionTooltipContent>
                 }
               />
@@ -409,7 +409,7 @@ const Menu = ({
             <>
               <Capability
                 id={ids.canPublish}
-                title="Can publish"
+                title="يمكنه النشر"
                 checked={draftLink.canPublish}
                 disabled={!allowAdditionalPermissions}
                 onCheckedChange={(canPublish) =>
@@ -419,7 +419,7 @@ const Menu = ({
                   <PermissionTooltipContent
                     upgrade={!allowAdditionalPermissions}
                   >
-                    Allows editors to publish from this share link.
+                    يسمح للمحررين بالنشر من رابط المشاركة هذا.
                   </PermissionTooltipContent>
                 }
               />
@@ -455,7 +455,7 @@ const Menu = ({
               onDelete();
             }}
           >
-            Delete
+            حذف
           </Button>
         </Item>
       </PopoverContent>
@@ -530,7 +530,7 @@ const SharedLinkItem = ({
       as={Box}
       className={itemStyle()}
       role="group"
-      aria-label={`Share link ${currentLink.name}`}
+      aria-label={`رابط المشاركة ${currentLink.name}`}
     >
       <Label css={{ flexGrow: 1 }}>{currentLink.name}</Label>
       <CopyToClipboard
@@ -538,9 +538,9 @@ const SharedLinkItem = ({
           authToken: currentLink.token,
           mode: relationToMode[currentLink.relation],
         })}
-        copyText="Copy link"
+        copyText="نسخ الرابط"
       >
-        <IconButton aria-label="Copy link">
+        <IconButton aria-label="نسخ الرابط">
           <CopyIcon aria-hidden />
         </IconButton>
       </CopyToClipboard>
@@ -625,7 +625,7 @@ export const ShareProject = ({
           onCreate();
         }}
       >
-        {links.length === 0 ? "Share a custom link" : "Add another link"}
+        {links.length === 0 ? "مشاركة رابط مخصص" : "إضافة رابط آخر"}
       </Button>
     </PanelContent>
   );
@@ -634,7 +634,7 @@ export const ShareProject = ({
     <Flex
       direction="column"
       role="region"
-      aria-label="Share links"
+      aria-label="روابط المشاركة"
       aria-busy={isPending}
       css={{ width: theme.spacing[33] }}
     >

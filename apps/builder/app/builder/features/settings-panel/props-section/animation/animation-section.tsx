@@ -43,12 +43,12 @@ import { SubjectSelect } from "./subject-select";
 
 const animationTypeDescription: Record<AnimationAction["type"], string> = {
   scroll:
-    "Scroll-based animations are triggered and controlled by the user’s scroll position.",
-  view: "View-based animations occur when an element enters or exits the viewport. They rely on the element’s visibility rather than the scroll position.",
+    "الحركات القائمة على التمرير تُشغَّل وتُتحكم بها حسب موضع تمرير المستخدم.",
+  view: "الحركات القائمة على العرض تحدث عند دخول العنصر إلى الإطار المرئي أو خروجه منه. وهي تعتمد على ظهور العنصر وليس على موضع التمرير.",
 };
 
 const insetDescription =
-  "Adjusts the animation’s start/end position relative to the scrollport. Positive values move it inward (delaying start or hastening end), while negative values move it outward (starting animation before visibility or continuing after disappearance).";
+  "يضبط موضع بدء/انتهاء الحركة نسبةً إلى منفذ التمرير. القيم الموجبة تحرّكه للداخل (تؤخر البدء أو تعجّل النهاية)، بينما القيم السالبة تحرّكه للخارج (تبدأ الحركة قبل الظهور أو تستمر بعد الاختفاء).";
 
 const animationTypes = Object.keys(
   animationTypeDescription
@@ -82,15 +82,15 @@ const animationAxisDescription: Record<
   */
 
   y: {
-    label: "Y axis",
+    label: "المحور Y",
     icon: <ArrowDownIcon />,
-    description: "The scrollbar on the vertical axis of the scroller element.",
+    description: "شريط التمرير على المحور الرأسي لعنصر التمرير.",
   },
   x: {
-    label: "X axis",
+    label: "المحور X",
     icon: <ArrowRightIcon />,
     description:
-      "The scrollbar on the horizontal axis of the scroller element.",
+      "شريط التمرير على المحور الأفقي لعنصر التمرير.",
   },
 };
 
@@ -112,9 +112,9 @@ const animationSourceDescriptions: Record<
   NonNullable<AnimationActionScroll["source"]>,
   string
 > = {
-  nearest: "Selects the scrolling container that affects the current element.",
-  root: "Selects the scrolling element of the document.",
-  closest: "Selects the nearest ancestor element that is scrollable.",
+  nearest: "يحدد حاوية التمرير التي تؤثر على العنصر الحالي.",
+  root: "يحدد عنصر التمرير الخاص بالمستند.",
+  closest: "يحدد أقرب عنصر أصل قابل للتمرير.",
 };
 
 const unitOptions = RANGE_UNITS.map((unit) => ({
@@ -171,7 +171,7 @@ const InsetValueInput = ({
           value: "auto",
           type: "keyword",
           description:
-            "Pick the child element’s viewTimelineInset property or use the scrolling element’s scroll-padding, depending on the selected axis.",
+            "يختار خاصية viewTimelineInset للعنصر الفرعي أو يستخدم scroll-padding لعنصر التمرير، حسب المحور المحدد.",
         },
       ]}
       onHighlight={(value) => {
@@ -216,8 +216,8 @@ const AnimationConfig = ({
   return (
     <PanelContent as={Grid} gap={2}>
       <Grid gap={1} align="center" columns={2}>
-        <FieldLabel description="Type of the timeline defines how the animation is triggered.">
-          Type
+        <FieldLabel description="نوع الخط الزمني يحدد كيفية تشغيل الحركة.">
+          النوع
         </FieldLabel>
         <Select
           options={animationTypes}
@@ -235,8 +235,8 @@ const AnimationConfig = ({
       </Grid>
 
       <Grid gap={1} align="center" columns={2}>
-        <FieldLabel description="Axis determines whether an animation progresses based on an element’s visibility along the horizontal or vertical direction.">
-          Axis
+        <FieldLabel description="يحدد المحور ما إذا كانت الحركة تتقدم بناءً على ظهور العنصر في الاتجاه الأفقي أو الرأسي.">
+          المحور
         </FieldLabel>
         <ToggleGroup
           css={{ justifySelf: "end" }}
@@ -267,8 +267,8 @@ const AnimationConfig = ({
 
       {value.type === "scroll" && (
         <Grid gap={1} align="center" columns={2}>
-          <FieldLabel description="The scroll source is the element whose scrolling behavior drives the animation's progress.">
-            Scroll Source
+          <FieldLabel description="مصدر التمرير هو العنصر الذي يقود سلوك تمريره تقدم الحركة.">
+            مصدر التمرير
           </FieldLabel>
           <Select
             options={animationSources}
@@ -286,8 +286,8 @@ const AnimationConfig = ({
 
       {value.type === "view" && (
         <Grid gap={1} align="center" columns={2}>
-          <FieldLabel description="The subject is the element whose visibility determines the animation’s progress.">
-            Subject
+          <FieldLabel description="العنصر الهدف هو العنصر الذي يحدد ظهوره تقدم الحركة.">
+            العنصر الهدف
           </FieldLabel>
           <SubjectSelect value={value} onChange={onChange} />
         </Grid>
@@ -297,13 +297,13 @@ const AnimationConfig = ({
         <Grid gap={1} align={"center"} css={{ gridTemplateColumns: "1fr 1fr" }}>
           <FieldLabel description={insetDescription}>
             {value.axis === "inline" || value.axis === "x"
-              ? "Left inset"
-              : "Top inset"}
+              ? "إزاحة يسرى"
+              : "إزاحة عليا"}
           </FieldLabel>
           <FieldLabel description={insetDescription}>
             {value.axis === "inline" || value.axis === "x"
-              ? "Right inset"
-              : "Bottom inset"}
+              ? "إزاحة يمنى"
+              : "إزاحة سفلى"}
           </FieldLabel>
           <InsetValueInput
             value={value.insetStart ?? { type: "keyword", value: "auto" }}
@@ -342,7 +342,7 @@ const AnimationConfigButton = forwardRef<
   const { animations: defaultAnimations, ...defaultValue } = defaultActionValue;
   const { animations, ...newValue } = value;
   return (
-    <Tooltip content="Advanced transform options">
+    <Tooltip content="خيارات التحويل المتقدمة">
       <IconButton
         {...props}
         ref={ref}
@@ -392,17 +392,17 @@ export const AnimationSection = ({
       return;
     }
 
-    toast.error("Invalid animation schema.");
+    toast.error("مخطط الحركة غير صالح.");
   };
 
   return (
     <Grid css={{ paddingBottom: theme.panel.paddingBlock }}>
       <Grid gap={2} css={{ padding: theme.panel.paddingInline }}>
         <Grid gap={2} align="center" css={{ gridTemplateColumns: "1fr auto" }}>
-          <FieldLabel description="Even if its off, you can preview the animation by selecting the item in the navigator.">
-            Run on canvas
+          <FieldLabel description="حتى إذا كان متوقفًا، يمكنك معاينة الحركة بتحديد العنصر في شجرة العناصر.">
+            التشغيل على اللوحة
           </FieldLabel>
-          <Tooltip content={value.isPinned ? "Off" : "On"}>
+          <Tooltip content={value.isPinned ? "إيقاف" : "تشغيل"}>
             <Switch
               checked={value.isPinned ?? false}
               onCheckedChange={(isPinned) => {
@@ -413,8 +413,8 @@ export const AnimationSection = ({
         </Grid>
 
         <Grid gap={2} align="center" css={{ gridTemplateColumns: "1fr auto" }}>
-          <FieldLabel description="Debug mode shows animation progress on canvas in design mode only.">
-            Debug
+          <FieldLabel description="يعرض وضع التصحيح تقدم الحركة على اللوحة في وضع التصميم فقط.">
+            التصحيح
           </FieldLabel>
           <Switch
             css={{ justifySelf: "end" }}
@@ -432,7 +432,7 @@ export const AnimationSection = ({
         <AnimationsSelect
           action={
             <FloatingPanel
-              title="Advanced animation"
+              title="حركة متقدمة"
               placement="bottom-within"
               content={
                 <AnimationConfig value={value} onChange={handleChange} />

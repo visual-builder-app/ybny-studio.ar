@@ -40,7 +40,7 @@ export const ResourceDiagnosticsView = ({
   }
   return (
     <Flex align="center" justify="center" css={{ height: "100%" }}>
-      <Text color="moreSubtle">No diagnostics available</Text>
+      <Text color="moreSubtle">لا تتوفر تشخيصات</Text>
     </Flex>
   );
 };

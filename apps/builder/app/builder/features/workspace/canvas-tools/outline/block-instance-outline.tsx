@@ -302,7 +302,7 @@ export const TemplatesMenu = ({
                   css={{ display: hasChildren ? "none" : undefined }}
                 >
                   <Kbd value={["click"]} />
-                  <Text>to add before</Text>
+                  <Text>للإضافة قبل</Text>
                 </Flex>
 
                 <Flex
@@ -313,7 +313,7 @@ export const TemplatesMenu = ({
                   }}
                 >
                   <Kbd value={["click"]} />
-                  <Text>to add after</Text>
+                  <Text>للإضافة بعد</Text>
                 </Flex>
                 <Flex
                   gap={1}
@@ -322,7 +322,7 @@ export const TemplatesMenu = ({
                     display: hasChildren ? undefined : "none",
                   }}
                 >
-                  <Kbd value={["alt", "click"]} /> <Text>to add before</Text>
+                  <Kbd value={["alt", "click"]} /> <Text>للإضافة قبل</Text>
                 </Flex>
               </Grid>
             </div>
@@ -330,7 +330,7 @@ export const TemplatesMenu = ({
         ) : (
           <div className={menuItemCss({ hint: true })}>
             <Grid css={{ width: theme.spacing[25] }}>
-              <Text>No results</Text>
+              <Text>لا توجد نتائج</Text>
             </Grid>
           </div>
         )}
@@ -511,7 +511,7 @@ export const BlockChildHoveredInstanceOutline = () => {
           preventFocusOnHover={false}
         >
           <IconButton
-            aria-label={isAddMode ? "Insert block" : "Delete block"}
+            aria-label={isAddMode ? "إدراج كتلة" : "حذف الكتلة"}
             variant={isAddMode ? "local" : "overwritten"}
             onClick={() => {
               if (isAddMode) {

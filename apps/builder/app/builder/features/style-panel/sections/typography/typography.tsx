@@ -71,7 +71,7 @@ export const properties = [
 
 export const Section = () => {
   return (
-    <StyleSection label="Typography" properties={properties}>
+    <StyleSection label="النص" properties={properties}>
       <Flex gap="2" direction="column">
         <TypographySectionFont />
         <TypographySectionSizing />
@@ -85,19 +85,19 @@ const TypographySectionFont = () => {
   return (
     <Grid css={{ gridTemplateColumns: "4fr 6fr" }} gap={2}>
       <PropertyLabel
-        label="Family"
+        label="الخط"
         description={propertyDescriptions.fontFamily}
         properties={["font-family"]}
       />
       <FontFamilyControl />
       <PropertyLabel
-        label="Weight"
+        label="السُمك"
         description={propertyDescriptions.fontWeight}
         properties={["font-weight"]}
       />
       <FontWeightControl />
       <PropertyLabel
-        label="Color"
+        label="اللون"
         description={propertyDescriptions.color}
         properties={["color"]}
       />
@@ -111,7 +111,7 @@ const TypographySectionSizing = () => {
     <Grid gap="2" css={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
       <Grid gap="1">
         <PropertyLabel
-          label="Size"
+          label="الحجم"
           description={propertyDescriptions.fontSize}
           properties={["font-size"]}
         />
@@ -119,7 +119,7 @@ const TypographySectionSizing = () => {
       </Grid>
       <Grid gap="1">
         <PropertyLabel
-          label="Height"
+          label="الارتفاع"
           description={propertyDescriptions.lineHeight}
           properties={["line-height"]}
         />
@@ -127,7 +127,7 @@ const TypographySectionSizing = () => {
       </Grid>
       <Grid gap="1">
         <PropertyLabel
-          label="Spacing"
+          label="التباعد"
           description={propertyDescriptions.letterSpacing}
           properties={["letter-spacing"]}
         />
@@ -145,23 +145,23 @@ const TypographySectionAdvanced = () => {
         items={[
           {
             child: <TextAlignLeftIcon />,
-            description: "Aligns the text based on the writing direction.",
+            description: "يحاذي النص بناءً على اتجاه الكتابة.",
             value: "start",
           },
           {
             child: <TextAlignCenterIcon />,
-            description: "Centers the text horizontally within its container.",
+            description: "يوسّط النص أفقيًا داخل حاويته.",
             value: "center",
           },
           {
             child: <TextAlignRightIcon />,
-            description: "Aligns the text based on the writing direction.",
+            description: "يحاذي النص بناءً على اتجاه الكتابة.",
             value: "end",
           },
           {
             child: <TextAlignJustifyIcon />,
             description:
-              "Adjusts word spacing to align text to both the left and right edges of the container",
+              "يضبط تباعد الكلمات لمحاذاة النص إلى الحافتين اليمنى واليسرى للحاوية",
             value: "justify",
           },
         ]}
@@ -171,18 +171,18 @@ const TypographySectionAdvanced = () => {
         items={[
           {
             child: <XSmallIcon />,
-            description: "No decoration is applied to the text.",
+            description: "لا يتم تطبيق أي تنسيق على النص.",
             value: "none",
           },
           {
             child: <TextUnderlineIcon />,
-            description: "Adds a horizontal line underneath the text.",
+            description: "يضيف خطًا أفقيًا أسفل النص.",
             value: "underline",
           },
           {
             child: <TextStrikethroughIcon />,
             description:
-              "Draws a horizontal line through the middle of the text.",
+              "يرسم خطًا أفقيًا عبر منتصف النص.",
             value: "line-through",
           },
         ]}
@@ -193,25 +193,25 @@ const TypographySectionAdvanced = () => {
           {
             child: <XSmallIcon />,
             description:
-              "No transformation is applied to the text. The text appears as it is.",
+              "لا يتم تطبيق أي تحويل على النص. يظهر النص كما هو.",
             value: "none",
           },
           {
             child: <TextUppercaseIcon />,
             description:
-              "Transforms the text to appear in all uppercase letters.",
+              "يحوّل النص ليظهر بأحرف كبيرة كلها.",
             value: "uppercase",
           },
           {
             child: <TextCapitalizeIcon />,
             description:
-              "Transforms the first character of each word to uppercase, while the remaining characters are in lowercase.",
+              "يحوّل الحرف الأول من كل كلمة إلى حرف كبير، وتبقى بقية الأحرف صغيرة.",
             value: "capitalize",
           },
           {
             child: <TextLowercaseIcon />,
             description:
-              " Transforms the text to appear in all lowercase letters.",
+              "يحوّل النص ليظهر بأحرف صغيرة كلها.",
             value: "lowercase",
           },
         ]}
@@ -223,13 +223,13 @@ const TypographySectionAdvanced = () => {
             {
               child: <XSmallIcon />,
               description:
-                "The default value. The text appears in a normal, upright style.",
+                "القيمة الافتراضية. يظهر النص بالنمط العادي المعتدل.",
               value: "normal",
             },
             {
               child: <TextItalicIcon />,
               description:
-                "The text appears in italic style, where it is slanted to the right.",
+                "يظهر النص بالنمط المائل، حيث يميل إلى اليمين.",
               value: "italic",
             },
           ]}
@@ -252,7 +252,7 @@ const AdvancedOptionsButton = forwardRef<
   const styleValueSourceColor = getPriorityStyleValueSource(styles);
   return (
     <Flex>
-      <EnhancedTooltip content="More typography options">
+      <EnhancedTooltip content="خيارات نصية متقدمة">
         <IconButton
           {...rest}
           disabled={readonly}
@@ -281,7 +281,7 @@ AdvancedOptionsButton.displayName = "AdvancedOptionsButton";
 const TypographySectionAdvancedPopover = () => {
   return (
     <FloatingPanel
-      title="Advanced typography"
+      title="خيارات النص المتقدمة"
       placement="bottom-within"
       content={
         <PanelContent
@@ -293,25 +293,25 @@ const TypographySectionAdvancedPopover = () => {
         >
           <Grid css={{ gridTemplateColumns: "5fr 5fr" }} gap={2}>
             <PropertyLabel
-              label="White space collapse"
+              label="طي المسافات البيضاء"
               description={propertyDescriptions.whiteSpaceCollapse}
               properties={["white-space-collapse"]}
             />
             <SelectControl property="white-space-collapse" />
             <PropertyLabel
-              label="Text wrap mode"
+              label="نمط التفاف النص"
               description={propertyDescriptions.textWrapMode}
               properties={["text-wrap-mode"]}
             />
             <SelectControl property="text-wrap-mode" />
             <PropertyLabel
-              label="Text wrap style"
+              label="أسلوب التفاف النص"
               description={propertyDescriptions.textWrapStyle}
               properties={["text-wrap-style"]}
             />
             <SelectControl property="text-wrap-style" />
             <PropertyLabel
-              label="Direction"
+              label="الاتجاه"
               description={propertyDescriptions.direction}
               properties={["direction"]}
             />
@@ -322,20 +322,20 @@ const TypographySectionAdvancedPopover = () => {
                   {
                     child: <ArrowRightIcon />,
                     description:
-                      "Sets the text direction to left-to-right, which is the default for most languages.",
+                      "يضبط اتجاه النص من اليسار إلى اليمين، وهو الافتراضي لمعظم اللغات.",
                     value: "ltr",
                   },
                   {
                     child: <ArrowLeftIcon />,
                     description:
-                      "Sets the text direction to right-to-left, typically used for languages such as Arabic or Hebrew.",
+                      "يضبط اتجاه النص من اليمين إلى اليسار، ويُستخدم عادةً للغات مثل العربية والعبرية.",
                     value: "rtl",
                   },
                 ]}
               />
             </Box>
             <PropertyLabel
-              label="Hyphens"
+              label="الواصلات"
               description={propertyDescriptions.hyphens}
               properties={["hyphens"]}
             />
@@ -346,20 +346,20 @@ const TypographySectionAdvancedPopover = () => {
                   {
                     child: <XSmallIcon />,
                     description:
-                      "Disables hyphenation of words. Words will not be hyphenated even if they exceed the width of their container.",
+                      "يعطّل وصل الكلمات. لن تُوصل الكلمات حتى إذا تجاوزت عرض حاويتها.",
                     value: "manual",
                   },
                   {
                     child: <MinusIcon />,
                     description:
-                      "Enables automatic hyphenation of words. The browser will hyphenate long words at appropriate points to fit within the width of their container.",
+                      "يفعّل وصل الكلمات تلقائيًا. سيصل المتصفح الكلمات الطويلة عند نقاط مناسبة لتتسع داخل عرض حاويتها.",
                     value: "auto",
                   },
                 ]}
               />
             </Box>
             <PropertyLabel
-              label="Text overflow"
+              label="فيضان النص"
               description={propertyDescriptions.textOverflow}
               properties={["text-overflow"]}
             />
@@ -370,13 +370,13 @@ const TypographySectionAdvancedPopover = () => {
                   {
                     child: <XSmallIcon />,
                     description:
-                      "The overflowing text is clipped and hidden without any indication.",
+                      "يُقص النص الفائض ويُخفى دون أي إشارة.",
                     value: "clip",
                   },
                   {
                     child: <TextTruncateIcon />,
                     description:
-                      "The overflowing text is truncated with an ellipsis (...) to indicate that there is more content. To make the text-overflow: ellipsis property work, you need to set the following CSS properties: text-wrap-mode: nowrap; overflow: hidden;",
+                      "يُقتطع النص الفائض مع علامة حذف (...) للإشارة إلى وجود المزيد من المحتوى. لجعل الخاصية text-overflow: ellipsis تعمل، تحتاج إلى ضبط خصائص CSS التالية: text-wrap-mode: nowrap; overflow: hidden;",
                     value: "ellipsis",
                   },
                 ]}

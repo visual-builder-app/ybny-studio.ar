@@ -147,26 +147,26 @@ export const SectionAuth = () => {
   return (
     <Grid gap={3} css={sectionSpacing}>
       <Flex align="center" gap={1}>
-        <Text variant="titles">Authentication</Text>
+        <Text variant="titles">المصادقة</Text>
         {allowAuth === false && <ProChip>PRO</ProChip>}
         <Tooltip
           content={
             <>
               <Text>
-                Authentication asks visitors for HTTP Basic Auth credentials
-                before protected pages load on custom domains.
+                تطلب المصادقة من الزوار بيانات HTTP Basic Auth
+                قبل تحميل الصفحات المحمية على النطاقات المخصصة.
               </Text>
               <br />
               <Text>
-                Routes use the same syntax as page paths, including :params and
-                * wildcards.
+                تستخدم المسارات نفس بنية مسارات الصفحات، بما في ذلك :params
+                و* للبدل.
               </Text>
               {allowAuth === false && (
                 <>
                   <br />
                   <Text>
-                    Authentication is a Pro feature. You can publish to staging
-                    for free; upgrade to Pro to publish to custom domains.
+                    المصادقة ميزة Pro. يمكنك النشر إلى بيئة الاختبار
+                    مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
                   </Text>
                   <LinkButton
                     color="primary"
@@ -174,7 +174,7 @@ export const SectionAuth = () => {
                     target="_blank"
                     href="https://webstudio.is/pricing"
                   >
-                    Upgrade
+                    ترقية
                   </LinkButton>
                 </>
               )}
@@ -200,7 +200,7 @@ export const SectionAuth = () => {
           </Grid>
           <Flex>
             <Button color="destructive" onClick={handleReset}>
-              Reset authentication
+              إعادة تعيين المصادقة
             </Button>
           </Flex>
         </Grid>
@@ -208,7 +208,7 @@ export const SectionAuth = () => {
 
       <Flex gap="2" justify="between">
         <SearchField
-          placeholder="Search"
+          placeholder="بحث"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
           onAbort={() => setSearchQuery("")}
@@ -220,7 +220,7 @@ export const SectionAuth = () => {
           disabled={authRoutes.length === 0}
           onClick={handleReset}
         >
-          Delete all
+          حذف الكل
         </Button>
       </Flex>
 
@@ -251,7 +251,7 @@ export const SectionAuth = () => {
           side="top"
         >
           <InputField
-            placeholder="Login"
+            placeholder="اسم الدخول"
             value={login}
             color={loginErrors.length === 0 ? undefined : "error"}
             onChange={(event) => {
@@ -266,7 +266,7 @@ export const SectionAuth = () => {
           side="top"
         >
           <InputField
-            placeholder="Password"
+            placeholder="كلمة المرور"
             type="password"
             value={password}
             color={passwordErrors.length === 0 ? undefined : "error"}
@@ -287,7 +287,7 @@ export const SectionAuth = () => {
           onClick={handleAddAuthRoute}
           css={{ flexShrink: 0 }}
         >
-          Add
+          إضافة
         </Button>
       </Flex>
 
@@ -323,7 +323,7 @@ export const SectionAuth = () => {
                         <SmallIconButton
                           variant="destructive"
                           icon={<TrashIcon />}
-                          aria-label={`Delete authentication for ${authRoute.route}`}
+                          aria-label={`حذف المصادقة لـ ${authRoute.route}`}
                           onClick={() => handleDeleteAuthRoute(index)}
                         />
                       </ProjectSettingsDataRow>

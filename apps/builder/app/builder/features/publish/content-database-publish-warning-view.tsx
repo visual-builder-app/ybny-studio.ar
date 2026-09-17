@@ -8,7 +8,7 @@ export const ContentDatabasePublishWarning = ({
   const { stats } = diagnostics;
   const totalDocumentCount =
     stats.includedDocumentCount + stats.omittedDocumentCount;
-  const omittedFileLabel = stats.omittedDocumentCount === 1 ? "file" : "files";
+  const omittedFileLabel = stats.omittedDocumentCount === 1 ? "ملف" : "ملفات";
   const dynamicResourceNames = diagnostics.affectedResources.flatMap(
     ({ name, kind }) => (kind === "dynamic" ? [name] : [])
   );
@@ -17,26 +17,26 @@ export const ContentDatabasePublishWarning = ({
   );
   return (
     <>
-      The merged published content database will include{" "}
-      {stats.includedDocumentCount} of {totalDocumentCount} files (
-      {Math.ceil(stats.usedBytes / 1024)} of {Math.ceil(stats.maxBytes / 1024)}{" "}
-      KiB). {stats.omittedDocumentCount} {omittedFileLabel} will be omitted{" "}
+      ستتضمن قاعدة بيانات المحتوى المنشورة المدمجة{" "}
+      {stats.includedDocumentCount} من أصل {totalDocumentCount} ملف (
+      {Math.ceil(stats.usedBytes / 1024)} من {Math.ceil(stats.maxBytes / 1024)}{" "}
+      KiB). سيتم تجاهل {stats.omittedDocumentCount} {omittedFileLabel}{" "}
       {stats.omissionReason === "size"
-        ? "because the complete database exceeds the size limit"
-        : "because the required content could not be embedded"}
+        ? "لأن قاعدة البيانات الكاملة تتجاوز حد الحجم"
+        : "لأنه تعذر تضمين المحتوى المطلوب"}
       .
       {dynamicResourceNames.length > 0 && (
         <>
           {" "}
-          Assets resources with route or variable values cannot be checked
-          exactly and may return incomplete results:{" "}
+          لا يمكن فحص موارد الوسائط ذات قيم المسارات أو المتغيرات
+          بدقة وقد تُرجع نتائج غير مكتملة:{" "}
           {dynamicResourceNames.join(", ")}.
         </>
       )}
       {staticResourceNames.length > 0 && (
         <>
           {" "}
-          Potentially affected Assets resources:{" "}
+          موارد الوسائط التي قد تتأثر:{" "}
           {staticResourceNames.join(", ")}.
         </>
       )}

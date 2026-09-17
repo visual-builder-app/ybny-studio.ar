@@ -172,10 +172,10 @@ export const AssetsPanel = ({
       : builderRepair?.repairAction !== undefined
         ? currentCollection.message
         : isContentMode
-          ? "New entries are unavailable until a builder repairs this collection."
+          ? "لا تتوفر إدخالات جديدة حتى يقوم محرر بإصلاح هذه المجموعة."
           : canConfigureCollections
             ? currentCollection.message
-            : `${currentCollection.message} A builder must repair this collection.`;
+            : `${currentCollection.message} يجب على محرر إصلاح هذه المجموعة.`;
   const addActions = {
     upload: () => uploadRef.current?.open(),
     createFile: () => setCreateTextFileOpen(true),
@@ -199,7 +199,7 @@ export const AssetsPanel = ({
       const template = await uploadSingleAsset(
         "file",
         new File(
-          ["---\n---\n\nStart writing.\n"],
+          ["---\n---\n\nابدأ الكتابة.\n"],
           currentCollection.missingTemplateFilename,
           { type: "text/mdx" }
         ),
@@ -207,16 +207,16 @@ export const AssetsPanel = ({
       );
       if (template === undefined) {
         throw new Error(
-          "The missing collection template could not be created."
+          "تعذر إنشاء قالب المجموعة المفقود."
         );
       }
       setCollectionRefreshKey((key) => key + 1);
-      toast.success("Collection template created.");
+      toast.success("تم إنشاء قالب المجموعة.");
     } catch (error) {
       toast.error(
         error instanceof Error
           ? error.message
-          : "The missing collection template could not be created."
+          : "تعذر إنشاء قالب المجموعة المفقود."
       );
     } finally {
       setRepairingCollection(false);
@@ -277,9 +277,9 @@ export const AssetsPanel = ({
             {currentCollection?.status === "ready" &&
               isContentMode === false &&
               canConfigureCollections && (
-                <Tooltip content="Collection settings">
+                <Tooltip content="إعدادات المجموعة">
                   <IconButton
-                    aria-label="Collection settings"
+                    aria-label="إعدادات المجموعة"
                     onClick={() => {
                       setSettingsCollection(currentCollection);
                     }}
@@ -293,7 +293,7 @@ export const AssetsPanel = ({
                 repairAssetToOpen !== undefined) && (
                 <Tooltip content={currentCollection.message}>
                   <IconButton
-                    aria-label="Repair invalid collection"
+                    aria-label="إصلاح المجموعة غير الصالحة"
                     onClick={() => {
                       if (
                         builderRepair?.missingTemplateFilename !== undefined
@@ -310,20 +310,20 @@ export const AssetsPanel = ({
                   </IconButton>
                 </Tooltip>
               )}
-            <Tooltip content="Delete unused assets">
+            <Tooltip content="حذف الوسائط غير المستخدمة">
               <IconButton
-                aria-label="Delete unused assets"
+                aria-label="حذف الوسائط غير المستخدمة"
                 onClick={openDeleteUnusedAssetsDialog}
               >
                 <BrushCleaningIcon />
               </IconButton>
             </Tooltip>
             <DropdownMenu>
-              <Tooltip content="Add asset">
+              <Tooltip content="إضافة وسائط">
                 <DropdownMenuTrigger asChild>
                   <IconButton
                     disabled={authPermit === "view"}
-                    aria-label="Add asset"
+                    aria-label="إضافة وسائط"
                   >
                     <PlusIcon />
                   </IconButton>
@@ -334,21 +334,21 @@ export const AssetsPanel = ({
                   currentCollection.status === "ready") && (
                   <>
                     <DropdownMenuItem onSelect={addActions.upload}>
-                      Upload
+                      رفع
                     </DropdownMenuItem>
                     <DropdownMenuItem onSelect={addActions.createFile}>
-                      Create text file
+                      إنشاء ملف نصي
                     </DropdownMenuItem>
                   </>
                 )}
                 {currentCollection?.status === "ready" && (
                   <DropdownMenuItem onSelect={addActions.createEntry}>
-                    New entry
+                    إدخال جديد
                   </DropdownMenuItem>
                 )}
                 {canManageFolders && (
                   <DropdownMenuItem onSelect={addActions.createFolder}>
-                    Create folder
+                    إنشاء مجلد
                   </DropdownMenuItem>
                 )}
               </DropdownMenuContent>
@@ -356,7 +356,7 @@ export const AssetsPanel = ({
           </>
         }
       >
-        {currentCollection === undefined ? "Assets" : "Assets collection"}
+        {currentCollection === undefined ? "الوسائط" : "مجموعة الوسائط"}
       </PanelTitle>
       <Separator />
       <AssetManager
@@ -371,10 +371,10 @@ export const AssetsPanel = ({
                     <Text>
                       {entryValidation.issues.size}{" "}
                       {entryValidation.issues.size === 1
-                        ? "entry has"
-                        : "entries have"}{" "}
-                      fields that do not match this collection. Review Entry
-                      settings to see and fix each field.
+                        ? "إدخالًا يحتوي على"
+                        : "إدخالات تحتوي على"}{" "}
+                      حقول لا تطابق هذه المجموعة. راجع إعدادات الإدخال
+                      للاطلاع على كل حقل وإصلاحه.
                     </Text>
                     <Flex gap={2} wrap="wrap">
                       <Button
@@ -387,10 +387,10 @@ export const AssetsPanel = ({
                           }
                         }}
                       >
-                        Review first entry
+                        مراجعة الإدخال الأول
                       </Button>
                       <Button onClick={entryValidation.retry}>
-                        Check again
+                        التحقق مرة أخرى
                       </Button>
                     </Flex>
                   </Flex>
@@ -398,7 +398,7 @@ export const AssetsPanel = ({
               )}
             {currentCollection?.status === "loading" && (
               <PanelContent as={Flex} role="status" align="center">
-                <Text variant="tiny">Loading collection settings…</Text>
+                <Text variant="tiny">جارٍ تحميل إعدادات المجموعة…</Text>
               </PanelContent>
             )}
             {currentCollection?.status === "invalid" && (
@@ -414,8 +414,8 @@ export const AssetsPanel = ({
                         onClick={() => void createMissingTemplate()}
                       >
                         {repairingCollection
-                          ? "Creating…"
-                          : "Create missing template"}
+                          ? "جارٍ الإنشاء…"
+                          : "إنشاء القالب المفقود"}
                       </Button>
                     )}
                     {repairAssetToOpen !== undefined && (
@@ -424,7 +424,7 @@ export const AssetsPanel = ({
                           setOpenedTextAssetId(repairAssetToOpen.id)
                         }
                       >
-                        Open {formatAssetName(repairAssetToOpen)}
+                        فتح {formatAssetName(repairAssetToOpen)}
                       </Button>
                     )}
                     <CollectionRetryButton
@@ -486,8 +486,8 @@ export const AssetsPanel = ({
           currentCollection === undefined
             ? undefined
             : currentCollection.status === "ready"
-              ? "No entries yet. Use New entry to create one."
-              : "No collection entries are available."
+              ? "لا توجد إدخالات بعد. استخدم «إدخال جديد» لإنشاء إدخال."
+              : "لا تتوفر إدخالات للمجموعة."
         }
       />
       <CreateAssetFolderDialog

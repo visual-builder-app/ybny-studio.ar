@@ -59,7 +59,7 @@ const HelpTabTrigger = () => {
   return (
     <HelpCenter>
       <HelpCenter.Trigger asChild>
-        <SidebarButton label="Learn Webstudio or ask for help">
+        <SidebarButton label="تعلّم Webstudio أو اطلب المساعدة">
           <HelpIcon size={rawTheme.spacing[10]} />
         </SidebarButton>
       </HelpCenter.Trigger>
@@ -119,10 +119,10 @@ const isPanelDisabled = (
 const panels: PanelConfig[] = [
   {
     name: "components",
-    ariaLabel: "Components",
+    ariaLabel: "المكوّنات",
     label: (
       <Text>
-        Components&nbsp;&nbsp;
+        المكوّنات&nbsp;&nbsp;
         <Kbd value={["A"]} color="moreSubtle" />
       </Text>
     ),
@@ -135,16 +135,16 @@ const panels: PanelConfig[] = [
   },
   {
     name: "pages",
-    label: "Pages",
+    label: "الصفحات",
     Icon: PageIcon,
     Panel: PagesPanel,
   },
   {
     name: "navigator",
-    ariaLabel: "Navigator",
+    ariaLabel: "شجرة العناصر",
     label: (
       <Text>
-        Navigator&nbsp;&nbsp;
+        شجرة العناصر&nbsp;&nbsp;
         <Kbd value={["z"]} color="moreSubtle" />
       </Text>
     ),
@@ -153,13 +153,13 @@ const panels: PanelConfig[] = [
   },
   {
     name: "assets",
-    label: "Assets",
+    label: "الوسائط",
     Icon: ImageIcon,
     Panel: AssetsPanel,
   },
   {
     name: "marketplace",
-    label: "Marketplace",
+    label: "السوق",
     Icon: ExtensionIcon,
     Panel: MarketplacePanel,
     visibility: {

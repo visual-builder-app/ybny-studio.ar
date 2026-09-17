@@ -25,7 +25,7 @@ const useTooSmallMessage = () => {
     const message =
       window.innerWidth >= minWidth
         ? undefined
-        : `Your browser window is too small. Resize your browser to at least ${minWidth}px wide to continue building with Webstudio.`;
+        : `نافذة المتصفح صغيرة جدًا. غيّر حجم المتصفح إلى ${minWidth}px عرضًا على الأقل لمواصلة البناء باستخدام Webstudio.`;
     setMessage(message);
   };
 
@@ -61,19 +61,19 @@ export const UnsupportedBrowserDialog = ({
     }}
   >
     <DialogContent width={480}>
-      <DialogTitle>Unsupported browser</DialogTitle>
+      <DialogTitle>متصفح غير مدعوم</DialogTitle>
       <DialogDescription asChild>
         <PanelContent as={Text}>
-          The Webstudio Builder UI currently supports any{" "}
+          تدعم واجهة محرر Webstudio حاليًا أي متصفح{" "}
           <Link
             href="https://en.wikipedia.org/wiki/Chromium_(web_browser)"
             target="_blank"
             color="inherit"
             variant="inherit"
           >
-            Chromium-based
+            مبني على Chromium
           </Link>{" "}
-          browsers such as{" "}
+          مثل{" "}
           <Link
             href="https://www.google.com/chrome"
             target="_blank"
@@ -109,17 +109,16 @@ export const UnsupportedBrowserDialog = ({
           >
             Arc
           </Link>{" "}
-          and many more. We plan to support Firefox and Safari in the near
-          future.
+          وغيرها الكثير. نخطط لدعم Firefox وSafari في المستقبل القريب.
           <br />
           <br />
-          The website you&apos;re building should function correctly across all
-          browsers!
+          يجب أن يعمل الموقع الذي تبنيه بشكل صحيح في جميع
+          المتصفحات!
         </PanelContent>
       </DialogDescription>
       <DialogActions>
         <Button autoFocus onClick={onDismiss}>
-          Continue
+          متابعة
         </Button>
       </DialogActions>
     </DialogContent>

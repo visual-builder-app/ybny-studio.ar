@@ -98,12 +98,12 @@ export const TokensGroup = ({ options }: { options: TokenOption[] }) => {
       <CommandGroup
         name="token"
         heading={
-          <CommandGroupHeading>Tokens ({options.length})</CommandGroupHeading>
+          <CommandGroupHeading>الرموز ({options.length})</CommandGroupHeading>
         }
         actions={[
-          { name: "showInstances", label: "Show instances" },
-          { name: "rename", label: "Rename" },
-          { name: "delete", label: "Delete" },
+          { name: "showInstances", label: "إظهار النسخ" },
+          { name: "rename", label: "إعادة تسمية" },
+          { name: "delete", label: "حذف" },
         ]}
       >
         {options.map(({ token, usages }) => (
@@ -145,7 +145,7 @@ export const TokensGroup = ({ options }: { options: TokenOption[] }) => {
         }}
         onConfirm={(_styleSourceId, newName) => {
           toast.success(
-            `Token renamed from "${tokenDialog?.name}" to "${newName}"`
+            `أُعيدت تسمية الرمز من "${tokenDialog?.name}" إلى "${newName}"`
           );
           setTokenDialog(undefined);
         }}
@@ -159,7 +159,7 @@ export const TokensGroup = ({ options }: { options: TokenOption[] }) => {
         }}
         onConfirm={(styleSourceId) => {
           deleteStyleSource(styleSourceId);
-          toast.success(`Token "${tokenDialog?.name}" deleted`);
+          toast.success(`تم حذف الرمز "${tokenDialog?.name}"`);
           setTokenDialog(undefined);
         }}
       />

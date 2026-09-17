@@ -51,15 +51,15 @@ export const getRestrictedFeatures = ({
     permissions.maxContactEmailsPerProject === 0 &&
     (projectMeta?.contactEmail ?? "").trim()
   ) {
-    features.set("Custom contact email", undefined);
+    features.set("بريد تواصل مخصص", undefined);
   }
   if (permissions.allowAuth === false) {
     if ((projectMeta?.auth ?? "").trim()) {
-      features.set("Project auth", undefined);
+      features.set("مصادقة المشروع", undefined);
     }
     for (const page of publishablePages) {
       if (page.meta.auth !== undefined) {
-        features.set("Page auth", {
+        features.set("مصادقة الصفحة", {
           navigate: {
             pageId: page.id,
             instanceSelector: [page.rootInstanceId],
@@ -76,10 +76,10 @@ export const getRestrictedFeatures = ({
         instanceSelector: [page.rootInstanceId],
       };
       if (isPathnamePattern(page.path) && page.path !== "/*") {
-        features.set("Dynamic path", { navigate, view: "pageSettings" });
+        features.set("مسار ديناميكي", { navigate, view: "pageSettings" });
       }
       if (page.meta.redirect && page.meta.redirect !== `""`) {
-        features.set("Redirect", { navigate, view: "pageSettings" });
+        features.set("إعادة توجيه", { navigate, view: "pageSettings" });
       }
     }
     for (const dataSource of dataSources.values()) {
@@ -96,8 +96,8 @@ export const getRestrictedFeatures = ({
         const resource = resources.get(dataSource.resourceId);
         features.set(
           resource !== undefined && isAssetsResource(resource)
-            ? "Assets resource"
-            : "Resource variable",
+            ? "مورد الوسائط"
+            : "متغير مورد",
           {
             navigate,
           }

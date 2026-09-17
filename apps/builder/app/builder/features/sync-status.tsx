@@ -18,19 +18,19 @@ const syncStatusDotPendingColor = cssVar("--foreground-warning");
 const $isOnline = atom(false);
 const syncStatusDotConfig = {
   idle: {
-    label: "Sync status: idle",
+    label: "حالة المزامنة: خامل",
     color: "transparent",
   },
   pending: {
-    label: "Sync status: pending changes",
+    label: "حالة المزامنة: تغييرات قيد الانتظار",
     color: syncStatusDotPendingColor,
   },
   saved: {
-    label: "Sync status: saved",
+    label: "حالة المزامنة: تم الحفظ",
     color: cssVar("--foreground-positive"),
   },
   error: {
-    label: "Sync status: error",
+    label: "حالة المزامنة: خطأ",
     color: cssVar("--foreground-negative"),
   },
 } satisfies Record<string, { label: string; color: string }>;
@@ -150,15 +150,15 @@ export const SyncStatus = () => {
           <Text>
             {isOnline ? (
               <>
-                Experiencing connectivity issues. Your changes will be synced
-                with Webstudio once resolved.
+                توجد مشاكل في الاتصال. ستتم مزامنة تغييراتك
+                مع Webstudio بمجرد حلها.
               </>
             ) : (
               <>
-                Offline changes will be synced with Webstudio once you go
-                online.
+                ستتم مزامنة تغييرات وضع عدم الاتصال مع Webstudio بمجرد
+                اتصالك.
                 <br />
-                Please check your internet connection.
+                يرجى التحقق من اتصالك بالإنترنت.
               </>
             )}
           </Text>
@@ -166,7 +166,7 @@ export const SyncStatus = () => {
       >
         <Flex {...containerProps}>
           <OfflineIcon
-            aria-label={`Sync status: failed`}
+            aria-label={`حالة المزامنة: فشل`}
             color={cssVar("--foreground-negative")}
           />
         </Flex>
@@ -179,7 +179,7 @@ export const SyncStatus = () => {
       <Flex {...containerProps}>
         <Tooltip variant="wrapped" content={<>{statusObject.error}</>}>
           <OfflineIcon
-            aria-label={`Sync status: fatal`}
+            aria-label={`حالة المزامنة: خطأ فادح`}
             color={cssVar("--foreground-negative")}
           />
         </Tooltip>

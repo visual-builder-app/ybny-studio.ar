@@ -201,7 +201,7 @@ const traverseSelectedContentHistory = (direction: "undo" | "redo") => {
     toast.error(
       error instanceof Error
         ? error.message
-        : "Unable to restore the article edit."
+        : "تعذّرت استعادة تعديل المقال."
     );
   });
   return true;
@@ -288,29 +288,29 @@ type InstanceMoveDirection = "up" | "down" | "intoPreviousSibling" | "out";
 export const instanceMoveCommandMetas = [
   {
     name: "moveInstanceUp",
-    label: "Move up",
-    description: "Move selected instance above the previous sibling",
+    label: "تحريك لأعلى",
+    description: "تحريك النسخة المحددة فوق الشقيق السابق",
     direction: "up",
     shortcut: "arrowup",
   },
   {
     name: "moveInstanceDown",
-    label: "Move down",
-    description: "Move selected instance below the next sibling",
+    label: "تحريك لأسفل",
+    description: "تحريك النسخة المحددة تحت الشقيق التالي",
     direction: "down",
     shortcut: "arrowdown",
   },
   {
     name: "moveInstanceOut",
-    label: "Move out",
-    description: "Move selected instance out of its parent",
+    label: "إخراج",
+    description: "إخراج النسخة المحددة من عنصرها الأصلي",
     direction: "out",
     shortcut: "arrowleft",
   },
   {
     name: "moveInstanceIntoPreviousSibling",
-    label: "Move in",
-    description: "Move selected instance into the previous sibling",
+    label: "إدخال",
+    description: "إدخال النسخة المحددة في الشقيق السابق",
     direction: "intoPreviousSibling",
     shortcut: "arrowright",
   },
@@ -421,7 +421,7 @@ const selectSiblingInstances = () => {
 const reportSkippedSelectedInstances = (
   operation: "duplicated" | "deleted"
 ) => {
-  builderApi.toast.info(`Some selected instances could not be ${operation}.`);
+  builderApi.toast.info(`لم يتم ${operation} بعض النسخ المحددة.`);
 };
 
 const duplicateInstanceAfterItself = ({
@@ -640,7 +640,7 @@ const moveSelectedInstance = (direction: InstanceMoveDirection) => {
     guardDesignOrContentModeCommand({
       isContentMode,
       isDesignMode: $isDesignMode.get(),
-      message: "Moving is only allowed in design or content mode.",
+      message: "التحريك مسموح فقط في وضع التصميم أو المحتوى.",
     }) === false
   ) {
     return;
@@ -685,8 +685,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "cancelCurrentDrag",
-      label: "Deselect",
-      description: "Cancel drag or deselect",
+      label: "إلغاء التحديد",
+      description: "إلغاء السحب أو إلغاء التحديد",
       hidden: true,
       category: "General",
       defaultHotkeys: ["escape"],
@@ -704,7 +704,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "clickCanvas",
-      description: "Click on canvas",
+      description: "النقر على اللوحة",
       hidden: true,
       handler: () => {
         $breakpointsMenuView.set(undefined);
@@ -716,7 +716,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "togglePreviewMode",
-      description: "Preview mode",
+      description: "وضع المعاينة",
       category: "Top bar",
       defaultHotkeys: ["meta+shift+p", "ctrl+shift+p"],
       handler: () => {
@@ -726,7 +726,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleUiHidden",
-      description: "Hide UI",
+      description: "إخفاء الواجهة",
       category: "General",
       defaultHotkeys: ["meta+\\", "ctrl+\\"],
       handler: () => {
@@ -735,7 +735,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleDesignMode",
-      description: "Toggle design mode",
+      description: "تبديل وضع التصميم",
       category: "Top bar",
       defaultHotkeys: ["meta+shift+d", "ctrl+shift+d"],
       handler: () => {
@@ -745,7 +745,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleContentMode",
-      description: "Toggle content mode",
+      description: "تبديل وضع المحتوى",
       category: "Top bar",
       defaultHotkeys: ["meta+shift+c", "ctrl+shift+c"],
       handler: () => {
@@ -755,14 +755,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "openBreakpointsMenu",
-      description: "Manage responsive breakpoints",
+      description: "إدارة نقاط التوقف المتجاوبة",
       handler: () => {
         $breakpointsMenuView.set("initial");
       },
     },
     {
       name: "openPublishDialog",
-      description: "Deploy your project",
+      description: "نشر مشروعك",
       category: "Top bar",
       defaultHotkeys: ["shift+P"],
       handler: () => {
@@ -772,7 +772,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "openExportDialog",
-      description: "Export project code",
+      description: "تصدير شيفرة المشروع",
       category: "General",
       defaultHotkeys: ["shift+E"],
       handler: () => {
@@ -782,13 +782,13 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleComponentsPanel",
-      description: "Toggle components panel",
+      description: "تبديل لوحة المكوّنات",
       category: "Panels",
       defaultHotkeys: ["a"],
       handler: () => {
         if ($isDesignMode.get() === false) {
           builderApi.toast.info(
-            "Components panel is only available in design mode."
+            "لوحة المكوّنات متاحة فقط في وضع التصميم."
           );
           return;
         }
@@ -798,7 +798,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleNavigatorPanel",
-      description: "Toggle navigator panel",
+      description: "تبديل لوحة شجرة العناصر",
       category: "Panels",
       defaultHotkeys: ["z"],
       handler: () => {
@@ -808,13 +808,13 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "openStylePanel",
-      description: "Open style panel",
+      description: "فتح لوحة الأنماط",
       category: "Panels",
       defaultHotkeys: ["s"],
       handler: () => {
         if ($isDesignMode.get() === false) {
           builderApi.toast.info(
-            "Style panel is only available in design mode."
+            "لوحة الأنماط متاحة فقط في وضع التصميم."
           );
           return;
         }
@@ -824,7 +824,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "focusStyleSources",
-      description: "Focus style sources input",
+      description: "التركيز على حقل مصادر الأنماط",
       category: "Style panel",
       defaultHotkeys: ["meta+enter", "ctrl+enter"],
       handler: () => {
@@ -833,7 +833,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
         }
         if ($isDesignMode.get() === false) {
           builderApi.toast.info(
-            "Style panel is only available in design mode."
+            "لوحة الأنماط متاحة فقط في وضع التصميم."
           );
           return;
         }
@@ -846,7 +846,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "focusStyleSourceInput",
-      description: "Focus style source input",
+      description: "التركيز على حقل مصدر النمط",
       hidden: true,
       handler: () => {
         // This command is handled by the style panel component
@@ -855,7 +855,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleStylePanelFocusMode",
-      description: "Toggle style panel focus mode",
+      description: "تبديل وضع التركيز في لوحة الأنماط",
       category: "Style panel",
       defaultHotkeys: ["alt+shift+s"],
       handler: () => {
@@ -868,7 +868,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleStylePanelAdvancedMode",
-      description: "Toggle style panel advanced mode",
+      description: "تبديل الوضع المتقدم في لوحة الأنماط",
       category: "Style panel",
       defaultHotkeys: ["alt+shift+a"],
       handler: () => {
@@ -881,7 +881,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "openSettingsPanel",
-      description: "Open settings panel",
+      description: "فتح لوحة الإعدادات",
       category: "Panels",
       defaultHotkeys: ["d"],
       handler: () => {
@@ -903,7 +903,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     makeBreakpointCommand("selectBreakpoint9", 9),
     {
       name: "copy",
-      description: "Copy selected page or instance(s)",
+      description: "نسخ الصفحة أو النسخ المحددة",
       category: "Navigator",
       handler: () => {
         if (copyPageActionTarget()) {
@@ -914,14 +914,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "paste",
-      description: "Paste copied instance(s)",
+      description: "لصق النسخ المنسوخة",
       category: "Navigator",
       handler: () => {
         if (
           guardDesignOrContentModeCommand({
             isContentMode: $isContentMode.get(),
             isDesignMode: $isDesignMode.get(),
-            message: "Pasting is only allowed in design or content mode.",
+            message: "اللصق مسموح فقط في وضع التصميم أو المحتوى.",
           })
         ) {
           void emitPaste();
@@ -930,13 +930,13 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "cut",
-      description: "Cut selected instance(s)",
+      description: "قص النسخ المحددة",
       category: "Navigator",
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Cutting is only allowed in design mode.",
+            message: "القص مسموح فقط في وضع التصميم.",
           })
         ) {
           void cutInstance();
@@ -945,13 +945,13 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "toggleShow",
-      description: "Toggle instance visibility",
+      description: "تبديل ظهور النسخة",
       category: "Navigator",
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Toggling visibility is only allowed in design mode.",
+            message: "تبديل الظهور مسموح فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1000,8 +1000,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "deleteInstanceBuilder",
-      label: "Delete",
-      description: "Delete selected page or instance(s)",
+      label: "حذف",
+      description: "حذف الصفحة أو النسخ المحددة",
       category: "Navigator",
       defaultHotkeys: ["backspace", "delete"],
       // See "deleteInstanceCanvas" for details on why the command is separated for the canvas and builder.
@@ -1019,14 +1019,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "duplicateInstance",
-      description: "Duplicate selected page or instance(s)",
+      description: "إنشاء نسخة من الصفحة أو النسخ المحددة",
       category: "Navigator",
       defaultHotkeys: ["meta+d", "ctrl+d"],
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Duplicating is only allowed in design mode.",
+            message: "إنشاء النسخ مسموح فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1051,14 +1051,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "editInstanceLabel",
-      description: "Edit instance label",
+      description: "تعديل تسمية النسخة",
       category: "Navigator",
       defaultHotkeys: ["meta+e", "ctrl+e"],
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Renaming is only allowed in design mode.",
+            message: "إعادة التسمية مسموحة فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1085,8 +1085,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "wrap",
-      label: "Wrap",
-      description: "Wrap",
+      label: "تغليف",
+      description: "تغليف",
       category: "Navigator",
       defaultHotkeys: ["meta+alt+g", "ctrl+alt+g"],
       keepCommandPanelOpen: true,
@@ -1094,7 +1094,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Wrapping is only allowed in design mode.",
+            message: "التغليف مسموح فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1107,14 +1107,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "unwrap",
-      description: "Remove parent wrapper",
+      description: "إزالة الغلاف الأصلي",
       category: "Navigator",
       defaultHotkeys: ["meta+shift+g", "ctrl+shift+g"],
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Unwrapping is only allowed in design mode.",
+            message: "إزالة التغليف مسموحة فقط في وضع التصميم.",
           })
         ) {
           if (hasMultiInstanceSelection()) {
@@ -1126,15 +1126,15 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "convert",
-      label: "Convert",
-      description: "Convert component",
+      label: "تحويل",
+      description: "تحويل المكوّن",
       category: "Navigator",
       keepCommandPanelOpen: true,
       handler: () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Converting is only allowed in design mode.",
+            message: "التحويل مسموح فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1148,13 +1148,13 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "pasteTailwind",
-      label: "Paste HTML with Tailwind classes",
-      description: "Convert Tailwind to CSS",
+      label: "لصق HTML مع أصناف Tailwind",
+      description: "تحويل Tailwind إلى CSS",
       handler: async () => {
         if (
           guardDesignModeCommand({
             isDesignMode: $isDesignMode.get(),
-            message: "Pasting HTML is only allowed in design mode.",
+            message: "لصق HTML مسموح فقط في وضع التصميم.",
           }) === false
         ) {
           return;
@@ -1171,7 +1171,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
         const result = await insertWebstudioFragmentAt(fragment);
         if (skippedSelectors.length > 0) {
           builderApi.toast.info(
-            `Skipped nested selectors (no matching elements): ${skippedSelectors.join(", ")}`
+            `تم تخطي محددات متداخلة (لا توجد عناصر مطابقة): ${skippedSelectors.join(", ")}`
           );
         }
         return result;
@@ -1182,7 +1182,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "undo",
-      description: "Undo last action",
+      description: "التراجع عن آخر إجراء",
       category: "General",
       // safari use meta+z to reopen closed tabs, here added ctrl as alternative
       defaultHotkeys: ["meta+z", "ctrl+z"],
@@ -1195,7 +1195,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
     },
     {
       name: "redo",
-      description: "Redo last action",
+      description: "إعادة آخر إجراء",
       category: "General",
       // safari use meta+z to reopen closed tabs, here added ctrl as alternative
       defaultHotkeys: ["meta+shift+z", "ctrl+shift+z"],
@@ -1209,14 +1209,14 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "save",
-      description: "Save project",
+      description: "حفظ المشروع",
       category: "General",
       defaultHotkeys: ["meta+s", "ctrl+s"],
       handler: async () => {
         toast.dismiss("save-success");
         try {
           await isSyncIdle();
-          toast.success("Project saved successfully", { id: "save-success" });
+          toast.success("تم حفظ المشروع بنجاح", { id: "save-success" });
         } catch (error) {
           if (error instanceof Error) {
             toast.error(error.message);
@@ -1227,7 +1227,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "openCommandPanel",
-      description: "Open command panel",
+      description: "فتح لوحة الأوامر",
       category: "General",
       defaultHotkeys: ["meta+k", "ctrl+k"],
       handler: () => {
@@ -1239,8 +1239,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "deleteUnusedTokens",
-      label: "Delete unused tokens",
-      description: "Remove unused tokens",
+      label: "حذف الرموز غير المستخدمة",
+      description: "إزالة الرموز غير المستخدمة",
       handler: () => {
         openDeleteUnusedTokensDialog();
       },
@@ -1248,8 +1248,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "findDuplicateTokens",
-      label: "Find duplicate tokens",
-      description: "Find tokens with identical styles or names",
+      label: "البحث عن رموز مكررة",
+      description: "البحث عن رموز بأنماط أو أسماء متطابقة",
       handler: () => {
         showDuplicateTokensView();
       },
@@ -1257,8 +1257,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "deleteUnusedDataVariables",
-      label: "Delete unused data variables",
-      description: "Remove unused data variables",
+      label: "حذف متغيرات البيانات غير المستخدمة",
+      description: "إزالة متغيرات البيانات غير المستخدمة",
       handler: () => {
         openDeleteUnusedDataVariablesDialog();
       },
@@ -1266,8 +1266,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "deleteUnusedCssVariables",
-      label: "Delete unused CSS variables",
-      description: "Remove unused CSS variables",
+      label: "حذف متغيرات CSS غير المستخدمة",
+      description: "إزالة متغيرات CSS غير المستخدمة",
       handler: () => {
         openDeleteUnusedCssVariablesDialog();
       },
@@ -1275,8 +1275,8 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "deleteUnusedAssets",
-      label: "Delete unused assets",
-      description: "Remove unused assets",
+      label: "حذف الوسائط غير المستخدمة",
+      description: "إزالة الوسائط غير المستخدمة",
       handler: () => {
         openDeleteUnusedAssetsDialog();
       },
@@ -1284,7 +1284,7 @@ export const { emitCommand, subscribeCommands } = createCommandsEmitter({
 
     {
       name: "openKeyboardShortcuts",
-      description: "View keyboard shortcuts",
+      description: "عرض اختصارات لوحة المفاتيح",
       category: "General",
       defaultHotkeys: ["shift+?"],
       disableOnInputLikeControls: true,

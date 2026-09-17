@@ -20,7 +20,7 @@ export const requireBuilderReload = ({
 
   $syncStatus.set({ status: "fatal", error });
   if (shouldReload === false) {
-    toast.error("Synchronization has been paused. Please reload to continue.", {
+    toast.error("تم إيقاف المزامنة مؤقتًا. يرجى إعادة التحميل للمتابعة.", {
       id: toastId,
       duration: Number.POSITIVE_INFINITY,
     });

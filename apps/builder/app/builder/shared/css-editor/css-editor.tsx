@@ -92,7 +92,7 @@ const AdvancedPropertyLabel = ({
         <PropertyInfo
           title={
             styleDecl.property.startsWith("--")
-              ? "CSS variable"
+              ? "متغير CSS"
               : styleDecl.property
           }
           description={description}

@@ -55,22 +55,22 @@ export const DomainCheckbox = (props: DomainCheckboxProps) => {
 
   const tooltipContentForFreeUsers = allowStagingPublish ? undefined : (
     <Flex direction="column" gap="2" css={{ maxWidth: theme.spacing[28] }}>
-      <Text variant="titles">Publish to staging</Text>
+      <Text variant="titles">النشر على بيئة التجربة</Text>
       <Text>
         <Flex direction="column">
-          Staging allows you to preview a production version of your site
-          without potentially breaking what production site visitors will see.
+          تتيح لك بيئة التجربة معاينة النسخة الإنتاجية من موقعك
+          دون تعريض ما يراه زوار الموقع الإنتاجي للخطر.
           <>
             <br />
             <br />
-            Upgrade to Pro account to publish to each domain individually.
+            قم بالترقية إلى حساب Pro للنشر على كل نطاق بشكل منفصل.
             <br /> <br />
             <LinkButton
               color="primary"
               href="https://webstudio.is/pricing"
               target="_blank"
             >
-              Upgrade
+              ترقية
             </LinkButton>
           </>
         </Flex>
@@ -81,8 +81,8 @@ export const DomainCheckbox = (props: DomainCheckboxProps) => {
   const tooltipContentForBuilders =
     canPublishToStagingOnly && props.isCustomDomain ? (
       <Text>
-        Builders can only publish to staging. Contact the project owner or an
-        admin to publish to custom domains.
+        يمكن للمحررين النشر على بيئة التجربة فقط. تواصل مع مالك المشروع أو
+        أحد المديرين للنشر على نطاقات مخصصة.
       </Text>
     ) : undefined;
 

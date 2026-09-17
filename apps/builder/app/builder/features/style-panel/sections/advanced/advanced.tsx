@@ -132,7 +132,7 @@ export const Section = () => {
 
   return (
     <AdvancedStyleSection
-      label="Advanced"
+      label="متقدم"
       readonly={readonly}
       properties={properties}
       onAdd={() => {

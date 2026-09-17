@@ -135,8 +135,8 @@ const ConvertComponentsList = () => {
   return (
     <>
       <CommandInput
-        action={{ name: "convert", label: "Convert" }}
-        placeholder="Search components to convert..."
+        action={{ name: "convert", label: "تحويل" }}
+        placeholder="البحث عن مكوّنات للتحويل..."
         value={search}
         onValueChange={setSearch}
         prefix={<CommandBackButton onClick={goBack} />}
@@ -148,13 +148,13 @@ const ConvertComponentsList = () => {
             {matches.length === 0 ? (
               <Flex justify="center" align="center" css={{ minHeight: 100 }}>
                 <Text color="subtle" align="center">
-                  No components found that this instance can be converted into
+                  لم يتم العثور على مكوّنات يمكن تحويل هذه النسخة إليها
                 </Text>
               </Flex>
             ) : (
               <CommandGroup
                 name="convert-components"
-                actions={[{ name: "convert", label: "Convert" }]}
+                actions={[{ name: "convert", label: "تحويل" }]}
               >
                 {matches.map(({ component, tag, label }) => {
                   const key = tag ? `${component}:${tag}` : component;

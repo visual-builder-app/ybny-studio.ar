@@ -95,7 +95,7 @@ export const addContentModePathError = ({
 }) => {
   if (isContentMode && isContentModePagePath(path) === false) {
     errors.path = errors.path ?? [];
-    errors.path.push("Editors can only set static page paths");
+    errors.path.push("يمكن للمحررين تعيين مسارات صفحات ثابتة فقط");
   }
 };
 
@@ -113,7 +113,7 @@ export const FormFields = ({
   onChange,
   showAuthErrors,
   isEditorContext = false,
-  nameLabel = "Page name",
+  nameLabel = "اسم الصفحة",
   canEditName = true,
   canEditPath = true,
   showHomePageControl = true,
@@ -170,8 +170,8 @@ export const FormFields = ({
         {matchingRedirect && (
           <PanelBanner variant="warning">
             <Text>
-              A redirect from "{matchingRedirect.old}" will override this page.
-              The page will not be rendered when published.{" "}
+              ستتجاوز إعادة التوجيه من "{matchingRedirect.old}" هذه الصفحة.
+              لن يتم عرض الصفحة عند النشر.{" "}
               <Link
                 color="inherit"
                 underline="always"
@@ -179,12 +179,12 @@ export const FormFields = ({
                   $openProjectSettings.set("redirects");
                 }}
               >
-                Go to Redirects settings
+                الانتقال إلى إعدادات إعادة التوجيه
               </Link>
             </Text>
           </PanelBanner>
         )}
-        <CollapsibleSection label="General">
+        <CollapsibleSection label="عام">
           <GeneralSection
             autoSelect={autoSelect}
             errors={errors}
@@ -206,7 +206,7 @@ export const FormFields = ({
         </CollapsibleSection>
 
         {showAuthSection && (
-          <CollapsibleSection label="Authentication">
+          <CollapsibleSection label="المصادقة">
             <AuthSection
               values={values}
               errors={errors}
@@ -218,7 +218,7 @@ export const FormFields = ({
         )}
 
         {showTextContentSection && values.documentType === "text" && (
-          <CollapsibleSection label="Content">
+          <CollapsibleSection label="المحتوى">
             <TextContentSection
               values={values}
               errors={errors}
@@ -228,7 +228,7 @@ export const FormFields = ({
         )}
 
         {values.documentType === "html" && (
-          <CollapsibleSection label="Search">
+          <CollapsibleSection label="البحث">
             <SearchSection
               values={values}
               errors={errors}
@@ -254,7 +254,7 @@ export const FormFields = ({
         )}
 
         {values.documentType === "html" && (
-          <CollapsibleSection label="Social image">
+          <CollapsibleSection label="صورة التواصل">
             <SocialImageSection
               values={values}
               errors={errors}
@@ -269,7 +269,7 @@ export const FormFields = ({
         )}
 
         {values.documentType === "html" && (
-          <CollapsibleSection label="Custom metadata">
+          <CollapsibleSection label="بيانات وصفية مخصصة">
             <CustomMetadataSection
               values={values}
               errors={errors}
@@ -284,7 +284,7 @@ export const FormFields = ({
           (project?.marketplaceApprovalStatus === "PENDING" ||
             project?.marketplaceApprovalStatus === "APPROVED" ||
             project?.marketplaceApprovalStatus === "REJECTED") && (
-            <CollapsibleSection label="Marketplace">
+            <CollapsibleSection label="السوق">
               <MarketplaceSection values={values} onChange={onChange} />
             </CollapsibleSection>
           )}
@@ -366,7 +366,7 @@ const NewPageSettingsView = ({
 }) => {
   return (
     <PageSettingsPanel
-      title="New page settings"
+      title="إعدادات صفحة جديدة"
       onSubmit={onSubmit}
       suffix={
         <DialogTitleActions>
@@ -377,7 +377,7 @@ const NewPageSettingsView = ({
             onClick={onSubmit}
             tabIndex={2}
           >
-            {isSubmitting ? "Creating" : "Create page"}
+            {isSubmitting ? "جارٍ الإنشاء" : "إنشاء صفحة"}
           </Button>
           <DialogClose />
         </DialogTitleActions>
@@ -532,8 +532,8 @@ export const PageSettings = ({
             ? undefined
             : {
                 label: isPageDraft(page)
-                  ? "Stage for publish"
-                  : "Mark as draft",
+                  ? "تجهيز للنشر"
+                  : "تحديد كمسودة",
                 onSelect: () => {
                   executeRuntimeMutation({
                     id: "pages.update",
@@ -614,14 +614,14 @@ const PageSettingsView = ({
     isDesignMode || (isContentMode && authPermit !== "view");
   return (
     <PageSettingsPanel
-      title="Page settings"
+      title="إعدادات الصفحة"
       onSubmit={onClose}
       disabled={canEditPageSettings === false}
       suffix={
         <DialogTitleActions>
           {isDesignMode && (
             <PageItemActionsDropdown
-              label="Page actions"
+              label="إجراءات الصفحة"
               additionalItems={
                 draftAction && (
                   <DropdownMenuItem onSelect={draftAction.onSelect}>

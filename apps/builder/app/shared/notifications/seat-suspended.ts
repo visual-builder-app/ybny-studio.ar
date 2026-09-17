@@ -1,4 +1,4 @@
 export const SEAT_SUSPENDED_TOAST_ID = "seat-suspended";
 
 export const getSeatSuspendedMessage = (workspaceName: string) =>
-  `Your editing access to "${workspaceName}" has been paused because the owner's plan doesn't include enough seats. Please reach out to the workspace owner to upgrade their plan or add more seats.`;
+  `تم إيقاف وصولك للتحرير إلى "${workspaceName}" لأن خطة المالك لا تتضمن مقاعد كافية. يرجى التواصل مع مالك مساحة العمل لترقية خطته أو إضافة المزيد من المقاعد.`;

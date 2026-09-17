@@ -161,21 +161,21 @@ type GridPreset = {
 
 const gridPresets: GridPreset[] = [
   {
-    label: "Fluid sidebar",
+    label: "شريط جانبي مرن",
     columns: "fit-content(300px) 1fr",
     rows: "1fr",
     previewColumns: "1fr 3fr",
     previewRows: "1fr",
   },
   {
-    label: "Page stack",
+    label: "تكديس الصفحة",
     columns: "1fr",
     rows: "auto 1fr auto",
     previewColumns: "1fr",
     previewRows: "1fr 4fr 1fr",
   },
   {
-    label: "Holy grail",
+    label: "الكأس المقدسة",
     columns: "1fr 3fr 1fr",
     rows: "auto 1fr auto",
     areas: `"header header header" "sidebar main aside" "footer footer footer"`,
@@ -183,21 +183,21 @@ const gridPresets: GridPreset[] = [
     previewRows: "1fr 3fr 1fr",
   },
   {
-    label: "Responsive cards",
+    label: "بطاقات متجاوبة",
     columns: "repeat(auto-fit, minmax(250px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr 1fr",
     previewRows: "1fr 1fr",
   },
   {
-    label: "Feature section",
+    label: "قسم الميزات",
     columns: "repeat(auto-fit, minmax(350px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr",
     previewRows: "1fr",
   },
   {
-    label: "Footer columns",
+    label: "أعمدة التذييل",
     columns: "repeat(auto-fit, minmax(150px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr 1fr 1fr",
@@ -488,7 +488,7 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
 
   return (
     <FloatingPanel
-      title="Grid generator"
+      title="مولّد الشبكة"
       placement="left-start"
       content={
         <Flex direction="column">
@@ -506,7 +506,7 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
           <Separator />
           <PanelContent as={Flex}>
             <Button css={{ width: "100%" }} onClick={handleFillGrid}>
-              Fill grid
+              ملء الشبكة
             </Button>
           </PanelContent>
         </Flex>
@@ -518,7 +518,7 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
       {/* Visual grid preview - similar to Figma's style */}
       <button
         disabled={readonly}
-        aria-label={`Grid layout: ${columnCount} columns by ${rowCount} rows`}
+        aria-label={`تخطيط الشبكة: ${columnCount} أعمدة و ${rowCount} صفوف`}
         className={gridGeneratorButtonStyle()}
         style={{
           gridTemplateColumns: `repeat(${displayColumnCount}, 1fr)`,

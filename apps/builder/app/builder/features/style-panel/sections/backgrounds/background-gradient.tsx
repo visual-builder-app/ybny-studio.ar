@@ -117,15 +117,15 @@ const leftToRightAngle = {
 } satisfies UnitValue;
 
 const radialSizeDescriptions: Record<RadialSizeOption, string> = {
-  "closest-side": "Extends to the nearest edge of the container",
-  "closest-corner": "Extends to the nearest corner of the container",
-  "farthest-side": "Extends to the farthest edge of the container",
-  "farthest-corner": "Extends to the farthest corner of the container",
+  "closest-side": "يمتد إلى أقرب حافة للحاوية",
+  "closest-corner": "يمتد إلى أقرب زاوية للحاوية",
+  "farthest-side": "يمتد إلى أبعد حافة للحاوية",
+  "farthest-corner": "يمتد إلى أبعد زاوية للحاوية",
 };
 
 const radialShapeDescriptions = {
-  ellipse: "Use an ellipse ending shape (radial-gradient ellipse).",
-  circle: "Use a circle ending shape (radial-gradient circle).",
+  ellipse: "استخدم شكل نهاية بيضاويًا (radial-gradient ellipse).",
+  circle: "استخدم شكل نهاية دائريًا (radial-gradient circle).",
 } as const;
 
 type GradientEditorApplyFn = (
@@ -562,8 +562,8 @@ const OtherGradientPropertiesSection = ({
         {supportsAngle && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="Angle"
-              description="Direction of the gradient line. 0deg is up, 90deg is right, 180deg is down, 270deg is left."
+              label="الزاوية"
+              description="اتجاه خط التدرج. 0deg للأعلى، و90deg لليمين، و180deg للأسفل، و270deg لليسار."
             />
             <CssValueInputContainer
               disabled={disabled}
@@ -580,8 +580,8 @@ const OtherGradientPropertiesSection = ({
         {isRadial && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="Size"
-              description="Radial gradient size determining how far the gradient extends from its center."
+              label="الحجم"
+              description="حجم التدرج الشعاعي الذي يحدد مدى امتداد التدرج من مركزه."
             />
             <Select
               disabled={disabled}
@@ -596,21 +596,21 @@ const OtherGradientPropertiesSection = ({
         {isRadial && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="Shape"
-              description="Radial gradient ending shape."
+              label="الشكل"
+              description="شكل نهاية التدرج الشعاعي."
             />
             <ToggleGroup
               disabled={disabled}
               type="single"
               value={radialShapeValue}
-              aria-label="Radial ending shape"
+              aria-label="شكل نهاية التدرج الشعاعي"
               onValueChange={handleEndingShapeChange}
             >
               <Tooltip
                 variant="wrapped"
                 content={radialShapeDescriptions.ellipse}
               >
-                <ToggleGroupButton value="ellipse" aria-label="Ellipse">
+                <ToggleGroupButton value="ellipse" aria-label="بيضاوي">
                   <EllipseIcon />
                 </ToggleGroupButton>
               </Tooltip>
@@ -618,7 +618,7 @@ const OtherGradientPropertiesSection = ({
                 variant="wrapped"
                 content={radialShapeDescriptions.circle}
               >
-                <ToggleGroupButton value="circle" aria-label="Circle">
+                <ToggleGroupButton value="circle" aria-label="دائري">
                   <CircleIcon />
                 </ToggleGroupButton>
               </Tooltip>
@@ -627,29 +627,29 @@ const OtherGradientPropertiesSection = ({
         )}
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="Repeat"
-            description="Whether to repeat the gradient pattern."
+            label="التكرار"
+            description="ما إذا كان سيتم تكرار نمط التدرج."
           />
           <ToggleGroup
             disabled={disabled}
             type="single"
             value={isRepeating ? "repeat" : "no-repeat"}
-            aria-label="Gradient repeat"
+            aria-label="تكرار التدرج"
             onValueChange={handleRepeatChange}
           >
             <Tooltip
               variant="wrapped"
-              content={`Render the gradient once (${gradientTypeName}).`}
+              content={`اعرض التدرج مرة واحدة (${gradientTypeName}).`}
             >
-              <ToggleGroupButton value="no-repeat" aria-label="No repeat">
+              <ToggleGroupButton value="no-repeat" aria-label="بدون تكرار">
                 <XSmallIcon />
               </ToggleGroupButton>
             </Tooltip>
             <Tooltip
               variant="wrapped"
-              content={`Repeat the gradient pattern (${repeatingGradientTypeName}).`}
+              content={`كرر نمط التدرج (${repeatingGradientTypeName}).`}
             >
-              <ToggleGroupButton value="repeat" aria-label="Repeat">
+              <ToggleGroupButton value="repeat" aria-label="تكرار">
                 <RepeatGridIcon />
               </ToggleGroupButton>
             </Tooltip>
@@ -707,8 +707,8 @@ const SolidColorControls = ({
   return (
     <Grid gap="2" columns="3" align="end">
       <PropertyInlineLabel
-        label="Color"
-        description="The solid color for this background layer. Renders as a linear gradient with the same color at 0% and 100%."
+        label="اللون"
+        description="اللون الثابت لطبقة الخلفية هذه. يُعرض كتدرج خطي باللون نفسه عند 0% و100%."
       />
       <Flex css={{ gridColumn: "span 2" }}>
         <ColorPickerControl
@@ -822,25 +822,25 @@ const GradientStopControls = ({
     <Flex direction="column" gap="2">
       <Flex align="center" justify="between">
         <PropertyInlineLabel
-          label="Stops"
-          description="Gradient color stops and their positions along the gradient line."
+          label="نقاط التوقف"
+          description="نقاط توقف ألوان التدرج ومواضعها على طول خط التدرج."
         />
         <Flex gap="1">
           <Tooltip
             variant="wrapped"
-            content="Reverse the order of all gradient stops."
+            content="اعكس ترتيب جميع نقاط توقف التدرج."
           >
             <IconButton
-              aria-label="Reverse gradient stops"
+              aria-label="عكس نقاط توقف التدرج"
               onClick={handleReverseStops}
               disabled={disabled || reverseDisabled}
             >
               <ArrowRightLeftIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip content="Add gradient stop" variant="wrapped">
+          <Tooltip content="إضافة نقطة توقف للتدرج" variant="wrapped">
             <IconButton
-              aria-label="Add stop"
+              aria-label="إضافة نقطة توقف"
               disabled={disabled}
               onClick={handleAddStop}
             >
@@ -1004,7 +1004,7 @@ const GradientStopControls = ({
               css={{ gridTemplateColumns: "1fr 1fr 2fr" }}
             >
               <Tooltip
-                content="Position of this gradient stop along the gradient line."
+                content="موضع نقطة التوقف هذه على طول خط التدرج."
                 variant="wrapped"
               >
                 <Box>
@@ -1021,7 +1021,7 @@ const GradientStopControls = ({
                 </Box>
               </Tooltip>
               <Tooltip
-                content="Midpoint position for color transition between this stop and the next."
+                content="موضع منتصف انتقال اللون بين نقطة التوقف هذه والتالية."
                 variant="wrapped"
               >
                 <Box>
@@ -1037,7 +1037,7 @@ const GradientStopControls = ({
                   />
                 </Box>
               </Tooltip>
-              <Tooltip content="Color of this gradient stop." variant="wrapped">
+              <Tooltip content="لون نقطة التوقف هذه في التدرج." variant="wrapped">
                 <Box>
                   <ColorPickerControl
                     disabled={disabled}
@@ -1053,9 +1053,9 @@ const GradientStopControls = ({
                 </Box>
               </Tooltip>
             </Grid>
-            <Tooltip content="Delete stop" variant="wrapped">
+            <Tooltip content="حذف نقطة التوقف" variant="wrapped">
               <IconButton
-                aria-label="Delete stop"
+                aria-label="حذف نقطة التوقف"
                 onClick={() => handleDeleteStop(stopIndex)}
                 disabled={disabled || gradient.stops.length <= 2}
               >
@@ -1163,10 +1163,10 @@ const GradientPositionControls = ({
   return (
     <BackgroundPositionControl
       disabled={disabled}
-      label="Position"
+      label="الموضع"
       xAxis={{
-        label: "Left",
-        description: "Left position offset",
+        label: "يسار",
+        description: "إزاحة الموضع الأيسر",
         property: "--gradient-position-x",
         value: xValue,
         getOptions: () => gradientPositionXOptions,
@@ -1175,8 +1175,8 @@ const GradientPositionControls = ({
         onDelete: handleAxisDelete("x"),
       }}
       yAxis={{
-        label: "Top",
-        description: "Top position offset",
+        label: "أعلى",
+        description: "إزاحة الموضع العلوي",
         property: "--gradient-position-y",
         value: yValue,
         getOptions: () => gradientPositionYOptions,

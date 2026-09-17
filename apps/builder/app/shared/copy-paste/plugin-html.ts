@@ -27,7 +27,7 @@ const handlePasteHtml = async (html: string) => {
   }
   if (skippedSelectors.length > 0) {
     builderApi.toast.info(
-      `Skipped nested selectors (no matching elements): ${skippedSelectors.join(", ")}`
+      `تم تخطي محددات متداخلة (لا عناصر مطابقة): ${skippedSelectors.join("، ")}`
     );
   }
   return pasteHandled;

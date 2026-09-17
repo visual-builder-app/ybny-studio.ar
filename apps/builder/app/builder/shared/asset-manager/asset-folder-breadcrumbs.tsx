@@ -104,7 +104,7 @@ export const AssetFolderBreadcrumbs = ({
             scrollbarWidth: "none",
             "&::-webkit-scrollbar": { display: "none" },
           }}
-          aria-label="Asset path"
+          aria-label="مسار الوسيط"
         >
           <Flex
             align="center"
@@ -135,7 +135,7 @@ export const AssetFolderBreadcrumbs = ({
                 }
                 onClick={() => onChange(undefined)}
               >
-                <Text css={{ minWidth: "3ch" }}>Root</Text>
+                <Text css={{ minWidth: "3ch" }}>الجذر</Text>
               </Button>
             </PasteTarget>
             {path.map((folder) => (
@@ -197,8 +197,8 @@ export const AssetFolderBreadcrumbs = ({
           shrink={false}
           css={{ paddingInline: theme.spacing[2] }}
         >
-          <CopyToClipboard text={copyPath} copyText="Copy path">
-            <SmallIconButton aria-label="Copy path" icon={<CopyIcon />} />
+          <CopyToClipboard text={copyPath} copyText="نسخ المسار">
+            <SmallIconButton aria-label="نسخ المسار" icon={<CopyIcon />} />
           </CopyToClipboard>
         </Flex>
       </Flex>

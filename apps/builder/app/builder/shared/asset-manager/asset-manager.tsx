@@ -167,7 +167,7 @@ const AssetGrid = ({
 
 const getItemCountLabel = (count: number, qualifier?: string) =>
   `${count} ${qualifier === undefined ? "" : `${qualifier} `}${
-    count === 1 ? "item" : "items"
+    count === 1 ? "عنصر" : "عناصر"
   }`;
 
 export const AssetManager = ({
@@ -401,8 +401,8 @@ export const AssetManager = ({
       clearSelection();
       setAnnouncement(
         nextFolderId === undefined
-          ? "Opened Root."
-          : `Opened folder ${folders.get(nextFolderId)?.name ?? "folder"}.`
+          ? "تم فتح الجذر."
+          : `تم فتح المجلد ${folders.get(nextFolderId)?.name ?? "مجلد"}.`
       );
     },
     [clearSelection, folders, onFolderChange]
@@ -629,14 +629,14 @@ export const AssetManager = ({
   };
 
   const announceSelection = (items: readonly AssetManagerSelection[]) =>
-    setAnnouncement(`${getItemCountLabel(items.length)} selected.`);
+    setAnnouncement(`تم تحديد ${getItemCountLabel(items.length)}.`);
 
   const exitMultiselect = () => {
     if (forcedSelection === undefined) {
       return;
     }
     clearMultiselect();
-    setAnnouncement("Multiselect ended.");
+    setAnnouncement("انتهى التحديد المتعدد.");
   };
 
   const handleItemPointerDown = (
@@ -740,8 +740,8 @@ export const AssetManager = ({
   const getFolderName = useCallback(
     (folderId: string | undefined) =>
       folderId === undefined
-        ? "Root"
-        : (folders.get(folderId)?.name ?? "folder"),
+        ? "الجذر"
+        : (folders.get(folderId)?.name ?? "مجلد"),
     [folders]
   );
 
@@ -826,7 +826,7 @@ export const AssetManager = ({
       return;
     }
     copyAssetManagerItems(items);
-    setAnnouncement(`${getItemCountLabel(items.length)} copied.`);
+    setAnnouncement(`تم نسخ ${getItemCountLabel(items.length)}.`);
   };
   const cutItems = (items: readonly AssetManagerItem[]) => {
     const selections = items.map(({ type, id }) => ({ type, id }));
@@ -837,7 +837,7 @@ export const AssetManager = ({
       return;
     }
     cutAssetManagerItems(items);
-    setAnnouncement(`${getItemCountLabel(items.length)} cut.`);
+    setAnnouncement(`تم قص ${getItemCountLabel(items.length)}.`);
   };
   const duplicateItems = (items: readonly AssetManagerItem[]) => {
     const selections = items.map(({ type, id }) => ({ type, id }));
@@ -853,7 +853,7 @@ export const AssetManager = ({
       return;
     }
     duplicateAssetManagerItems(items);
-    setAnnouncement(`${getItemCountLabel(items.length)} duplicated.`);
+    setAnnouncement(`تم إنشاء نسخة من ${getItemCountLabel(items.length)}.`);
   };
   const selectionActions: AssetManagerItemActions =
     forcedSelection === undefined || shortcutItems.length === 0
@@ -925,7 +925,7 @@ export const AssetManager = ({
       moveAssetManagerItems(normalizedItems, parentId);
       clearMultiselect();
       setAnnouncement(
-        `${getItemCountLabel(normalizedItems.length)} moved to ${getFolderName(
+        `تم نقل ${getItemCountLabel(normalizedItems.length)} إلى ${getFolderName(
           parentId
         )}.`
       );
@@ -1111,7 +1111,7 @@ export const AssetManager = ({
       const pastedItemCount = clipboard?.items.length ?? 0;
       pasteClipboardToFolder(currentFolderId);
       setAnnouncement(
-        `${getItemCountLabel(pastedItemCount)} pasted into ${getFolderName(
+        `تم لصق ${getItemCountLabel(pastedItemCount)} في ${getFolderName(
           currentFolderId
         )}.`
       );
@@ -1247,7 +1247,7 @@ export const AssetManager = ({
         searchProps={searchProps}
         isEmpty={filteredItems.length === 0 && visibleFolders.length === 0}
         emptyMessage={
-          isSearching ? "No matching assets or folders" : emptyMessage
+          isSearching ? "لا توجد وسائط أو مجلدات مطابقة" : emptyMessage
         }
         emptyContent={
           backCard === undefined ? undefined : (
@@ -1487,7 +1487,7 @@ export const AssetManager = ({
         }}
       >
         <DialogContent minWidth={360} aria-describedby={undefined}>
-          <DialogTitle>Delete selected items</DialogTitle>
+          <DialogTitle>حذف العناصر المحددة</DialogTitle>
           <PanelContent as={Box}>
             <Text>
               Delete{" "}
@@ -1513,11 +1513,11 @@ export const AssetManager = ({
                   setPendingDeleteItems(undefined);
                   clearMultiselect();
                   setAnnouncement(
-                    `${getItemCountLabel(items.length)} deleted.`
+                    `تم حذف ${getItemCountLabel(items.length)}.`
                   );
                 }}
               >
-                Delete
+                حذف
               </Button>
             </Flex>
           </PanelContent>

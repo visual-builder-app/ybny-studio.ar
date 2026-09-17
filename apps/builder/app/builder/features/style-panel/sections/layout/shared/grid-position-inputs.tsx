@@ -175,7 +175,7 @@ export const GridPositionInputs = ({
         maxStart={gridColumns}
         minEnd={minEnd}
         maxEnd={colMaxEnd}
-        label="Column: start/end"
+        label="العمود: البداية/النهاية"
       />
       <PositionInputGroup
         disabled={disabled}
@@ -191,7 +191,7 @@ export const GridPositionInputs = ({
         maxStart={gridRows}
         minEnd={minEnd}
         maxEnd={rowMaxEnd}
-        label="Row: start/end"
+        label="الصف: البداية/النهاية"
       />
     </Flex>
   );

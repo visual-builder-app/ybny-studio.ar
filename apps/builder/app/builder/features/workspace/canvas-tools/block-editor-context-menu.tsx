@@ -59,7 +59,7 @@ const mod = (n: number, m: number): number => {
   return ((n % m) + m) % m;
 };
 
-const triggerTooltipContent = <>"Templates"</>;
+const triggerTooltipContent = <>"القوالب"</>;
 
 const Menu = ({
   cursorRect,

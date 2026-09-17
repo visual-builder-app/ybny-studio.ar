@@ -68,7 +68,7 @@ const getBreakpointLabel = (breakpoint: Breakpoint) => {
     return `${breakpoint.label}: ${breakpoint.condition}`;
   }
 
-  let label = "All sizes";
+  let label = "كل الأحجام";
   if (breakpoint.minWidth !== undefined) {
     label = `≥ ${breakpoint.minWidth} PX`;
   }
@@ -91,7 +91,7 @@ export const BreakpointsGroup = ({
           Breakpoints ({options.length})
         </CommandGroupHeading>
       }
-      actions={[{ name: "select", label: "Select" }]}
+      actions={[{ name: "select", label: "تحديد" }]}
     >
       {options.map(({ breakpoint, keys }) => (
         <CommandItem
