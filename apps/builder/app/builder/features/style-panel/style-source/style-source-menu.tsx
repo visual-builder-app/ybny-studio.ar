@@ -106,20 +106,20 @@ const selectorLabels = [
 ] satisfies SelectorConfig["type"][];
 
 const categoryLabels: Record<SelectorConfig["type"], string> = {
-  state: "States",
-  pseudoElement: "Pseudo elements",
+  state: "الحالات",
+  pseudoElement: "العناصر الزائفة",
 };
 
 const menuActionDescriptions = {
-  rename: "Change the name of this token to better describe its purpose.",
-  duplicate: "Create a copy of this token with all its styles.",
+  rename: "غيّر اسم هذا الرمز ليصف غرضه بشكل أفضل.",
+  duplicate: "أنشئ نسخة من هذا الرمز بجميع أنماطه.",
   convertToToken:
-    "Turn local styles into a reusable token you can apply to other elements.",
-  clearStyles: "Remove all styles from this local style source.",
-  lock: "Protect this token from accidental style changes until you unlock it.",
-  unlock: "Allow style changes on this token again.",
-  detach: "Remove this token from the element without deleting it.",
-  delete: "Permanently delete this token and all its styles from the project.",
+    "حوّل الأنماط المحلية إلى رمز قابل لإعادة الاستخدام يمكنك تطبيقه على عناصر أخرى.",
+  clearStyles: "أزل جميع الأنماط من مصدر النمط المحلي هذا.",
+  lock: "احمِ هذا الرمز من تغييرات الأنماط العرضية حتى تلغي قفله.",
+  unlock: "اسمح بتغيير الأنماط على هذا الرمز مجددًا.",
+  detach: "أزل هذا الرمز من العنصر دون حذفه.",
+  delete: "احذف هذا الرمز وجميع أنماطه نهائيًا من المشروع.",
 } as const;
 
 type MenuAction = keyof typeof menuActionDescriptions;
@@ -287,9 +287,9 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
   // Get source description based on item source
   const sourceDescription =
     props.item.source === "local"
-      ? "Style instances without creating a token or override a token locally."
+      ? "أنمط النسخ دون إنشاء رمز، أو تجاوز رمزًا محليًا."
       : props.item.source === "token"
-        ? "Reuse styles across multiple instances by creating a token."
+        ? "أعد استخدام الأنماط عبر عدة نسخ بإنشاء رمز."
         : undefined;
 
   const description =
@@ -298,7 +298,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
   return (
     <DropdownMenu modal open={props.open} onOpenChange={props.onOpenChange}>
       <DropdownMenuTrigger asChild>
-        <MenuTrigger aria-label={`Style source menu ${props.item.label}`}>
+        <MenuTrigger aria-label={`قائمة مصدر النمط ${props.item.label}`}>
           <MenuTriggerGradient />
           <ChevronDownIcon style={{ position: "relative" }} />
         </MenuTrigger>
@@ -326,7 +326,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onEdit?.(props.item.id)}
           >
-            Rename
+            إعادة تسمية
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -337,7 +337,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDuplicate?.(props.item.id)}
           >
-            Duplicate
+            إنشاء نسخة
           </DropdownMenuItem>
         )}
         {props.item.source === "token" && (
@@ -350,7 +350,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
               props.onToggleLock?.(props.item.id, props.item.locked === false)
             }
           >
-            {props.item.locked ? "Unlock" : "Lock"}
+            {props.item.locked ? "إلغاء القفل" : "قفل"}
           </DropdownMenuItem>
         )}
         {props.item.source === "local" && (
@@ -361,7 +361,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onConvertToToken?.(props.item.id)}
           >
-            Convert to token
+            تحويل إلى رمز
           </DropdownMenuItem>
         )}
         {props.item.source === "local" && (
@@ -373,7 +373,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onClearStyles?.(props.item.id)}
           >
-            Clear styles
+            مسح الأنماط
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -384,7 +384,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDetach?.(props.item.id)}
           >
-            Detach
+            فصل
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -396,7 +396,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDelete?.(props.item.id)}
           >
-            Delete
+            حذف
           </DropdownMenuItem>
         )}
         {canEditStyles &&
@@ -482,7 +482,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
         {canEditStyles && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel>Add more</DropdownMenuLabel>
+            <DropdownMenuLabel>إضافة المزيد</DropdownMenuLabel>
             <Box css={{ padding: theme.spacing[4] }}>
               <SelectorCombobox
                 existingSelectors={props.states.map((state) => state.selector)}

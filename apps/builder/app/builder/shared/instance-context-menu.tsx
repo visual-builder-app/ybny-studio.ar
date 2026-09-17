@@ -195,7 +195,7 @@ export const MenuItems = () => {
           emitCommand("copy");
         }}
       >
-        Copy
+        نسخ
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "c"]}
@@ -212,13 +212,13 @@ export const MenuItems = () => {
           }
           try {
             await navigator.clipboard.writeText(link);
-            toast.success("Link copied");
+            toast.success("تم نسخ الرابط");
           } catch {
-            toast.error("Could not copy link");
+            toast.error("تعذّر نسخ الرابط");
           }
         }}
       >
-        Copy link to instance
+        نسخ رابط النسخة
       </ContextMenuItem>
       <ContextMenuItem
         disabled={!permissions.canPaste}
@@ -226,7 +226,7 @@ export const MenuItems = () => {
           emitCommand("paste");
         }}
       >
-        Paste
+        لصق
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "v"]}
@@ -240,7 +240,7 @@ export const MenuItems = () => {
           emitCommand("cut");
         }}
       >
-        Cut
+        قص
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "x"]}
@@ -254,7 +254,7 @@ export const MenuItems = () => {
           emitCommand("duplicateInstance");
         }}
       >
-        Duplicate
+        إنشاء نسخة
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "d"]}
@@ -264,7 +264,7 @@ export const MenuItems = () => {
       </ContextMenuItem>
       <ContextMenuSub>
         <ContextMenuSubTrigger disabled={!permissions.canMove}>
-          Move
+          نقل
         </ContextMenuSubTrigger>
         <ContextMenuSubContent>
           {instanceMoveCommandMetas.map(({ name, label, shortcut }) => (
@@ -293,7 +293,7 @@ export const MenuItems = () => {
           emitCommand("toggleShow");
         }}
       >
-        {show ? "Hide" : "Show"}
+        {show ? "إخفاء" : "إظهار"}
       </ContextMenuItem>
       <ContextMenuItem
         disabled={!permissions.canRename}
@@ -301,7 +301,7 @@ export const MenuItems = () => {
           emitCommand("editInstanceLabel");
         }}
       >
-        Rename
+        إعادة تسمية
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "e"]}
@@ -315,7 +315,7 @@ export const MenuItems = () => {
           emitCommand("wrap");
         }}
       >
-        Wrap
+        تغليف
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "alt", "g"]}
@@ -329,7 +329,7 @@ export const MenuItems = () => {
           emitCommand("unwrap");
         }}
       >
-        Unwrap
+        إزالة التغليف
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "shift", "g"]}
@@ -343,7 +343,7 @@ export const MenuItems = () => {
           emitCommand("convert");
         }}
       >
-        Convert
+        تحويل
       </ContextMenuItem>
       <ContextMenuSeparator />
       <ContextMenuItem
@@ -352,7 +352,7 @@ export const MenuItems = () => {
           emitCommand("focusStyleSources");
         }}
       >
-        Add token
+        إضافة رمز
         <ContextMenuItemRightSlot>
           <Kbd
             value={["meta", "enter"]}
@@ -366,7 +366,7 @@ export const MenuItems = () => {
           emitCommand("openSettingsPanel");
         }}
       >
-        Open settings
+        فتح الإعدادات
         <ContextMenuItemRightSlot>
           <Kbd
             value={["d"]}
@@ -382,7 +382,7 @@ export const MenuItems = () => {
           emitCommand("deleteInstanceBuilder");
         }}
       >
-        Delete
+        حذف
         <ContextMenuItemRightSlot>
           <Kbd
             value={["delete"]}

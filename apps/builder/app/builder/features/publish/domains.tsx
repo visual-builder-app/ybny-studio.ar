@@ -80,10 +80,10 @@ export const getPublishStatusAndText = ({
 
   const textStart =
     status === "PUBLISHED"
-      ? "Published"
+      ? "تم النشر"
       : status === "FAILED"
-        ? "Publish failed"
-        : "Publishing started";
+        ? "فشل النشر"
+        : "بدأ النشر";
 
   const statusText = (
     <>
@@ -101,22 +101,22 @@ const getStatusText = (props: {
   const status = getStatus(props.projectDomain);
 
   let isVerifiedActive = false;
-  let text: ReactNode = "Something went wrong";
+  let text: ReactNode = "حدث خطأ ما";
 
   switch (status) {
     case "UNVERIFIED":
-      text = "Status: Not verified";
+      text = "الحالة: غير موثَّق";
       break;
 
     case "VERIFIED_INITIALIZING":
-      text = "Status: Initializing CNAME";
+      text = "الحالة: جارٍ تهيئة CNAME";
       break;
     case "VERIFIED_PENDING":
-      text = "Status: Waiting for CNAME propagation";
+      text = "الحالة: بانتظار انتشار CNAME";
       break;
     case "VERIFIED_ACTIVE":
       isVerifiedActive = true;
-      text = "Status: Active, not published";
+      text = "الحالة: نشط، غير منشور";
 
       if (props.projectDomain.latestBuildVirtual !== null) {
         const publishText = getPublishStatusAndText(
@@ -140,7 +140,7 @@ const getStatusText = (props: {
 
   return {
     isVerifiedActive,
-    text: props.isLoading ? "Loading status..." : text,
+    text: props.isLoading ? "جارٍ تحميل الحالة..." : text,
   };
 };
 
@@ -358,7 +358,7 @@ const DomainItem = ({
 
           <CopyToClipboard
             text={pageUrl.toString()}
-            copyText={`Copy link: ${pageUrl.toString()}`}
+            copyText={`نسخ الرابط: ${pageUrl.toString()}`}
           >
             <IconButton type="button" tabIndex={-1}>
               <CopyIcon />
@@ -375,7 +375,7 @@ const DomainItem = ({
             state={isCheckStateInProgress ? "pending" : undefined}
             css={{ width: "100%", flexShrink: 0, mt: theme.spacing[3] }}
           >
-            Check status
+            التحقق من الحالة
           </Button>
         </>
       )}
@@ -391,7 +391,7 @@ const DomainItem = ({
             state={isCheckStateInProgress ? "pending" : undefined}
             css={{ width: "100%", flexShrink: 0, mt: theme.spacing[3] }}
           >
-            Check status
+            التحقق من الحالة
           </Button>
         </>
       )}
@@ -403,7 +403,7 @@ const DomainItem = ({
           color="destructive"
           css={{ width: "100%", flexShrink: 0 }}
         >
-          Unpublish
+          إلغاء النشر
         </Button>
       )}
 
@@ -413,7 +413,7 @@ const DomainItem = ({
         color="destructive"
         css={{ width: "100%", flexShrink: 0 }}
       >
-        Remove domain
+        إزالة النطاق
       </Button>
 
       <Grid gap={2} css={{ mt: theme.spacing[5] }}>
@@ -422,16 +422,16 @@ const DomainItem = ({
             <>
               {verifyError ? (
                 <Text color="destructive">
-                  Status: Failed to verify
+                  الحالة: فشل التحقق
                   <br />
                   {verifyError}
                 </Text>
               ) : (
                 <>
-                  <Text color="destructive">Status: Not verified</Text>
+                  <Text color="destructive">الحالة: غير موثَّق</Text>
                   <Text color="subtle">
-                    Verification may take up to 24 hours but usually takes only
-                    a few minutes.
+                    قد يستغرق التحقق حتى 24 ساعة ولكنه عادةً يستغرق
+                    بضع دقائق فقط.
                   </Text>
                 </>
               )}
@@ -449,22 +449,22 @@ const DomainItem = ({
 
         <Flex align="center" gap="1">
           <Text color="subtle">
-            <strong>Connect your domain</strong>
+            <strong>ربط نطاقك</strong>
           </Text>
           <Tooltip
             variant="wrapped"
             content={
               <Text>
-                Visit the admin console of your domain registrar (the website
-                you purchased your domain from) and create one CNAME record and
-                one TXT record with the values shown below.{" "}
+                زر لوحة تحكم مسجّل نطاقك (الموقع
+                الذي اشتريت منه نطاقك) وأنشئ سجل CNAME واحدًا
+                وسجل TXT واحدًا بالقيم المعروضة أدناه.{" "}
                 <Link
                   color="inherit"
                   href="https://docs.webstudio.is/university/foundations/publishing-and-custom-domains"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Learn more.
+                  اعرف المزيد.
                 </Link>
               </Text>
             }
@@ -478,13 +478,13 @@ const DomainItem = ({
           css={{ gridTemplateColumns: `${theme.spacing[18]} 1fr 1fr` }}
         >
           <Text color="subtle" variant="titles">
-            TYPE
+            النوع
           </Text>
           <Text color="subtle" variant="titles">
-            NAME
+            الاسم
           </Text>
           <Text color="subtle" variant="titles">
-            VALUE
+            القيمة
           </Text>
 
           {dnsRecords.map((record, index) => (
@@ -524,7 +524,7 @@ const DomainItem = ({
           }}
         >
           <Separator css={{ alignSelf: "unset" }} />
-          <Text color="main">or</Text>
+          <Text color="main">أو</Text>
           <Separator css={{ alignSelf: "unset" }} />
         </Grid>
 

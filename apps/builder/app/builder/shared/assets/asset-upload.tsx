@@ -23,7 +23,7 @@ export const validateFiles = (files: File[]) => {
   const exceedSizeFiles = files.filter((file) => file.size > maxSize);
   for (const file of exceedSizeFiles) {
     toast.error(
-      `Asset "${file.name}" cannot be bigger than ${MAX_UPLOAD_SIZE}MB`
+      `لا يمكن أن يتجاوز حجم الوسيط "${file.name}" ‏${MAX_UPLOAD_SIZE}MB`
     );
   }
   return files.filter((file) => file.size <= maxSize);
@@ -140,7 +140,7 @@ const EnabledAssetUpload = forwardRef<AssetUploadHandle, AssetUploadProps>(
         />
         {showTrigger && (
           <Button
-            aria-label="Upload asset"
+            aria-label="رفع وسيط"
             color="ghost"
             type="button"
             onClick={() => inputRef?.current?.click()}
@@ -177,14 +177,14 @@ export const AssetUpload = forwardRef<AssetUploadHandle, AssetUploadProps>(
 
     return (
       <Flex>
-        <Tooltip side="bottom" content="View mode. You can't upload assets.">
+        <Tooltip side="bottom" content="وضع العرض. لا يمكنك رفع الوسائط.">
           <Button
             color="primary"
             css={{ flexGrow: 1 }}
             prefix={<UploadIcon />}
             disabled={true}
           >
-            Upload
+            رفع
           </Button>
         </Tooltip>
       </Flex>

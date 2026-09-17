@@ -31,7 +31,7 @@ export const SectionPublish = () => {
   return (
     <Grid gap={2}>
       <Text variant="titles" css={sectionSpacing}>
-        Publishing
+        النشر
       </Text>
       <Grid gap={2} css={sectionSpacing}>
         <CheckboxAndLabel>
@@ -46,7 +46,7 @@ export const SectionPublish = () => {
             }}
           />
           <Label htmlFor={ids.atomicStyles}>
-            Generate atomic CSS when publishing
+            إنشاء CSS ذرّي (atomic) عند النشر
           </Label>
         </CheckboxAndLabel>
       </Grid>

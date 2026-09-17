@@ -47,7 +47,7 @@ const inviteMembers = async (
         failed.push(`${email}: ${result.error}`);
       }
     } catch (error) {
-      const raw = error instanceof Error ? error.message : "Unknown error";
+      const raw = error instanceof Error ? error.message : "خطأ غير معروف";
       // tRPC surfaces Zod input validation failures as a JSON array of issues.
       // Extract the human-readable message(s) instead of dumping raw JSON.
       let message = raw;
@@ -55,7 +55,7 @@ const inviteMembers = async (
         const issues = JSON.parse(raw);
         if (Array.isArray(issues) && issues.length > 0) {
           message = issues
-            .map((i: { message?: string }) => i.message ?? "Invalid value")
+            .map((i: { message?: string }) => i.message ?? "قيمة غير صالحة")
             .join(", ");
         }
       } catch {
@@ -117,14 +117,14 @@ const MemberRow = (props: MemberRowProps) => {
   const selectElement = (() => {
     if (role === "owner") {
       return (
-        <Select color="ghost" options={["Owner"]} value="Owner" disabled />
+        <Select color="ghost" options={["المالك"]} value="المالك" disabled />
       );
     }
 
     if (role === "pending") {
       return (
         <Text color="subtle" variant="regular">
-          Pending…
+          قيد الانتظار…
         </Text>
       );
     }
@@ -161,7 +161,7 @@ const MemberRow = (props: MemberRowProps) => {
   const deleteElement = (() => {
     if (role === "owner") {
       return (
-        <IconButton aria-label="Remove member" tabIndex={-1} disabled>
+        <IconButton aria-label="إزالة العضو" tabIndex={-1} disabled>
           <TrashIcon />
         </IconButton>
       );
@@ -170,14 +170,14 @@ const MemberRow = (props: MemberRowProps) => {
     if (props.canRemove) {
       return (
         <Tooltip
-          content={error ?? "Remove member"}
+          content={error ?? "إزالة العضو"}
           variant={error ? "wrapped" : undefined}
           open={error ? true : undefined}
         >
           <IconButton
             data-action
             tabIndex={-1}
-            aria-label="Remove member"
+            aria-label="إزالة العضو"
             onClick={() => {
               if (role === "pending") {
                 props.onRemove();
@@ -211,7 +211,7 @@ const MemberRow = (props: MemberRowProps) => {
 
     return (
       <IconButton
-        aria-label="Remove member"
+        aria-label="إزالة العضو"
         tabIndex={-1}
         disabled
         css={{ visibility: "hidden" }}
@@ -306,7 +306,7 @@ const MemberList = ({
   if (membersData === undefined) {
     return (
       <Text color="subtle" align="center">
-        Loading members…
+        جارٍ تحميل الأعضاء…
       </Text>
     );
   }
@@ -387,21 +387,21 @@ const ExtraSeatsConfirmDialog = ({
 }) => (
   <Dialog open onOpenChange={(open) => !open && onCancel()}>
     <DialogContent>
-      <DialogTitle>Extra seats will be charged</DialogTitle>
+      <DialogTitle>سيتم فرض رسوم على المقاعد الإضافية</DialogTitle>
       <Flex direction="column" gap="2" css={{ padding: theme.spacing[5] }}>
         <Text>
-          {`Inviting ${memberCount} member${
-            memberCount === 1 ? "" : "s"
-          } will add ${extraSeats} extra seat${
-            extraSeats === 1 ? "" : "s"
-          } to your billing.`}
+          {`دعوة ${memberCount} ${
+            memberCount === 1 ? "عضو" : "أعضاء"
+          } ستضيف ${extraSeats} ${
+            extraSeats === 1 ? "مقعدًا إضافيًا" : "مقاعد إضافية"
+          } إلى فاتورتك.`}
         </Text>
       </Flex>
       <DialogActions>
         <Button color="primary" autoFocus onClick={onConfirm}>
-          Confirm
+          تأكيد
         </Button>
-        <Button onClick={onCancel}>Cancel</Button>
+        <Button onClick={onCancel}>إلغاء</Button>
       </DialogActions>
     </DialogContent>
   </Dialog>
@@ -578,7 +578,7 @@ export const ManageMembersDialog = ({
                   paddingTop: theme.spacing[5],
                 }}
               >
-                <Label>Invite members</Label>
+                <Label>دعوة أعضاء</Label>
                 <Flex gap="2">
                   <Box css={{ flexGrow: 1 }}>
                     <InputErrorsTooltip errors={errors}>
@@ -598,7 +598,7 @@ export const ManageMembersDialog = ({
                     type="submit"
                     state={inviting ? "pending" : undefined}
                   >
-                    Invite
+                    دعوة
                   </Button>
                 </Flex>
               </Flex>
@@ -607,9 +607,9 @@ export const ManageMembersDialog = ({
               <PanelBanner variant="warning">
                 <Flex direction="column" gap="2">
                   <Text>
-                    {`Your workspace has ${overCapacity} more member${
-                      overCapacity === 1 ? "" : "s"
-                    } than your plan covers. Non-owner members won't be able to access the workspace until this is resolved.`}
+                    {`تحتوي مساحة عملك على ${overCapacity} ${
+                      overCapacity === 1 ? "عضو" : "أعضاء"
+                    } أكثر مما تغطيه خطتك. لن يتمكن الأعضاء غير المالكين من الوصول إلى مساحة العمل حتى يتم حل ذلك.`}
                   </Text>
                   <Flex gap="2">
                     <Button
@@ -621,13 +621,13 @@ export const ManageMembersDialog = ({
                           : undefined
                       }
                     >
-                      {`Buy ${overCapacity} extra seat${
-                        overCapacity === 1 ? "" : "s"
+                      {`شراء ${overCapacity} ${
+                        overCapacity === 1 ? "مقعد إضافي" : "مقاعد إضافية"
                       }`}
                     </Button>
                     <Text color="subtle" css={{ alignSelf: "center" }}>
-                      {`or remove ${overCapacity} member${
-                        overCapacity === 1 ? "" : "s"
+                      {`أو إزالة ${overCapacity} ${
+                        overCapacity === 1 ? "عضو" : "أعضاء"
                       }`}
                     </Text>
                   </Flex>
@@ -641,7 +641,7 @@ export const ManageMembersDialog = ({
               }}
             >
               <Flex direction="column" gap="2" css={{ px: theme.spacing[7] }}>
-                <Text variant="labels">Members</Text>
+                <Text variant="labels">الأعضاء</Text>
                 <MemberList
                   workspaceId={workspace.id}
                   canRemove={isOwner}
@@ -662,20 +662,20 @@ export const ManageMembersDialog = ({
               {availableSeats !== undefined ? (
                 <Text color={availableSeats <= 0 ? "destructive" : "subtle"}>
                   {availableSeats >= 0
-                    ? `${availableSeats} more seats included`
-                    : `${-availableSeats} extra seat${
-                        -availableSeats === 1 ? "" : "s"
-                      } will be charged`}
+                    ? `${availableSeats} مقاعد إضافية مشمولة`
+                    : `سيتم فرض رسوم على ${-availableSeats} ${
+                        -availableSeats === 1 ? "مقعد إضافي" : "مقاعد إضافية"
+                      }`}
                 </Text>
               ) : (
                 <div />
               )}
               <DialogClose>
-                <Button color="ghost">Cancel</Button>
+                <Button color="ghost">إلغاء</Button>
               </DialogClose>
             </Flex>
           </DialogActions>
-          <DialogTitle>Members</DialogTitle>
+          <DialogTitle>الأعضاء</DialogTitle>
         </DialogContent>
       </Dialog>
     </>

@@ -79,7 +79,7 @@ export const $duplicateTokenOptions = computed(
 export const showDuplicateTokensView = () => {
   const options = $duplicateTokenOptions.get();
   if (options.length === 0) {
-    toast.info("No duplicate tokens found");
+    toast.info("لم يتم العثور على رموز مكررة");
     return;
   }
   openCommandPanel();
@@ -147,7 +147,7 @@ const DuplicateTokensList = ({
   return (
     <>
       <CommandInput
-        placeholder="Search duplicates..."
+        placeholder="البحث في المكررات..."
         value={search}
         onValueChange={(value) => setSearch(value)}
         prefix={<CommandBackButton onClick={goBack} />}
@@ -164,8 +164,8 @@ const DuplicateTokensList = ({
                 </CommandGroupHeading>
               }
               actions={[
-                { name: "show duplicates", label: "Show duplicates" },
-                { name: "show instances", label: "Show instances" },
+                { name: "show duplicates", label: "إظهار المكررات" },
+                { name: "show instances", label: "إظهار النسخ" },
               ]}
             >
               {matches.map(({ id, token, usages: duplicateUsages }) => (
@@ -265,7 +265,7 @@ export const DuplicateTokensGroup = ({
   return (
     <>
       <CommandInput
-        placeholder="Search duplicate tokens..."
+        placeholder="البحث عن رموز مكررة..."
         value={search}
         onValueChange={(value) => setSearch(value)}
         prefix={<CommandBackButton onClick={goBack} />}
@@ -277,11 +277,11 @@ export const DuplicateTokensGroup = ({
             <CommandGroup
               name="duplicateToken"
               heading={
-                <CommandGroupHeading>Duplicate tokens</CommandGroupHeading>
+                <CommandGroupHeading>الرموز المكررة</CommandGroupHeading>
               }
               actions={[
-                { name: "showDuplicates", label: "Show duplicates" },
-                { name: "showInstances", label: "Show instances" },
+                { name: "showDuplicates", label: "إظهار المكررات" },
+                { name: "showInstances", label: "إظهار النسخ" },
               ]}
             >
               {matches.map(({ token, duplicates, usages }) => (

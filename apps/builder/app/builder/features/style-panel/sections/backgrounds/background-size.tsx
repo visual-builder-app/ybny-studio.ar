@@ -86,7 +86,7 @@ export const BackgroundSize = ({
     <>
       <Grid columns={2} align="center" gap={2}>
         <PropertyLabel
-          label="Size"
+          label="الحجم"
           description={propertyDescriptions.backgroundSize}
           properties={[property]}
         />
@@ -140,14 +140,14 @@ export const BackgroundSize = ({
         >
           <PropertyLabel
             properties={["background-size"]}
-            label="Width"
-            description="The width of the background image."
+            label="العرض"
+            description="عرض صورة الخلفية."
           />
 
           <PropertyLabel
             properties={["background-size"]}
-            label="Height"
-            description="The height of the background image."
+            label="الارتفاع"
+            description="ارتفاع صورة الخلفية."
           />
 
           <CssValueInputContainer

@@ -22,49 +22,49 @@ type AlignSelfControlProps = {
 export const AlignSelfControl = ({ variant }: AlignSelfControlProps) => {
   const startValue = variant === "flex" ? "flex-start" : "start";
   const endValue = variant === "flex" ? "flex-end" : "end";
-  const axisName = variant === "flex" ? "cross axis" : "block axis";
+  const axisName = variant === "flex" ? "المحور المستعرض" : "المحور الكتلي";
   const parentProperty =
     variant === "flex" ? "align-items" : "align-items or align-content";
 
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="Align"
+        label="محاذاة"
         description={propertyDescriptions.alignSelf}
         properties={["align-self"]}
       />
       <ToggleGroupControl
-        label="Align"
+        label="محاذاة"
         properties={["align-self"]}
         items={[
           {
             child: <XSmallIcon />,
-            description: `The element's alignment is determined by its parent's ${parentProperty} property.`,
+            description: `تُحدَّد محاذاة العنصر بواسطة خاصية ${parentProperty} في العنصر الأب.`,
             value: "auto",
           },
           {
             child: <AlignSelfStartIcon />,
-            description: `The element is aligned at the start of the ${axisName}.`,
+            description: `تتم محاذأة العنصر عند بداية ${axisName}.`,
             value: startValue,
           },
           {
             child: <AlignSelfCenterIcon />,
-            description: `The element is centered along the ${axisName}.`,
+            description: `يتم توسيط العنصر على طول ${axisName}.`,
             value: "center",
           },
           {
             child: <AlignSelfEndIcon />,
-            description: `The element is aligned at the end of the ${axisName}.`,
+            description: `تتم محاذأة العنصر عند نهاية ${axisName}.`,
             value: endValue,
           },
           {
             child: <AlignSelfStretchIcon />,
-            description: `The element is stretched to fill the entire ${axisName}.`,
+            description: `يتمدد العنصر ليملأ ${axisName} بالكامل.`,
             value: "stretch",
           },
           {
             child: <AlignSelfBaselineIcon />,
-            description: `The element is aligned to the baseline along the ${axisName}.`,
+            description: `تتم محاذأة العنصر إلى خط الأساس على طول ${axisName}.`,
             value: "baseline",
           },
         ]}
@@ -77,18 +77,18 @@ export const JustifySelfControl = () => {
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="Justify"
+        label="ضبط"
         description={propertyDescriptions.justifySelf}
         properties={["justify-self"]}
       />
       <ToggleGroupControl
-        label="Justify"
+        label="ضبط"
         properties={["justify-self"]}
         items={[
           {
             child: <XSmallIcon />,
             description:
-              "The element's justification is determined by its parent's justify-items property.",
+              "يُحدَّد ضبط العنصر بواسطة خاصية justify-items في العنصر الأب.",
             value: "auto",
           },
           {
@@ -96,20 +96,20 @@ export const JustifySelfControl = () => {
               <AlignSelfStartIcon style={{ transform: "rotate(-90deg)" }} />
             ),
             description:
-              "The element is aligned at the start of the inline axis.",
+              "تتم محاذأة العنصر عند بداية المحور السطري.",
             value: "start",
           },
           {
             child: (
               <AlignSelfCenterIcon style={{ transform: "rotate(-90deg)" }} />
             ),
-            description: "The element is centered along the inline axis.",
+            description: "يتم توسيط العنصر على طول المحور السطري.",
             value: "center",
           },
           {
             child: <AlignSelfEndIcon style={{ transform: "rotate(-90deg)" }} />,
             description:
-              "The element is aligned at the end of the inline axis.",
+              "تتم محاذأة العنصر عند نهاية المحور السطري.",
             value: "end",
           },
           {
@@ -117,7 +117,7 @@ export const JustifySelfControl = () => {
               <AlignSelfStretchIcon style={{ transform: "rotate(-90deg)" }} />
             ),
             description:
-              "The element is stretched to fill the entire inline axis.",
+              "يتمدد العنصر ليملأ المحور السطري بالكامل.",
             value: "stretch",
           },
           {
@@ -125,7 +125,7 @@ export const JustifySelfControl = () => {
               <AlignSelfBaselineIcon style={{ transform: "rotate(-90deg)" }} />
             ),
             description:
-              "The element is aligned to the baseline of the parent.",
+              "تتم محاذأة العنصر إلى خط الأساس في العنصر الأب.",
             value: "baseline",
           },
         ]}

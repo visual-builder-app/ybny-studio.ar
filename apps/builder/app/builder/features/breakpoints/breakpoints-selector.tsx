@@ -36,8 +36,8 @@ const getTooltipContent = (breakpoint: Breakpoint) => {
       <Text>
         <Text variant="regularBold">Base{conditionText}</Text>
         <br />
-        Styles on Base apply to all viewport sizes unless overwritten by another
-        breakpoint. Start your styling here.
+        أنماط الأساس تُطبَّق على كل أحجام الشاشة ما لم تُستبدل بواسطة نقطة توقف أخرى.
+        ابدأ التنسيق من هنا.
       </Text>
     );
   }
@@ -136,7 +136,7 @@ const ZoomWarning = () => {
   return (
     <Tooltip
       variant="wrapped"
-      content={`Your browser zoom is causing a mismatch between breakpoints and the actual media query on the canvas.`}
+      content={`تكبير المتصفح لديك يسبب تعارضًا بين نقاط التوقف واستعلام الوسائط الفعلي على اللوحة.`}
     >
       <Flex
         align="center"
@@ -175,7 +175,7 @@ export const BreakpointsSelector = () => {
           $selectedBreakpointId.set(breakpointId);
           setCanvasWidth(breakpointId);
         }}
-        aria-label="Breakpoints"
+        aria-label="نقاط التوقف"
         css={{
           position: "relative",
           alignSelf: "stretch",

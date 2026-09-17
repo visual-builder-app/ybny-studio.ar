@@ -224,7 +224,7 @@ export const Dashboard = () => {
     {
       to: dashboardPath("projects"),
       prefix: <BodyIcon />,
-      children: "Projects",
+      children: "المشاريع",
     },
   ];
 
@@ -283,28 +283,28 @@ export const Dashboard = () => {
                 <Separator />
               </>
             ) : (
-              <CollapsibleSection label="Workspace" fullWidth>
+              <CollapsibleSection label="مساحة العمل" fullWidth>
                 <NavigationItems items={navItems} />
               </CollapsibleSection>
             )}
           </nav>
           <Box css={{ paddingTop: theme.spacing[5] }}>
             <PanelBanner variant="neutral">
-              <Text variant="titles">Inception is live</Text>
+              <Text variant="titles">Inception متاح الآن</Text>
               <Text color="subtle">
-                An AI-powered design tool to explore ideas and instantly
-                generate HTML/CSS for Webstudio Builder or any other platform.
+                أداة تصميم مدعومة بالذكاء الاصطناعي لاستكشاف الأفكار وتوليد
+                HTML/CSS فورًا لمحرر Webstudio أو أي منصة أخرى.
               </Text>
               <LinkButton
                 color="primary"
                 href="https://wstd.us/inception"
                 target="_blank"
               >
-                Get started with Inception
+                ابدأ الآن مع Inception
               </LinkButton>
             </PanelBanner>
           </Box>
-          <CollapsibleSection label="Help & support" fullWidth>
+          <CollapsibleSection label="المساعدة والدعم" fullWidth>
             <NavigationItems
               items={help.map((item) => ({
                 to: item.url,
@@ -322,7 +322,7 @@ export const Dashboard = () => {
               }}
             >
               <Text variant="labels" color="subtle">
-                Follow us:
+                تابعنا:
               </Text>
               {socialLinks.map(({ label, url, icon }) => (
                 <Link

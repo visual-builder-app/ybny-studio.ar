@@ -54,7 +54,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisIcon />
         <PropertyInlineLabel
-          label="Translate X"
+          label="إزاحة X"
           description={propertySyntaxes.translateX}
         />
 
@@ -76,7 +76,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisIcon />
         <PropertyInlineLabel
-          label="Translate Y"
+          label="إزاحة Y"
           description={propertySyntaxes.translateY}
         />
         <CssValueInputContainer
@@ -97,7 +97,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <ZAxisIcon />
         <PropertyInlineLabel
-          label="Translate Z"
+          label="إزاحة Z"
           description={propertySyntaxes.translateZ}
         />
         <CssValueInputContainer

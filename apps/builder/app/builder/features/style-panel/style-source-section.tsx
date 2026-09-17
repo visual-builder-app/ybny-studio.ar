@@ -145,7 +145,7 @@ const convertLocalStyleSourceToToken = (styleSourceId: StyleSource["id"]) => {
     input: {
       instanceId,
       styleSourceId,
-      name: "Local (Copy)",
+      name: "محلي (نسخة)",
     },
   });
   const tokenId = result?.result.styleSourceId;
@@ -301,7 +301,7 @@ const convertToInputItem = (
 ): StyleSourceInputItem => {
   return {
     id: styleSource.id,
-    label: styleSource.type === "local" ? "Local" : styleSource.name,
+    label: styleSource.type === "local" ? "محلي" : styleSource.name,
     disabled: false,
     source: styleSource.type,
     locked: styleSource.type === "token" && styleSource.locked === true,

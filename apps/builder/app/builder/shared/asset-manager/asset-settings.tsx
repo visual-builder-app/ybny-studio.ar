@@ -140,7 +140,7 @@ const AssetUsagesList = ({ usages }: { usages: AssetUsage[] }) => {
                   setActiveSidebarPanel("auto");
                 }}
               >
-                Favicon
+                أيقونة الموقع
               </button>
             </li>
           );
@@ -156,7 +156,7 @@ const AssetUsagesList = ({ usages }: { usages: AssetUsage[] }) => {
                   $editingPageId.set(usage.pageId);
                 }}
               >
-                Page social image
+                صورة الصفحة الاجتماعية
               </button>
             </li>
           );
@@ -172,7 +172,7 @@ const AssetUsagesList = ({ usages }: { usages: AssetUsage[] }) => {
                   $editingPageId.set(usage.pageId);
                 }}
               >
-                Marketplace page thumbnail
+                صورة مصغرة لصفحة السوق
               </button>
             </li>
           );
@@ -348,7 +348,7 @@ const AssetSettingsContent = ({
     const assetId = asset.id;
     let expectedAssetName = asset.name;
     if (!isValidFilename(newFilename)) {
-      setFilenameError("Invalid filename");
+      setFilenameError("اسم ملف غير صالح");
       return;
     }
 
@@ -356,7 +356,7 @@ const AssetSettingsContent = ({
     const currentExtension = getAssetDisplayNameParts(currentAsset).ext;
     const { basename, extension } = getFileNameParts(newFilename);
     if (extension === "" && currentExtension !== "") {
-      setFilenameError("File extension is required");
+      setFilenameError("امتداد الملف مطلوب");
       return;
     }
 
@@ -368,7 +368,7 @@ const AssetSettingsContent = ({
         excludeAssetId: assetId,
       })
     ) {
-      setFilenameError("Filename already used");
+      setFilenameError("اسم الملف مستخدم بالفعل");
       return;
     }
 
@@ -377,7 +377,7 @@ const AssetSettingsContent = ({
         !isTextFileAsset(currentAsset) ||
         !isTextFileAsset({ format: extension })
       ) {
-        setFilenameError("Only text file extensions can be changed");
+        setFilenameError("يمكن تغيير امتدادات الملفات النصية فقط");
         return;
       }
 
@@ -386,7 +386,7 @@ const AssetSettingsContent = ({
           getAssetUrl(currentAsset, window.location.origin)
         );
         if (response.ok === false) {
-          throw new Error(`Unable to load asset: ${response.status}`);
+          throw new Error(`تعذّر تحميل الوسيط: ${response.status}`);
         }
         const normalized = normalizeTextFileConversion(
           { format: extension },
@@ -410,7 +410,7 @@ const AssetSettingsContent = ({
         expectedAssetName = updatedAsset.name;
       } catch (error) {
         const message =
-          error instanceof Error ? error.message : "Unable to rename file";
+          error instanceof Error ? error.message : "تعذّرت إعادة تسمية الملف";
         setFilenameError(message);
         toast.error(message);
         return;
@@ -462,15 +462,15 @@ const AssetSettingsContent = ({
   let downloadError: undefined | string;
   if (authPermit === "view") {
     downloadError =
-      "Unavailable in View mode. Switch to Edit to download assets.";
+      "غير متاح في وضع العرض. بدّل إلى التعديل لتنزيل الوسائط.";
   } else if (canDownloadAssets === false) {
-    downloadError = "Upgrade to Pro to download assets.";
+    downloadError = "قم بالترقية إلى Pro لتنزيل الوسائط.";
   }
 
   const isImage = asset.type === "image";
   let replaceError: undefined | string;
   if (authPermit === "view") {
-    replaceError = "View mode. You can't replace assets.";
+    replaceError = "وضع العرض. لا يمكنك استبدال الوسائط.";
   }
 
   return (
@@ -516,14 +516,14 @@ const AssetSettingsContent = ({
               }}
             >
               {isCollectionFile ? (
-                <ListViewIcon aria-label="Used by collection" />
+                <ListViewIcon aria-label="مستخدم من قبل المجموعة" />
               ) : (
                 <AssetUsageIndicator data-asset-settings-usage-indicator="" />
               )}
             </Flex>
             <Text variant="labels">
               {isCollectionFile
-                ? "Used by collection"
+                ? "مستخدم من قبل المجموعة"
                 : `${usages.length} uses`}
             </Text>
           </Flex>
@@ -539,13 +539,13 @@ const AssetSettingsContent = ({
           rowGap: theme.spacing[3],
         }}
       >
-        <Text variant="labels">Created</Text>
+        <Text variant="labels">تاريخ الإنشاء</Text>
         <Text variant="labels" align="right">
           {formatDateTime(asset.createdAt)}
         </Text>
         {asset.updatedAt && (
           <>
-            <Text variant="labels">Last modified</Text>
+            <Text variant="labels">آخر تعديل</Text>
             <Text variant="labels" align="right">
               {formatDateTime(asset.updatedAt)}
             </Text>
@@ -554,7 +554,7 @@ const AssetSettingsContent = ({
       </PanelContent>
 
       <PanelContent as={Grid} css={{ gap: 4 }}>
-        <Label htmlFor="asset-manager-filename">Name</Label>
+        <Label htmlFor="asset-manager-filename">الاسم</Label>
         <InputErrorsTooltip
           errors={filenameError ? [filenameError] : undefined}
         >
@@ -581,7 +581,7 @@ const AssetSettingsContent = ({
           value={asset.folderId}
           onChange={moveToFolder}
           unavailableDestinationFolderIds={unavailableDestinationFolderIds}
-          rootLabel="Folder"
+          rootLabel="مجلد"
           disabled={
             authPermit === "view" || !canMove || canSaveChanges === false
           }
@@ -594,10 +594,10 @@ const AssetSettingsContent = ({
           htmlFor="asset-manager-description"
           css={{ display: "flex", alignItems: "center", gap: 4 }}
         >
-          Description
+          الوصف
           <Tooltip
             variant="wrapped"
-            content="The description is used as the default “alt” text for the image."
+            content="يُستخدم الوصف كنص “alt” افتراضي للصورة."
           >
             <InfoCircleIcon color={cssVar("--foreground-secondary")} />
           </Tooltip>
@@ -641,8 +641,8 @@ const AssetSettingsContent = ({
                   </IconButton>
                 </Tooltip>
               ) : (
-                <Tooltip side="bottom" content="Replace asset">
-                  <IconButton aria-label="Replace asset" onClick={onReplace}>
+                <Tooltip side="bottom" content="استبدال الوسيط">
+                  <IconButton aria-label="استبدال الوسيط" onClick={onReplace}>
                     <RefreshCcwIcon />
                   </IconButton>
                 </Tooltip>
@@ -656,7 +656,7 @@ const AssetSettingsContent = ({
               </IconButton>
             </Tooltip>
           ) : (
-            <Tooltip side="bottom" content="Download asset">
+            <Tooltip side="bottom" content="تنزيل الوسيط">
               <IconButton
                 as="a"
                 download={formatAssetName(asset)}
@@ -672,21 +672,21 @@ const AssetSettingsContent = ({
             side="bottom"
             content={
               isCollectionFile
-                ? "This file is required by the collection."
-                : "View mode. You can't delete assets."
+                ? "هذا الملف مطلوب من قبل المجموعة."
+                : "وضع العرض. لا يمكنك حذف الوسائط."
             }
           >
             <Button disabled color="destructive" prefix={<TrashIcon />}>
-              Delete
+              حذف
             </Button>
           </Tooltip>
         ) : usages.length === 0 ? (
           <Button color="destructive" onClick={onDelete} prefix={<TrashIcon />}>
-            Delete
+            حذف
           </Button>
         ) : (
           <Button color="primary" onClick={onDelete}>
-            Review & delete
+            مراجعة وحذف
           </Button>
         )}
       </PanelContent>
@@ -708,13 +708,13 @@ export const AssetDeleteDialog = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent minWidth={360} aria-describedby={undefined}>
-        <DialogTitle>Delete asset?</DialogTitle>
+        <DialogTitle>حذف الوسيط؟</DialogTitle>
         <PanelContent as={Box}>
           <Text>Delete “{formatAssetName(asset)}”?</Text>
           {usages.length > 0 && (
             <>
               <Text css={{ marginTop: "1em", marginBottom: "1em" }}>
-                This asset is used in the following places:
+                هذا الوسيط مستخدم في الأماكن التالية:
               </Text>
               <AssetUsagesList usages={usages} />
             </>
@@ -726,7 +726,7 @@ export const AssetDeleteDialog = ({
               prefix={<TrashIcon />}
               onClick={() => deleteAssets([asset.id])}
             >
-              Delete
+              حذف
             </Button>
           </Flex>
         </PanelContent>
@@ -797,13 +797,13 @@ export const AssetSettings = ({
       {usages.length === 0 && !isCollectionFile && (
         <AssetUsageIndicator
           role="img"
-          aria-label="Unused asset"
+          aria-label="وسيط غير مستخدم"
           data-asset-thumbnail-indicator=""
         />
       )}
       <PopoverAnchor asChild>{children}</PopoverAnchor>
       <PopoverContent css={{ width: 250 }}>
-        <PopoverTitle>Asset settings</PopoverTitle>
+        <PopoverTitle>إعدادات الوسيط</PopoverTitle>
         <AssetSettingsContent
           asset={asset}
           usages={usages}

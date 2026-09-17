@@ -98,15 +98,15 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
   return (
     <Grid gap={2}>
       <Text variant="titles" css={sectionSpacing}>
-        General
+        عام
       </Text>
 
       <Grid gap={1} css={sectionSpacing}>
         <Flex gap={1} align="center">
-          <Text variant="labels">Project ID:</Text>
+          <Text variant="labels">معرّف المشروع:</Text>
           <Text userSelect="text">{effectiveProjectId}</Text>
-          <CopyToClipboard text={effectiveProjectId} copyText="Copy ID">
-            <IconButton aria-label="Copy ID">
+          <CopyToClipboard text={effectiveProjectId} copyText="نسخ المعرّف">
+            <IconButton aria-label="نسخ المعرّف">
               <CopyIcon aria-hidden />
             </IconButton>
           </CopyToClipboard>
@@ -115,10 +115,10 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
 
       <Grid gap={1} css={sectionSpacing}>
         <Flex gap={1} align="center">
-          <Label htmlFor={siteNameId}>Site name</Label>
+          <Label htmlFor={siteNameId}>اسم الموقع</Label>
           <Tooltip
             variant="wrapped"
-            content="Used in search results and social previews."
+            content="يُستخدم في نتائج البحث ومعاينات وسائل التواصل."
           >
             <InfoCircleIcon
               color={cssVar("--foreground-secondary")}
@@ -128,7 +128,7 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
         </Flex>
         <InputField
           id={siteNameId}
-          placeholder="Current site name"
+          placeholder="اسم الموقع الحالي"
           autoFocus={true}
           value={meta.siteName ?? ""}
           onChange={(event) => {
@@ -139,10 +139,10 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
 
       <Grid gap={1} css={sectionSpacing}>
         <Flex gap={1} align="center">
-          <Label htmlFor={contactEmailId}>Contact email</Label>
+          <Label htmlFor={contactEmailId}>البريد الإلكتروني للتواصل</Label>
           <Tooltip
             variant="wrapped"
-            content="Used as the email recipient when submitting a webhook form without an action."
+            content="يُستخدم كجهة استلام البريد عند إرسال نموذج webhook بدون إجراء."
           >
             <InfoCircleIcon
               color={cssVar("--foreground-secondary")}
@@ -177,7 +177,7 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
       <Separator />
 
       <Grid gap={2} css={sectionSpacing} justify={"start"}>
-        <Label>Favicon</Label>
+        <Label>أيقونة الموقع</Label>
         <Grid flow="column" gap={3}>
           <img
             className={imgStyle()}
@@ -191,11 +191,11 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
 
           <Grid gap={2}>
             <Text color="subtle">
-              Upload a square image to display in browser tabs.
+              ارفع صورة مربعة لعرضها في تبويبات المتصفح.
             </Text>
             <ImageControl onAssetIdChange={handleSave("faviconAssetId")}>
               <Button color="primary" css={{ justifySelf: "start" }}>
-                Upload
+                رفع
               </Button>
             </ImageControl>
           </Grid>
@@ -205,14 +205,14 @@ export const SectionGeneral = ({ projectId }: { projectId?: string }) => {
       <Separator />
 
       <Grid gap={2} css={sectionSpacing}>
-        <Label>Custom code</Label>
+        <Label>كود مخصص</Label>
         <Text color="subtle">
-          Custom code and scripts will be added at the end of the &lt;head&gt;
-          tag to every page across the published project and will run{" "}
-          <strong>only</strong> on the published site.
+          ستُضاف الأكواد والسكربتات المخصصة في نهاية وسم &lt;head&gt;
+          في كل صفحة عبر المشروع المنشور وستعمل{" "}
+          <strong>فقط</strong> على الموقع المنشور.
         </Text>
         <CodeEditor
-          title="Custom code"
+          title="كود مخصص"
           lang="html"
           value={meta.code ?? ""}
           onChange={handleSave("code")}

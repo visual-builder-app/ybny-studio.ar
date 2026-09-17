@@ -210,7 +210,7 @@ export const initBuilderApi = () => {
         })
         .catch(() => {
           toast.error(
-            "Some MDX changes could not be saved. Return to this project to retry."
+            "تعذّر حفظ بعض تغييرات MDX. عُد إلى هذا المشروع لإعادة المحاولة."
           );
         })
         .finally(() => {

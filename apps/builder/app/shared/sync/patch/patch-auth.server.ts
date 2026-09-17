@@ -102,7 +102,7 @@ export const assertProjectPermit = async ({
   );
   if (allowed === false) {
     throw new AuthorizationError(
-      `You don't have permission to ${permit === "build" ? "build" : "edit"} this project.`
+      `ليس لديك إذن لـ${permit === "build" ? "بناء" : "تعديل"} هذا المشروع.`
     );
   }
 };
@@ -201,7 +201,7 @@ export const authorizePatchEntries = async (
       }
       if (contentModeResult?.success !== true) {
         throw new AuthorizationError(
-          "You don't have permission to build this project."
+          "ليس لديك إذن لبناء هذا المشروع."
         );
       }
       await assertProjectPermit({

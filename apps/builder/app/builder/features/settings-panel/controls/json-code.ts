@@ -44,7 +44,7 @@ const getJsonCodeWarnings = (
     .filter(({ severity }) => severity === "warning")
     .map(({ path, message }) => `${path} ${message}`);
   if (hasTopLevelJsonLdContext(result.value) === false) {
-    warnings.unshift("$ JSON-LD has no top-level @context.");
+    warnings.unshift("$ JSON-LD لا يحتوي على @context في المستوى الأعلى.");
   }
   return warnings;
 };

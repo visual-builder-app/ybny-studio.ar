@@ -75,9 +75,9 @@ export const ComponentsGroup = ({
     <CommandGroup
       name="component"
       heading={
-        <CommandGroupHeading>Components ({options.length})</CommandGroupHeading>
+        <CommandGroupHeading>المكوّنات ({options.length})</CommandGroupHeading>
       }
-      actions={[{ name: "add", label: "Add" }]}
+      actions={[{ name: "add", label: "إضافة" }]}
     >
       {options.map(
         ({ catalogId, component, label, category, icon, firstInstance }) => {

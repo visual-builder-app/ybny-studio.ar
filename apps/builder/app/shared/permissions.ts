@@ -7,10 +7,10 @@ import type { PlanFeatures } from "@webstudio-is/plans";
  * Mirrors the role-based permission logic in getPermissions().
  */
 export const roleDescriptions: Record<Role, string> = {
-  viewers: "Can view, copy instances, and clone the project.",
-  editors: "Can edit content only — text, images, and predefined components.",
-  builders: "Can make any design changes and publish to staging only.",
-  administrators: "Can make any design changes and publish to custom domains.",
+  viewers: "يمكنه العرض ونسخ النسخ واستنساخ المشروع.",
+  editors: "يمكنه تعديل المحتوى فقط — النصوص والصور والمكوّنات المحددة مسبقًا.",
+  builders: "يمكنه إجراء أي تغييرات في التصميم والنشر إلى بيئة الاختبار فقط.",
+  administrators: "يمكنه إجراء أي تغييرات في التصميم والنشر إلى نطاقات مخصصة.",
 };
 
 /**

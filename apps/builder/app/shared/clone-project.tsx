@@ -53,7 +53,7 @@ const useCloneProjectWithDialog = ({
 
         onCreate(data.id);
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Unknown error");
+        toast.error(error instanceof Error ? error.message : "خطأ غير معروف");
         setState("idle");
       }
     }
@@ -102,7 +102,7 @@ const CloneProjectView = ({
             }}
             gap="1"
           >
-            <Label>Project title</Label>
+            <Label>عنوان المشروع</Label>
             <InputField
               name="title"
               defaultValue={title}
@@ -118,14 +118,14 @@ const CloneProjectView = ({
               type="submit"
               state={state === "idle" ? undefined : "pending"}
             >
-              Clone
+              استنساخ
             </Button>
             <DialogClose>
-              <Button color="ghost">Cancel</Button>
+              <Button color="ghost">إلغاء</Button>
             </DialogClose>
           </DialogActions>
         </form>
-        <DialogTitle>Clone project</DialogTitle>
+        <DialogTitle>استنساخ المشروع</DialogTitle>
       </DialogContent>
     </Dialog>
   );

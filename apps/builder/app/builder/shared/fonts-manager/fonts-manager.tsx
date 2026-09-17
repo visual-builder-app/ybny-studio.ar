@@ -191,7 +191,7 @@ export const FontsManager = ({ value, onChange }: FontsManagerProps) => {
         }}
       >
         {uploadedItems.length !== 0 && (
-          <DeprecatedListItem state="disabled">{"Uploaded"}</DeprecatedListItem>
+          <DeprecatedListItem state="disabled">{"الخطوط المرفوعة"}</DeprecatedListItem>
         )}
         {uploadedItems.map(renderItem)}
         {systemItems.length !== 0 && (
@@ -205,7 +205,7 @@ export const FontsManager = ({ value, onChange }: FontsManagerProps) => {
                   content={
                     <Text>
                       {
-                        "System font stack CSS organized by typeface classification for every modern OS. No downloading, no layout shifts, no flashes— just instant renders. Learn more about "
+                        "حزم خطوط النظام CSS منظمة حسب تصنيف الخط لكل نظام تشغيل حديث. بلا تنزيل، بلا إزاحة تخطيط، بلا ومضات — فقط عرض فوري. تعرف على المزيد حول "
                       }
                       <Link
                         href="https://github.com/system-fonts/modern-font-stacks"
@@ -213,7 +213,7 @@ export const FontsManager = ({ value, onChange }: FontsManagerProps) => {
                         color="inherit"
                         variant="inherit"
                       >
-                        modern font stacks
+                        حزم الخطوط الحديثة
                       </Link>
                       .
                     </Text>
@@ -227,7 +227,7 @@ export const FontsManager = ({ value, onChange }: FontsManagerProps) => {
                 </Tooltip>
               }
             >
-              System
+              خطوط النظام
             </DeprecatedListItem>
           </>
         )}

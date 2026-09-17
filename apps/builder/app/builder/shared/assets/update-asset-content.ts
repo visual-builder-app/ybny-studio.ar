@@ -26,10 +26,10 @@ export const createUpdateAssetContent =
   }): Promise<Asset> => {
     const projectId = $project.get()?.id;
     if (projectId === undefined) {
-      throw new Error("Project not found");
+      throw new Error("المشروع غير موجود");
     }
     if (asset.projectId !== projectId) {
-      throw new Error("The file belongs to another project.");
+      throw new Error("الملف يخص مشروعًا آخر.");
     }
 
     const origin = window.location.origin;
@@ -46,7 +46,7 @@ export const createUpdateAssetContent =
     });
     if ($project.get()?.id !== projectId) {
       throw new Error(
-        "The file was updated in the previous project. Return to that project to view it."
+        "تم تحديث الملف في المشروع السابق. عُد إلى ذلك المشروع لعرضه."
       );
     }
 

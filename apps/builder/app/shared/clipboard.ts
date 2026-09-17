@@ -1,7 +1,7 @@
 import { builderApi } from "./builder-api";
 
 const clipboardReadErrorMessage =
-  "Webstudio cannot read the clipboard. Allow clipboard access in your browser, then try again.";
+  "Webstudio لا يستطيع قراءة الحافظة. اسمح بالوصول إلى الحافظة في متصفحك ثم حاول مجددًا.";
 
 export const readClipboardText = async () => {
   try {

@@ -20,7 +20,7 @@ export const Welcome = ({
         css={{ paddingBlock: "20vh" }}
       >
         <Text variant="brandMediumTitle" as="h3">
-          Welcome!
+          مرحبًا!
         </Text>
 
         <Flex align="center" gap="3">
@@ -28,12 +28,12 @@ export const Welcome = ({
             href="https://webstudio.is/marketplace/templates/"
             target="_blank"
           >
-            Start from a template
+            ابدأ من قالب
           </LinkButton>
           {permissions.canCreateProject && (
             <CreateProject
               workspaceId={currentWorkspaceId}
-              buttonText="Create a blank project"
+              buttonText="إنشاء مشروع فارغ"
             />
           )}
         </Flex>
@@ -42,7 +42,7 @@ export const Welcome = ({
           width="560"
           height="315"
           src="https://www.youtube-nocookie.com/embed/W43QpuT3fW0?si=eGE-OU8emtIxzKPn"
-          title="YouTube video player"
+          title="مشغل فيديو YouTube"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"

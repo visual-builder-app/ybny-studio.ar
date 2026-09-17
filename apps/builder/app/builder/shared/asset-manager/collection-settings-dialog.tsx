@@ -86,9 +86,9 @@ const settingsSections: readonly {
   id: SettingsSection;
   label: string;
 }[] = [
-  { id: "fields", label: "Fields" },
-  { id: "template", label: "Entry template" },
-  { id: "entryPage", label: "Entry page" },
+  { id: "fields", label: "الحقول" },
+  { id: "template", label: "قالب المدخل" },
+  { id: "entryPage", label: "صفحة المدخل" },
 ];
 const fieldTypes: readonly EditableType[] = [
   "Text",
@@ -215,12 +215,12 @@ export const updateCollectionConfigAndTemplateName = async ({
     throw new Error(
       "errors" in payload && typeof payload.errors === "string"
         ? payload.errors
-        : "Collection settings could not be saved"
+        : "تعذّر حفظ إعدادات المجموعة"
     );
   }
   if ($project.get()?.id !== projectId) {
     throw new Error(
-      "Collection settings were updated in the previous project. Return to that project to view them."
+      "تم تحديث إعدادات المجموعة في المشروع السابق. عُد إلى ذلك المشروع لعرضها."
     );
   }
   createTransactionFromBuilderPatchPayload({
@@ -251,14 +251,14 @@ const convertCollectionToFolder = async (
   configAsset: Extract<ContentCollection, { status: "ready" }>["configAsset"]
 ) => {
   if ($project.get()?.id !== configAsset.projectId) {
-    throw new Error("The collection belongs to another project.");
+    throw new Error("المجموعة تخص مشروعًا آخر.");
   }
   const result = await executeRuntimeMutationAsync({
     id: "assets.delete",
     input: { assetIds: [configAsset.id], force: true },
   });
   if (result === undefined) {
-    throw new Error("The collection could not be converted.");
+    throw new Error("تعذّر تحويل المجموعة.");
   }
   onNextTransactionComplete(invalidateAssets);
 };
@@ -291,16 +291,16 @@ export const ConvertCollectionDialog = ({
       }}
     >
       <DialogContent width={420}>
-        <DialogTitle>Convert to regular folder?</DialogTitle>
+        <DialogTitle>تحويل إلى مجلد عادي؟</DialogTitle>
         <PanelContent as={Grid} gap={3}>
           <DialogDescription asChild>
             <Text>
-              Your entries and template will stay. Collection rules and the New
-              entry action will be removed.
+              ستبقى مدخلاتك وقالبك. ستتم إزالة قواعد المجموعة وإجراء "مدخل
+              جديد".
             </Text>
           </DialogDescription>
           {hasUnsavedChanges && (
-            <Text>Unsaved collection settings will not be applied.</Text>
+            <Text>لن يتم تطبيق إعدادات المجموعة غير المحفوظة.</Text>
           )}
           {error !== undefined && (
             <Text role="alert" color="destructive">
@@ -309,7 +309,7 @@ export const ConvertCollectionDialog = ({
           )}
           <Flex justify="end" gap={2}>
             <Button disabled={converting} onClick={onClose}>
-              Keep collection
+              إبقاء المجموعة
             </Button>
             <Button
               color="destructive"
@@ -330,7 +330,7 @@ export const ConvertCollectionDialog = ({
                   setError(
                     error instanceof Error
                       ? error.message
-                      : "The collection could not be converted."
+                      : "تعذّر تحويل المجموعة."
                   );
                 } finally {
                   convertingRef.current = false;
@@ -339,7 +339,7 @@ export const ConvertCollectionDialog = ({
                 }
               }}
             >
-              {converting ? "Converting…" : "Convert to regular folder"}
+              {converting ? "جارٍ التحويل…" : "تحويل إلى مجلد عادي"}
             </Button>
           </Flex>
         </PanelContent>
@@ -478,7 +478,7 @@ export const CollectionSettingsDialog = ({
     const projectId = $project.get()?.id;
     if (projectId === undefined) {
       setLoading(false);
-      setError("Project not found");
+      setError("المشروع غير موجود");
       return;
     }
     let cancelled = false;
@@ -499,7 +499,7 @@ export const CollectionSettingsDialog = ({
           setError(
             error instanceof Error
               ? error.message
-              : "Template could not be loaded"
+              : "تعذّر تحميل القالب"
           );
         }
       })
@@ -524,18 +524,18 @@ export const CollectionSettingsDialog = ({
   const labelErrors = new Map<string, string>();
   for (const field of fields) {
     if (field.label.trim() === "") {
-      labelErrors.set(field.rowId, "Enter a field label.");
+      labelErrors.set(field.rowId, "أدخل تسمية الحقل.");
     }
     const key = field.key.trim();
     if (key === "") {
-      keyErrors.set(field.rowId, "Enter a field key.");
+      keyErrors.set(field.rowId, "أدخل مفتاح الحقل.");
     } else if (
       fields.some(
         (candidate) =>
           candidate.rowId !== field.rowId && candidate.key.trim() === key
       )
     ) {
-      keyErrors.set(field.rowId, "This key is already used by another field.");
+      keyErrors.set(field.rowId, "هذا المفتاح مستخدم بالفعل في حقل آخر.");
     }
   }
 
@@ -621,7 +621,7 @@ export const CollectionSettingsDialog = ({
         nextTemplateName === "" ||
         isValidFilename(nextTemplateFilename) === false
       ) {
-        throw new Error("Enter a valid template name.");
+        throw new Error("أدخل اسم قالب صالحًا.");
       }
       if (
         isAssetFilenameUsed({
@@ -631,7 +631,7 @@ export const CollectionSettingsDialog = ({
           excludeAssetId: collection.templateAsset.id,
         })
       ) {
-        throw new Error("That template name is already used in this folder.");
+        throw new Error("اسم القالب هذا مستخدم بالفعل في هذا المجلد.");
       }
       const nextFields = fields.map((field, index) => {
         const { rowId, ...collectionField } = field;
@@ -675,7 +675,7 @@ export const CollectionSettingsDialog = ({
         templateDocument.frontmatter.properties
       );
       if (templateValidationError !== undefined) {
-        throw new Error(`Entry template: ${templateValidationError}`);
+        throw new Error(`قالب المدخل: ${templateValidationError}`);
       }
       const currentTemplateName = getAssetDisplayNameParts(
         collection.templateAsset
@@ -684,7 +684,7 @@ export const CollectionSettingsDialog = ({
       const projectId = collection.configAsset.projectId;
       errorTarget = "dialog";
       if ($project.get()?.id !== projectId) {
-        throw new Error("The collection belongs to another project.");
+        throw new Error("المجموعة تخص مشروعًا آخر.");
       }
       if (template !== loadedTemplateRef.current) {
         currentTemplateAssetRef.current = await updateContent({
@@ -737,7 +737,7 @@ export const CollectionSettingsDialog = ({
     } catch (error) {
       if (errorTarget !== "dialog") {
         const message =
-          error instanceof Error ? error.message : "Check these settings.";
+          error instanceof Error ? error.message : "تحقق من هذه الإعدادات.";
         if (errorTarget === "fields") {
           setFieldsError(message);
         } else {
@@ -752,14 +752,14 @@ export const CollectionSettingsDialog = ({
       ) {
         setSaveUncertain(true);
         setError(
-          "We couldn’t confirm whether your changes were saved. Your edits are still here. Keep a copy of them, then reload the page to check the saved version before editing again."
+          "لم نتمكن من تأكيد ما إذا كانت تغييراتك قد حُفظت. تعديلاتك ما زالت هنا. احتفظ بنسخة منها، ثم أعد تحميل الصفحة للتحقق من النسخة المحفوظة قبل التعديل مجددًا."
         );
         return;
       }
       setError(
         error instanceof Error
           ? error.message
-          : "Collection settings could not be saved"
+          : "تعذّر حفظ إعدادات المجموعة"
       );
     } finally {
       savingRef.current = false;
@@ -824,11 +824,11 @@ export const CollectionSettingsDialog = ({
         <DialogTitle
           suffix={
             <DialogTitleActions>
-              <Tooltip content="Convert to regular folder">
+              <Tooltip content="تحويل إلى مجلد عادي">
                 <Button
                   color="ghost-destructive"
                   prefix={<ListViewIcon />}
-                  aria-label="Convert to regular folder"
+                  aria-label="تحويل إلى مجلد عادي"
                   disabled={saving || converting || saveUncertain}
                   onClick={() => setConfirmRemove(true)}
                 />
@@ -837,7 +837,7 @@ export const CollectionSettingsDialog = ({
             </DialogTitleActions>
           }
         >
-          Collection settings
+          إعدادات المجموعة
         </DialogTitle>
         {error !== undefined && (
           <PanelBanner variant="error" role="alert" css={{ flexShrink: 0 }}>
@@ -848,8 +848,8 @@ export const CollectionSettingsDialog = ({
               />
               <Text variant="regularBold">
                 {saveUncertain
-                  ? "Saving paused"
-                  : "Collection settings need attention"}
+                  ? "تم إيقاف الحفظ مؤقتًا"
+                  : "إعدادات المجموعة تحتاج إلى انتباهك"}
               </Text>
             </Flex>
             <Text>{error}</Text>
@@ -898,7 +898,7 @@ export const CollectionSettingsDialog = ({
                   gap={4}
                 >
                   <Flex gap={1} align="center">
-                    <Text variant="titles">Fields</Text>
+                    <Text variant="titles">الحقول</Text>
                     {fieldsError !== undefined && (
                       <Text role="alert" color="destructive">
                         {fieldsError}
@@ -906,12 +906,12 @@ export const CollectionSettingsDialog = ({
                     )}
                     <Tooltip
                       variant="wrapped"
-                      content="Define the information editors fill in for every entry."
+                      content="حدّد المعلومات التي يملؤها المحررون لكل مدخل."
                     >
                       <InfoCircleIcon
                         color={cssVar("--foreground-secondary")}
                         tabIndex={0}
-                        aria-label="About collection fields"
+                        aria-label="حول حقول المجموعة"
                       />
                     </Tooltip>
                   </Flex>
@@ -945,7 +945,7 @@ export const CollectionSettingsDialog = ({
                       ]);
                     }}
                   >
-                    Add field
+                    إضافة حقل
                   </Button>
                 </PanelContent>
                 <Grid
@@ -954,7 +954,7 @@ export const CollectionSettingsDialog = ({
                     gridTemplateColumns: "minmax(0, 1fr) minmax(0, 2fr)",
                   }}
                 >
-                  <List asChild aria-label="Collection fields">
+                  <List asChild aria-label="حقول المجموعة">
                     <InsetList css={{ overflow: "auto" }}>
                       {fields.map((field, index) => (
                         <ListItem
@@ -965,7 +965,7 @@ export const CollectionSettingsDialog = ({
                           onSelect={() => setSelectedFieldRowId(field.rowId)}
                         >
                           <InsetListItem
-                            aria-label={`Edit ${field.label || "New field"}`}
+                            aria-label={`تعديل ${field.label || "حقل جديد"}`}
                             css={{
                               minHeight: theme.spacing[15],
                             }}
@@ -988,7 +988,7 @@ export const CollectionSettingsDialog = ({
                                     : undefined
                                 }
                               >
-                                {field.label || "New field"}
+                                {field.label || "حقل جديد"}
                               </Text>
                               <Text variant="tiny" color="subtle" truncate>
                                 {getEditableType(field)}
@@ -1053,7 +1053,7 @@ export const CollectionSettingsDialog = ({
                                 <Label
                                   htmlFor={`collection-field-label-${field.rowId}`}
                                 >
-                                  Label
+                                  التسمية
                                 </Label>
                                 <InputField
                                   id={`collection-field-label-${field.rowId}`}
@@ -1067,7 +1067,7 @@ export const CollectionSettingsDialog = ({
                                     }
                                   }}
                                   aria-label={`${
-                                    field.label || "New field"
+                                    field.label || "حقل جديد"
                                   } label`}
                                   value={field.label}
                                   aria-invalid={
@@ -1106,16 +1106,16 @@ export const CollectionSettingsDialog = ({
                                   <Label
                                     htmlFor={`collection-field-key-${field.rowId}`}
                                   >
-                                    Field key
+                                    مفتاح الحقل
                                   </Label>
                                   <Tooltip
                                     variant="wrapped"
-                                    content="Stored in the entry’s frontmatter. Used to connect this field to your page."
+                                    content="يُخزَّن في frontmatter الخاص بالمدخل. يُستخدم لربط هذا الحقل بصفحتك."
                                   >
                                     <InfoCircleIcon
                                       color={cssVar("--foreground-secondary")}
                                       tabIndex={0}
-                                      aria-label="About field key"
+                                      aria-label="حول مفتاح الحقل"
                                     />
                                   </Tooltip>
                                 </Flex>
@@ -1123,7 +1123,7 @@ export const CollectionSettingsDialog = ({
                                 <InputField
                                   id={`collection-field-key-${field.rowId}`}
                                   aria-label={`${
-                                    field.label || "New field"
+                                    field.label || "حقل جديد"
                                   } key`}
                                   aria-invalid={
                                     keyError !== undefined || undefined
@@ -1168,12 +1168,12 @@ export const CollectionSettingsDialog = ({
                               <Label
                                 htmlFor={`collection-field-description-${field.rowId}`}
                               >
-                                Description
+                                الوصف
                               </Label>
                               <InputField
                                 id={`collection-field-description-${field.rowId}`}
-                                aria-label={`${field.label || "New field"} description`}
-                                placeholder="Help editors understand what to enter"
+                                aria-label={`وصف ${field.label || "حقل جديد"}`}
+                                placeholder="ساعد المحررين على فهم ما يجب إدخاله"
                                 value={field.description ?? ""}
                                 disabled={formDisabled}
                                 onChange={(event) =>
@@ -1186,20 +1186,20 @@ export const CollectionSettingsDialog = ({
                             </Grid>
                             <Grid gap={1}>
                               <Flex gap={1} align="center">
-                                <Label>Type</Label>
+                                <Label>النوع</Label>
                                 {protectedField && (
                                   <Tooltip
                                     variant="wrapped"
                                     content={
                                       requiredField
-                                        ? "The slug identifies each entry and is always required."
-                                        : "This text field is used to generate the entry slug."
+                                        ? "المعرّف (slug) يميّز كل مدخل وهو مطلوب دائمًا."
+                                        : "يُستخدم حقل النص هذا لتوليد معرّف المدخل."
                                     }
                                   >
                                     <InfoCircleIcon
                                       color={cssVar("--foreground-secondary")}
                                       tabIndex={0}
-                                      aria-label="About field type"
+                                      aria-label="حول نوع الحقل"
                                     />
                                   </Tooltip>
                                 )}
@@ -1257,20 +1257,20 @@ export const CollectionSettingsDialog = ({
                               }}
                             >
                               <Flex gap={1} align="center">
-                                <Label>Generate from</Label>
+                                <Label>توليد من</Label>
                                 <Tooltip
                                   variant="wrapped"
-                                  content="The slug becomes the MDX filename. It is generated from this field when editors create an entry."
+                                  content="يصبح المعرّف اسم ملف MDX. يتم توليده من هذا الحقل عند إنشاء المحررين لمدخل."
                                 >
                                   <InfoCircleIcon
                                     color={cssVar("--foreground-secondary")}
                                     tabIndex={0}
-                                    aria-label="About slug generation"
+                                    aria-label="حول توليد المعرّف"
                                   />
                                 </Tooltip>
                               </Flex>
                               <Select<{ key: string; label: string }>
-                                aria-label="Generate slug from"
+                                aria-label="توليد المعرّف من"
                                 options={[
                                   { key: "", label: "None (manual entry)" },
                                   ...fields.filter(
@@ -1298,7 +1298,7 @@ export const CollectionSettingsDialog = ({
                           )}
                           <Separator />
                           <PanelContent as={Grid} gap={3}>
-                            <Text variant="labels">Validation</Text>
+                            <Text variant="labels">التحقق</Text>
                             <CheckboxAndLabel>
                               <Checkbox
                                 id={`collection-field-required-${field.rowId}`}
@@ -1315,7 +1315,7 @@ export const CollectionSettingsDialog = ({
                               <Label
                                 htmlFor={`collection-field-required-${field.rowId}`}
                               >
-                                Required field
+                                حقل مطلوب
                               </Label>
                             </CheckboxAndLabel>
                             <Grid
@@ -1330,8 +1330,8 @@ export const CollectionSettingsDialog = ({
                                   <Grid gap={1}>
                                     <Label>
                                       {stringField
-                                        ? "Minimum length"
-                                        : "Minimum"}
+                                        ? "الطول الأدنى"
+                                        : "الحد الأدنى"}
                                     </Label>
                                     <Tooltip
                                       open={
@@ -1350,11 +1350,11 @@ export const CollectionSettingsDialog = ({
                                       <InputField
                                         aria-label={`${field.label} ${
                                           stringField
-                                            ? "minimum length"
+                                            ? "الطول الأدنى"
                                             : "minimum"
                                         }`}
                                         type="number"
-                                        placeholder="No minimum"
+                                        placeholder="بلا حد أدنى"
                                         min={stringField ? 0 : undefined}
                                         color={
                                           limitsIssue?.input ===
@@ -1398,8 +1398,8 @@ export const CollectionSettingsDialog = ({
                                   <Grid gap={1}>
                                     <Label>
                                       {stringField
-                                        ? "Maximum length"
-                                        : "Maximum"}
+                                        ? "الطول الأقصى"
+                                        : "الحد الأقصى"}
                                     </Label>
                                     <Tooltip
                                       open={
@@ -1418,11 +1418,11 @@ export const CollectionSettingsDialog = ({
                                       <InputField
                                         aria-label={`${field.label} ${
                                           stringField
-                                            ? "maximum length"
+                                            ? "الطول الأقصى"
                                             : "maximum"
                                         }`}
                                         type="number"
-                                        placeholder="No maximum"
+                                        placeholder="بلا حد أقصى"
                                         min={stringField ? 0 : undefined}
                                         color={
                                           limitsIssue?.input ===
@@ -1474,7 +1474,7 @@ export const CollectionSettingsDialog = ({
                                 <Button
                                   color="destructive"
                                   prefix={<TrashIcon />}
-                                  aria-label={`Remove ${field.label}`}
+                                  aria-label={`إزالة ${field.label}`}
                                   disabled={formDisabled}
                                   onClick={() => {
                                     setSelectedFieldRowId(
@@ -1488,7 +1488,7 @@ export const CollectionSettingsDialog = ({
                                     );
                                   }}
                                 >
-                                  Remove field
+                                  إزالة الحقل
                                 </Button>
                               </PanelContent>
                             </>
@@ -1510,7 +1510,7 @@ export const CollectionSettingsDialog = ({
                 }}
               >
                 <Flex gap={1} align="center">
-                  <Text variant="titles">Entry template</Text>
+                  <Text variant="titles">قالب المدخل</Text>
                   <Tooltip
                     variant="wrapped"
                     content="Every new entry starts as a copy of this template. Add headings, placeholder text, and default field values so editors have a consistent starting point. Changes to the template only affect future entries."
@@ -1518,17 +1518,17 @@ export const CollectionSettingsDialog = ({
                     <InfoCircleIcon
                       color={cssVar("--foreground-secondary")}
                       tabIndex={0}
-                      aria-label="About entry template"
+                      aria-label="حول قالب المدخل"
                     />
                   </Tooltip>
                 </Flex>
                 <Grid gap={1} css={{ maxWidth: 320 }}>
                   <Label htmlFor="collection-template-name">
-                    Template name
+                    اسم القالب
                   </Label>
                   <InputField
                     id="collection-template-name"
-                    aria-label="Entry template name"
+                    aria-label="اسم قالب المدخل"
                     value={templateName}
                     maxLength={assetResourceLimits.assetFilenameCharacters}
                     suffix={
@@ -1555,7 +1555,7 @@ export const CollectionSettingsDialog = ({
                       ...collection.templateAsset,
                       filename: templateName,
                     }}
-                    ariaLabel="Entry template Markdown"
+                    ariaLabel="Markdown لقالب المدخل"
                     defaultPreviewOpen={false}
                     value={template}
                     readOnly={formDisabled || templateReady === false}
@@ -1574,15 +1574,15 @@ export const CollectionSettingsDialog = ({
                 }}
               >
                 <Flex gap={1} align="center">
-                  <Text variant="titles">Entry page</Text>
+                  <Text variant="titles">صفحة المدخل</Text>
                   <Tooltip
                     variant="wrapped"
-                    content="Choose the dynamic page that displays entries from this collection. Editors can then open an entry on the canvas from its menu or settings. The page must have one URL parameter."
+                    content="اختر الصفحة الديناميكية التي تعرض المدخلات من هذه المجموعة. يمكن للمحررين بعدها فتح مدخل على اللوحة من قائمته أو إعداداته. يجب أن تحتوي الصفحة على معامل URL واحد."
                   >
                     <InfoCircleIcon
                       color={cssVar("--foreground-secondary")}
                       tabIndex={0}
-                      aria-label="About entry page"
+                      aria-label="حول صفحة المدخل"
                     />
                   </Tooltip>
                 </Flex>
@@ -1596,16 +1596,16 @@ export const CollectionSettingsDialog = ({
                         : () => setEntryPageId(undefined)
                     }
                   >
-                    Page
+                    الصفحة
                   </ResettableLabel>
                   <Select
                     id="collection-entry-page"
-                    aria-label="Entry page"
+                    aria-label="صفحة المدخل"
                     options={entryPageOptions}
                     value={entryPageOptions.find(
                       (option) => option.id === entryPageId
                     )}
-                    placeholder="No entry page"
+                    placeholder="بلا صفحة مدخل"
                     getValue={(option) => option.id}
                     getLabel={(option) => option.label}
                     disabled={formDisabled || pages === undefined}
@@ -1616,8 +1616,8 @@ export const CollectionSettingsDialog = ({
                       (option) => option.id === entryPageId
                     ) === false && (
                       <Text color="destructive" role="alert">
-                        The configured page no longer exists or has more than
-                        one URL parameter. Choose another page.
+                        الصفحة التي تم إعدادها لم تعد موجودة أو تحتوي على أكثر من
+                        معامل URL واحد. اختر صفحة أخرى.
                       </Text>
                     )}
                 </Grid>
@@ -1628,7 +1628,7 @@ export const CollectionSettingsDialog = ({
         {saving && (
           <PanelContent as={Flex}>
             <Text role="status" color="subtle" variant="tiny">
-              Saving…
+              جارٍ الحفظ…
             </Text>
           </PanelContent>
         )}
@@ -1645,15 +1645,15 @@ export const CollectionSettingsDialog = ({
       )}
       <Dialog open={confirmDiscard} onOpenChange={setConfirmDiscard}>
         <DialogContent aria-describedby={undefined} width={420}>
-          <DialogTitle>Discard changes?</DialogTitle>
+          <DialogTitle>تجاهل التغييرات?</DialogTitle>
           <PanelContent as={Grid} gap={3}>
             <Text>
-              Your unsaved collection settings and template changes will be
-              lost.
+              ستفقد إعدادات المجموعة وتغييرات القالب غير
+              المحفوظة.
             </Text>
             <Flex justify="end" gap={2}>
               <Button onClick={() => setConfirmDiscard(false)}>
-                Keep editing
+                مواصلة التعديل
               </Button>
               <Button
                 color="destructive"
@@ -1662,7 +1662,7 @@ export const CollectionSettingsDialog = ({
                   onOpenChange(false);
                 }}
               >
-                Discard changes
+                تجاهل التغييرات
               </Button>
             </Flex>
           </PanelContent>

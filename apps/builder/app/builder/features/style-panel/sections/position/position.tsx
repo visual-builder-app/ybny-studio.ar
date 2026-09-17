@@ -38,11 +38,11 @@ export const Section = () => {
     parentDisplayValue === "inline-grid";
 
   return (
-    <StyleSection label="Position" properties={properties}>
+    <StyleSection label="الموضع" properties={properties}>
       <Grid gap={2}>
         <Grid gap={2} css={{ gridTemplateColumns: `1fr ${theme.spacing[23]}` }}>
           <PropertyLabel
-            label="Position"
+            label="الموضع"
             description={propertyDescriptions.position}
             properties={["position"]}
           />
@@ -50,7 +50,7 @@ export const Section = () => {
           {showZindexControl && showInsetControl === false && (
             <>
               <PropertyLabel
-                label="Z index"
+                label="الفهرس Z"
                 description={propertyDescriptions.zIndex}
                 properties={["z-index"]}
               />
@@ -63,7 +63,7 @@ export const Section = () => {
             <InsetControl />
             <Grid gap={1}>
               <PropertyLabel
-                label="Z index"
+                label="الفهرس Z"
                 description={propertyDescriptions.zIndex}
                 properties={["z-index"]}
               />

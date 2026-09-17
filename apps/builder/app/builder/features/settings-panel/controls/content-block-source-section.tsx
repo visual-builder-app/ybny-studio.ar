@@ -99,7 +99,7 @@ export const ContentBlockSourceSection = ({
         (error) =>
           active &&
           setError(
-            error instanceof Error ? error.message : "Unable to load MDX"
+            error instanceof Error ? error.message : "تعذر تحميل MDX"
           )
       )
       .finally(() => active && setLoading(false));
@@ -153,7 +153,7 @@ export const ContentBlockSourceSection = ({
                 setError(
                   error instanceof Error
                     ? error.message
-                    : "Unable to disconnect source"
+                    : "تعذر فصل المصدر"
                 )
               )
               .finally(() => setDisconnecting(false));

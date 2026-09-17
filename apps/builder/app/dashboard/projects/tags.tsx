@@ -72,14 +72,14 @@ const DeleteConfirmationDialog = ({
                 onConfirm();
               }}
             >
-              Delete
+              حذف
             </Button>
           </DialogClose>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
-        <DialogTitle>Delete confirmation</DialogTitle>
+        <DialogTitle>تأكيد الحذف</DialogTitle>
       </DialogContent>
     </Dialog>
   );
@@ -160,7 +160,7 @@ const TagsList = ({
                       */}
                       <SmallIconButton
                         tabIndex={-1}
-                        aria-label="Open variable menu"
+                        aria-label="فتح قائمة الوسوم"
                         icon={<EllipsesIcon />}
                       />
                     </DropdownMenuTrigger>
@@ -174,14 +174,14 @@ const TagsList = ({
                           onEdit(tag.id);
                         }}
                       >
-                        Edit
+                        تعديل
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onSelect={() => {
                           setDeleteConfirmationTagId(tag.id);
                         }}
                       >
-                        Delete
+                        حذف
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -189,11 +189,11 @@ const TagsList = ({
               </ListItem>
             ))}
           {projectsTags.length === 0 && (
-            <Text align="center">No tags found</Text>
+            <Text align="center">لم يتم العثور على وسوم</Text>
           )}
           {deleteConfirmationTagId && (
             <DeleteConfirmationDialog
-              question="Are you sure you want to delete this tag? It will be removed from all projects."
+              question="هل أنت متأكد من حذف هذا الوسم؟ ستتم إزالته من جميع المشاريع."
               onClose={() => setDeleteConfirmationTagId(undefined)}
               onConfirm={async () => {
                 setDeleteConfirmationTagId(undefined);
@@ -258,13 +258,13 @@ const TagEdit = ({
           autoFocus
           defaultValue={tag.label}
           name="tag"
-          placeholder="My tag"
+          placeholder="وسمي"
           minLength={1}
         />
       </PanelContent>
       <DialogActions>
         <Button color="primary" type="submit">
-          {isExisting ? "Update tag" : "Create tag"}
+          {isExisting ? "تحديث الوسم" : "إنشاء وسم"}
         </Button>
         <Button
           color="ghost"
@@ -273,7 +273,7 @@ const TagEdit = ({
             onComplete();
           }}
         >
-          Cancel
+          إلغاء
         </Button>
       </DialogActions>
     </form>
@@ -308,7 +308,7 @@ export const TagsDialog = ({
             </DialogTitleActions>
           }
         >
-          Project tags
+          وسوم المشروع
         </DialogTitle>
         {!editingTag && (
           <>
@@ -327,7 +327,7 @@ export const TagsDialog = ({
                   setEditingTag({ id: createId("nano"), label: "" })
                 }
               >
-                Create tag
+                إنشاء وسم
               </Button>
             </DialogActions>
           </>

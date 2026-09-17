@@ -21,7 +21,7 @@ export const replaceAsset = async (
 ): Promise<void> => {
   const oldAsset = $assets.get().get(oldAssetId);
   if (!oldAsset) {
-    toast.error("Original asset not found");
+    toast.error("الوسيط الأصلي غير موجود");
     return;
   }
 
@@ -34,7 +34,7 @@ export const replaceAsset = async (
     return;
   }
   if (newAsset === undefined) {
-    toast.error("Failed to upload replacement asset");
+    toast.error("فشل رفع الوسيط البديل");
     return;
   }
   const newAssetId = newAsset.id;
@@ -45,7 +45,7 @@ export const replaceAsset = async (
       input: { fromAssetId: oldAssetId, toAssetId: newAssetId },
     });
     if (result === undefined) {
-      throw new Error("Asset replacement is not permitted");
+      throw new Error("استبدال الوسائط غير مسموح");
     }
   } catch (error) {
     executeRuntimeMutation({
@@ -53,7 +53,7 @@ export const replaceAsset = async (
       input: { assetIdsOrPrefixes: [newAssetId], force: true },
     });
     toast.error(
-      error instanceof Error ? error.message : "Failed to replace asset"
+      error instanceof Error ? error.message : "فشل استبدال الوسيط"
     );
     return;
   }
@@ -62,5 +62,5 @@ export const replaceAsset = async (
     invalidateAssets();
   });
 
-  toast.success("Asset replaced successfully");
+  toast.success("تم استبدال الوسيط بنجاح");
 };

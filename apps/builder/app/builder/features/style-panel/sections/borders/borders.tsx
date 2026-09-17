@@ -26,7 +26,7 @@ export const properties = [
 
 export const Section = () => {
   return (
-    <StyleSection label="Borders" properties={properties}>
+    <StyleSection label="الحدود" properties={properties}>
       <BorderStyle />
       <BorderColor />
       <BorderWidth />

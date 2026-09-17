@@ -107,7 +107,7 @@ export const wrapInstance = (component: string, tag?: string) => {
     }
   } catch (error) {
     toast.error(
-      error instanceof Error ? error.message : "Cannot wrap instance"
+      error instanceof Error ? error.message : "تعذّر تغليف النسخة"
     );
   }
 };
@@ -132,7 +132,7 @@ export const convertInstance = (component: string, tag?: string) => {
     });
   } catch (error) {
     toast.error(
-      error instanceof Error ? error.message : "Cannot convert instance"
+      error instanceof Error ? error.message : "تعذّر تحويل النسخة"
     );
   }
 };
@@ -155,7 +155,7 @@ export const unwrapInstance = () => {
     }
   } catch (error) {
     toast.error(
-      error instanceof Error ? error.message : "Cannot unwrap instance"
+      error instanceof Error ? error.message : "تعذّر إزالة تغليف النسخة"
     );
   }
 };
@@ -178,7 +178,7 @@ export const deleteSelectedInstance = () => {
   const instances = $instances.get();
   if (!isComponentDetachable(selectedItem.instance.component)) {
     toast.error(
-      "This instance can not be moved outside of its parent component."
+      "لا يمكن نقل هذه النسخة خارج مكوّنها الأصل."
     );
     return false;
   }
@@ -190,7 +190,7 @@ export const deleteSelectedInstance = () => {
         instances,
       }) === false
     ) {
-      builderApi.toast.info("You can't delete this instance in content mode.");
+      builderApi.toast.info("لا يمكنك حذف هذه النسخة في وضع المحتوى.");
       return;
     }
   }

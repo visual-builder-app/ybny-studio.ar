@@ -156,7 +156,7 @@ const PrePublishAuditMessage = ({
           $publishDialog.set("none");
         }}
       >
-        Show element
+        إظهار العنصر
       </Link>
     </>
   );
@@ -256,7 +256,7 @@ const ChangeProjectDomain = ({
     project.latestBuildVirtual != null
       ? getPublishStatusAndText(project.latestBuildVirtual)
       : {
-          statusText: "Not published",
+          statusText: "غير منشور",
           status: "PENDING" as const,
         };
 
@@ -301,7 +301,7 @@ const ChangeProjectDomain = ({
 
           <CopyToClipboard
             text={pageUrl.toString()}
-            copyText={`Copy link: ${pageUrl.toString()}`}
+            copyText={`نسخ الرابط: ${pageUrl.toString()}`}
           >
             <IconButton type="button" tabIndex={-1}>
               <CopyIcon />
@@ -313,9 +313,9 @@ const ChangeProjectDomain = ({
       <Grid gap={2}>
         <Grid flow="column" align="center" gap={2}>
           <Flex align="center" gap={1} css={{ width: theme.spacing[20] }}>
-            <Label htmlFor={id}>Domain:</Label>
+            <Label htmlFor={id}>النطاق:</Label>
             <Tooltip
-              content="Domain can't be renamed once published. Unpublish to enable renaming."
+              content="لا يمكن تغيير اسم النطاق بعد النشر. ألغِ النشر لتمكين إعادة التسمية."
               variant="wrapped"
             >
               <InfoCircleIcon
@@ -328,7 +328,7 @@ const ChangeProjectDomain = ({
           <InputField
             text="mono"
             id={id}
-            placeholder="Domain"
+            placeholder="النطاق"
             value={domain}
             disabled={isUpdateInProgress || isPublished}
             onChange={(event) => {
@@ -358,7 +358,7 @@ const ChangeProjectDomain = ({
               htmlFor={`${id}-username`}
               css={{ width: theme.spacing[20] }}
             >
-              Username:
+              اسم المستخدم:
             </Label>
             <InputField
               text="mono"
@@ -372,9 +372,9 @@ const ChangeProjectDomain = ({
         {stagingPassword && (
           <Grid flow="column" align="center" gap={2}>
             <Flex align="center" gap={1} css={{ width: theme.spacing[20] }}>
-              <Label htmlFor={`${id}-password`}>Password:</Label>
+              <Label htmlFor={`${id}-password`}>كلمة المرور:</Label>
               <Tooltip
-                content="This password is read-only and cannot be changed. It is the same for every user. This prevents phishing attacks."
+                content="كلمة المرور هذه للقراءة فقط ولا يمكن تغييرها. وهي نفسها لكل مستخدم. وهذا يمنع هجمات التصيد."
                 variant="wrapped"
               >
                 <InfoCircleIcon
@@ -394,14 +394,14 @@ const ChangeProjectDomain = ({
           </Grid>
         )}
         {isPublished && (
-          <Tooltip content="Unpublish to enable domain renaming">
+          <Tooltip content="ألغِ النشر لتمكين إعادة تسمية النطاق">
             <Button
               formAction={handleUnpublish}
               color="destructive"
               state={isUnpublishing ? "pending" : undefined}
               css={{ width: "100%" }}
             >
-              Unpublish
+              إلغاء النشر
             </Button>
           </Tooltip>
         )}
@@ -547,13 +547,13 @@ const Publish = ({
                 </Text>
               }
             >
-              <span>Build data</span>
+              <span>بيانات البناء</span>
             </Tooltip>{" "}
-            for publishing has been successfully created. Use{" "}
+            الخاصة بالنشر تم إنشاؤها بنجاح. استخدم{" "}
             <Link href="https://docs.webstudio.is/university/self-hosting/cli">
               Webstudio&nbsp;CLI
             </Link>{" "}
-            to generate the code.
+            لتوليد الشيفرة.
           </>
         );
       }
@@ -589,18 +589,18 @@ const Publish = ({
         project.latestBuildVirtual != null
           ? getPublishStatusAndText(project.latestBuildVirtual)
           : {
-              statusText: "Not published",
+              statusText: "غير منشور",
               status: "PENDING" as const,
             };
 
       if (status === "PUBLISHED") {
         toast.success(
           <>
-            The project has been successfully published.{" "}
+            تم نشر المشروع بنجاح.{" "}
             {timesLeft > 0 && timesLeft <= 10 && (
               <div>
-                You have {timesLeft} out of {maxDailyPublishesPerUser} daily
-                publications remaining. The counter resets tomorrow.
+                تبقى لديك {timesLeft} من {maxDailyPublishesPerUser} عمليات نشر
+                يومية. يُعاد ضبط العداد غدًا.
               </div>
             )}
           </>,
@@ -632,7 +632,7 @@ const Publish = ({
       .map((domainEntry) => domainEntry.toString());
 
     if (domains.length === 0) {
-      toast.error("Please select at least one domain to publish");
+      toast.error("يرجى تحديد نطاق واحد على الأقل للنشر");
       return;
     }
 
@@ -688,10 +688,10 @@ const Publish = ({
       <Tooltip
         content={
           isPublishInProgress
-            ? "Publish process in progress"
+            ? "عملية النشر قيد التنفيذ"
             : hasSelectedDomains
               ? undefined
-              : "Select at least one domain to publish"
+              : "حدد نطاقًا واحدًا على الأقل للنشر"
         }
       >
         <Button
@@ -713,8 +713,8 @@ const Publish = ({
           }
         >
           {countdown !== undefined && countdown > 0
-            ? `Publishing (${countdown}s)`
-            : "Publish"}
+            ? `جارٍ النشر (${countdown} ثانية)`
+            : "نشر"}
         </Button>
       </Tooltip>
     </Flex>
@@ -739,10 +739,10 @@ const getStaticPublishStatusAndText = ({
 
   const textStart =
     status === "PUBLISHED"
-      ? "Downloaded"
+      ? "تم التنزيل"
       : status === "FAILED"
-        ? "Download failed"
-        : "Download started";
+        ? "فشل التنزيل"
+        : "بدأ التنزيل";
 
   const statusText = (
     <>
@@ -771,7 +771,7 @@ const PublishStatic = ({
 
   const { status, statusText } =
     project.latestStaticBuild == null
-      ? { status: "LOADED" as const, statusText: "Not published" }
+      ? { status: "LOADED" as const, statusText: "غير منشور" }
       : getStaticPublishStatusAndText(project.latestStaticBuild);
 
   const [isPending, setIsPendingOptimistic] = useOptimistic(false);
@@ -789,7 +789,7 @@ const PublishStatic = ({
       {status === "FAILED" && <Text color="destructive">{statusText}</Text>}
 
       <Tooltip
-        content={isPublishInProgress ? "Preparing static site" : undefined}
+        content={isPublishInProgress ? "جارٍ تحضير الموقع الثابت" : undefined}
       >
         <Button
           type="button"
@@ -866,7 +866,7 @@ const PublishStatic = ({
                 const latestStaticBuild = $project.get()?.latestStaticBuild;
 
                 if (latestStaticBuild == null) {
-                  throw new Error("Static build not found");
+                  throw new Error("لم يتم العثور على البناء الثابت");
                 }
 
                 const { status, statusText } =
@@ -882,13 +882,13 @@ const PublishStatic = ({
                 }
               } catch (error) {
                 toast.error(
-                  error instanceof Error ? error.message : "Unknown error"
+                  error instanceof Error ? error.message : "خطأ غير معروف"
                 );
               }
             });
           }}
         >
-          Build and download static site
+          بناء وتنزيل الموقع الثابت
         </Button>
       </Tooltip>
     </Flex>
@@ -960,14 +960,14 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
     return (
       <PanelBanner>
         <Text variant="regularBold">
-          Upgrade to publish more than {maxDailyPublishesPerUser} times per day:
+          قم بالترقية للنشر أكثر من {maxDailyPublishesPerUser} مرة في اليوم:
         </Text>
         <LinkButton
           color="primary"
           href="https://webstudio.is/pricing"
           target="_blank"
         >
-          Upgrade
+          ترقية
         </LinkButton>
       </PanelBanner>
     );
@@ -980,11 +980,11 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
       <PanelBanner>
         <img
           src={cmsUpgradeBanner}
-          alt="Upgrade for CMS"
+          alt="الترقية لأجل CMS"
           width={rawTheme.spacing[28]}
           style={{ aspectRatio: "4.1" }}
         />
-        <Text variant="regularBold">Following Pro features are used:</Text>
+        <Text variant="regularBold">تُستخدم الميزات الاحترافية التالية:</Text>
         <Text as="ul" color="destructive" css={{ paddingLeft: "1em" }}>
           {Array.from(restrictedFeatures).map(
             ([message, { navigate, view, info } = {}], index) => (
@@ -1019,7 +1019,7 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
           )}
         </Text>
         <Text>
-          You can delete these features or upgrade to publish to custom domains.
+          يمكنك حذف هذه الميزات أو الترقية للنشر على نطاقات مخصصة.
         </Text>
         <Flex align="center" gap={1}>
           <UpgradeIcon />
@@ -1028,7 +1028,7 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
             target="_blank"
             href="https://webstudio.is/pricing"
           >
-            Upgrade to Pro
+            الترقية إلى Pro
           </Link>
         </Flex>
       </PanelBanner>
@@ -1039,9 +1039,9 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
       <PanelBanner>
         <Text variant="regular">
           <Text variant="regularBold" inline>
-            Upgrade to a Pro account
+            قم بالترقية إلى حساب Pro
           </Text>{" "}
-          to add unlimited domains and publish to each domain individually.
+          لإضافة نطاقات غير محدودة والنشر على كل نطاق بشكل منفصل.
         </Text>
         <Flex align="center" gap={1}>
           <UpgradeIcon />
@@ -1050,7 +1050,7 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
             target="_blank"
             href="https://webstudio.is/pricing"
           >
-            Upgrade to Pro
+            الترقية إلى Pro
           </Link>
         </Flex>
       </PanelBanner>
@@ -1123,11 +1123,11 @@ const Content = (props: {
           <PanelBanner>
             <Flex align="center" gap="1">
               <InfoCircleIcon color={cssVar("--foreground-primary")} />
-              <Text variant="regularBold">Don't forget to publish</Text>
+              <Text variant="regularBold">لا تنسَ النشر</Text>
             </Flex>
             <Text>
-              You have a custom domain that hasn't been published yet. Hit
-              publish to make it live.
+              لديك نطاق مخصص لم يتم نشره بعد. اضغط
+              نشر لجعله مباشرًا.
             </Text>
           </PanelBanner>
         )}
@@ -1191,7 +1191,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
         <div />
         <Grid columns={2} gap={2} align={"center"}>
           <Text color="main" variant="labels">
-            Destination
+            الوجهة
           </Text>
 
           <Select
@@ -1216,7 +1216,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
           />
           <div />
           <Text color="subtle">
-            Learn about deploying static sites{" "}
+            تعرف على نشر المواقع الثابتة{" "}
             <Link
               variant="inherit"
               color="inherit"
@@ -1224,7 +1224,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
               target="_blank"
               rel="noreferrer"
             >
-              here
+              هنا
             </Link>
           </Text>
         </Grid>
@@ -1245,10 +1245,10 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
           </Grid>
           <Grid columns={1} gap={1}>
             <Text color="main" variant="labels">
-              Step 1
+              الخطوة 1
             </Text>
             <Text color="subtle">
-              Download and install Node v20+ from{" "}
+              قم بتنزيل Node v20+ وتثبيته من{" "}
               <Link
                 variant="inherit"
                 color="inherit"
@@ -1258,7 +1258,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
               >
                 nodejs.org
               </Link>{" "}
-              or with{" "}
+              أو باستخدام{" "}
               <Link
                 variant="inherit"
                 color="inherit"
@@ -1266,7 +1266,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                a package manager
+                مدير حزم
               </Link>
               .
             </Text>
@@ -1275,11 +1275,11 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
           <Grid columns={1} gap={2}>
             <Grid columns={1} gap={1}>
               <Text color="main" variant="labels">
-                Step 2
+                الخطوة 2
               </Text>
               <Text color="subtle">
-                Run this command in your Terminal to install Webstudio CLI and
-                sync your project.
+                شغّل هذا الأمر في الطرفية لتثبيت Webstudio CLI
+                ومزامنة مشروعك.
               </Text>
             </Grid>
             <Flex gap={2}>
@@ -1291,7 +1291,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
               />
               <CopyToClipboard text={npxCommand}>
                 <Button type="button" prefix={<CopyIcon />}>
-                  Copy
+                  نسخ
                 </Button>
               </CopyToClipboard>
             </Flex>
@@ -1300,10 +1300,10 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
           <Grid columns={1} gap={2}>
             <Grid columns={1} gap={1}>
               <Text color="main" variant="labels">
-                Step 3
+                الخطوة 3
               </Text>
               <Text color="subtle">
-                Run this command to publish to{" "}
+                شغّل هذا الأمر للنشر على{" "}
                 <Link
                   variant="inherit"
                   color="inherit"
@@ -1330,7 +1330,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
                   css={{ flexShrink: 0 }}
                   prefix={<CopyIcon />}
                 >
-                  Copy
+                  نسخ
                 </Button>
               </CopyToClipboard>
             </Flex>
@@ -1338,7 +1338,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
 
           <Grid columns={1} gap={1}>
             <Text color="subtle">
-              Read the detailed documentation{" "}
+              اقرأ التوثيق المفصّل{" "}
               <Link
                 variant="inherit"
                 color="inherit"
@@ -1346,7 +1346,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                here
+                هنا
               </Link>
             </Text>
           </Grid>
@@ -1369,7 +1369,7 @@ export const PublishButton = ({ projectId }: PublishProps) => {
 
   const tooltipContent = isPublishEnabled
     ? undefined
-    : "Only the owner, an admin, or content editors with publish permissions can publish projects";
+    : "يمكن للمالك أو المدير أو محرري المحتوى ذوي صلاحيات النشر فقط نشر المشاريع";
 
   const handleExportClick = () => {
     $publishDialog.set("export");
@@ -1387,12 +1387,12 @@ export const PublishButton = ({ projectId }: PublishProps) => {
     >
       <Tooltip
         side="bottom"
-        content={tooltipContent ?? "Publish to Webstudio Cloud"}
+        content={tooltipContent ?? "النشر على Webstudio Cloud"}
         sideOffset={Number.parseFloat(rawTheme.spacing[5])}
       >
         <PopoverTrigger asChild>
           <Button type="button" disabled={isPublishEnabled === false}>
-            Publish
+            نشر
           </Button>
         </PopoverTrigger>
       </Tooltip>
@@ -1406,7 +1406,7 @@ export const PublishButton = ({ projectId }: PublishProps) => {
       >
         {publishDialog === "export" && (
           <>
-            <PopoverTitle>Export</PopoverTitle>
+            <PopoverTitle>تصدير</PopoverTitle>
             <ExportContent projectId={projectId} />
           </>
         )}
@@ -1428,7 +1428,7 @@ export const PublishButton = ({ projectId }: PublishProps) => {
                 </PopoverTitleActions>
               }
             >
-              Publish
+              نشر
             </PopoverTitle>
             <Content projectId={projectId} onExportClick={handleExportClick} />
           </>

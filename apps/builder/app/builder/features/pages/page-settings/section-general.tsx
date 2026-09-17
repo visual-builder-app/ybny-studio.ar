@@ -48,23 +48,23 @@ const PathField = ({
   return (
     <Grid gap={1}>
       <Flex align="center" gap={1}>
-        <Label htmlFor={id}>Path</Label>
+        <Label htmlFor={id}>المسار</Label>
         {allowDynamicData === false && <ProChip>PRO</ProChip>}
         <Tooltip
           content={
             <>
               <Text>
-                The path can include dynamic parameters like :name, which could
-                be made optional using :name?, or have a wildcard such as /* or
-                /:name* to store whole remaining part at the end of the URL.
+                يمكن أن يتضمن المسار معاملات ديناميكية مثل :name، ويمكن
+                جعلها اختيارية باستخدام :name?، أو استخدام رمز شامل مثل /* أو
+                /:name* لتخزين الجزء المتبقي كاملاً في نهاية الرابط.
               </Text>
               {allowDynamicData === false && (
                 <>
                   <br />
                   <Text>
-                    To make the path dynamic and use it with CMS, you can use
-                    parameters and other features. You can publish to staging
-                    for free; upgrade to Pro to publish to custom domains.
+                    لجعل المسار ديناميكيًا واستخدامه مع نظام إدارة المحتوى، يمكنك استخدام
+                    المعلمات والميزات الأخرى. يمكنك النشر على بيئة التجربة
+                    مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
                   </Text>
                   <LinkButton
                     color="primary"
@@ -72,7 +72,7 @@ const PathField = ({
                     target="_blank"
                     href="https://webstudio.is/pricing"
                   >
-                    Upgrade
+                    ترقية
                   </LinkButton>
                 </>
               )}
@@ -125,20 +125,20 @@ const StatusField = ({
   return (
     <Grid gap={1}>
       <Flex align="center" gap={1}>
-        <Label htmlFor={id}>Status code </Label>
+        <Label htmlFor={id}>رمز الحالة </Label>
         <Tooltip
           content={
             <Text>
-              Status code value can be a{" "}
+              يمكن أن تكون قيمة رمز الحالة رقم{" "}
               <Link
                 color="inherit"
                 target="_blank"
                 href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status"
               >
-                HTTP Status
+                حالة HTTP
               </Link>{" "}
-              number or an expression that returns the status code dynamic
-              response handling.
+              أو تعبيرًا يُرجع رمز الحالة للتعامل الديناميكي مع
+              الاستجابة.
             </Text>
           }
           variant="wrapped"
@@ -203,22 +203,22 @@ const RedirectField = ({
   return (
     <Grid gap={1}>
       <Flex align="center" gap={1}>
-        <Label htmlFor={id}>Redirect </Label>
+        <Label htmlFor={id}>إعادة التوجيه </Label>
         {allowDynamicData === false && <ProChip>PRO</ProChip>}
         <Tooltip
           content={
             <>
               <Text>
-                Redirect value can be a path or an expression that returns a
-                path for dynamic response handling.
+                يمكن أن تكون قيمة إعادة التوجيه مسارًا أو تعبيرًا يُرجع
+                مسارًا للتعامل الديناميكي مع الاستجابة.
               </Text>
               {allowDynamicData === false && (
                 <>
                   <br />
                   <Text>
-                    Redirects are a Pro publishing feature. You can publish to
-                    staging for free; upgrade to Pro to publish to custom
-                    domains.
+                    إعادة التوجيه ميزة نشر احترافية. يمكنك النشر على
+                    بيئة التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات
+                    مخصصة.
                   </Text>
                   <LinkButton
                     color="primary"
@@ -226,7 +226,7 @@ const RedirectField = ({
                     target="_blank"
                     href="https://webstudio.is/pricing"
                   >
-                    Upgrade
+                    ترقية
                   </LinkButton>
                 </>
               )}
@@ -274,7 +274,7 @@ export const GeneralSection = ({
   values,
   pages,
   isEditorContext = false,
-  nameLabel = "Page name",
+  nameLabel = "اسم الصفحة",
   canEditName = true,
   canEditPath = true,
   showHomePageControl = true,
@@ -317,7 +317,7 @@ export const GeneralSection = ({
             autoFocus={autoSelect}
             onFocus={autoSelect ? autoSelectHandler : undefined}
             name="name"
-            placeholder="About"
+            placeholder="حول"
             disabled={canEditName === false}
             value={values.name}
             onChange={(event) => {
@@ -338,14 +338,14 @@ export const GeneralSection = ({
                     my: 2,
                   }}
                 >
-                  “{values.name}” is the home page
+                  «{values.name}» هي الصفحة الرئيسية
                 </Text>
               </>
             ) : canSetHomePage === false ? (
               <>
                 <HomeIcon color={cssVar("--foreground-secondary")} />
                 <Text color="subtle">
-                  Stage this page for publish before setting it as the home page
+                  جهّز هذه الصفحة للنشر قبل تعيينها كصفحة رئيسية
                 </Text>
               </>
             ) : values.parentFolderId !== pages.rootFolderId ? (
@@ -359,8 +359,8 @@ export const GeneralSection = ({
                   }}
                   color="subtle"
                 >
-                  Move this page to the “Root” folder to set it as your home
-                  page
+                  انقل هذه الصفحة إلى مجلد «الجذر» لتعيينها كصفحتك
+                  الرئيسية
                 </Text>
               </>
             ) : values.documentType !== "html" ? (
@@ -374,8 +374,8 @@ export const GeneralSection = ({
                   }}
                   color="subtle"
                 >
-                  {values.documentType.toUpperCase()} pages cannot be set as the
-                  home page
+                  لا يمكن تعيين صفحات {values.documentType.toUpperCase()} كصفحة
+                  رئيسية
                 </Text>
               </>
             ) : isEditorContext ? null : (
@@ -397,7 +397,7 @@ export const GeneralSection = ({
                   }}
                   htmlFor={isHomePageId}
                 >
-                  Make “{values.name}” the home page
+                  اجعل «{values.name}» الصفحة الرئيسية
                 </Label>
               </>
             )}
@@ -435,7 +435,7 @@ export const GeneralSection = ({
 
       {showDocumentTypeField && (
         <Grid gap={1}>
-          <Label htmlFor={documentTypeId}>Document type</Label>
+          <Label htmlFor={documentTypeId}>نوع المستند</Label>
           <Select
             options={documentTypes}
             getValue={(docType: (typeof documentTypes)[number]) => docType}

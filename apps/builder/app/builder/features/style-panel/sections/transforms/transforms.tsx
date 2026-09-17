@@ -69,10 +69,10 @@ import { RotatePanelContent } from "./transform-rotate";
 import { SkewPanelContent } from "./transform-skew";
 import { TransformAndPerspectiveOrigin } from "./transform-and-perspective-origin";
 
-const label = "Transforms";
+const label = "التحويلات";
 
 const transformUnavailableTooltip =
-  "Transforms don't work on display: inline. Change display to inline-block or block.";
+  "لا تعمل التحويلات مع display: inline. غيّر العرض (display) إلى inline-block أو block.";
 
 const $selectedInstanceTag = computed(
   [$selectedInstance, $instanceTags],
@@ -122,7 +122,7 @@ const TransformAdvancedButton = forwardRef<
   const styles = useComputedStyles(advancedProperties);
   const styleValueSourceColor = getPriorityStyleValueSource(styles);
   return (
-    <Tooltip content="Advanced transform options">
+    <Tooltip content="خيارات تحويل متقدمة">
       <IconButton
         {...props}
         ref={ref}
@@ -154,13 +154,13 @@ const TransformAdvancedPopover = ({
   const readonly = useReadonly();
   return (
     <FloatingPanel
-      title="Advanced transform"
+      title="تحويل متقدم"
       placement="bottom-within"
       content={
         <PanelContent as={Grid} gap="2">
           <Grid css={{ gridTemplateColumns: `2fr 1fr` }}>
             <PropertyLabel
-              label="Backface visibility"
+              label="ظهور الوجه الخلفي"
               description={propertyDescriptions.backfaceVisibility}
               properties={["backface-visibility"]}
             />
@@ -172,7 +172,7 @@ const TransformAdvancedPopover = ({
           />
           <Grid css={{ gridTemplateColumns: `2fr 1fr` }}>
             <PropertyLabel
-              label="Perspective"
+              label="المنظور"
               description={propertyDescriptions.perspective}
               properties={["perspective"]}
             />

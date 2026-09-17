@@ -26,9 +26,9 @@ export const ConfirmationDialog = ({
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onAbort()}>
       <DialogContent>
-        <DialogTitle>Delete breakpoint</DialogTitle>
+        <DialogTitle>حذف نقطة التوقف</DialogTitle>
         <Flex gap="2" direction="column" css={{ padding: theme.spacing[5] }}>
-          <Text>{`Are you sure you want to delete "${breakpoint.label}"?`}</Text>
+          <Text>{`هل أنت متأكد من حذف "${breakpoint.label}"؟`}</Text>
           <Text>
             {`Deleting a breakpoint will also delete all styles associated with this
         breakpoint.`}
@@ -36,9 +36,9 @@ export const ConfirmationDialog = ({
         </Flex>
         <DialogActions>
           <Button autoFocus onClick={onConfirm} color="destructive">
-            Delete
+            حذف
           </Button>
-          <Button onClick={onAbort}>Cancel</Button>
+          <Button onClick={onAbort}>إلغاء</Button>
         </DialogActions>
       </DialogContent>
     </Dialog>

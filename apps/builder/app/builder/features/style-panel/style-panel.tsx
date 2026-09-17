@@ -78,7 +78,7 @@ export const ModeMenu = () => {
             icon={<MenuCheckedIcon />}
             onFocus={() => setFocusedValue("default")}
           >
-            Default
+            افتراضي
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem
             value="focus"
@@ -86,7 +86,7 @@ export const ModeMenu = () => {
             onFocus={() => setFocusedValue("focus")}
           >
             <Flex justify="between" grow>
-              <Text variant="labels">Focus mode</Text>
+              <Text variant="labels">وضع التركيز</Text>
               <Kbd value={["alt", "shift", "s"]} />
             </Flex>
           </DropdownMenuRadioItem>
@@ -96,7 +96,7 @@ export const ModeMenu = () => {
             onFocus={() => setFocusedValue("advanced")}
           >
             <Flex justify="between" grow>
-              <Text variant="labels">Advanced mode</Text>
+              <Text variant="labels">الوضع المتقدم</Text>
               <Kbd value={["alt", "shift", "a"]} />
             </Flex>
           </DropdownMenuRadioItem>
@@ -105,16 +105,16 @@ export const ModeMenu = () => {
 
         {focusedValue === "default" && (
           <DropdownMenuItem hint>
-            All sections are open by default.
+            جميع الأقسام مفتوحة بشكل افتراضي.
           </DropdownMenuItem>
         )}
         {focusedValue === "focus" && (
           <DropdownMenuItem hint>
-            Only one section is open at a time.
+            يُفتح قسم واحد فقط في كل مرة.
           </DropdownMenuItem>
         )}
         {focusedValue === "advanced" && (
-          <DropdownMenuItem hint>Advanced section only.</DropdownMenuItem>
+          <DropdownMenuItem hint>القسم المتقدم فقط.</DropdownMenuItem>
         )}
       </DropdownMenuContent>
     </DropdownMenu>
@@ -137,7 +137,7 @@ export const StylePanel = () => {
     return (
       <Box css={{ p: theme.spacing[5] }}>
         <Card css={{ p: theme.spacing[9], width: "100%" }}>
-          <Text>Select an instance on the canvas</Text>
+          <Text>حدد نسخة على لوحة الرسم</Text>
         </Card>
       </Box>
     );
@@ -174,7 +174,7 @@ export const StylePanel = () => {
     <ReadonlyProvider value={readonly}>
       <PanelContent as={Box}>
         <Text variant="titles" css={{ paddingBlock: theme.panel.paddingBlock }}>
-          Style sources
+          مصادر الأنماط
         </Text>
         <StyleSourcesSection />
       </PanelContent>
@@ -182,7 +182,7 @@ export const StylePanel = () => {
       <ScrollArea>
         <CollapsibleProvider
           accordion={stylePanelMode === "focus"}
-          initialOpen={stylePanelMode === "focus" ? "Layout" : "*"}
+          initialOpen={stylePanelMode === "focus" ? "التخطيط" : "*"}
         >
           {all}
         </CollapsibleProvider>

@@ -120,7 +120,7 @@ export const ProjectsListItem = ({
                     color="subtle"
                     underline="hover"
                     tabIndex={-1}
-                    aria-label={`Visit ${title} website at ${displayDomain}`}
+                    aria-label={`زيارة موقع ${title} على ${displayDomain}`}
                     css={{ zIndex: 1 }}
                   >
                     {displayDomain}
@@ -141,7 +141,7 @@ export const ProjectsListItem = ({
               <Text color="subtle">
                 {isPublished && latestBuildVirtual
                   ? formatDate(latestBuildVirtual.createdAt)
-                  : "Not published"}
+                  : "غير منشور"}
               </Text>
             </div>
 
@@ -179,10 +179,10 @@ type ProjectsListProps = {
 };
 
 const columns: Array<{ field: SortField; label: string } | null> = [
-  { field: "title", label: "Name" },
-  { field: "updatedAt", label: "Last modified" },
-  { field: "publishedAt", label: "Last published" },
-  { field: "createdAt", label: "Date created" },
+  { field: "title", label: "الاسم" },
+  { field: "updatedAt", label: "آخر تعديل" },
+  { field: "publishedAt", label: "آخر نشر" },
+  { field: "createdAt", label: "تاريخ الإنشاء" },
   null, // Actions column (no sorting)
 ];
 
@@ -195,7 +195,7 @@ export const ProjectsList = ({
   onSortChange,
 }: ProjectsListProps) => {
   return (
-    <div className={tableStyles()} role="table" aria-label="Projects list">
+    <div className={tableStyles()} role="table" aria-label="قائمة المشاريع">
       <List asChild>
         <div role="rowgroup">
           <ListItem index={0} asChild>
@@ -213,12 +213,12 @@ export const ProjectsList = ({
                       <IconButton
                         onClick={() => onSortChange(column.field)}
                         css={{ opacity: sortBy === column.field ? 1 : 0.5 }}
-                        aria-label={`Sort by ${column.label}${
+                        aria-label={`ترتيب حسب ${column.label}${
                           sortBy === column.field
                             ? sortOrder === "asc"
-                              ? ", sorted ascending"
-                              : ", sorted descending"
-                            : ", not sorted"
+                              ? "، مرتب تصاعديًا"
+                              : "، مرتب تنازليًا"
+                            : "، غير مرتب"
                         }`}
                         aria-describedby={`sort-${column.field}-label`}
                         tabIndex={-1}

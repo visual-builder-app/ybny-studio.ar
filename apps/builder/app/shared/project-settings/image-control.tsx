@@ -10,7 +10,7 @@ export const ImageControl = (props: {
 }) => {
   return (
     <FloatingPanel
-      title="Images"
+      title="الصور"
       titleSuffix={<AssetUpload type="image" accept="image/*" />}
       placement="bottom-within"
       content={

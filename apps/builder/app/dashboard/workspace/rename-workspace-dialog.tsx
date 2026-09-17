@@ -48,7 +48,7 @@ export const RenameWorkspaceDialog = ({
             const name = String(formData.get("name") ?? "").trim();
 
             if (name.length < 2) {
-              setErrors("Workspace name must be at least 2 characters");
+              setErrors("يجب أن يكون اسم مساحة العمل حرفين على الأقل");
               return;
             }
 
@@ -71,7 +71,7 @@ export const RenameWorkspaceDialog = ({
             }}
             gap="1"
           >
-            <Label>Workspace name</Label>
+            <Label>اسم مساحة العمل</Label>
             <InputField
               name="name"
               defaultValue={workspace.name}
@@ -87,14 +87,14 @@ export const RenameWorkspaceDialog = ({
               type="submit"
               state={state === "idle" ? undefined : "pending"}
             >
-              Rename
+              إعادة تسمية
             </Button>
             <DialogClose>
-              <Button color="ghost">Cancel</Button>
+              <Button color="ghost">إلغاء</Button>
             </DialogClose>
           </DialogActions>
         </form>
-        <DialogTitle>Rename</DialogTitle>
+        <DialogTitle>إعادة تسمية</DialogTitle>
       </DialogContent>
     </Dialog>
   );

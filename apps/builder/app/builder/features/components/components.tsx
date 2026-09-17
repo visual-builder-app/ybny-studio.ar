@@ -170,14 +170,14 @@ export const ComponentsPanel = ({
 
   return (
     <>
-      <PanelTitle>Components</PanelTitle>
+      <PanelTitle>المكوّنات</PanelTitle>
       <Separator />
 
       <PanelContent as={Box}>
         <SearchField
           {...searchFieldProps}
           autoFocus
-          placeholder="Find components"
+          placeholder="البحث عن المكوّنات"
         />
       </PanelContent>
       <Separator />
@@ -232,7 +232,7 @@ export const ComponentsPanel = ({
                 {dragCard}
                 {group.metas.length === 0 && (
                   <Flex grow justify="center" css={{ py: theme.spacing[10] }}>
-                    <Text>No matching component</Text>
+                    <Text>لا يوجد مكوّن مطابق</Text>
                   </Flex>
                 )}
               </Flex>

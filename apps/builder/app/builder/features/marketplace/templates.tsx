@@ -147,7 +147,7 @@ const getTemplatesDataByCategory = (
     .filter((page) => page.marketplace?.include)
     .map((page) => {
       // category can be empty string
-      const category = page.marketplace?.category || "Pages";
+      const category = page.marketplace?.category || "الصفحات";
       const thumbnailAsset =
         data.assets.get(page.marketplace?.thumbnailAssetId ?? "") ??
         data.assets.get(page.meta.socialImageAssetId ?? "");
@@ -209,7 +209,7 @@ export const Templates = ({
           content={
             hasAuthToken
               ? undefined
-              : 'The project does not have a shared link with "View" permission.'
+              : 'لا يملك المشروع رابط مشاركة بصلاحية "العرض".'
           }
         >
           <Link
@@ -224,7 +224,7 @@ export const Templates = ({
                 : undefined
             }
             target="_blank"
-            aria-label="Open project in new tab"
+            aria-label="فتح المشروع في تبويب جديد"
             aria-disabled={hasAuthToken ? undefined : "true"}
           >
             <ExternalLinkIcon />

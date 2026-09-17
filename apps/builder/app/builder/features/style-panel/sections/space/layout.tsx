@@ -355,8 +355,8 @@ export const SpaceLayout = forwardRef(
           </defs>
         </svg>
         <Grid>
-          <Label>Margin</Label>
-          <Label inner>Padding</Label>
+          <Label>الهامش الخارجي</Label>
+          <Label inner>الهامش الداخلي</Label>
 
           {spaceProperties.map((property) => (
             <Cell property={property} key={property}>

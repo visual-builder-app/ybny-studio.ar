@@ -35,7 +35,7 @@ const matchOrSuggestToCreate = (
   ) {
     matched.unshift({
       value: search.trim(),
-      label: `Custom Font: "${search.trim()}"`,
+      label: `خط مخصص: "${search.trim()}"`,
     });
   }
   return matched;
@@ -71,7 +71,7 @@ export const FontFamilyControl = () => {
         suffix={
           <FloatingPanel
             placement="left-start"
-            title="Fonts"
+            title="الخطوط"
             titleSuffix={readonly ? undefined : <AssetUpload type="font" />}
             onOpenChange={setIsFontMangerOpen}
             content={
@@ -125,7 +125,7 @@ const FontsManagerButton = forwardRef<
   ComponentProps<typeof NestedInputButton>
 >((props, ref) => {
   return (
-    <EnhancedTooltip content="Open font manager">
+    <EnhancedTooltip content="فتح مدير الخطوط">
       <NestedInputButton {...props} ref={ref} tabIndex={-1}>
         <UploadIcon />
       </NestedInputButton>

@@ -41,25 +41,25 @@ const BoundExpression = ({
         aliases={aliases}
         validate={(value) => {
           if (value !== undefined && typeof value !== "number") {
-            return `${label} expects a number value`;
+            return `${label} يتوقع قيمة رقمية`;
           }
           if (typeof value !== "number") {
             return;
           }
           if (integer && Number.isInteger(value) === false) {
-            return `${label} expects an integer value`;
+            return `${label} يتوقع قيمة عددًا صحيحًا`;
           }
           if (
             min !== undefined &&
             (exclusiveMin ? value <= min : value < min)
           ) {
-            return `${label} expects a value ${exclusiveMin ? "greater than" : "greater than or equal to"} ${min}`;
+            return `${label} يتوقع قيمة ${exclusiveMin ? "أكبر من" : "أكبر من أو تساوي"} ${min}`;
           }
           if (
             max !== undefined &&
             (exclusiveMax ? value >= max : value > max)
           ) {
-            return `${label} expects a value ${exclusiveMax ? "less than" : "less than or equal to"} ${max}`;
+            return `${label} يتوقع قيمة ${exclusiveMax ? "أصغر من" : "أصغر من أو تساوي"} ${max}`;
           }
         }}
         onChangeValue={onChange}

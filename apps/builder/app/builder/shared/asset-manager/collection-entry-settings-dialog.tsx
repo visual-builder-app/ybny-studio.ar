@@ -77,7 +77,7 @@ export const CollectionEntrySettingsDialog = ({
         });
         if ($assets.get().get(asset.id)?.name !== asset.name) {
           throw new Error(
-            "This entry changed while opening. Close and reopen its settings."
+            "تغيّر هذا المدخل أثناء الفتح. أغلق الإعدادات وأعد فتحها."
           );
         }
         const { properties } = await extractMarkdownFrontmatter(source);
@@ -91,7 +91,7 @@ export const CollectionEntrySettingsDialog = ({
           setError(
             error instanceof Error
               ? error.message
-              : "The entry could not be loaded."
+              : "تعذّر تحميل المدخل."
           );
         }
       }
@@ -159,13 +159,13 @@ export const CollectionEntrySettingsDialog = ({
       ) {
         uncertain.current = true;
         setError(
-          "We couldn’t confirm whether your changes were saved. Keep a copy of your edits, then reload to check the saved version."
+          "لم نتمكن من تأكيد ما إذا كانت تغييراتك قد حُفظت. احتفظ بنسخة من تعديلاتك، ثم أعد التحميل للتحقق من النسخة المحفوظة."
         );
       } else {
         setError(
           error instanceof Error
             ? error.message
-            : "The entry could not be saved."
+            : "تعذّر حفظ المدخل."
         );
       }
       return false;
@@ -227,10 +227,10 @@ export const CollectionEntrySettingsDialog = ({
             )}
             {loaded === undefined ? (
               error === undefined ? (
-                <Text role="status">Loading entry…</Text>
+                <Text role="status">جارٍ تحميل المدخل…</Text>
               ) : (
                 <Button onClick={() => setAttempt((value) => value + 1)}>
-                  Retry
+                  إعادة المحاولة
                 </Button>
               )
             ) : (
@@ -264,14 +264,14 @@ export const CollectionEntrySettingsDialog = ({
                     }))
                   }
                 >
-                  Repair slug to match filename
+                  إصلاح المعرّف ليطابق اسم الملف
                 </Button>
               )}
-            {saving && <Text role="status">Saving…</Text>}
+            {saving && <Text role="status">جارٍ الحفظ…</Text>}
             {unconfiguredIssues.length > 0 && (
               <Grid gap={2}>
                 <Text>
-                  These fields need collection configuration or an MDX edit:
+                  تحتاج هذه الحقول إلى إعداد المجموعة أو تعديل MDX:
                 </Text>
                 {unconfiguredIssues.map((issue) => (
                   <Text key={issue.fieldKey} role="alert" color="destructive">
@@ -282,7 +282,7 @@ export const CollectionEntrySettingsDialog = ({
             )}
             <Grid columns={2} gap={2}>
               <Button disabled={saving} onClick={() => void close(onOpenFile)}>
-                Edit file
+                تعديل الملف
               </Button>
               <Tooltip
                 variant="wrapped"
@@ -304,7 +304,7 @@ export const CollectionEntrySettingsDialog = ({
                     }
                   }}
                 >
-                  Open on canvas
+                  فتح على اللوحة
                 </Button>
               </Tooltip>
             </Grid>
@@ -312,7 +312,7 @@ export const CollectionEntrySettingsDialog = ({
               error !== undefined &&
               !uncertain.current && (
                 <Button disabled={saving} onClick={() => void save()}>
-                  Retry save
+                  إعادة محاولة الحفظ
                 </Button>
               )}
           </PanelContent>
@@ -320,15 +320,15 @@ export const CollectionEntrySettingsDialog = ({
       </Dialog>
       <Dialog open={discard} onOpenChange={setDiscard}>
         <DialogContent width={420} aria-describedby={undefined}>
-          <DialogTitle>Close without saving?</DialogTitle>
+          <DialogTitle>إغلاق دون حفظ؟</DialogTitle>
           <PanelContent as={Grid} gap={3}>
             <Text>
-              Your latest edits could not be saved. Keep editing to retry, or
-              close and discard the local edits.
+              تعذّر حفظ آخر تعديلاتك. واصل التعديل لإعادة المحاولة، أو
+              أغلق وتجاهل التعديلات المحلية.
             </Text>
-            <Button onClick={() => setDiscard(false)}>Keep editing</Button>
+            <Button onClick={() => setDiscard(false)}>مواصلة التعديل</Button>
             <Button color="destructive" onClick={onClose}>
-              Discard local edits
+              تجاهل التعديلات المحلية
             </Button>
           </PanelContent>
         </DialogContent>

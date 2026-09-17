@@ -117,11 +117,11 @@ const ItemSuffix = ({
   const menuLabel =
     type === "page"
       ? isEditing
-        ? "Close page settings"
-        : "Open page settings"
+        ? "إغلاق إعدادات الصفحة"
+        : "فتح إعدادات الصفحة"
       : isEditing
-        ? "Close folder settings"
-        : "Open folder settings";
+        ? "إغلاق إعدادات المجلد"
+        : "فتح إعدادات المجلد";;
 
   return (
     <Tooltip content={menuLabel} disableHoverableContent>
@@ -411,7 +411,7 @@ const PagesTree = ({
 
                 // forbid dragging home page
                 if (item.id === pages.homePageId) {
-                  toast.error("Home page cannot be moved");
+                  toast.error("لا يمكن نقل الصفحة الرئيسية");
                   return false;
                 }
                 return true;
@@ -450,8 +450,8 @@ const PagesTree = ({
                   role: "group",
                   "aria-label":
                     item.type === "page"
-                      ? `Page ${getPageDisplayName(item.page)}`
-                      : `Folder ${item.folder.name}`,
+                      ? `الصفحة ${getPageDisplayName(item.page)}`
+                      : `المجلد ${item.folder.name}`,
                 }}
                 buttonProps={{
                   onClick: (event) => {
@@ -589,9 +589,9 @@ const CreateItemMenu = ({
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <Tooltip content="Create" side="bottom">
+      <Tooltip content="إنشاء" side="bottom">
         <DropdownMenuTrigger asChild>
-          <Button aria-label="Create" prefix={<PlusIcon />} color="ghost" />
+          <Button aria-label="إنشاء" prefix={<PlusIcon />} color="ghost" />
         </DropdownMenuTrigger>
       </Tooltip>
       <DropdownMenuContent
@@ -610,7 +610,7 @@ const CreateItemMenu = ({
             });
           }}
         >
-          New page
+          صفحة جديدة
         </DropdownMenuItem>
         <DropdownMenuItem
           onSelect={(event) => {
@@ -623,7 +623,7 @@ const CreateItemMenu = ({
             });
           }}
         >
-          New folder
+          مجلد جديد
         </DropdownMenuItem>
         <DropdownMenuItem
           onSelect={(event) => {
@@ -638,7 +638,7 @@ const CreateItemMenu = ({
             });
           }}
         >
-          New page template
+          قالب صفحة جديد
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -850,12 +850,12 @@ const TemplateItem = ({
         <Flex align="center" gap={2}>
           {canCreatePage && (
             <Tooltip
-              content="Create page from template"
+              content="إنشاء صفحة من قالب"
               disableHoverableContent
             >
               <SmallIconButton
                 tabIndex={-1}
-                aria-label="Create page from template"
+                aria-label="إنشاء صفحة من قالب"
                 onClick={() => onCreatePage(template.id)}
                 icon={<PlusIcon />}
               />
@@ -864,7 +864,7 @@ const TemplateItem = ({
           {canEditTemplate && (
             <Tooltip
               content={
-                isEditing ? "Close template settings" : "Open template settings"
+                isEditing ? "إغلاق إعدادات القالب" : "فتح إعدادات القالب"
               }
               disableHoverableContent
             >
@@ -872,8 +872,8 @@ const TemplateItem = ({
                 tabIndex={-1}
                 aria-label={
                   isEditing
-                    ? "Close template settings"
-                    : "Open template settings"
+                    ? "إغلاق إعدادات القالب"
+                    : "فتح إعدادات القالب"
                 }
                 state={isEditing ? "open" : undefined}
                 onClick={() => onEdit(isEditing ? undefined : template.id)}
@@ -1161,7 +1161,7 @@ export const PagesPanel = ({ onClose }: { onClose: () => void }) => {
           ) : undefined
         }
       >
-        Pages
+        الصفحات
       </PanelTitle>
       <Separator />
 
@@ -1212,7 +1212,7 @@ export const PagesPanel = ({ onClose }: { onClose: () => void }) => {
       {canEditPageContent && hasPageTemplates && (
         <>
           <Separator />
-          <PanelTitle>Page templates</PanelTitle>
+          <PanelTitle>قوالب الصفحات</PanelTitle>
           {canOpenPageTemplates ? (
             <TemplateContextMenu
               canManageTemplates={isDesignMode}

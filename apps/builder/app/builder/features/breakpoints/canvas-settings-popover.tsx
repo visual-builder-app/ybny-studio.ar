@@ -30,7 +30,7 @@ export const CanvasSettingsPopover = () => {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger aria-label="Canvas settings" asChild>
+      <PopoverTrigger aria-label="إعدادات اللوحة" asChild>
         <Button type="button" color="ghost">
           <Text
             css={{
@@ -54,7 +54,7 @@ export const CanvasSettingsPopover = () => {
         <PanelContent as={Flex} gap="3">
           <WidthInput min={minCanvasWidth} />
           <Flex align="center" gap="2">
-            <Label>Scale</Label>
+            <Label>القياس</Label>
             <InputField
               value={`${Math.round(scale)}%`}
               tabIndex={-1}

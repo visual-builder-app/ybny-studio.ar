@@ -273,7 +273,7 @@ export const GridAreaPicker = ({
               });
             }}
             onMouseLeave={() => onHoverChange?.(undefined)}
-            aria-label={`Cell ${col}, ${row}`}
+            aria-label={`الخلية ${col}، ${row}`}
           />
         );
       }
@@ -331,7 +331,7 @@ export const GridAreaPicker = ({
               }}
               onMouseEnter={() => onHoverChange?.(area)}
               onMouseLeave={() => onHoverChange?.(undefined)}
-              aria-label={`Area ${area.name}`}
+              aria-label={`المنطقة ${area.name}`}
             />
           </Tooltip>
         );

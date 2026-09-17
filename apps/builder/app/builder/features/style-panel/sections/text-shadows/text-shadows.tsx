@@ -19,7 +19,7 @@ export const properties = ["text-shadow"] satisfies [
   ...CssProperty[],
 ];
 
-const label = "Text shadows";
+const label = "ظلال النص";
 const initialTextShadow = "0px 2px 5px rgba(0, 0, 0, 0.2)";
 
 const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
@@ -49,7 +49,7 @@ export const Section = () => {
   return (
     <RepeatedStyleSection
       label={label}
-      description="Adds shadow effects around a text."
+      description="يضيف تأثيرات ظل حول النص."
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(

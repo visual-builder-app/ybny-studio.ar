@@ -43,13 +43,13 @@ const ViewMenuItem = () => {
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>View</DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger>عرض</DropdownMenuSubTrigger>
       <DropdownMenuSubContent width="regular">
         <DropdownMenuCheckboxItem
           checked={isUiHidden}
           onSelect={() => emitCommand("toggleUiHidden")}
         >
-          Hide UI
+          إخفاء الواجهة
           <DropdownMenuItemRightSlot>
             <Kbd value={["meta", "\\"]} />
           </DropdownMenuItemRightSlot>
@@ -62,7 +62,7 @@ const ViewMenuItem = () => {
             setSetting("navigatorLayout", setting);
           }}
         >
-          Undock navigator
+          فصل شجرة العناصر
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
         <ColorSchemeMenu withIndicator />
@@ -84,11 +84,11 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
 
   const disabledPublishTooltipContent = isPublishEnabled
     ? undefined
-    : "Only owner or admin can publish projects";
+    : "يمكن للمالك أو المدير فقط نشر المشاريع";
 
   const disabledShareTooltipContent = isShareEnabled
     ? undefined
-    : "Only owner can share projects";
+    : "يمكن للمالك فقط مشاركة المشاريع";
 
   // If authToken is defined, the user is not logged into the current project and must be redirected to the dashboard to clone the project.
   const cloneIsExternal = authToken !== undefined;
@@ -102,7 +102,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
             window.location.href = dashboardUrl({ origin: window.origin });
           }}
         >
-          Dashboard
+          لوحة التحكم
         </DropdownMenuItem>
         <Tooltip side="right" content={undefined}>
           <DropdownMenuItem
@@ -110,22 +110,22 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
               $openProjectSettings.set("general");
             }}
           >
-            Project settings
+            إعدادات المشروع
           </DropdownMenuItem>
         </Tooltip>
         <DropdownMenuItem onSelect={() => emitCommand("openBreakpointsMenu")}>
-          Breakpoints
+          نقاط التوقف
         </DropdownMenuItem>
         <ViewMenuItem />
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => emitCommand("undo")}>
-          Undo
+          تراجع
           <DropdownMenuItemRightSlot>
             <Kbd value={["meta", "z"]} />
           </DropdownMenuItemRightSlot>
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => emitCommand("redo")}>
-          Redo
+          إعادة
           <DropdownMenuItemRightSlot>
             <Kbd value={["meta", "shift", "z"]} />
           </DropdownMenuItemRightSlot>
@@ -151,20 +151,20 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
 
           */}
         <DropdownMenuItem onSelect={() => emitCommand("deleteInstanceBuilder")}>
-          Delete
+          حذف
           <DropdownMenuItemRightSlot>
             <Kbd value={["backspace"]} />
           </DropdownMenuItemRightSlot>
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => emitCommand("save")}>
-          Save
+          حفظ
           <DropdownMenuItemRightSlot>
             <Kbd value={["meta", "s"]} />
           </DropdownMenuItemRightSlot>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => emitCommand("togglePreviewMode")}>
-          Preview
+          معاينة
           <DropdownMenuItemRightSlot>
             <Kbd value={["meta", "shift", "p"]} />
           </DropdownMenuItemRightSlot>
@@ -181,7 +181,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
             }}
             disabled={isShareEnabled === false}
           >
-            Share
+            مشاركة
           </DropdownMenuItem>
         </Tooltip>
 
@@ -196,7 +196,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
             }}
             disabled={isPublishEnabled === false}
           >
-            Publish
+            نشر
             <DropdownMenuItemRightSlot>
               <Kbd value={["shift", "P"]} />
             </DropdownMenuItemRightSlot>
@@ -214,7 +214,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
             }}
             disabled={isPublishEnabled === false}
           >
-            Export
+            تصدير
             <DropdownMenuItemRightSlot>
               <Kbd value={["shift", "E"]} />
             </DropdownMenuItemRightSlot>
@@ -226,7 +226,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
           sideOffset={10}
           content={
             authTokenPermission.canClone === false
-              ? "Cloning has been disabled by the project owner"
+              ? "تم تعطيل الاستنساخ من قبل مالك المشروع"
               : undefined
           }
         >
@@ -248,10 +248,10 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
                   sourceAuthToken: authToken,
                 })}
               >
-                Clone
+                استنساخ
               </a>
             ) : (
-              "Clone"
+              "استنساخ"
             )}
           </DropdownMenuItem>
         </Tooltip>
@@ -260,7 +260,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
 
         {isDesignMode && (
           <DropdownMenuItem onSelect={() => emitCommand("openCommandPanel")}>
-            Search & commands
+            البحث والأوامر
             <DropdownMenuItemRightSlot>
               <Kbd value={["meta", "k"]} />
             </DropdownMenuItemRightSlot>
@@ -268,14 +268,14 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
         )}
 
         <DropdownMenuItem onSelect={() => emitCommand("openKeyboardShortcuts")}>
-          Keyboard shortcuts
+          اختصارات لوحة المفاتيح
           <DropdownMenuItemRightSlot>
             <Kbd value={["shift", "?"]} />
           </DropdownMenuItemRightSlot>
         </DropdownMenuItem>
 
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Help</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>مساعدة</DropdownMenuSubTrigger>
           <DropdownMenuSubContent width="regular">
             {help.map((item) => (
               <DropdownMenuItem
@@ -308,7 +308,7 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
               css={{ gap: theme.spacing[3] }}
             >
               <UpgradeIcon />
-              <div>Upgrade to Pro</div>
+              <div>الترقية إلى Pro</div>
             </DropdownMenuItem>
           </>
         )}

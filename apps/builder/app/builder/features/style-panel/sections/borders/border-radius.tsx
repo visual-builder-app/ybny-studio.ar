@@ -33,8 +33,8 @@ const borderPropertyOptions = {
 export const BorderRadius = () => {
   return (
     <BorderProperty
-      label="Radius"
-      description="Sets the radius of border"
+      label="نصف القطر"
+      description="يضبط نصف قطر الحدود"
       borderPropertyOptions={borderPropertyOptions}
       individualModeIcon={<BorderRadiusIndividualIcon />}
     />

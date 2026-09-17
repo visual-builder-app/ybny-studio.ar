@@ -34,7 +34,7 @@ export const CreateWorkspaceDialog = ({
     const name = String(formData.get("name") ?? "").trim();
 
     if (name.length < 2) {
-      setErrors("Workspace name must be at least 2 characters");
+      setErrors("يجب أن يكون اسم مساحة العمل حرفين على الأقل");
       return;
     }
 
@@ -72,11 +72,11 @@ export const CreateWorkspaceDialog = ({
               paddingTop: theme.spacing[5],
             }}
           >
-            <Label htmlFor="workspace-name">Workspace name</Label>
+            <Label htmlFor="workspace-name">اسم مساحة العمل</Label>
             <InputField
               id="workspace-name"
               name="name"
-              placeholder="My workspace"
+              placeholder="مساحة عملي"
               autoFocus
               color={errors ? "error" : undefined}
             />
@@ -88,14 +88,14 @@ export const CreateWorkspaceDialog = ({
               type="submit"
               state={state === "idle" ? undefined : "pending"}
             >
-              Create
+              إنشاء
             </Button>
             <DialogClose>
-              <Button color="ghost">Cancel</Button>
+              <Button color="ghost">إلغاء</Button>
             </DialogClose>
           </DialogActions>
         </form>
-        <DialogTitle>New workspace</DialogTitle>
+        <DialogTitle>مساحة عمل جديدة</DialogTitle>
       </DialogContent>
     </Dialog>
   );

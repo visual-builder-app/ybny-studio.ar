@@ -137,7 +137,7 @@ export const migrateLoadedWebstudioData = () => {
     input: {},
   });
   if (result?.result.didBreakCycles === true) {
-    toast.info("Detected and fixed cycles in the instance tree.");
+    toast.info("تم اكتشاف وإصلاح حلقات مفرغة في شجرة النسخ.");
   }
 };
 
@@ -383,7 +383,7 @@ export const confirmPendingTemplateNameChange = () => {
         toast.error(
           error instanceof Error
             ? error.message
-            : "The template change could not be applied."
+            : "تعذّر تطبيق تغيير القالب."
         );
       });
     } else {
@@ -393,7 +393,7 @@ export const confirmPendingTemplateNameChange = () => {
     toast.error(
       error instanceof Error
         ? error.message
-        : "The template change could not be applied."
+        : "تعذّر تطبيق تغيير القالب."
     );
   }
 };

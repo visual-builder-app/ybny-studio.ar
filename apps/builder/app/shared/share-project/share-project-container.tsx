@@ -104,7 +104,7 @@ const useShareProjectContainer = (projectId: string) => {
       {
         projectId: projectId,
         relation: "viewers",
-        name: "Custom link",
+        name: "رابط مخصص",
       },
       () => {
         load({ projectId }, (data) => {

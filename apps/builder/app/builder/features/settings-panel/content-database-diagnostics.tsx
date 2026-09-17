@@ -28,99 +28,99 @@ import {
 } from "./request-error-diagnostics";
 
 const runtimeContentNote =
-  "Referenced documents fetched from storage at runtime are not included.";
+  "المستندات المشار إليها التي تُجلب من التخزين في وقت التشغيل غير مشمولة.";
 
 const assetBatchTimingNote =
-  "When one Builder request contains multiple Assets resources, this duration covers their combined batch.";
+  "عندما يحتوي طلب محرر واحد على عدة موارد وسائط، تغطي هذه المدة دفعتها المجمعة.";
 
 const assetQueryPhaseRows = [
   [
     "authorization",
-    "Authorization",
-    "Time spent authenticating the incoming Builder request and checking access to the project.",
+    "المصادقة",
+    "الوقت المستغرق في مصادقة طلب المحرر الوارد والتحقق من الوصول إلى المشروع.",
   ],
   [
     "buildPlan",
-    "Build plan",
-    "Time spent loading the current build data and deriving the content required by the project.",
+    "خطة البناء",
+    "الوقت المستغرق في تحميل بيانات البناء الحالية واستنتاج المحتوى المطلوب للمشروع.",
   ],
   [
     "repositoryAuthorization",
-    "Repository authorization",
-    "Time spent checking project access at the Assets repository boundary.",
+    "مصادقة المستودع",
+    "الوقت المستغرق في التحقق من الوصول إلى المشروع عند حدود مستودع الوسائط.",
   ],
   [
     "indexPreparation",
-    "Index preparation",
-    "Inclusive time spent preparing the in-memory query database. It contains the source snapshot, canonical metadata, compiler entries, and artifact compilation phases.",
+    "تحضير الفهرس",
+    "الوقت الشامل المستغرق في تحضير قاعدة بيانات الاستعلام في الذاكرة. يتضمن مراحل لقطة المصدر والبيانات الوصفية المرجعية ومدخلات المترجم وتجميع الناتج.",
   ],
   [
     "diagnosticsPreparation",
-    "Published diagnostics",
-    "Inclusive time spent compiling the deployment-wide database only for detailed Diagnostics. This work is not part of the normal resource load, and its internal phases are excluded from the rows below.",
+    "تشخيصات النشر",
+    "الوقت الشامل المستغرق في تجميع قاعدة البيانات على مستوى النشر لأغراض التشخيص المفصل فقط. هذا العمل ليس جزءًا من تحميل الموارد العادي، ومراحله الداخلية مستثناة من الصفوف أدناه.",
   ],
   [
     "sourceSnapshot",
-    "Source snapshot",
-    "Time spent loading canonical asset entries and computing the source revision used by the compilation cache.",
+    "لقطة المصدر",
+    "الوقت المستغرق في تحميل مدخلات الوسائط المرجعية وحساب مراجعة المصدر المستخدمة في ذاكرة التجميع المؤقتة.",
   ],
   [
     "canonicalMetadata",
-    "Canonical metadata",
-    "Time spent synchronizing and loading structured metadata required by the query plan.",
+    "البيانات الوصفية المرجعية",
+    "الوقت المستغرق في مزامنة وتحميل البيانات الوصفية المهيكلة المطلوبة لخطة الاستعلام.",
   ],
   [
     "compilerEntries",
-    "Compiler entries",
-    "Time spent reading and parsing selected asset content into compiler input.",
+    "مدخلات المترجم",
+    "الوقت المستغرق في قراءة وتحليل محتوى الوسائط المحدد إلى مدخلات المترجم.",
   ],
   [
     "compilerContentRead",
-    "Compiler storage reads",
-    "Cumulative time spent on completed storage reads while preparing compiler entries. Concurrent read durations are summed, so this child measurement can exceed wall-clock phase time.",
+    "قراءات تخزين المترجم",
+    "الوقت التراكمي المستغرق في قراءات التخزين المكتملة أثناء تحضير مدخلات المترجم. تُجمع مدد القراءة المتزامنة، لذا قد يتجاوز هذا القياس الفرعي زمن المرحلة الفعلي.",
   ],
   [
     "documentGraph",
-    "Document graph",
-    "Time spent reading supported documents and compiling their cross-document references.",
+    "مخطط المستندات",
+    "الوقت المستغرق في قراءة المستندات المدعومة وتجميع مراجعها المتبادلة.",
   ],
   [
     "documentGraphContentRead",
-    "Document graph storage reads",
-    "Cumulative time spent on completed storage reads while constructing the document graph. Cached request-local bytes are excluded, and concurrent read durations are summed.",
+    "قراءات تخزين مخطط المستندات",
+    "الوقت التراكمي المستغرق في قراءات التخزين المكتملة أثناء بناء مخطط المستندات. تُستثنى البايتات المخزنة مؤقتًا محليًا للطلب، وتُجمع مدد القراءة المتزامنة.",
   ],
   [
     "assetReferences",
-    "Asset references",
-    "Time spent discovering asset references in the selected document content.",
+    "مراجع الوسائط",
+    "الوقت المستغرق في اكتشاف مراجع الوسائط داخل محتوى المستندات المحددة.",
   ],
   [
     "sourceValidation",
-    "Source validation",
-    "Time spent reloading the canonical inventory to confirm that the source did not change during compilation.",
+    "التحقق من المصدر",
+    "الوقت المستغرق في إعادة تحميل الجرد المرجعي للتأكد من أن المصدر لم يتغير أثناء التجميع.",
   ],
   [
     "artifactCompilation",
-    "Artifact compilation",
-    "Time spent compiling prepared entries into the in-memory content database artifact.",
+    "تجميع الناتج",
+    "الوقت المستغرق في تجميع المدخلات المحضّرة إلى ناتج قاعدة بيانات المحتوى في الذاكرة.",
   ],
   [
     "runtimeAssets",
-    "Runtime assets",
-    "Time spent loading asset metadata needed to execute the query against the prepared database.",
+    "وسائط وقت التشغيل",
+    "الوقت المستغرق في تحميل البيانات الوصفية للوسائط اللازمة لتنفيذ الاستعلام على قاعدة البيانات المحضّرة.",
   ],
   [
     "documentResolution",
-    "Document resolution",
-    "Time spent executing the query and resolving referenced documents, including required storage fetches.",
+    "حل المستندات",
+    "الوقت المستغرق في تنفيذ الاستعلام وحل المستندات المشار إليها، بما في ذلك عمليات الجلب المطلوبة من التخزين.",
   ],
 ] as const;
 
 const compilationWorkLabels = {
-  hit: "Reused",
-  coalesced: "Joined",
-  miss: "Compiled",
-  disabled: "Reuse disabled",
+  hit: "أُعيد استخدامه",
+  coalesced: "مُنضم",
+  miss: "مُجمَّع",
+  disabled: "إعادة الاستخدام معطلة",
 } as const;
 
 const DiagnosticsSection = ({
@@ -144,12 +144,12 @@ const DiagnosticsSection = ({
           suffix={
             <CopyToClipboard
               text={JSON.stringify(data, undefined, 2) ?? "null"}
-              copyText={`Copy ${label} as JSON`}
+              copyText={`نسخ ${label} بتنسيق JSON`}
             >
               <SectionTitleButton
                 type="button"
                 tabIndex={0}
-                aria-label={`Copy ${label} as JSON`}
+                aria-label={`نسخ ${label} بتنسيق JSON`}
                 prefix={<CopyIcon />}
                 onPointerDown={(event) => event.stopPropagation()}
               />
@@ -179,22 +179,22 @@ export const getContentDatabaseDiagnosticRows = (
   value: AssetQueryPreviewDiagnostics
 ) => [
   {
-    label: "Query size",
+    label: "حجم الاستعلام",
     value: prettyBytes(value.query.usedBytes),
     valueColor:
       value.query.omissionReason === "size"
         ? ("destructive" as const)
         : undefined,
-    description: `Serialized temporary query-only footprint after the database limit is applied. It is not added to the published database size. ${runtimeContentNote}`,
+    description: `البصمة المؤقتة المسلسلة الخاصة بالاستعلام فقط بعد تطبيق حد قاعدة البيانات. لا تُضاف إلى حجم قاعدة البيانات المنشورة. ${runtimeContentNote}`,
   },
   {
-    label: "Database size",
+    label: "حجم قاعدة البيانات",
     value: prettyBytes(value.database.usedBytes),
     valueColor:
       value.database.omissionReason === "size"
         ? ("destructive" as const)
         : undefined,
-    description: `Serialized merged footprint of all reachable Assets queries included in the published bundle. ${runtimeContentNote}`,
+    description: `البصمة المدمجة المسلسلة لجميع استعلامات الوسائط القابلة للوصول المشمولة في حزمة النشر. ${runtimeContentNote}`,
   },
 ];
 
@@ -202,23 +202,23 @@ const PerformanceSizeRows = ({ value }: { value: ResourcePerformance }) => (
   <>
     {value.responseBytes !== undefined && (
       <RequestDiagnosticsRow
-        label="Response size"
+        label="حجم الاستجابة"
         value={prettyBytes(value.responseBytes)}
-        description="Serialized size of the server resource result before performance metadata is attached."
+        description="الحجم المسلسل لنتيجة مورد الخادم قبل إرفاق البيانات الوصفية للأداء."
       />
     )}
     {value.assetQuery?.compilerContentBytes !== undefined && (
       <RequestDiagnosticsRow
-        label="Compiler content read"
+        label="قراءة محتوى المترجم"
         value={prettyBytes(value.assetQuery.compilerContentBytes)}
-        description="Total bytes read from storage while preparing compiler entries for the Assets batch."
+        description="إجمالي البايتات المقروءة من التخزين أثناء تحضير مدخلات المترجم لدفعة الوسائط."
       />
     )}
     {value.assetQuery?.documentGraphContentBytes !== undefined && (
       <RequestDiagnosticsRow
-        label="Document graph content read"
+        label="قراءة محتوى مخطط المستندات"
         value={prettyBytes(value.assetQuery.documentGraphContentBytes)}
-        description="Total bytes read from storage while constructing document graphs for the Assets batch."
+        description="إجمالي البايتات المقروءة من التخزين أثناء بناء مخططات المستندات لدفعة الوسائط."
       />
     )}
   </>
@@ -265,7 +265,7 @@ const ResourcePerformanceSections = ({
   return (
     <>
       {hasSizes && (
-        <DiagnosticsSection label="Sizes" data={sizes} isOpen={openFirst}>
+        <DiagnosticsSection label="الأحجام" data={sizes} isOpen={openFirst}>
           <RequestDiagnosticsTable>
             <PerformanceSizeRows value={value} />
           </RequestDiagnosticsTable>
@@ -273,23 +273,23 @@ const ResourcePerformanceSections = ({
       )}
       {hasTiming && (
         <DiagnosticsSection
-          label="Timing"
+          label="التوقيت"
           data={timing}
           isOpen={openFirst && hasSizes === false}
         >
           <RequestDiagnosticsTable>
             {value.loaderDurationMs !== undefined && (
               <RequestDiagnosticsRow
-                label="Builder round trip"
+                label="رحلة المحرر الكاملة"
                 value={`${value.loaderDurationMs.toFixed(1)} ms`}
-                description="Duration of the complete Builder resource batch request containing this resource."
+                description="مدة طلب دفعة موارد المحرر الكاملة الذي يحتوي هذا المورد."
               />
             )}
             {value.serverDurationMs !== undefined && (
               <RequestDiagnosticsRow
-                label="Server duration"
+                label="مدة الخادم"
                 value={`${value.serverDurationMs.toFixed(1)} ms`}
-                description="Time spent processing this resource on the Builder server, including authorization, loading, and result formatting."
+                description="الوقت المستغرق في معالجة هذا المورد على خادم المحرر، بما في ذلك المصادقة والتحميل وتنسيق النتيجة."
               />
             )}
             {assetQueryPhaseRows.map(([key, label, description]) => {
@@ -311,44 +311,44 @@ const ResourcePerformanceSections = ({
       )}
       {hasQueryWork && (
         <DiagnosticsSection
-          label="Assets batch work"
+          label="عمل دفعة الوسائط"
           data={queryWork}
           isOpen={openFirst && hasSizes === false && hasTiming === false}
         >
           <RequestDiagnosticsTable>
             {value.assetQuery?.compilationCache !== undefined && (
               <RequestDiagnosticsRow
-                label="Compilation work"
+                label="عمل التجميع"
                 value={compilationWorkLabels[value.assetQuery.compilationCache]}
-                description="Whether this Assets batch reused an artifact compiled earlier in the same request, joined matching in-progress work, compiled it on a miss, or ran with reuse disabled."
+                description="ما إذا كانت دفعة الوسائط هذه قد أعادت استخدام ناتج جُمّع سابقًا في الطلب نفسه، أو انضمت إلى عمل جارٍ مطابق، أو جُمّعت عند الإخفاق، أو عملت مع تعطيل إعادة الاستخدام."
               />
             )}
             {value.assetQuery?.compilerContentFetchCount !== undefined && (
               <RequestDiagnosticsRow
-                label="Compiler content fetches"
+                label="عمليات جلب محتوى المترجم"
                 value={value.assetQuery.compilerContentFetchCount}
-                description="Number of asset contents read from storage while preparing compiler entries for the Assets batch."
+                description="عدد محتويات الوسائط المقروءة من التخزين أثناء تحضير مدخلات المترجم لدفعة الوسائط."
               />
             )}
             {value.assetQuery?.documentGraphContentFetchCount !== undefined && (
               <RequestDiagnosticsRow
-                label="Document graph content fetches"
+                label="عمليات جلب محتوى مخطط المستندات"
                 value={value.assetQuery.documentGraphContentFetchCount}
-                description="Number of document contents read from storage while constructing document graphs for the Assets batch."
+                description="عدد محتويات المستندات المقروءة من التخزين أثناء بناء مخططات المستندات لدفعة الوسائط."
               />
             )}
             {value.assetQuery?.resolvedDocumentCount !== undefined && (
               <RequestDiagnosticsRow
-                label="Resolved documents"
+                label="المستندات المحلولة"
                 value={value.assetQuery.resolvedDocumentCount}
-                description="Number of query result documents passed through document-reference resolution across the Assets batch."
+                description="عدد مستندات نتائج الاستعلام التي مرت عبر حل مراجع المستندات عبر دفعة الوسائط."
               />
             )}
             {value.assetQuery?.documentFetchCount !== undefined && (
               <RequestDiagnosticsRow
-                label="Document fetches"
+                label="عمليات جلب المستندات"
                 value={value.assetQuery.documentFetchCount}
-                description="Number of referenced documents loaded while resolving the Assets batch, including request-local byte reuse."
+                description="عدد المستندات المشار إليها المحمّلة أثناء حل دفعة الوسائط، بما في ذلك إعادة استخدام البايتات المحلية للطلب."
               />
             )}
           </RequestDiagnosticsTable>
@@ -377,11 +377,11 @@ export const ContentDatabaseDiagnostics = ({
 }) => {
   const totalDocumentCount =
     value.database.includedDocumentCount + value.database.omittedDocumentCount;
-  const candidateFilesLabel = `${totalDocumentCount} candidate ${
-    totalDocumentCount === 1 ? "file" : "files"
+  const candidateFilesLabel = `${totalDocumentCount} ${
+    totalDocumentCount === 1 ? "ملف مرشح" : "ملفات مرشحة"
   }`;
   const omittedFilesLabel = `${value.database.omittedDocumentCount} ${
-    value.database.omittedDocumentCount === 1 ? "file" : "files"
+    value.database.omittedDocumentCount === 1 ? "ملف" : "ملفات"
   }`;
   const rows = getContentDatabaseDiagnosticRows(value);
   const queryIssueErrorCount =
@@ -410,7 +410,7 @@ export const ContentDatabaseDiagnostics = ({
       (value.queryIssues !== undefined && value.queryIssues.length > 0) ||
       (value.queryWarnings !== undefined && value.queryWarnings.length > 0) ? (
         <DiagnosticsSection
-          label="Errors and warnings"
+          label="الأخطاء والتحذيرات"
           data={{
             queryIssues: value.queryIssues,
             queryWarnings: value.queryWarnings,
@@ -420,10 +420,10 @@ export const ContentDatabaseDiagnostics = ({
         >
           <PanelBanner variant={errorCount > 0 ? "error" : "warning"}>
             <Text>
-              {errorCount} {errorCount === 1 ? "error" : "errors"} and{" "}
-              {warningCount} {warningCount === 1 ? "warning" : "warnings"}
+              {errorCount} {errorCount === 1 ? "خطأ" : "أخطاء"} و{" "}
+              {warningCount} {warningCount === 1 ? "تحذير" : "تحذيرات"}
               {value.issuesTruncated
-                ? `; showing the first ${value.issues?.length ?? 0}.`
+                ? `؛ يتم عرض أول ${value.issues?.length ?? 0} منها.`
                 : "."}
             </Text>
           </PanelBanner>
@@ -434,13 +434,13 @@ export const ContentDatabaseDiagnostics = ({
                     key={`${issue.path.join(".")}:${issue.code}:${index}`}
                     severity={issue.severity}
                     title={issue.message}
-                    location={`Query${
+                    location={`الاستعلام${
                       issue.path.length === 0
                         ? ""
                         : ` · ${issue.path.join(".")}`
                     }`}
                     reason={issue.message}
-                    details={[{ label: "Code", value: issue.code }]}
+                    details={[{ label: "الرمز", value: issue.code }]}
                   />
                 ))
               : value.queryWarnings?.map((warning, index) => (
@@ -448,9 +448,9 @@ export const ContentDatabaseDiagnostics = ({
                     key={`query-warning:${index}`}
                     severity="warning"
                     title={warning}
-                    location="Query setup"
+                    location="إعداد الاستعلام"
                     reason={warning}
-                    details={[{ label: "Context", value: "Current query" }]}
+                    details={[{ label: "السياق", value: "الاستعلام الحالي" }]}
                   />
                 ))}
             {value.issues?.map((issue, index) => (
@@ -467,17 +467,17 @@ export const ContentDatabaseDiagnostics = ({
         </DiagnosticsSection>
       ) : undefined}
       <DiagnosticsSection
-        label="Database and sizes"
+        label="قاعدة البيانات والأحجام"
         data={databaseAndSizes}
         isOpen
       >
         <PanelBanner variant={value.database.truncated ? "warning" : "success"}>
           <Text>
             {value.database.truncated
-              ? `${value.database.includedDocumentCount} of ${candidateFilesLabel} fit in the merged published content database. ${omittedFilesLabel} may be omitted from published query results.`
+              ? `يتسع ${value.database.includedDocumentCount} من ${candidateFilesLabel} في قاعدة بيانات المحتوى المنشورة المدمجة. قد تُستبعد ${omittedFilesLabel} من نتائج الاستعلام المنشورة.`
               : totalDocumentCount === 1
-                ? "The candidate file fits in the merged published content database."
-                : `All ${candidateFilesLabel} fit in the merged published content database.`}
+                ? "الملف المرشح يتسع في قاعدة بيانات المحتوى المنشورة المدمجة."
+                : `جميع ${candidateFilesLabel} تتسع في قاعدة بيانات المحتوى المنشورة المدمجة.`}
           </Text>
         </PanelBanner>
         <RequestDiagnosticsTable>
@@ -485,32 +485,32 @@ export const ContentDatabaseDiagnostics = ({
             <PerformanceSizeRows value={performance} />
           )}
           <RequestDiagnosticsRow
-            label="Scope"
-            value="Query preview"
-            description="These database measurements describe the current Assets query preview and its published-database context."
+            label="النطاق"
+            value="معاينة الاستعلام"
+            description="تصف قياسات قاعدة البيانات هذه معاينة استعلام الوسائط الحالية وسياق قاعدة البيانات المنشورة."
           />
           <RequestDiagnosticsRow
-            label="Published database status"
-            value={value.database.truncated ? "Truncated" : "Complete"}
-            description="Whether every candidate document fits within the published content database limit."
+            label="حالة قاعدة البيانات المنشورة"
+            value={value.database.truncated ? "مقتطعة" : "مكتملة"}
+            description="ما إذا كان كل مستند مرشح يتسع ضمن حد قاعدة بيانات المحتوى المنشورة."
           />
           {rows.map((row) => (
             <RequestDiagnosticsRow key={row.label} {...row} />
           ))}
           <RequestDiagnosticsRow
-            label="Database limit"
+            label="حد قاعدة البيانات"
             value={prettyBytes(value.database.maxBytes)}
-            description="Maximum serialized size allowed for the merged published content database."
+            description="أقصى حجم مسلسل مسموح به لقاعدة بيانات المحتوى المنشورة المدمجة."
           />
           <RequestDiagnosticsRow
-            label="Published included files"
+            label="الملفات المنشورة المشمولة"
             value={value.database.includedDocumentCount}
-            description="Number of candidate files included in the published content database within the size limit."
+            description="عدد الملفات المرشحة المشمولة في قاعدة بيانات المحتوى المنشورة ضمن حد الحجم."
           />
           <RequestDiagnosticsRow
-            label="Published omitted files"
+            label="الملفات المنشورة المستبعدة"
             value={value.database.omittedDocumentCount}
-            description="Number of candidate files omitted from the published content database because of its size limit."
+            description="عدد الملفات المرشحة المستبعدة من قاعدة بيانات المحتوى المنشورة بسبب حد الحجم."
           />
         </RequestDiagnosticsTable>
       </DiagnosticsSection>
@@ -526,8 +526,8 @@ export const ContentDatabaseDiagnostics = ({
           <DiagnosticsSection
             label={
               value.query.truncated
-                ? "Included query database"
-                : "Query database"
+                ? "قاعدة بيانات الاستعلام المشمولة"
+                : "قاعدة بيانات الاستعلام"
             }
             data={value.artifacts.query}
             isOpen={false}
@@ -537,8 +537,8 @@ export const ContentDatabaseDiagnostics = ({
           <DiagnosticsSection
             label={
               value.database.truncated
-                ? "Included published database"
-                : "Published database"
+                ? "قاعدة البيانات المنشورة المشمولة"
+                : "قاعدة البيانات المنشورة"
             }
             data={value.artifacts.database}
             isOpen={false}
@@ -549,7 +549,7 @@ export const ContentDatabaseDiagnostics = ({
       )}
       {value.unresolved !== undefined && (
         <DiagnosticsSection
-          label="Unresolved query result"
+          label="نتيجة استعلام غير محلولة"
           data={value.unresolved}
           isOpen={false}
         >

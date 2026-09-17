@@ -39,7 +39,7 @@ const ProfileButton = forwardRef<
     <Flex gap="2" align="center">
       <Button
         color="ghost"
-        aria-label="Profile menu"
+        aria-label="قائمة الملف الشخصي"
         {...rest}
         ref={forwardedRef}
         prefix={
@@ -58,7 +58,7 @@ const ProfileButton = forwardRef<
         )}
       </Button>
       {hasPurchases === false && (
-        <ProChip css={{ flexShrink: 0 }}>Free</ProChip>
+        <ProChip css={{ flexShrink: 0 }}>مجاني</ProChip>
       )}
     </Flex>
   );
@@ -85,7 +85,7 @@ export const ProfileMenu = ({ user }: { user: User }) => {
         {purchases.length > 0 && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel>Plans</DropdownMenuLabel>
+            <DropdownMenuLabel>الخطط</DropdownMenuLabel>
           </>
         )}
         {purchases.map((purchase, index) =>
@@ -114,14 +114,14 @@ export const ProfileMenu = ({ user }: { user: User }) => {
             css={{ gap: theme.spacing[3] }}
           >
             <UpgradeIcon />
-            <div>Upgrade</div>
+            <div>ترقية</div>
           </DropdownMenuItem>
         )}
         <DropdownMenuSeparator />
         <ColorSchemeMenu />
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => navigate(logoutPath())}>
-          Sign out
+          تسجيل الخروج
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

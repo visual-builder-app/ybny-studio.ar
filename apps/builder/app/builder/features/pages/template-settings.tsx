@@ -50,7 +50,7 @@ const validateTemplateValues = (
 
 const templateFieldDefaultValues: PageSettingsValues = {
   ...pageSettingsDefaultValues,
-  name: "Untitled template",
+  name: "قالب بلا عنوان",
   path: "",
   excludePageFromSearch: "false",
 };
@@ -142,7 +142,7 @@ const NewTemplateSettingsView = ({
 }) => {
   return (
     <PageSettingsPanel
-      title="New template settings"
+      title="إعدادات قالب جديد"
       onSubmit={onSubmit}
       suffix={
         <DialogTitleActions>
@@ -153,7 +153,7 @@ const NewTemplateSettingsView = ({
             onClick={onSubmit}
             tabIndex={2}
           >
-            {isSubmitting ? "Creating" : "Create template"}
+            {isSubmitting ? "جارٍ الإنشاء" : "إنشاء قالب"}
           </Button>
           <DialogClose />
         </DialogTitleActions>
@@ -270,14 +270,14 @@ const TemplateSettingsView = ({
   const isDesignMode = useStore($isDesignMode);
   return (
     <PageSettingsPanel
-      title="Template settings"
+      title="إعدادات القالب"
       onSubmit={onClose}
       disabled={!isDesignMode}
       suffix={
         <DialogTitleActions>
           {isDesignMode && (
             <PageItemActionsDropdown
-              label="Template actions"
+              label="إجراءات القالب"
               actions={{
                 copy: onCopy,
                 duplicate: onDuplicate,
@@ -309,7 +309,7 @@ const TemplateFormFields = ({
     autoSelect={autoSelect}
     errors={errors}
     values={values}
-    nameLabel="Template name"
+    nameLabel="اسم القالب"
     showHomePageControl={false}
     showPathField={false}
     showStatusField={false}
@@ -439,13 +439,13 @@ export const CreatePageFromTemplateSettings = ({
 
   return (
     <PageSettingsPanel
-      title="Create page from template"
+      title="إنشاء صفحة من قالب"
       onSubmit={handleSubmit}
       suffix={
         <DialogTitleActions>
           <TitleSuffixSpacer />
           <Button color="primary" onClick={handleSubmit} tabIndex={2}>
-            Create page
+            إنشاء الصفحة
           </Button>
           <DialogClose />
         </DialogTitleActions>

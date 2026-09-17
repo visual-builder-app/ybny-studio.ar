@@ -77,11 +77,11 @@ const NotificationRow = ({
         </Text>
         <Flex gap="1" shrink={false}>
           <Button onClick={onAccept} disabled={isLoading}>
-            Accept
+            قبول
           </Button>
-          <Tooltip content="Decline">
+          <Tooltip content="رفض">
             <IconButton
-              aria-label="Decline"
+              aria-label="رفض"
               onClick={onDecline}
               disabled={isLoading}
             >
@@ -137,7 +137,7 @@ export const NotificationPopover = (
         toast.error(result.error);
       }
     } catch {
-      toast.error("Failed to accept notification");
+      toast.error("فشل قبول الإشعار");
     } finally {
       setLoadingIds((prev) => {
         const next = new Set(prev);
@@ -161,7 +161,7 @@ export const NotificationPopover = (
         toast.error(result.error);
       }
     } catch {
-      toast.error("Failed to decline notification");
+      toast.error("فشل رفض الإشعار");
     } finally {
       setLoadingIds((prev) => {
         const next = new Set(prev);
@@ -175,7 +175,7 @@ export const NotificationPopover = (
     <Popover open={isOpen} onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
         {renderTrigger({
-          "aria-label": "Notifications",
+          "aria-label": "الإشعارات",
           children:
             notifications.length > 0 && !hasSeen ? (
               <BellDotIcon
@@ -192,7 +192,7 @@ export const NotificationPopover = (
         })}
       </PopoverTrigger>
       <PopoverContent align="start" sideOffset={4}>
-        <PopoverTitle>All notifications</PopoverTitle>
+        <PopoverTitle>جميع الإشعارات</PopoverTitle>
         <ScrollAreaNative
           css={{
             maxHeight: theme.spacing[33],
@@ -205,7 +205,7 @@ export const NotificationPopover = (
               justify="center"
               css={{ height: theme.spacing[21] }}
             >
-              <Text color="subtle">No notifications</Text>
+              <Text color="subtle">لا توجد إشعارات</Text>
             </Flex>
           ) : (
             <List asChild>

@@ -59,7 +59,7 @@ export const ErrorMessage = ({
 }) => {
   return (
     <Grid className={pageStyle()} justify={"center"} gap={6}>
-      <AccessibleIcon label="Logo">
+      <AccessibleIcon label="الشعار">
         <WebstudioIcon size="60" />
       </AccessibleIcon>
       <div />
@@ -120,7 +120,7 @@ export const ErrorMessage = ({
           )}
         </Grid>
         <LinkButton color="primary" href="/" css={standaloneButtonStyle}>
-          Go home
+          الذهاب إلى الرئيسية
         </LinkButton>
       </Grid>
     </Grid>

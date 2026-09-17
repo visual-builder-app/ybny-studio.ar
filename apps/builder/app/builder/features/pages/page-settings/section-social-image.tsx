@@ -50,10 +50,10 @@ export const SocialImageSection = ({
   return (
     <Grid gap={2}>
       <Text color="subtle">
-        This image appears when you share a link to this page on social media
-        sites. If no image is set here, the social image set in the project
-        settings will be used. The optimal dimensions for the image are 1200x630
-        px or larger with a 1.91:1 aspect ratio.
+        تظهر هذه الصورة عند مشاركة رابط هذه الصفحة على مواقع التواصل
+        الاجتماعي. إذا لم تُحدد صورة هنا، فستُستخدم صورة التواصل المحددة في إعدادات
+        المشروع. الأبعاد المثالية للصورة هي 1200x630
+        بكسل أو أكبر بنسبة أبعاد 1.91:1.
       </Text>
       <BindableExpressionControl
         expression={values.socialImageUrl}
@@ -102,7 +102,7 @@ export const SocialImageSection = ({
             css={{ justifySelf: "start" }}
             disabled={disabled}
           >
-            Choose image from assets
+            اختيار صورة من الوسائط
           </Button>
         </ImageControl>
       </Grid>

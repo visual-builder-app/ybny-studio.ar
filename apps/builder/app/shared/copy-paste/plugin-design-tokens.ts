@@ -73,13 +73,13 @@ const handlePasteDesignTokens = async (value: string): Promise<PasteResult> => {
     if (mutation === undefined) {
       return {
         success: false,
-        error: "Design tokens cannot be pasted in the current context.",
+        error: "لا يمكن لصق رموز التصميم في السياق الحالي.",
       };
     }
     const { create, overwrite, skip } = mutation.result.counts;
     const imported = create + overwrite;
     builderApi.toast.success(
-      `Imported ${imported} ${imported === 1 ? "token" : "tokens"}${skip === 0 ? "" : `; skipped ${skip} existing`}.`
+      `تم استيراد ${imported} ${imported === 1 ? "رمز" : "رموز"}${skip === 0 ? "" : `؛ تم تخطي ${skip} موجود`}.`
     );
     return pasteHandled;
   } catch (error) {

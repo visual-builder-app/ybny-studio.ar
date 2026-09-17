@@ -169,7 +169,7 @@ const initPlugins = ({
           .then((value) => writeClipboardText(value))
           .catch(() =>
             builderApi.toast.error(
-              "Could not prepare the selected content for copying."
+              "تعذّر تجهيز المحتوى المحدد للنسخ."
             )
           );
         break;
@@ -265,15 +265,15 @@ export const initCopyPasteForContentEditMode = ({
   signal: AbortSignal;
 }) => {
   const showUnsupportedCopyMessage = () => {
-    builderApi.toast.info("This selection cannot be copied here.");
+    builderApi.toast.info("لا يمكن نسخ هذا التحديد هنا.");
   };
 
   const showUnsupportedPasteMessage = () => {
-    builderApi.toast.info("This clipboard data cannot be pasted here.");
+    builderApi.toast.info("لا يمكن لصق بيانات الحافظة هذه هنا.");
   };
 
   const showCutDesignModeOnlyMessage = () => {
-    builderApi.toast.info("Cutting is allowed in design mode only.");
+    builderApi.toast.info("القص مسموح في وضع التصميم فقط.");
   };
 
   const handleCopy = (event: ClipboardEvent) => {

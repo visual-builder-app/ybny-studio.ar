@@ -39,7 +39,7 @@ export const useStringOptions = ({
           const formatter = new Intl.ListFormat(undefined, {
             type: "disjunction",
           });
-          return `${label} expects one of ${formatter.format(meta.options)}`;
+          return `${label} يتوقع إحدى القيم: ${formatter.format(meta.options)}`;
         }
       },
       onChangeValue: (value: string | undefined) =>

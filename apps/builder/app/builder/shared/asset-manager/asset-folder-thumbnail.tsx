@@ -348,11 +348,11 @@ export const FolderThumbnail = ({
             )}
           </Grid>
         }
-        aria-label={`Folder ${folder.name}`}
+        aria-label={`المجلد ${folder.name}`}
         aria-description={
           collection === undefined
-            ? "Double-click to open. Drag assets or folders here to move them."
-            : "Content collection. Double-click to open. Move supporting assets or folders here."
+            ? "انقر نقرًا مزدوجًا للفتح. اسحب الوسائط أو المجلدات إلى هنا لنقلها."
+            : "مجموعة محتوى. انقر نقرًا مزدوجًا للفتح. انقل الوسائط أو المجلدات المساندة إلى هنا."
         }
         data-is-drop-over={isDropTarget ? "true" : undefined}
         clickable
@@ -368,7 +368,7 @@ export const FolderThumbnail = ({
           canManage ? (
             <AssetManagerThumbnailMenu
               actions={displayedActions}
-              label={`Actions for ${folder.name}`}
+              label={`إجراءات ${folder.name}`}
               onPointerDown={() => interactions.onContextMenuSelection(item)}
             />
           ) : undefined
@@ -466,7 +466,7 @@ export const BackThumbnail = ({
         }}
         as="button"
         type="button"
-        label="Back"
+        label="رجوع"
         preview={
           <ChevronRightIcon size={48} style={{ transform: "rotate(180deg)" }} />
         }

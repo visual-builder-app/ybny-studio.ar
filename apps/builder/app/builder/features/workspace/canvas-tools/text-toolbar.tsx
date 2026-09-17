@@ -127,9 +127,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         event.preventDefault();
       }}
     >
-      <Tooltip content="Clear styles">
+      <Tooltip content="مسح الأنماط">
         <IconButton
-          aria-label="Clear styles"
+          aria-label="مسح الأنماط"
           disabled={isCleared}
           onClick={() => emitCommand("formatClear")}
         >
@@ -137,9 +137,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip content="Bold">
+      <Tooltip content="عريض">
         <IconButton
-          aria-label="Bold"
+          aria-label="عريض"
           variant={state.isBold ? "local" : "default"}
           onClick={() => emitCommand("formatBold")}
         >
@@ -147,9 +147,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip content="Italic">
+      <Tooltip content="مائل">
         <IconButton
-          aria-label="Italic"
+          aria-label="مائل"
           variant={state.isItalic ? "local" : "default"}
           onClick={() => emitCommand("formatItalic")}
         >
@@ -157,9 +157,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip content="Superscript">
+      <Tooltip content="نص مرتفع">
         <IconButton
-          aria-label="Superscript"
+          aria-label="نص مرتفع"
           variant={state.isSuperscript ? "local" : "default"}
           onClick={() => emitCommand("formatSuperscript")}
         >
@@ -167,9 +167,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip content="Subscript">
+      <Tooltip content="نص منخفض">
         <IconButton
-          aria-label="Subscript"
+          aria-label="نص منخفض"
           variant={state.isSubscript ? "local" : "default"}
           onClick={() => emitCommand("formatSubscript")}
         >
@@ -178,9 +178,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
       </Tooltip>
 
       {(isWithinLink === false || state.isLink) && (
-        <Tooltip content="Inline link">
+        <Tooltip content="رابط مضمّن">
           <IconButton
-            aria-label="Inline link"
+            aria-label="رابط مضمّن"
             variant={state.isLink ? "local" : "default"}
             onClick={() => emitCommand("formatLink")}
           >
@@ -189,9 +189,9 @@ const Toolbar = ({ state, scale }: ToolbarProps) => {
         </Tooltip>
       )}
 
-      <Tooltip content="Wrap with span">
+      <Tooltip content="تغليف بـ span">
         <IconButton
-          aria-label="Wrap with span"
+          aria-label="تغليف بـ span"
           variant={state.isSpan ? "local" : "default"}
           onClick={() => emitCommand("formatSpan")}
         >

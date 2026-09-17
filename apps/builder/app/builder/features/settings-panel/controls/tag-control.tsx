@@ -59,8 +59,8 @@ export const TagControl = ({ meta, prop }: ControlProps<"tag">) => {
   return (
     <VerticalLayout
       label={
-        <FieldLabel description="Use this property to change the HTML tag of this element to semantically structure and describe the content of a webpage. This can be important for accessibility tools and search engine optimization.">
-          Tag
+        <FieldLabel description="استخدم هذه الخاصية لتغيير وسم HTML لهذا العنصر لتنظيم محتوى الصفحة ووصفه دلاليًا. قد يكون هذا مهمًا لأدوات إمكانية الوصول وتحسين محركات البحث.">
+          الوسم
         </FieldLabel>
       }
     >

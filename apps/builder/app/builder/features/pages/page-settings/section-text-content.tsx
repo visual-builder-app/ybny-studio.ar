@@ -25,9 +25,9 @@ export const TextContentSection = ({
 
   return (
     <Grid gap={2}>
-      <Text color="subtle">The plain text content served for this page.</Text>
+      <Text color="subtle">محتوى النص العادي المقدَّم لهذه الصفحة.</Text>
       <Grid gap={1}>
-        <Label htmlFor={contentId}>Text</Label>
+        <Label htmlFor={contentId}>النص</Label>
         <BindableExpressionControl
           expression={values.content}
           value={String(

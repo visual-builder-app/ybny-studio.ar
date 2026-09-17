@@ -67,22 +67,22 @@ export const AuthSection = ({
               }
             }}
           />
-          <Label htmlFor={enableId}>Require login and password</Label>
+          <Label htmlFor={enableId}>طلب اسم مستخدم وكلمة مرور</Label>
           {showUpgrade && <ProChip>PRO</ProChip>}
           <Tooltip
             content={
               <>
                 <Text>
-                  Authentication asks visitors for HTTP Basic Auth credentials
-                  before protected pages load on custom domains.
+                  يطلب التحقق من الزوار بيانات HTTP Basic Auth
+                  قبل تحميل الصفحات المحمية على النطاقات المخصصة.
                 </Text>
                 {showUpgrade && (
                   <>
                     <br />
                     <Text>
-                      Page authentication is a Pro feature. You can publish to
-                      staging for free; upgrade to Pro to publish to custom
-                      domains.
+                      التحقق من الوصول للصفحات ميزة احترافية. يمكنك النشر على
+                      بيئة التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على النطاقات
+                      المخصصة.
                     </Text>
                     <LinkButton
                       color="primary"
@@ -90,7 +90,7 @@ export const AuthSection = ({
                       target="_blank"
                       href="https://webstudio.is/pricing"
                     >
-                      Upgrade
+                      ترقية
                     </LinkButton>
                   </>
                 )}
@@ -108,11 +108,11 @@ export const AuthSection = ({
           <Text color="subtle">
             {isExpanded ? (
               <>
-                Visitors on <b>custom domains</b> will be asked for HTTP Basic
-                Auth credentials before this page loads.
+                سيُطلب من الزوار على <b>النطاقات المخصصة</b> إدخال بيانات HTTP Basic
+                Auth قبل تحميل هذه الصفحة.
               </>
             ) : (
-              "Anyone can access this page right now."
+              "يمكن لأي شخص الوصول إلى هذه الصفحة حاليًا."
             )}
           </Text>
         </Grid>
@@ -127,7 +127,7 @@ export const AuthSection = ({
             gridTemplateColumns: `auto 1fr`,
           }}
         >
-          <Label htmlFor={loginId}>Login</Label>
+          <Label htmlFor={loginId}>اسم المستخدم</Label>
           <InputErrorsTooltip
             errors={
               showErrors || touchedFields.login ? errors.auth?.login : undefined
@@ -153,7 +153,7 @@ export const AuthSection = ({
               }}
             />
           </InputErrorsTooltip>
-          <Label htmlFor={passwordId}>Password</Label>
+          <Label htmlFor={passwordId}>كلمة المرور</Label>
           <InputErrorsTooltip
             errors={
               showErrors || touchedFields.password

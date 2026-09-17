@@ -147,7 +147,7 @@ export const Label = ({
       {readOnly && (
         <Tooltip
           content={
-            "The value is controlled by an expression and cannot be changed."
+            "القيمة مضبوطة بواسطة تعبير ولا يمكن تغييرها."
           }
           variant="wrapped"
         >

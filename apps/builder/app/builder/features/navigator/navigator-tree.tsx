@@ -152,7 +152,7 @@ const MdxContentMenu = ({ assetId }: { assetId?: string }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <SmallIconButton
-            aria-label="MDX content settings"
+            aria-label="إعدادات محتوى MDX"
             icon={<SettingsIcon />}
           />
         </DropdownMenuTrigger>
@@ -164,7 +164,7 @@ const MdxContentMenu = ({ assetId }: { assetId?: string }) => {
           }}
         >
           <DropdownMenuItem disabled={!assetId} onSelect={() => setOpen(true)}>
-            Open MDX file
+            فتح ملف MDX
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -569,7 +569,7 @@ const ShowToggle = ({
             <>
               <br />
               <Text css={{ color: cssVar("--foreground-accent") }}>
-                Animation is running on canvas.
+                الرسوم المتحركة تعمل على اللوحة.
               </Text>
             </>
           )}
@@ -591,7 +591,7 @@ const ShowToggle = ({
             : undefined
         }
         tabIndex={-1}
-        aria-label="Show"
+        aria-label="إظهار"
         onClick={toggleShow}
         icon={value ? <EyeIcon /> : <EyeClosedIcon />}
       />
@@ -674,7 +674,7 @@ const TreeNodeContent = ({
       <Tooltip
         content={
           mdx
-            ? "Content inside this region is saved to the connected MDX file. Other instances in this Content Block are saved in the project."
+            ? "يُحفظ المحتوى داخل هذه المنطقة في ملف MDX المرتبط. تُحفظ النسخ الأخرى في كتلة المحتوى هذه داخل المشروع."
             : isNameEditable
               ? error
               : externalContentInstanceNameMessage
@@ -777,7 +777,7 @@ const canDrag = (instance: Instance, instanceSelector: InstanceSelector) => {
   });
   if (isContent) {
     toast.error(
-      "This instance can not be moved outside of its parent component."
+      "لا يمكن نقل هذه النسخة خارج مكوّنها الأصلي."
     );
   }
   return !isContent;
@@ -1128,8 +1128,8 @@ export const NavigatorTree = () => {
                   disableHoverableContent={true}
                   content={
                     <Text>
-                      Variables defined on Global root are available on every
-                      instance on every page.
+                      المتغيرات المعرّفة على الجذر العام متاحة لكل
+                      نسخة في كل صفحة.
                     </Text>
                   }
                 >

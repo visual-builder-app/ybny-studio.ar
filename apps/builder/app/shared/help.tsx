@@ -35,17 +35,17 @@ export const socialLinks = [
 
 export const help = [
   {
-    label: "Video tutorials",
+    label: "دروس فيديو",
     url: "https://wstd.us/101",
     icon: <YoutubeIcon />,
   },
   {
-    label: "Docs",
+    label: "التوثيق",
     url: "https://docs.webstudio.is/",
     icon: <ContentIcon />,
   },
   {
-    label: "Community",
+    label: "المجتمع",
     url: "https://wstd.us/community",
     icon: <DiscordIcon />,
   },

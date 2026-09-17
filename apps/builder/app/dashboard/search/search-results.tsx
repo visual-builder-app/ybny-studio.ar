@@ -52,7 +52,7 @@ export const SearchResults = (props: DashboardData) => {
     <Main>
       <Header variant="main">
         <Text variant="brandRegular">
-          Search results for <b>"{search}"</b>
+          نتائج البحث عن <b>"{search}"</b>
         </Text>
       </Header>
       <Flex
@@ -67,7 +67,7 @@ export const SearchResults = (props: DashboardData) => {
         {results.projects.length > 0 && (
           <>
             <Text variant="brandSectionTitle" as="h2">
-              Projects
+              المشاريع
             </Text>
             <ProjectsGrid
               projects={results.projects}

@@ -179,10 +179,10 @@ export const SectionMarketplace = () => {
   return (
     <Grid gap={2}>
       <Text variant="titles" css={sectionSpacing}>
-        Marketplace
+        السوق
       </Text>
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.name}>Product name</Label>
+        <Label htmlFor={ids.name}>اسم المنتج</Label>
         <InputErrorsTooltip errors={errors?.name}>
           <InputField
             id={ids.name}
@@ -197,7 +197,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.category}>Category</Label>
+        <Label htmlFor={ids.category}>الفئة</Label>
         <Select
           options={Array.from(marketplaceCategories.keys())}
           getLabel={(category: MarketplaceProduct["category"]) =>
@@ -215,7 +215,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={2} css={sectionSpacing}>
-        <Label>Thumbnail</Label>
+        <Label>الصورة المصغرة</Label>
         <InputErrorsTooltip errors={errors?.thumbnailAssetId}>
           <Grid flow="column" gap={3}>
             <Box className={thumbnailStyle()}>
@@ -232,12 +232,12 @@ export const SectionMarketplace = () => {
 
             <Grid gap={2}>
               <Text color="subtle">
-                The optimal dimensions in marketplace are 600x315 px or larger
-                with a 1.91:1 aspect ratio.
+                الأبعاد المثالية في السوق هي 600×315 بكسل أو أكبر
+                بنسبة أبعاد 1.91:1.
               </Text>
               <ImageControl onAssetIdChange={handleSave("thumbnailAssetId")}>
                 <Button color="primary" css={{ justifySelf: "start" }}>
-                  Upload
+                  رفع
                 </Button>
               </ImageControl>
             </Grid>
@@ -246,7 +246,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.author}>Author</Label>
+        <Label htmlFor={ids.author}>المؤلف</Label>
         <InputErrorsTooltip errors={errors?.author}>
           <InputField
             id={ids.author}
@@ -260,7 +260,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.email}>Email</Label>
+        <Label htmlFor={ids.email}>البريد الإلكتروني</Label>
         <InputErrorsTooltip errors={errors?.email}>
           <InputField
             id={ids.email}
@@ -274,7 +274,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.website}>Website</Label>
+        <Label htmlFor={ids.website}>الموقع الإلكتروني</Label>
         <InputErrorsTooltip errors={errors?.website}>
           <InputField
             id={ids.website}
@@ -288,7 +288,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={1} css={sectionSpacing}>
-        <Label htmlFor={ids.issues}>Issues tracker</Label>
+        <Label htmlFor={ids.issues}>متتبع المشكلات</Label>
         <InputErrorsTooltip errors={errors?.issues}>
           <InputField
             id={ids.issues}
@@ -302,7 +302,7 @@ export const SectionMarketplace = () => {
       </Grid>
 
       <Grid gap={2} css={sectionSpacing}>
-        <Label htmlFor={ids.description}>Description</Label>
+        <Label htmlFor={ids.description}>الوصف</Label>
         <InputErrorsTooltip errors={errors?.description}>
           <TextArea
             id={ids.description}
@@ -319,8 +319,8 @@ export const SectionMarketplace = () => {
       <Grid gap={2} css={sectionSpacing}>
         <PanelBanner>
           <Text color="destructive">
-            {`Don't forget to publish your project after every change to make your
-            changes available in the marketplace!`}
+            {`لا تنسَ نشر مشروعك بعد كل تغيير لكي تصبح تعديلاتك
+            متاحة في السوق!`}
           </Text>
         </PanelBanner>
       </Grid>
@@ -338,15 +338,15 @@ export const SectionMarketplace = () => {
               }}
             />
             <Label htmlFor={ids.isConfirmed} css={{ flexShrink: 1 }}>
-              I understand that by submitting, this project will become
-              available in a public marketplace.
+              أفهم أنه بمجرد الإرسال، سيصبح هذا المشروع متاحًا
+              في سوق عام.
             </Label>
           </CheckboxAndLabel>
         </Grid>
       )}
 
       <Flex align="center" justify="between" gap={2} css={sectionSpacing}>
-        <Text>Status: {approval.status.toLocaleLowerCase()}</Text>
+        <Text>الحالة: {approval.status.toLocaleLowerCase()}</Text>
         {approval.status === "UNLISTED" ? (
           <Button
             color="primary"
@@ -354,7 +354,7 @@ export const SectionMarketplace = () => {
             state={approval.state === "idle" ? undefined : "pending"}
             onClick={approval.submit}
           >
-            Start Review
+            بدء المراجعة
           </Button>
         ) : (
           <Button
@@ -362,7 +362,7 @@ export const SectionMarketplace = () => {
             color="destructive"
             onClick={approval.unlist}
           >
-            Unlist from Marketplace
+            إزالة من السوق
           </Button>
         )}
       </Flex>

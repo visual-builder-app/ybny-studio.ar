@@ -299,7 +299,7 @@ export const isExternalContentInstance = (
 };
 
 export const externalContentInstanceNameMessage =
-  "Names cannot be edited for MDX content.";
+  "لا يمكن تعديل الأسماء لمحتوى MDX.";
 
 export const subscribeExternalContentMutations = (
   listener: (rootKeys: readonly string[]) => void

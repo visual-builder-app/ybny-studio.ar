@@ -53,11 +53,11 @@ export const LeaveWorkspaceDialog = ({
         >
           <DialogDescription asChild>
             <Text as="p">
-              Are you sure you want to leave{" "}
+              هل أنت متأكد من مغادرة{" "}
               <Text as="span" variant="titles">
                 {workspace.name}
               </Text>
-              ? You will lose access to all projects in this workspace.
+              ؟ ستفقد الوصول إلى جميع المشاريع في مساحة العمل هذه.
             </Text>
           </DialogDescription>
           {error && <Text color="destructive">{error}</Text>}
@@ -81,13 +81,13 @@ export const LeaveWorkspaceDialog = ({
               );
             }}
           >
-            Leave
+            مغادرة
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
-        <DialogTitle>Leave workspace</DialogTitle>
+        <DialogTitle>مغادرة مساحة العمل</DialogTitle>
       </DialogContent>
     </Dialog>
   );

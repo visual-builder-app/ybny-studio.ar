@@ -22,7 +22,7 @@ export const fetch: typeof globalThis.fetch = async (
   requestInit
 ) => {
   if (csrfToken === undefined) {
-    toast.error("CSRF token is not set.");
+    toast.error("لم يتم تعيين رمز CSRF.");
     throw new Error("CSRF token is not set.");
   }
 

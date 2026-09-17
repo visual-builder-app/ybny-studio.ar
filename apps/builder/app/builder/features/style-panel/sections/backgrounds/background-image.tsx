@@ -45,7 +45,7 @@ export const BackgroundImage = ({
       );
 
       if (usedAsset === undefined) {
-        return [`Asset ${url} is not found in project`];
+        return [`لم يتم العثور على الوسيط ${url} في المشروع`];
       }
 
       return;
@@ -57,7 +57,7 @@ export const BackgroundImage = ({
     <PanelContent as={Flex} direction="column" gap={1} ref={elementRef}>
       <Grid gap="2" columns="3" align="start">
         <PropertyInlineLabel
-          label="Image"
+          label="صورة"
           description={propertyDescriptions.backgroundImage}
         />
         <Box

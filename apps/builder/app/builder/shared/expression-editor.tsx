@@ -714,7 +714,7 @@ export const ExpressionEditor = ({
       <EditorDialogControl>
         {content}
         <EditorDialog
-          title="Expression editor"
+          title="محرر التعبيرات"
           contentPadding={false}
           content={
             <EditorContent

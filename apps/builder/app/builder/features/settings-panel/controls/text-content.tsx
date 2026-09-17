@@ -137,8 +137,7 @@ export const TextContent = ({
         <FieldLabel
           description={
             <>
-              Plain text content that can be bound to either a variable or a
-              resource value.
+              محتوى نص عادي يمكن ربطه بقيمة متغير أو مورد.
               {binding.bindingState.overwritable === false && (
                 <Flex gap="1">
                   <AlertIcon
@@ -146,8 +145,8 @@ export const TextContent = ({
                     style={{ flexShrink: 0 }}
                   />
                   <Text>
-                    The value is controlled by an expression and cannot be
-                    changed.
+                    القيمة مضبوطة بواسطة تعبير ولا يمكن
+                    تغييرها.
                   </Text>
                 </Flex>
               )}
@@ -165,14 +164,14 @@ export const TextContent = ({
             });
           }}
         >
-          Text Content
+          محتوى النص
         </FieldLabel>
       }
     >
       <BindableExpressionControl
         {...binding}
         value={localValue.value}
-        validate={(value) => validatePrimitiveValue(value, "Text content")}
+        validate={(value) => validatePrimitiveValue(value, "محتوى النص")}
         onChangeValue={(value) => updateChild("text", value)}
         onChangeExpression={(value) =>
           updateChild("expression", value, binding.getExpressionMode(value))
@@ -196,7 +195,7 @@ export const TextContent = ({
                     </DialogTitleActions>
                   }
                 >
-                  <Text variant="labels">Text content</Text>
+                  <Text variant="labels">محتوى النص</Text>
                 </DialogTitle>
               }
               size="small"

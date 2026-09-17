@@ -83,7 +83,7 @@ export const PositionControl = ({
   return (
     <Flex direction="column" gap="1">
       <PropertyInlineLabel
-        label="Position"
+        label="الموضع"
         description={propertyDescriptions[camelCaseProperty(property)]}
         properties={[property]}
       />
@@ -107,8 +107,8 @@ export const PositionControl = ({
           gapX="2"
         >
           <PropertyInlineLabel
-            label="Left"
-            description="Left position offset"
+            label="يسار"
+            description="إزاحة الموضع من اليسار"
             properties={[property]}
           />
           <CssValueInputContainer
@@ -121,8 +121,8 @@ export const PositionControl = ({
             onDelete={(options) => deleteProperty(property, options)}
           />
           <PropertyInlineLabel
-            label="Top"
-            description="Top position offset"
+            label="أعلى"
+            description="إزاحة الموضع من الأعلى"
             properties={[property]}
           />
           <CssValueInputContainer

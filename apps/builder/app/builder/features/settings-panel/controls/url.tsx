@@ -244,12 +244,12 @@ const BaseEmail = ({ readOnly, value, onChange, id }: BaseControlProps) => {
         />
       </Row>
       <Row>
-        <Label htmlFor={`${id}-subject`}>Subject</Label>
+        <Label htmlFor={`${id}-subject`}>الموضوع</Label>
         <InputField
           disabled={readOnly}
           id={`${id}-subject`}
           value={localValue.value.subject}
-          placeholder="You've got mail!"
+          placeholder="لديك رسالة!"
           onChange={(event) =>
             localValue.set({
               ...localValue.value,
@@ -367,7 +367,7 @@ const BasePage = ({ prop, onChange }: BaseControlProps) => {
           value={selectedPageId}
           options={allPages.map(getId)}
           onChange={(id) => onChange({ type: "page", value: id })}
-          placeholder="Choose page"
+          placeholder="اختيار صفحة"
           fullWidth
         >
           {Array.from(pageSelectOptions).map(([folderId, { name, pages }]) => {
@@ -393,9 +393,9 @@ const BasePage = ({ prop, onChange }: BaseControlProps) => {
           placeholder={
             sectionSelectOptions.length === 0
               ? selectedPageId
-                ? "Selected page has no sections"
-                : "No sections available"
-              : "Choose section"
+                ? "الصفحة المحددة لا تحتوي على أقسام"
+                : "لا تتوفر أقسام"
+              : "اختيار قسم"
           }
           value={sectionSelectValue}
           options={sectionSelectOptions}
@@ -422,13 +422,13 @@ const BaseAttachment = ({ prop, onChange }: BaseControlProps) => (
 
 const modes = {
   url: { icon: <LinkIcon />, control: BaseUrl, label: "URL" },
-  page: { icon: <PageIcon />, control: BasePage, label: "Page" },
-  email: { icon: <EmailIcon />, control: BaseEmail, label: "Email" },
-  phone: { icon: <PhoneIcon />, control: BasePhone, label: "Phone" },
+  page: { icon: <PageIcon />, control: BasePage, label: "صفحة" },
+  email: { icon: <EmailIcon />, control: BaseEmail, label: "البريد" },
+  phone: { icon: <PhoneIcon />, control: BasePhone, label: "الهاتف" },
   attachment: {
     icon: <AttachmentIcon />,
     control: BaseAttachment,
-    label: "Attachment",
+    label: "مرفق",
   },
 } as const;
 

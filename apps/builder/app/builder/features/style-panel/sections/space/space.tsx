@@ -211,7 +211,7 @@ export const Section = () => {
   };
 
   return (
-    <StyleSection label="Space" properties={spaceProperties}>
+    <StyleSection label="التباعد" properties={spaceProperties}>
       <SpaceLayout
         disabled={readonly}
         ref={layoutRef}

@@ -25,13 +25,13 @@ export const BorderStyle = () => {
   return (
     <Grid css={rowCss}>
       <PropertyLabel
-        label="Style"
+        label="النمط"
         description={propertyDescriptions.borderBlockStyle}
         properties={properties}
       />
       <Box css={{ gridColumn: `span 2` }}>
         <ToggleGroupControl
-          label="Style"
+          label="النمط"
           properties={properties}
           items={[
             {

@@ -10,9 +10,9 @@ import {
 import { $settings, setSetting } from "~/builder/shared/client-settings";
 
 const colorSchemeOptions = [
-  { value: "system", label: "System" },
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
+  { value: "system", label: "النظام" },
+  { value: "light", label: "فاتح" },
+  { value: "dark", label: "داكن" },
 ] as const;
 
 export const ColorSchemeMenu = ({
@@ -25,7 +25,7 @@ export const ColorSchemeMenu = ({
   return (
     <DropdownMenuSub>
       <DropdownMenuSubTrigger withIndicator={withIndicator}>
-        Theme
+        المظهر
       </DropdownMenuSubTrigger>
       <DropdownMenuSubContent width="regular">
         <DropdownMenuRadioGroup

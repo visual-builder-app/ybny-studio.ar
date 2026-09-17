@@ -106,13 +106,13 @@ const BreakpointEditorItem = ({
             localValue.set({ ...localValue.value, label: event.target.value })
           }
           onBlur={localValue.save}
-          placeholder="Breakpoint name"
+          placeholder="اسم نقطة التوقف"
           minLength={1}
           required
           autoFocus={autoFocus}
         />
         <IconButton
-          aria-label={`Delete breakpoint ${localValue.value.label}`}
+          aria-label={`حذف نقطة التوقف ${localValue.value.label}`}
           data-breakpoint-delete
           disabled={hasName === false}
           css={{ visibility: "hidden" }}
@@ -140,7 +140,7 @@ const BreakpointEditorItem = ({
             css={{ width: theme.spacing[28] }}
             options={["maxWidth", "minWidth"]}
             getLabel={(option) =>
-              option === "maxWidth" ? "Max width" : "Min width"
+              option === "maxWidth" ? "العرض الأقصى" : "العرض الأدنى"
             }
             value={type}
             onChange={(value) => {
@@ -151,7 +151,7 @@ const BreakpointEditorItem = ({
           />
           <Box css={{ flexShrink: 1 }}>
             <CssValueInput
-              aria-label="Breakpoint width"
+              aria-label="عرض نقطة التوقف"
               styleSource="local"
               property="width"
               value={{
@@ -293,7 +293,7 @@ export const BreakpointsEditor = ({
             css={{ paddingInline: theme.panel.paddingInline }}
             suffix={
               <IconButton
-                aria-label="Add breakpoint"
+                aria-label="إضافة نقطة توقف"
                 onClick={() => {
                   if (hasReachedBreakpointLimit(allBreakpoints.length)) {
                     toast.warn(breakpointLimitWarning);
@@ -311,7 +311,7 @@ export const BreakpointsEditor = ({
               </IconButton>
             }
           >
-            {"Breakpoints"}
+            {"نقاط التوقف"}
           </PanelTitle>
           <Separator />
           <ScrollAreaNative css={{ maxHeight: "80vh" }}>
@@ -334,7 +334,7 @@ export const BreakpointsEditor = ({
             </Fragment>
             {allBreakpoints.length === 0 && (
               <Text css={{ margin: theme.spacing[10] }}>
-                No breakpoints found
+                لم يتم العثور على نقاط توقف
               </Text>
             )}
           </ScrollAreaNative>

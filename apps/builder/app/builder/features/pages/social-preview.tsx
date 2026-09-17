@@ -42,7 +42,7 @@ export const SocialPreview = ({
 }: SocialPreviewProps) => {
   return (
     <Grid gap={1}>
-      <Label>Social sharing preview</Label>
+      <Label>معاينة المشاركة الاجتماعية</Label>
 
       <Grid
         gap={1}
@@ -58,7 +58,7 @@ export const SocialPreview = ({
               ogImageUrl === undefined || ogImageUrl === "" ? false : true,
           })}
           {...getImageAttributes({
-            alt: "Social sharing preview image",
+            alt: "صورة معاينة المشاركة الاجتماعية",
             src: ogImageUrl,
             loader: wsImageLoader,
           })}

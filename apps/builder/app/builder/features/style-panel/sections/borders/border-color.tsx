@@ -39,14 +39,14 @@ export const BorderColor = () => {
   return (
     <Grid css={rowCss}>
       <PropertyLabel
-        label="Color"
-        description="Sets the color of the border"
+        label="اللون"
+        description="يضبط لون الحدود"
         properties={properties}
       />
       <Box css={{ gridColumn: `span 2` }}>
         <PropertyValueTooltip
-          label="Color"
-          description="Sets the color of the border"
+          label="اللون"
+          description="يضبط لون الحدود"
           properties={properties}
           isAdvanced={isAdvanced}
         >

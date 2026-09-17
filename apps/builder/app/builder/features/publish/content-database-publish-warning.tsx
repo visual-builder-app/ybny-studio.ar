@@ -24,8 +24,8 @@ export const showContentDatabasePublishWarning = async ({
     <>
       {diagnostics.mdxOmissions.length > 0 && (
         <div>
-          Some MDX content cannot render because its custom template is missing
-          or ambiguous. Add or repair the template in the Content Block:
+          لا يمكن عرض بعض محتوى MDX لأن قالبه المخصص مفقود
+          أو غامض. أضف القالب أو أصلحه في كتلة المحتوى:
           <ul>
             {diagnostics.mdxOmissions.slice(0, 10).map((issue) => (
               <li key={JSON.stringify(issue)}>
@@ -35,8 +35,8 @@ export const showContentDatabasePublishWarning = async ({
           </ul>
           {diagnostics.mdxOmissions.length > 10 && (
             <div>
-              And {diagnostics.mdxOmissions.length - 10} more template
-              references.
+              و{diagnostics.mdxOmissions.length - 10} مرجع قالب
+              إضافي.
             </div>
           )}
         </div>

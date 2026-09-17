@@ -108,7 +108,7 @@ export const BorderProperty = ({
 
         {individualModeIcon && (
           <IconToggleButton
-            aria-label={`Toggle individual ${label.toLowerCase()} values`}
+            aria-label={`تبديل قيم ${label.toLowerCase()} الفردية`}
             disabled={readonly}
             pressed={showIndividualMode}
             onPressedChange={setShowIndividualMode}

@@ -112,13 +112,13 @@ export const getInstanceLabel = (
 ): string => {
   if (typeof instanceOrInstanceId === "string") {
     if (instanceOrInstanceId === ROOT_INSTANCE_ID) {
-      return "Root";
+      return "الجذر";
     }
     const instance = $instances.get().get(instanceOrInstanceId);
     if (instance) {
       return getInstanceLabel(instance);
     }
-    return "Unknown";
+    return "غير معروف";
   }
 
   if (instanceOrInstanceId.label) {

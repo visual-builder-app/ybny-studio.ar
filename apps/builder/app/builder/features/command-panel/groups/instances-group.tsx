@@ -69,9 +69,9 @@ export const InstancesGroup = ({ options }: { options: InstanceOption[] }) => {
     <CommandGroup
       name="instance"
       heading={
-        <CommandGroupHeading>Instances ({options.length})</CommandGroupHeading>
+        <CommandGroupHeading>النسخ ({options.length})</CommandGroupHeading>
       }
-      actions={[{ name: "select", label: "Select" }]}
+      actions={[{ name: "select", label: "تحديد" }]}
     >
       {options.map(({ instance }) => {
         const label = getInstanceLabel(instance);

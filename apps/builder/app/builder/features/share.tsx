@@ -19,7 +19,7 @@ export const ShareButton = ({ projectId }: { projectId: string }) => {
 
   const isShareDisabled = authPermit !== "own";
   const tooltipContent = isShareDisabled
-    ? "Only owner can share projects"
+    ? "يمكن للمالك فقط مشاركة المشاريع"
     : undefined;
 
   return (
@@ -31,18 +31,18 @@ export const ShareButton = ({ projectId }: { projectId: string }) => {
       }}
     >
       <Tooltip
-        content={tooltipContent ?? "Share a project link"}
+        content={tooltipContent ?? "مشاركة رابط المشروع"}
         sideOffset={Number.parseFloat(rawTheme.spacing[5])}
       >
         <PopoverTrigger asChild>
           <Button color="ghost" disabled={isShareDisabled}>
-            Share
+            مشاركة
           </Button>
         </PopoverTrigger>
       </Tooltip>
       <PopoverContent css={{ marginRight: theme.spacing[3] }}>
         <ShareProjectContainer projectId={projectId} />
-        <PopoverTitle>Share</PopoverTitle>
+        <PopoverTitle>مشاركة</PopoverTitle>
       </PopoverContent>
     </Popover>
   );

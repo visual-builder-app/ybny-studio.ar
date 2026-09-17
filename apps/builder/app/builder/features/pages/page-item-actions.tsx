@@ -26,16 +26,16 @@ type PageItemActionsMenuItemsProps = {
 };
 
 const items = [
-  { name: "paste", label: "Paste", shortcut: ["meta", "v"] },
-  { name: "copy", label: "Copy", shortcut: ["meta", "c"] },
+  { name: "paste", label: "لصق", shortcut: ["meta", "v"] },
+  { name: "copy", label: "نسخ", shortcut: ["meta", "c"] },
   {
     name: "duplicate",
-    label: "Duplicate",
+    label: "إنشاء نسخة",
     shortcut: ["meta", "d"],
   },
   {
     name: "delete",
-    label: "Delete",
+    label: "حذف",
     shortcut: ["backspace"],
   },
 ] as const;
@@ -87,7 +87,7 @@ export const PageItemContextMenuActions = ({
 
 export const PageItemActionsDropdown = ({
   actions,
-  label = "Actions",
+  label = "إجراءات",
   additionalItems,
 }: PageItemActionsMenuItemsProps & {
   label?: string;

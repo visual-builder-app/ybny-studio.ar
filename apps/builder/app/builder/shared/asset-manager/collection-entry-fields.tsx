@@ -15,9 +15,9 @@ import {
 } from "@webstudio-is/design-system";
 
 const optionalBooleanOptions = [
-  { value: "unset", label: "Not set" },
-  { value: "true", label: "Yes" },
-  { value: "false", label: "No" },
+  { value: "unset", label: "غير محدد" },
+  { value: "true", label: "نعم" },
+  { value: "false", label: "لا" },
 ] as const;
 
 /** The same field controls for creation and editing; callers own persistence. */

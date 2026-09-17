@@ -287,12 +287,12 @@ export const MarkdownSplitView = ({
           <div
             className={previewStyle()}
             role="region"
-            aria-label="Markdown preview"
+            aria-label="معاينة Markdown"
             dangerouslySetInnerHTML={{ __html: html }}
           />
         ) : undefined
       }
-      separatorLabel="Resize Markdown preview"
+      separatorLabel="تغيير حجم معاينة Markdown"
     />
   );
 };

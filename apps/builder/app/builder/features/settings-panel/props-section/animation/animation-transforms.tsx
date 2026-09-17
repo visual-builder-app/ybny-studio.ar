@@ -188,7 +188,7 @@ export const AnimationTransforms = ({
             }}
           />
           <EnhancedTooltip
-            content={isScaleLinked ? "Unlink scale axes" : "Link scale axes"}
+            content={isScaleLinked ? "فصل ربط محاور التحجيم" : "ربط محاور التحجيم"}
           >
             <SmallToggleButton
               variant="normal"

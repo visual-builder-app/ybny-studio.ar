@@ -91,7 +91,7 @@ export const canAddAssetToContentCollection = (
 const getErrorMessage = (error: unknown) =>
   error instanceof Error
     ? error.message
-    : "Collection configuration is invalid";
+    : "إعدادات المجموعة غير صالحة";
 
 export class ContentCollectionReadError extends Error {}
 
@@ -115,7 +115,7 @@ export const discoverContentCollections = async ({
   const readCollectionSource = async (asset: Asset) => {
     if (asset.size > contentEngineLimits.hydratedFileBytes) {
       throw new ContentCollectionError(
-        `Collection file "${formatAssetName(asset)}" exceeds the editing limit`
+        `تجاوز ملف المجموعة "${formatAssetName(asset)}" حد التعديل`
       );
     }
     try {
@@ -172,7 +172,7 @@ export const discoverContentCollections = async ({
           templateAsset,
           reservedAssets,
           siblingAssets: siblings,
-          message: `Collection files could not be loaded: ${error.message}`,
+          message: `تعذّر تحميل ملفات المجموعة: ${error.message}`,
         });
         continue;
       }
@@ -224,7 +224,7 @@ const decodeUtf8 = (bytes: Uint8Array) => {
   try {
     return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
   } catch {
-    throw new ContentCollectionError("Collection file is not valid UTF-8");
+    throw new ContentCollectionError("ملف المجموعة ليس بترميز UTF-8 صالح");
   }
 };
 

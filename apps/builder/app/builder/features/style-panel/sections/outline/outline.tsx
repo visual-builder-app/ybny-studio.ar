@@ -25,7 +25,7 @@ export const Section = () => {
   const outlineStyleValue = toValue(outlineStyle.cascadedValue);
 
   return (
-    <StyleSection label="Outline" properties={properties}>
+    <StyleSection label="الحد الخارجي" properties={properties}>
       <Grid
         css={{
           gridTemplateColumns: `1fr ${theme.spacing[22]}`,
@@ -33,12 +33,12 @@ export const Section = () => {
         gap={2}
       >
         <PropertyLabel
-          label="Style"
+          label="النمط"
           description={propertyDescriptions.outlineStyle}
           properties={["outline-style"]}
         />
         <ToggleGroupControl
-          label="Style"
+          label="النمط"
           properties={["outline-style"]}
           items={[
             { child: <XSmallIcon />, value: "none" },
@@ -51,19 +51,19 @@ export const Section = () => {
         {outlineStyleValue !== "none" && (
           <>
             <PropertyLabel
-              label="Color"
+              label="اللون"
               description={propertyDescriptions.outlineColor}
               properties={["outline-color"]}
             />
             <ColorControl property="outline-color" />
             <PropertyLabel
-              label="Width"
+              label="العرض"
               description={propertyDescriptions.outlineWidth}
               properties={["outline-width"]}
             />
             <TextControl property="outline-width" />
             <PropertyLabel
-              label="Offset"
+              label="الإزاحة"
               description={propertyDescriptions.outlineOffset}
               properties={["outline-offset"]}
             />

@@ -74,8 +74,8 @@ export const ToggleGroupTooltip = ({
               {description}
               {isAdvanced && (
                 <Flex gap="1">
-                  <AlertIcon color={cssVar("--foreground-warning")} /> This
-                  value was defined in the Advanced section.
+                  <AlertIcon color={cssVar("--foreground-warning")} /> تم
+                  تعريف هذه القيمة في القسم المتقدم.
                 </Flex>
               )}
             </Flex>

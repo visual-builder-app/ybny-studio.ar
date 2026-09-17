@@ -10,19 +10,19 @@ const formatSourceLocation = (diagnostic: ContentBlockDiagnostic) => {
 export const formatContentBlockDiagnostic = (
   diagnostic: ContentBlockDiagnostic
 ) => {
-  let message = "Invalid MDX content.";
+  let message = "محتوى MDX غير صالح.";
   if (diagnostic.code === "invalid-mdx") {
     message = diagnostic.message;
   } else if (diagnostic.code === "unsafe-mdx") {
     message = diagnostic.reason;
   } else if (diagnostic.code === "unresolved-template") {
-    message = `Template "${diagnostic.templateName}" is not available and was skipped.`;
+    message = `القالب "${diagnostic.templateName}" غير متاح وتم تخطيه.`;
   } else if (diagnostic.code === "ambiguous-template") {
-    message = `Multiple templates match ${diagnostic.semanticKey}: ${diagnostic.templateNames.join(", ")}. The semantic fallback without Content Block template styles was used.`;
+    message = `تطابقت عدة قوالب مع ${diagnostic.semanticKey}: ${diagnostic.templateNames.join("، ")}. تم استخدام البديل الدلالي بدون أنماط قالب Content Block.`;
   } else if (diagnostic.code === "ignored-template-prop") {
-    message = `Property "${diagnostic.propName}" on template "${
+    message = `تم تجاهل الخاصية "${diagnostic.propName}" في القالب "${
       diagnostic.templateName
-    }" was ignored because it is ${diagnostic.reason.replace("-", " ")}.`;
+    }" لأنها ${diagnostic.reason.replace("-", " ")}.`;
   }
   return `${message}${formatSourceLocation(diagnostic)}`;
 };

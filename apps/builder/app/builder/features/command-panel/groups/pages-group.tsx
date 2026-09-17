@@ -50,11 +50,11 @@ export const PagesGroup = ({ options }: { options: PageOption[] }) => {
     <CommandGroup
       name="page"
       heading={
-        <CommandGroupHeading>Pages ({options.length})</CommandGroupHeading>
+        <CommandGroupHeading>الصفحات ({options.length})</CommandGroupHeading>
       }
       actions={[
-        { name: "select", label: "Select" },
-        { name: "settings", label: "Settings" },
+        { name: "select", label: "تحديد" },
+        { name: "settings", label: "الإعدادات" },
       ]}
     >
       {options.map(({ page }) => (

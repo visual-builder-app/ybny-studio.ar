@@ -50,7 +50,7 @@ const GalleryOverviewItem = ({
           <IconButton
             {...pressProps}
             state={isOpen ? "open" : undefined}
-            aria-label={`More actions for ${item.name}`}
+            aria-label={`المزيد من الإجراءات لـ ${item.name}`}
           >
             <EllipsesIcon />
           </IconButton>

@@ -101,14 +101,14 @@ const EmptyVariables = () => (
   <Flex direction="column" gap="2">
     <Flex justify="center" align="center">
       <Text variant="labels" align="center">
-        No data variables created
-        <br /> on this instance
+        لا توجد متغيرات بيانات منشأة
+        <br /> على هذه النسخة
       </Text>
     </Flex>
     <Flex justify="center" align="center">
       <VariablePopoverTrigger>
         <Button color="primary" type="button" prefix={<PlusIcon />}>
-          Create data variable
+          إنشاء متغير بيانات
         </Button>
       </VariablePopoverTrigger>
     </Flex>
@@ -125,13 +125,13 @@ const variableLabelStyle = css({
 const getVariableBadge = (variable: DataSource) => {
   if (variable.type === "variable") {
     return {
-      label: "Static variable",
+      label: "متغير ثابت",
       text: "S",
     };
   }
   if (variable.type === "resource") {
     return {
-      label: "Dynamic data variable",
+      label: "متغير بيانات ديناميكي",
       text: "D",
     };
   }
@@ -202,7 +202,7 @@ const VariablesItem = ({
                   */}
                   <SmallIconButton
                     tabIndex={-1}
-                    aria-label="Open variable menu"
+                    aria-label="فتح قائمة المتغير"
                     icon={<EllipsesIcon />}
                     onClick={() => {}}
                   />
@@ -221,7 +221,7 @@ const VariablesItem = ({
                         });
                       }}
                     >
-                      Delete {usageCount > 0 && `(${usageCount} bindings)`}
+                      Delete {usageCount > 0 && `(${usageCount} ارتباطات)`}
                     </DropdownMenuItem>
                   )}
                   {source === "local" &&
@@ -284,7 +284,7 @@ const VariablesList = () => {
   );
 };
 
-const label = "Data variables";
+const label = "متغيرات البيانات";
 
 export const VariablesSection = () => {
   const [isOpen, setIsOpen] = useOpenState(label);
@@ -300,7 +300,7 @@ export const VariablesSection = () => {
             <VariablePopoverTrigger>
               <SectionTitleButton
                 type="button"
-                aria-label="Add data variable"
+                aria-label="إضافة متغير بيانات"
                 prefix={<PlusIcon />}
                 onPointerDown={(event) => {
                   event.stopPropagation();
@@ -315,7 +315,7 @@ export const VariablesSection = () => {
             </VariablePopoverTrigger>
           }
         >
-          <SectionTitleLabel>Data variables</SectionTitleLabel>
+          <SectionTitleLabel>متغيرات البيانات</SectionTitleLabel>
         </SectionTitle>
       }
     >

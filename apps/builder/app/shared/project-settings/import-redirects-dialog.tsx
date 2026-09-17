@@ -43,7 +43,7 @@ type ImportRedirectsDialogProps = {
 
 const ACCEPTED_EXTENSIONS = [".csv", ".json", ".txt", ".htaccess"];
 
-const formatSupportsText = `Supports: CSV, JSON, Netlify _redirects, Apache .htaccess`;
+const formatSupportsText = `الصيغ المدعومة: CSV وJSON وNetlify _redirects وApache .htaccess`;
 
 const splitDuplicateRedirects = <Redirect extends { old: string }>(
   redirects: Redirect[],
@@ -161,7 +161,7 @@ export const ImportRedirectsDialog = ({
 
   const handleParse = () => {
     if (!textContent.trim()) {
-      toast.error("Please upload a file or paste redirect content");
+      toast.error("يرجى رفع ملف أو لصق محتوى إعادة التوجيه");
       return;
     }
 
@@ -170,13 +170,13 @@ export const ImportRedirectsDialog = ({
     setSkippedLines(result.skipped);
 
     if (result.redirects.length === 0 && result.skipped.length === 0) {
-      toast.error("No redirects found in the provided content");
+      toast.error("لم يتم العثور على عمليات إعادة توجيه في المحتوى المقدَّم");
       return;
     }
 
     if (result.redirects.length === 0) {
       toast.error(
-        `No valid redirects found. ${result.skipped.length} line(s) were skipped.`
+        `لم يتم العثور على عمليات إعادة توجيه صالحة. تم تخطي ${result.skipped.length} سطر.`
       );
       return;
     }
@@ -209,14 +209,14 @@ export const ImportRedirectsDialog = ({
       onImport(valid, "add");
       const skippedParts = [
         duplicates.length > 0 &&
-          `${duplicates.length} duplicate${duplicates.length !== 1 ? "s" : ""}`,
-        loopCount > 0 && `${loopCount} loop${loopCount !== 1 ? "s" : ""}`,
+          `${duplicates.length} مكرر${duplicates.length !== 1 ? "ات" : ""}`,
+        loopCount > 0 && `${loopCount} حلقة${loopCount !== 1 ? "" : ""} مفرغة`,
       ].filter(Boolean);
       const skippedMessage =
-        skippedParts.length > 0 ? ` (${skippedParts.join(", ")} skipped)` : "";
+        skippedParts.length > 0 ? ` (تم تخطي ${skippedParts.join("، ")})` : "";
       toast.success(
-        `Imported ${valid.length} redirect${
-          valid.length !== 1 ? "s" : ""
+        `تم استيراد ${valid.length} عملية إعادة توجيه${
+          valid.length !== 1 ? "" : ""
         }${skippedMessage}`
       );
     } else {
@@ -227,14 +227,14 @@ export const ImportRedirectsDialog = ({
       onImport(valid, "replace");
       const skippedParts = [
         duplicates.length > 0 &&
-          `${duplicates.length} duplicate${duplicates.length !== 1 ? "s" : ""}`,
-        loopCount > 0 && `${loopCount} loop${loopCount !== 1 ? "s" : ""}`,
+          `${duplicates.length} مكرر${duplicates.length !== 1 ? "ات" : ""}`,
+        loopCount > 0 && `${loopCount} حلقة${loopCount !== 1 ? "" : ""} مفرغة`,
       ].filter(Boolean);
       const skippedMessage =
-        skippedParts.length > 0 ? ` (${skippedParts.join(", ")} skipped)` : "";
+        skippedParts.length > 0 ? ` (تم تخطي ${skippedParts.join("، ")})` : "";
       toast.success(
-        `Replaced all redirects with ${valid.length} new redirect${
-          valid.length !== 1 ? "s" : ""
+        `تم استبدال جميع عمليات إعادة التوجيه بـ ${valid.length} عملية جديدة${
+          valid.length !== 1 ? "" : ""
         }${skippedMessage}`
       );
     }
@@ -290,10 +290,10 @@ export const ImportRedirectsDialog = ({
                 onClick={handleParse}
                 disabled={!textContent.trim()}
               >
-                Parse
+                تحليل
               </Button>
               <DialogClose>
-                <Button color="ghost">Cancel</Button>
+                <Button color="ghost">إلغاء</Button>
               </DialogClose>
             </>
           )}
@@ -305,16 +305,16 @@ export const ImportRedirectsDialog = ({
                 onClick={handleImport}
                 disabled={parsedRedirects.length === 0}
               >
-                Import
+                استيراد
               </Button>
               <DialogClose>
-                <Button color="ghost">Cancel</Button>
+                <Button color="ghost">إلغاء</Button>
               </DialogClose>
             </>
           )}
         </DialogActions>
 
-        <DialogTitle>Import redirects</DialogTitle>
+        <DialogTitle>استيراد عمليات إعادة التوجيه</DialogTitle>
       </DialogContent>
     </Dialog>
   );
@@ -379,7 +379,7 @@ const InputStep = ({
       >
         <Flex direction="column" align="center" gap="2">
           <UploadIcon size={24} />
-          <Text>{fileName ? fileName : "Upload file or drag & drop"}</Text>
+          <Text>{fileName ? fileName : "ارفع ملفًا أو اسحب وأفلت"}</Text>
           <Text color="subtle">{ACCEPTED_EXTENSIONS.join(", ")}</Text>
         </Flex>
       </Box>
@@ -392,7 +392,7 @@ const InputStep = ({
             backgroundColor: cssVar("--border-default"),
           }}
         />
-        <Text color="subtle">or</Text>
+        <Text color="subtle">أو</Text>
         <Box
           css={{
             flex: 1,
@@ -403,7 +403,7 @@ const InputStep = ({
       </Flex>
 
       <Grid gap="1">
-        <Label>Paste content</Label>
+        <Label>لصق المحتوى</Label>
         <TextArea
           rows={6}
           maxRows={10}
@@ -441,7 +441,7 @@ const PreviewStep = ({
     <>
       {/* Preview list */}
       <Grid gap="1">
-        <Label>Preview ({parsedRedirects.length})</Label>
+        <Label>معاينة ({parsedRedirects.length})</Label>
 
         <ScrollArea
           css={{
@@ -494,7 +494,7 @@ const PreviewStep = ({
       {/* Unsupported lines */}
       {skippedLines.length > 0 && (
         <Grid gap="1">
-          <Label>Unsupported ({skippedLines.length})</Label>
+          <Label>غير مدعوم ({skippedLines.length})</Label>
           <ScrollArea
             css={{
               border: `1px solid ${cssVar("--border-default")}`,
@@ -511,7 +511,7 @@ const PreviewStep = ({
                   css={{ paddingBlock: theme.spacing[1] }}
                 >
                   <Text color="subtle">
-                    Line {skipped.line}: {skipped.reason}
+                    السطر {skipped.line}: {skipped.reason}
                   </Text>
                   <Text truncate>{skipped.content}</Text>
                 </Flex>
@@ -524,7 +524,7 @@ const PreviewStep = ({
       {/* Duplicates */}
       {duplicateRedirects.length > 0 && (
         <Grid gap="1">
-          <Label>Duplicates ({duplicateRedirects.length})</Label>
+          <Label>المكررات ({duplicateRedirects.length})</Label>
           <ScrollArea
             css={{
               border: `1px solid ${cssVar("--border-default")}`,
@@ -577,7 +577,7 @@ const PreviewStep = ({
       {/* Merge options */}
       {existingRedirectsCount > 0 && (
         <Grid gap="2">
-          <Label>Import mode</Label>
+          <Label>وضع الاستيراد</Label>
           <RadioGroup
             value={mergeMode}
             onValueChange={(value) => onMergeModeChange(value as MergeMode)}
@@ -586,11 +586,11 @@ const PreviewStep = ({
               <RadioAndLabel>
                 <Radio value="add" id="import-mode-add" />
                 <Label htmlFor="import-mode-add">
-                  Add to existing ({uniqueCount} new
+                  إضافة إلى الموجود ({uniqueCount} جديد
                   {duplicateCount > 0
-                    ? `, ${duplicateCount} duplicate${
-                        duplicateCount !== 1 ? "s" : ""
-                      } skipped`
+                    ? `، تم تخطي ${duplicateCount} مكرر${
+                        duplicateCount !== 1 ? "ات" : ""
+                      }`
                     : ""}
                   )
                 </Label>
@@ -598,8 +598,8 @@ const PreviewStep = ({
               <RadioAndLabel>
                 <Radio value="replace" id="import-mode-replace" />
                 <Label htmlFor="import-mode-replace">
-                  Replace all ({parsedRedirects.length} total, removes{" "}
-                  {existingRedirectsCount} existing)
+                  استبدال الكل ({parsedRedirects.length} إجمالًا، يزيل{" "}
+                  {existingRedirectsCount} موجود)
                 </Label>
               </RadioAndLabel>
             </Flex>

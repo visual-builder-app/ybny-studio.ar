@@ -20,10 +20,10 @@ export const SectionAgents = () => {
       css={{ height: "100%", gridTemplateRows: "auto minmax(0, 1fr)" }}
     >
       <Flex align="center" gap={1} css={sectionSpacing}>
-        <Text variant="titles">Agents</Text>
+        <Text variant="titles">الوكلاء</Text>
         <Tooltip
           variant="wrapped"
-          content="Give AI coding agents project-specific guidance. When you sync the project locally, Webstudio writes these instructions to a managed AGENTS.md in the project root. An existing user-owned AGENTS.md is never overwritten."
+          content="قدّم لوكلاء البرمجة بالذكاء الاصطناعي إرشادات خاصة بالمشروع. عند مزامنة المشروع محليًا، تكتب Webstudio هذه التعليمات في ملف AGENTS.md مُدار في جذر المشروع. لا يتم أبدًا استبدال ملف AGENTS.md موجود يملكه المستخدم."
         >
           <InfoCircleIcon
             color={cssVar("--foreground-secondary")}
@@ -33,7 +33,7 @@ export const SectionAgents = () => {
       </Flex>
       <Grid gap={1} css={{ ...sectionSpacing, minHeight: 0 }}>
         <CodeEditor
-          title="Instructions"
+          title="التعليمات"
           lang="markdown"
           size="full"
           value={value}

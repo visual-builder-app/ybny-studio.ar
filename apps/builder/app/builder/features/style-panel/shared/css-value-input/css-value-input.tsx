@@ -743,9 +743,9 @@ export const CssValueInput = ({
       description = declarationDescriptions[key];
     }
   } else if (highlightedValue?.type === "var") {
-    description = "CSS custom property (variable)";
+    description = "خاصية CSS مخصصة (متغير)";
   } else if (highlightedValue === undefined) {
-    description = "Select item";
+    description = "حدد عنصرًا";
   }
 
   // Init with non breaking space to avoid jumping when description is empty

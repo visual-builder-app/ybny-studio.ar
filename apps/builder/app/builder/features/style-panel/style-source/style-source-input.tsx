@@ -253,7 +253,7 @@ const TextFieldBase: ForwardRefRenderFunction<
         onClick={onClick}
         inputRef={mergeRefs(internalInputRef, inputRef)}
         spellCheck={false}
-        aria-label="New style source input"
+        aria-label="حقل إدخال مصدر نمط جديد"
       />
       {value.map((item) => (
         <StyleSourceControlWithMenu
@@ -493,14 +493,14 @@ export const StyleSourceInput = (
                     const { key, ...itemProps } = getItemProps({ item, index });
                     return (
                       <Fragment key={index}>
-                        <ComboboxLabel>New token</ComboboxLabel>
+                        <ComboboxLabel>رمز جديد</ComboboxLabel>
                         <ComboboxListboxItem
                           {...itemProps}
                           key={key}
                           selectable={false}
                         >
                           <div>
-                            Create{" "}
+                            إنشاء{" "}
                             <StyleSourceBadge source="token">
                               {item.label}
                             </StyleSourceBadge>
@@ -516,7 +516,7 @@ export const StyleSourceInput = (
                     label = (
                       <>
                         {hasNewTokenItem && <ComboboxSeparator />}
-                        <ComboboxLabel>Global tokens</ComboboxLabel>
+                        <ComboboxLabel>الرموز العامة</ComboboxLabel>
                       </>
                     );
                   }

@@ -95,12 +95,12 @@ export const SortSelect = ({ value, onValueChange }: SortSelectProps) => {
 
   const sortLabel =
     sortBy === "createdAt"
-      ? "Date created"
+      ? "تاريخ الإنشاء"
       : sortBy === "title"
-        ? "Alphabetical"
+        ? "أبجدي"
         : sortBy === "publishedAt"
-          ? "Date published"
-          : "Last modified";
+          ? "تاريخ النشر"
+          : "آخر تعديل";
 
   const sortIcon =
     sortBy === "createdAt" ? (
@@ -138,26 +138,26 @@ export const SortSelect = ({ value, onValueChange }: SortSelectProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={4}>
-        <DropdownMenuLabel>Sort</DropdownMenuLabel>
+        <DropdownMenuLabel>ترتيب</DropdownMenuLabel>
         <DropdownMenuRadioGroup
           value={sortBy}
           onValueChange={(value) => handleSortChange(value as SortField, order)}
         >
           <DropdownMenuRadioItem value="title" icon={<MenuCheckedIcon />}>
-            Alphabetical
+            أبجدي
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="createdAt" icon={<MenuCheckedIcon />}>
-            Date created
+            تاريخ الإنشاء
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="updatedAt" icon={<MenuCheckedIcon />}>
-            Last modified
+            آخر تعديل
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="publishedAt" icon={<MenuCheckedIcon />}>
-            Date published
+            تاريخ النشر
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuLabel>Order</DropdownMenuLabel>
+        <DropdownMenuLabel>الاتجاه</DropdownMenuLabel>
         <DropdownMenuRadioGroup
           value={order}
           onValueChange={(value) =>
@@ -176,10 +176,10 @@ export const SortSelect = ({ value, onValueChange }: SortSelectProps) => {
           ) : (
             <>
               <DropdownMenuRadioItem value="desc" icon={<MenuCheckedIcon />}>
-                Newest first
+                الأحدث أولًا
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="asc" icon={<MenuCheckedIcon />}>
-                Oldest first
+                الأقدم أولًا
               </DropdownMenuRadioItem>
             </>
           )}

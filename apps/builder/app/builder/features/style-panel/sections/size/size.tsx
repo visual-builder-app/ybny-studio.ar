@@ -48,7 +48,7 @@ const ObjectPosition = () => {
   return (
     <Flex justify="end">
       <FloatingPanel
-        title="Object position"
+        title="موضع الكائن"
         placement="bottom-within"
         content={
           <PanelContent as={Flex}>
@@ -95,7 +95,7 @@ const SectionLayout = styled(Grid, {
 
 export const Section = () => {
   return (
-    <StyleSection label="Size" properties={properties} fullWidth>
+    <StyleSection label="الحجم" properties={properties} fullWidth>
       <SectionLayout columns={2}>
         <SizeProperty property="width" />
         <SizeProperty property="height" />
@@ -104,7 +104,7 @@ export const Section = () => {
         <SizeProperty property="max-width" />
         <SizeProperty property="max-height" />
         <PropertyLabel
-          label="Aspect ratio"
+          label="نسبة الأبعاد"
           description={propertyDescriptions.aspectRatio}
           properties={["aspect-ratio"]}
         />
@@ -113,12 +113,12 @@ export const Section = () => {
       <Separator />
       <SectionLayout columns={2}>
         <PropertyLabel
-          label="Overflow"
+          label="الفيضان"
           description={propertyDescriptions.overflow}
           properties={["overflow-x", "overflow-y"]}
         />
         <ToggleGroupControl
-          label="Overflow"
+          label="الفيضان"
           properties={["overflow-x", "overflow-y"]}
           items={[
             {
@@ -144,13 +144,13 @@ export const Section = () => {
           ]}
         />
         <PropertyLabel
-          label="Object fit"
+          label="ملاءمة الكائن"
           description={propertyDescriptions.objectFit}
           properties={["object-fit"]}
         />
         <SelectControl property="object-fit" />
         <PropertyLabel
-          label="Object position"
+          label="موضع الكائن"
           description={propertyDescriptions.objectPosition}
           properties={["object-position"]}
         />

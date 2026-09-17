@@ -73,7 +73,7 @@ const useCopyUrl = (pageUrl: string) => {
     tooltipProps: {
       // keep tooltip open when user just copied
       open: copyState === "copied" ? true : undefined,
-      content: copyState === "copied" ? "Copied" : `Copy ${pageUrl}`,
+      content: copyState === "copied" ? "تم النسخ" : `نسخ ${pageUrl}`,
     } satisfies Partial<ComponentProps<typeof Tooltip>>,
     buttonProps: {
       onClick,
@@ -275,12 +275,12 @@ const AddressBar = forwardRef<
     if (token.type === "param") {
       const value = (pathParams[token.name] ?? "").trim();
       if (value === "" && token.optional === false) {
-        errors.set(token.name, `"${token.name}" is required`);
+        errors.set(token.name, `"${token.name}" مطلوب`);
       }
       if (value.includes("/") && token.splat === false) {
         errors.set(
           token.name,
-          `"${token.name}" should be splat parameter to contain slashes`
+          `"${token.name}" يجب أن يكون معامل splat ليحتوي على شرطات مائلة`
         );
       }
     }
@@ -368,7 +368,7 @@ export const AddressBarPopover = () => {
   if (isPathnamePattern(path) === false) {
     return (
       <Tooltip {...tooltipProps}>
-        <IconButton {...buttonProps} type="button" aria-label="Copy page URL" />
+        <IconButton {...buttonProps} type="button" aria-label="نسخ رابط الصفحة" />
       </Tooltip>
     );
   }
@@ -382,7 +382,7 @@ export const AddressBarPopover = () => {
       }}
     >
       <PopoverTrigger asChild>
-        <IconButton type="button" aria-label="Toggle dynamic page address">
+        <IconButton type="button" aria-label="تبديل عنوان الصفحة الديناميكي">
           <DynamicPageIcon />
         </IconButton>
       </PopoverTrigger>

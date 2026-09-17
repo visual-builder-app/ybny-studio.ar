@@ -44,7 +44,7 @@ export const BreakpointsMenu = ({
         <Button
           type="button"
           color="ghost"
-          aria-label="Breakpoints with custom conditions"
+          aria-label="نقاط التوقف بشروط مخصصة"
           state={
             triggerOpen || selectedCustom !== undefined ? "pressed" : "auto"
           }
@@ -55,7 +55,7 @@ export const BreakpointsMenu = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent css={{ width: theme.spacing[30] }}>
         {grouped.widthBased.map((breakpoint) => {
-          let description = "All sizes";
+          let description = "كل الأحجام";
           if (breakpoint.minWidth !== undefined) {
             description = `≥ ${breakpoint.minWidth} PX`;
           } else if (breakpoint.maxWidth !== undefined) {
@@ -114,7 +114,7 @@ export const BreakpointsMenu = ({
             }}
             css={{ width: "100%" }}
           >
-            Edit breakpoints
+            تعديل نقاط التوقف
           </Button>
         </PanelContent>
       </DropdownMenuContent>

@@ -73,7 +73,7 @@ export const checkCollectionEntries = async ({
         issues.set(asset.id, [
           {
             message:
-              "This entry could not be checked. Open Entry settings to inspect it or retry the check.",
+              "تعذّر فحص هذا المدخل. افتح إعدادات المدخل لفحصه أو أعد محاولة الفحص.",
           },
         ]);
       }
@@ -146,7 +146,7 @@ export const useCollectionEntryValidation = (
         });
         const { properties } = await extractMarkdownFrontmatter(content.data);
         if (content.asset.name !== asset.name) {
-          throw new Error("Entry changed during validation");
+          throw new Error("تغيّر المدخل أثناء التحقق");
         }
         return properties;
       },

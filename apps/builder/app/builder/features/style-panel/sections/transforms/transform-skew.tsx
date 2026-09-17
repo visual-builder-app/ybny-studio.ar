@@ -32,7 +32,7 @@ export const SkewPanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisIcon />
         <PropertyInlineLabel
-          label="Skew X"
+          label="إمالة X"
           description={propertySyntaxes.skewX}
         />
         <CssValueInputContainer
@@ -52,7 +52,7 @@ export const SkewPanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisIcon />
         <PropertyInlineLabel
-          label="Skew Y"
+          label="إمالة Y"
           description={propertySyntaxes.skewY}
         />
         <CssValueInputContainer

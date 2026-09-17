@@ -29,13 +29,13 @@ export const TemplateNameConfirmationDialog = () => {
     >
       <DialogContent>
         <DialogTitle suffix={false}>
-          {action === "delete" ? "Delete template" : "Rename template"}
+          {action === "delete" ? "حذف القالب" : "إعادة تسمية القالب"}
         </DialogTitle>
         <DialogDescription asChild>
           <Text css={{ padding: theme.spacing[5] }}>
             {action === "delete"
-              ? "Deleting this template may disconnect references in connected MDX files. The files will not be changed."
-              : "Renaming this template may disconnect references in connected MDX files. The files will not be changed."}
+              ? "قد يؤدي حذف هذا القالب إلى فصل المراجع في ملفات MDX المرتبطة. لن يتم تغيير الملفات."
+              : "قد تؤدي إعادة تسمية هذا القالب إلى فصل المراجع في ملفات MDX المرتبطة. لن يتم تغيير الملفات."}
           </Text>
         </DialogDescription>
         <DialogActions>
@@ -44,13 +44,13 @@ export const TemplateNameConfirmationDialog = () => {
             color="neutral"
             onClick={abortPendingTemplateNameConfirmation}
           >
-            Abort
+            إلغاء
           </Button>
           <Button
             color={action === "delete" ? "destructive" : "primary"}
             onClick={confirmPendingTemplateNameChange}
           >
-            {action === "delete" ? "Delete" : "Rename"}
+            {action === "delete" ? "حذف" : "إعادة تسمية"}
           </Button>
         </DialogActions>
       </DialogContent>

@@ -24,9 +24,9 @@ export const reportFragmentContentModelWarnings = (
   const suffix =
     remainingCount === 0
       ? ""
-      : ` (${remainingCount} more validation ${remainingCount === 1 ? "warning" : "warnings"})`;
+      : ` (وهناك ${remainingCount} تحذير تحقق ${remainingCount === 1 ? "إضافي" : "إضافية"})`;
   builderApi.toast.warn(
-    `Pasted with warning: ${firstWarning.message}${suffix}`
+    `تم اللصق مع تحذير: ${firstWarning.message}${suffix}`
   );
 };
 

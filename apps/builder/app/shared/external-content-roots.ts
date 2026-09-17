@@ -965,7 +965,7 @@ const getSession = (projectId: string) => {
       if (state.status === "conflicting") {
         getAssetContentBridge().requireReload(
           state.error?.message ??
-            "The MDX content source changed before the edit was saved."
+            "تغيّر مصدر محتوى MDX قبل حفظ التعديل."
         );
         return;
       }
@@ -1168,7 +1168,7 @@ const applyExternalContentHistory = async ({
       () =>
         finish(
           new Error(
-            "Wait for the article changes to finish saving, then try again."
+            "انتظر حتى يكتمل حفظ تغييرات المقال، ثم حاول مجددًا."
           )
         ),
       10000
@@ -1199,7 +1199,7 @@ const applyExternalContentHistory = async ({
         (direction === "undo" ? edit.after : edit.before) !== state.source
       ) {
         throw new MdxAuthoredContentConflictError(
-          "The article changed since this edit. Reload it before continuing."
+          "تغيّر المقال منذ هذا التعديل. أعد تحميله قبل المتابعة."
         );
       }
       return {
@@ -1281,7 +1281,7 @@ subscribeExternalContentMutations((rootKeys) => {
           );
           if (latest.status !== "parsed") {
             throw new Error(
-              "The MDX content source must be structurally valid before canvas edits can be saved."
+              "يجب أن يكون مصدر محتوى MDX صالحًا بنيويًا قبل حفظ تعديلات لوحة الرسم."
             );
           }
           latestDocument = latest.document;
@@ -1558,7 +1558,7 @@ export const updateExternalContentFrontmatter = ({
   });
   if (target === undefined) {
     return Promise.reject(
-      new Error("This frontmatter value cannot be edited.")
+      new Error("لا يمكن تعديل قيمة frontmatter هذه.")
     );
   }
   if (target.assetId !== entry.assetId) {
@@ -1579,7 +1579,7 @@ export const updateExternalContentFrontmatter = ({
           })
         ) {
           throw new Error(
-            "You do not have permission to edit the referenced file."
+            "ليس لديك إذن لتعديل الملف المشار إليه."
           );
         }
         const data = getWebstudioData();
@@ -1592,7 +1592,7 @@ export const updateExternalContentFrontmatter = ({
             const content = session.get(source.assetId);
             if (asset === undefined || content === undefined) {
               throw new Error(
-                "A referenced file is no longer available. Reload before editing."
+                "الملف المشار إليه لم يعد متاحًا. أعد التحميل قبل التعديل."
               );
             }
             return {
@@ -1707,7 +1707,7 @@ export const updateExternalContentFrontmatter = ({
       );
       if (parsed.status !== "parsed") {
         throw new Error(
-          "The MDX content source must be structurally valid before frontmatter can be saved."
+          "يجب أن يكون مصدر محتوى MDX صالحًا بنيويًا قبل حفظ frontmatter."
         );
       }
       const latestProperties = setObjectPathValue({
@@ -1748,7 +1748,7 @@ export const replaceExternalContentAssetSource = ({
     update: ({ source: currentSource }) => {
       if (currentSource !== expectedSource) {
         throw new MdxAuthoredContentConflictError(
-          "The MDX content source changed before the file edit was saved."
+          "تغيّر مصدر محتوى MDX قبل حفظ تعديل الملف."
         );
       }
       return source;

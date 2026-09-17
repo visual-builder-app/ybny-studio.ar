@@ -40,7 +40,7 @@ const transitionLongHandProperties = [
 
 export { transitionLongHandProperties as properties };
 
-const label = "Transitions";
+const label = "الانتقالات";
 
 const canAddTransitionToStyleState = (state: undefined | string): boolean =>
   state === undefined || isPseudoElement(state);
@@ -117,8 +117,8 @@ export const Section = () => {
             <Tooltip
               content={
                 canAddTransition === false
-                  ? "Transitions can only be added in local state or pseudo-elements"
-                  : "Add a transition"
+                  ? "لا يمكن إضافة الانتقالات إلا في الحالة المحلية أو العناصر الزائفة"
+                  : "إضافة انتقال"
               }
             >
               <SectionTitleButton
@@ -139,7 +139,7 @@ export const Section = () => {
         >
           <PropertySectionLabel
             label={label}
-            description="Animate the transition between states on this instance."
+            description="حرّك الانتقال بين الحالات على هذه النسخة."
             properties={transitionLongHandProperties}
           />
         </SectionTitle>

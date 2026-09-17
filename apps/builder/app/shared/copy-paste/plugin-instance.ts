@@ -81,7 +81,7 @@ const getTreeData = (
   if (instance && !isComponentDetachable(instance.component)) {
     if (showToast) {
       toast.error(
-        "This instance can not be moved outside of its parent component."
+        "لا يمكن نقل هذه النسخة خارج مكوّنها الأصل."
       );
     }
     return;
@@ -180,7 +180,7 @@ const getTreeData = (
     hasDynamicContentSource
   ) {
     toast.warn(
-      "Dynamic MDX sources are copied from the Collection items currently rendered on the canvas."
+      "تُنسخ مصادر MDX الديناميكية من عناصر المجموعة (Collection) المعروضة حاليًا على لوحة الرسم."
     );
   }
   return {
@@ -217,7 +217,7 @@ const stringifyMultiRootSelection = (selectedData: InstanceTransferData[]) => {
 };
 
 const reportSkippedSelectedInstances = (operation: "copied" | "cut") => {
-  builderApi.toast.info(`Some selected instances could not be ${operation}.`);
+  builderApi.toast.info(`تعذّر إتمام العملية (${operation}) على بعض النسخ المحددة.`);
 };
 
 const findMultiSelectionInsertable = (
@@ -386,7 +386,7 @@ const insertPastedFragment = async ({
           });
         if (skippedInvalidAssetIds.length > 0) {
           toast.warn(
-            "Some invalid content files were copied unchanged. Open them to review their diagnostics."
+            "تم نسخ بعض ملفات المحتوى غير الصالحة دون تغيير. افتحها لمراجعة تشخيصاتها."
           );
         }
       } catch {

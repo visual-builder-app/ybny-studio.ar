@@ -20,7 +20,7 @@ type Option = {
   folderId: string | undefined;
   canUseAsDestination: boolean;
 };
-const defaultRootLabel = "Top level folder";
+const defaultRootLabel = "مجلد المستوى الأعلى";
 
 export const getAssetFolderSelectValue = (option: Pick<Option, "folderId">) =>
   option.folderId === undefined ? "no-folder" : `folder:${option.folderId}`;
@@ -54,7 +54,7 @@ export const createAssetFolderSelectorLevels = ({
     .getPath(value)
     .filter(({ id }) => excludedIds.has(id) === false);
   const topOptions: Option[] = [
-    { label: "Root", folderId: undefined, canUseAsDestination: true },
+    { label: "الجذر", folderId: undefined, canUseAsDestination: true },
     ...getChildren(undefined).map((folder) => ({
       label: folder.name,
       folderId: folder.id,
@@ -79,7 +79,7 @@ export const createAssetFolderSelectorLevels = ({
     }
     const options: Option[] = [
       {
-        label: "This folder",
+        label: "هذا المجلد",
         folderId: folder.id,
         canUseAsDestination:
           unavailableDestinationFolderIds?.has(folder.id) !== true,
@@ -93,7 +93,7 @@ export const createAssetFolderSelectorLevels = ({
     ];
     const nextId = path[index + 1]?.id;
     levels.push({
-      ariaLabel: `Asset subfolder level ${index + 1}`,
+      ariaLabel: `مستوى المجلد الفرعي للوسائط ${index + 1}`,
       options,
       selected:
         options.find(({ folderId }) => folderId === nextId) ?? options[0],
@@ -249,7 +249,7 @@ export const AssetFolderSelector = ({
                   pendingValue.current = undefined;
                   navigatingUnavailableDestination.current = true;
                   setDestinationNotice(
-                    `${option.label} is a collection folder. Choose a subfolder.`
+                    `${option.label} هو مجلد مجموعة. اختر مجلدًا فرعيًا.`
                   );
                   return;
                 }

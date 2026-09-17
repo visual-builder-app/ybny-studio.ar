@@ -182,9 +182,9 @@ export const DeleteCssVariableDialog = ({
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete confirmation</DialogTitle>
+        <DialogTitle>تأكيد الحذف</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
-          <Text>{`Delete CSS variable "${cssVariable?.property}" from the project?`}</Text>
+          <Text>{`حذف متغير CSS "${cssVariable?.property}" من المشروع؟`}</Text>
         </PanelContent>
         <DialogActions>
           <Button
@@ -195,10 +195,10 @@ export const DeleteCssVariableDialog = ({
               onClose();
             }}
           >
-            Delete
+            حذف
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -256,7 +256,7 @@ export const RenameCssVariableDialog = ({
           }
         }}
       >
-        <DialogTitle>Rename CSS variable</DialogTitle>
+        <DialogTitle>إعادة تسمية متغير CSS</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           <Flex direction="column" gap="1">
             <InputField
@@ -276,10 +276,10 @@ export const RenameCssVariableDialog = ({
         </PanelContent>
         <DialogActions>
           <Button color="primary" onClick={handleConfirm}>
-            Rename
+            إعادة تسمية
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -300,13 +300,13 @@ const DeleteUnusedCssVariablesDialogContent = ({
     <>
       <PanelContent as={Flex} gap="3" direction="column">
         {unusedVariablesArray.length === 0 ? (
-          <Text>There are no unused CSS variables to delete.</Text>
+          <Text>لا توجد متغيرات CSS غير مستخدمة لحذفها.</Text>
         ) : (
           <>
             <Text>
-              Delete {unusedVariablesArray.length} unused CSS{" "}
-              {unusedVariablesArray.length === 1 ? "variable" : "variables"}{" "}
-              from the project?
+              حذف {unusedVariablesArray.length}{" "}
+              {unusedVariablesArray.length === 1 ? "متغير CSS غير مستخدم" : "متغيرات CSS غير مستخدمة"}{" "}
+              من المشروع؟
             </Text>
             <Text
               variant="mono"
@@ -332,20 +332,20 @@ const DeleteUnusedCssVariablesDialogContent = ({
               const deletedCount = deleteUnusedCssVariables();
               onClose();
               if (deletedCount === 0) {
-                toast.info("No unused CSS variables to delete");
+                toast.info("لا توجد متغيرات CSS غير مستخدمة لحذفها");
               } else {
                 toast.success(
-                  `Deleted ${deletedCount} unused CSS ${deletedCount === 1 ? "variable" : "variables"}`
+                  `تم حذف ${deletedCount} ${deletedCount === 1 ? "متغير CSS غير مستخدم" : "متغيرات CSS غير مستخدمة"}`
                 );
               }
             }}
           >
-            Delete
+            حذف
           </Button>
         )}
         <DialogClose>
           <Button color="ghost">
-            {unusedVariablesArray.length > 0 ? "Cancel" : "Close"}
+            {unusedVariablesArray.length > 0 ? "إلغاء" : "إغلاق"}
           </Button>
         </DialogClose>
       </DialogActions>
@@ -374,7 +374,7 @@ export const DeleteUnusedCssVariablesDialog = () => {
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete unused CSS variables</DialogTitle>
+        <DialogTitle>حذف متغيرات CSS غير المستخدمة</DialogTitle>
         <DeleteUnusedCssVariablesDialogContent onClose={handleClose} />
       </DialogContent>
     </Dialog>

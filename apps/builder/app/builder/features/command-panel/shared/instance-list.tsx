@@ -97,8 +97,8 @@ export const InstanceList = ({
   return (
     <>
       <CommandInput
-        action={{ name: "select", label: "Select" }}
-        placeholder="Search instances..."
+        action={{ name: "select", label: "تحديد" }}
+        placeholder="البحث عن النسخ..."
         value={search}
         onValueChange={setSearch}
         prefix={<CommandBackButton onClick={goBack} />}
@@ -110,13 +110,13 @@ export const InstanceList = ({
             <CommandGroup
               name="instance"
               actions={[
-                { name: "select", label: "Select" },
-                { name: "settings", label: "Settings" },
+                { name: "select", label: "تحديد" },
+                { name: "settings", label: "الإعدادات" },
               ]}
             >
               {matches.length === 0 ? (
                 <Flex justify="center" align="center" css={{ minHeight: 100 }}>
-                  <Text color="subtle">No instances found</Text>
+                  <Text color="subtle">لم يتم العثور على نسخ</Text>
                 </Flex>
               ) : (
                 matches.map(({ id, label, pageName }) => (

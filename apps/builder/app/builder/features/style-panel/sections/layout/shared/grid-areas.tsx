@@ -331,7 +331,7 @@ const AreaEditor = ({
           alignItems: "center",
         }}
       >
-        <Label>Name</Label>
+        <Label>الاسم</Label>
         <InputField
           disabled={disabled}
           css={{ gridColumn: "span 2" }}
@@ -358,7 +358,7 @@ const AreaEditor = ({
           alignItems: "start",
         }}
       >
-        <Label css={{ paddingTop: theme.spacing[3] }}>Position</Label>
+        <Label css={{ paddingTop: theme.spacing[3] }}>الموضع</Label>
         <GridPositionInputs
           disabled={disabled}
           value={{
@@ -421,12 +421,12 @@ const AreaEditor = ({
 
       {hasDuplicateName && (
         <Text variant="labels" color="destructive">
-          Area name already exists
+          اسم المنطقة موجود بالفعل
         </Text>
       )}
       {hasOverlap && (
         <Text variant="labels" color="destructive">
-          Area overlaps with another area
+          المنطقة تتداخل مع منطقة أخرى
         </Text>
       )}
     </PanelContent>
@@ -602,7 +602,7 @@ export const GridAreas = () => {
 
   return (
     <CollapsibleSectionRoot
-      label={`Areas (${areas.length})`}
+      label={`المناطق (${areas.length})`}
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       fullWidth
@@ -613,7 +613,7 @@ export const GridAreas = () => {
           css={{ padding: theme.spacing[5] }}
         >
           <Text variant="labels" color="subtle">
-            Areas ({areas.length})
+            المناطق ({areas.length})
           </Text>
           <IconButton
             disabled={readonly}
@@ -631,14 +631,14 @@ export const GridAreas = () => {
         <Flex direction="column">
           {areas.length === 0 && (
             <PanelContent as={Text} color="subtle" align="center">
-              No Areas
+              لا توجد مناطق
             </PanelContent>
           )}
           {areas.map((area, index) => (
             <FloatingPanel
               key={area.name}
               placement="left-start"
-              title="Edit area"
+              title="تعديل المنطقة"
               content={
                 <AreaEditor
                   disabled={readonly}

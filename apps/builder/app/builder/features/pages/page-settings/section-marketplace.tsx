@@ -35,7 +35,7 @@ export const MarketplaceSection = ({
     categoryMeta?.content ?? `""`,
     new Map()
   );
-  const category = values.marketplace.category || categoryFallback || "Pages";
+  const category = values.marketplace.category || categoryFallback || "الصفحات";
   const assets = useStore($assets);
   const thumbnailAsset = assets.get(values.marketplace.thumbnailAssetId);
   const thumnailFallbackAsset = assets.get(values.socialImageAssetId);
@@ -58,10 +58,10 @@ export const MarketplaceSection = ({
             })
           }
         />
-        <Label htmlFor={excludeId}>Include in the marketplace</Label>
+        <Label htmlFor={excludeId}>الإدراج في السوق</Label>
       </Grid>
       <Grid gap={1}>
-        <Label htmlFor={categoryId}>Category</Label>
+        <Label htmlFor={categoryId}>الفئة</Label>
         <InputField
           id={categoryId}
           name="marketplaceCategory"
@@ -84,7 +84,7 @@ export const MarketplaceSection = ({
           }
         >
           <Button css={{ justifySelf: "start" }}>
-            Choose thumbnail from assets
+            اختيار صورة مصغرة من الوسائط
           </Button>
         </ImageControl>
       </Grid>
@@ -100,7 +100,7 @@ export const MarketplaceSection = ({
         />
       )}
       <Grid gap={1}>
-        <Label>Marketplace preview</Label>
+        <Label>معاينة السوق</Label>
         <Box
           css={{
             padding: theme.spacing[5],

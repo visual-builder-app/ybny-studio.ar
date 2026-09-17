@@ -249,31 +249,31 @@ const getMdxCompletionComponents = ({
 
 const markdownActions = [
   {
-    label: "Bold",
+    label: "عريض",
     icon: <BoldIcon />,
-    template: { prefix: "**", suffix: "**", placeholder: "bold text" },
+    template: { prefix: "**", suffix: "**", placeholder: "نص عريض" },
   },
   {
-    label: "Italic",
+    label: "مائل",
     icon: <TextItalicIcon />,
-    template: { prefix: "_", suffix: "_", placeholder: "italic text" },
+    template: { prefix: "_", suffix: "_", placeholder: "نص مائل" },
   },
   {
-    label: "Strikethrough",
+    label: "يتوسطه خط",
     icon: <TextStrikethroughIcon />,
     template: {
       prefix: "~~",
       suffix: "~~",
-      placeholder: "strikethrough text",
+      placeholder: "نص يتوسطه خط",
     },
   },
   {
-    label: "Blockquote",
+    label: "اقتباس",
     icon: <BlockquoteIcon />,
-    template: { prefix: "> ", placeholder: "Quote" },
+    template: { prefix: "> ", placeholder: "اقتباس" },
   },
   {
-    label: "Inline code",
+    label: "رمز ضمن السطر",
     icon: (
       <Text as="span" variant="mono">
         &lt;/&gt;
@@ -282,7 +282,7 @@ const markdownActions = [
     template: { prefix: "`", suffix: "`", placeholder: "code" },
   },
   {
-    label: "Code block",
+    label: "كتلة رموز",
     icon: (
       <Text as="span" variant="mono">
         ```
@@ -295,36 +295,36 @@ const markdownActions = [
     },
   },
   {
-    label: "Bulleted list",
+    label: "قائمة نقطية",
     icon: <ListIcon fill="currentColor" />,
-    template: { prefix: "- ", placeholder: "List item" },
+    template: { prefix: "- ", placeholder: "عنصر قائمة" },
   },
   {
-    label: "Numbered list",
+    label: "قائمة رقمية",
     icon: (
       <Text as="span" variant="mono">
         1.
       </Text>
     ),
-    template: { prefix: "1. ", placeholder: "List item" },
+    template: { prefix: "1. ", placeholder: "عنصر قائمة" },
   },
   {
-    label: "Task list",
+    label: "قائمة مهام",
     icon: <CheckboxCheckedIcon />,
-    template: { prefix: "- [ ] ", placeholder: "Task" },
+    template: { prefix: "- [ ] ", placeholder: "مهمة" },
   },
   {
-    label: "Horizontal rule",
+    label: "فاصل أفقي",
     icon: <MinusIcon />,
     template: { prefix: "\n\n---\n\n", placeholder: "" },
   },
   {
-    label: "Table",
+    label: "جدول",
     icon: <RepeatGridIcon />,
     template: {
-      prefix: "\n\n| Column 1 | Column 2 |\n| --- | --- |\n| ",
-      suffix: " | Value |\n\n",
-      placeholder: "Value",
+      prefix: "\n\n| العمود 1 | العمود 2 |\n| --- | --- |\n| ",
+      suffix: " | القيمة |\n\n",
+      placeholder: "القيمة",
     },
   },
 ];
@@ -339,11 +339,11 @@ const MarkdownHeadingMenu = ({
   disabled: boolean;
 }) => (
   <DropdownMenu>
-    <Tooltip content="Heading">
+    <Tooltip content="عنوان">
       <DropdownMenuTrigger asChild>
         <IconButton
           type="button"
-          aria-label="Heading"
+          aria-label="عنوان"
           disabled={disabled}
           css={{ gap: theme.spacing[1], paddingInline: theme.spacing[2] }}
         >
@@ -367,11 +367,11 @@ const MarkdownHeadingMenu = ({
           onSelect={() =>
             editorApiRef.current?.insertTemplate({
               prefix: `${"#".repeat(level)} `,
-              placeholder: `Heading ${level}`,
+              placeholder: `عنوان ${level}`,
             })
           }
         >
-          Heading {level}
+          عنوان {level}
         </DropdownMenuItem>
       ))}
     </DropdownMenuContent>
@@ -389,7 +389,7 @@ const MarkdownImagePicker = ({
 
   return (
     <FloatingPanel
-      title="Images"
+      title="الصور"
       titleSuffix={<AssetUpload type="image" accept="image/*" />}
       placement="bottom-within"
       open={open}
@@ -401,7 +401,7 @@ const MarkdownImagePicker = ({
             editorApiRef.current?.insertTemplate({
               prefix: "![",
               suffix: `](${assetId})`,
-              placeholder: "alt text",
+              placeholder: "نص بديل",
             });
             setOpen(false);
           }}
@@ -410,8 +410,8 @@ const MarkdownImagePicker = ({
     >
       <IconButton
         type="button"
-        aria-label="Image"
-        title="Image"
+        aria-label="صورة"
+        title="صورة"
         disabled={disabled}
         onMouseDown={(event) => event.preventDefault()}
       >
@@ -471,7 +471,7 @@ const MarkdownLinkPicker = ({
 
   return (
     <FloatingPanel
-      title="Link"
+      title="رابط"
       placement="bottom-within"
       open={open}
       onOpenChange={(open) => {
@@ -505,12 +505,12 @@ const MarkdownLinkPicker = ({
                   editorApiRef.current?.insertTemplate({
                     prefix: "[",
                     suffix: `](${href})`,
-                    placeholder: "link text",
+                    placeholder: "نص الرابط",
                   });
                   setOpen(false);
                 }}
               >
-                Insert link
+                إدراج رابط
               </Button>
             </Flex>
           </PanelContent>
@@ -519,8 +519,8 @@ const MarkdownLinkPicker = ({
     >
       <IconButton
         type="button"
-        aria-label="Link"
-        title="Link"
+        aria-label="رابط"
+        title="رابط"
         disabled={disabled}
         onMouseDown={(event) => event.preventDefault()}
       >
@@ -543,7 +543,7 @@ const MarkdownToolbar = ({
 }) => (
   <Flex
     role="toolbar"
-    aria-label="Markdown formatting"
+    aria-label="تنسيق Markdown"
     align="center"
     gap={2}
     css={{
@@ -581,10 +581,10 @@ const MarkdownToolbar = ({
       <MarkdownLinkPicker editorApiRef={editorApiRef} disabled={disabled} />
       <MarkdownImagePicker editorApiRef={editorApiRef} disabled={disabled} />
     </Flex>
-    <Tooltip content={previewOpen ? "Hide preview" : "Show preview"}>
+    <Tooltip content={previewOpen ? "إخفاء المعاينة" : "إظهار المعاينة"}>
       <IconButton
         type="button"
-        aria-label={previewOpen ? "Hide preview" : "Show preview"}
+        aria-label={previewOpen ? "إخفاء المعاينة" : "إظهار المعاينة"}
         aria-pressed={previewOpen}
         variant={previewOpen ? "local" : "default"}
         onMouseDown={(event) => event.preventDefault()}
@@ -598,7 +598,7 @@ const MarkdownToolbar = ({
 
 export const MarkdownEditor = ({
   asset,
-  ariaLabel = "Markdown source",
+  ariaLabel = "مصدر Markdown",
   defaultPreviewOpen = true,
   autoFocus = false,
   value,
@@ -808,7 +808,7 @@ export const TextFileEditor = ({
             assetToLoad.projectId
           );
           if (session === undefined) {
-            throw new Error("MDX content session is not available");
+            throw new Error("جلسة محتوى MDX غير متاحة");
           }
           const opened = await session.open(assetId);
           if (controller.signal.aborted) {
@@ -826,7 +826,7 @@ export const TextFileEditor = ({
           { signal: controller.signal }
         );
         if (response.ok === false) {
-          throw new Error(`Unable to load asset: ${response.status}`);
+          throw new Error(`تعذّر تحميل الوسيط: ${response.status}`);
         }
         const content = await response.text();
         persistedContentRef.current = content;
@@ -837,7 +837,7 @@ export const TextFileEditor = ({
         }
         setState({ status: "error" });
         toast.error(
-          error instanceof Error ? error.message : "Unable to load asset"
+          error instanceof Error ? error.message : "تعذّر تحميل الوسيط"
         );
       }
     };
@@ -877,7 +877,7 @@ export const TextFileEditor = ({
     }
     const currentAsset = currentAssetRef.current;
     if (currentAsset === undefined) {
-      toast.error("Unable to save: asset not found");
+      toast.error("تعذّر الحفظ: الوسيط غير موجود");
       return false;
     }
     const normalized = normalizeTextFileContent(currentAsset, content);
@@ -913,7 +913,7 @@ export const TextFileEditor = ({
         expectedContent === undefined ||
         currentAsset.projectId === undefined
       ) {
-        toast.error("Unable to save: MDX content is not loaded");
+        toast.error("تعذّر الحفظ: لم يتم تحميل محتوى MDX");
         return false;
       }
       pendingMdxSavesRef.current += 1;
@@ -927,7 +927,7 @@ export const TextFileEditor = ({
           const message =
             error instanceof Error
               ? error.message
-              : "Unable to save this file.";
+              : "تعذّر حفظ هذا الملف.";
           const feedback: MdxPersistenceFeedback = {
             kind:
               error instanceof MdxAuthoredContentConflictError
@@ -953,7 +953,7 @@ export const TextFileEditor = ({
 
       const assetToUpdate = currentAssetRef.current;
       if (assetToUpdate === undefined) {
-        toast.error("Unable to save: asset not found");
+        toast.error("تعذّر الحفظ: الوسيط غير موجود");
         return;
       }
 
@@ -964,15 +964,15 @@ export const TextFileEditor = ({
         });
         currentAssetRef.current = updatedAsset;
         persistedContentRef.current = requestedContent;
-        toast.success("File saved successfully");
+        toast.success("تم حفظ الملف بنجاح");
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : "Unable to save");
+        toast.error(error instanceof Error ? error.message : "تعذّر الحفظ");
       }
     });
     return true;
   };
 
-  const title = asset === undefined ? "Text file" : formatAssetName(asset);
+  const title = asset === undefined ? "ملف نصي" : formatAssetName(asset);
   const isMarkdown = asset !== undefined && isMarkdownAsset(asset);
   let editor: ReactNode;
   if (state.status === "loaded" && asset !== undefined) {
@@ -1035,7 +1035,7 @@ export const TextFileEditor = ({
           )}
           {state.status === "error" && (
             <Flex align="center" justify="center" css={{ height: "100%" }}>
-              <Text color="subtle">Unable to load this file.</Text>
+              <Text color="subtle">تعذّر تحميل هذا الملف.</Text>
             </Flex>
           )}
           {state.status === "loaded" && asset !== undefined && (
@@ -1066,7 +1066,7 @@ export const TextFileEditor = ({
                         onOpenChange(false);
                       }}
                     >
-                      Discard changes
+                      تجاهل التغييرات
                     </Button>
                   )}
                   {persistenceFeedback.kind === "failed" &&
@@ -1083,12 +1083,12 @@ export const TextFileEditor = ({
                               message:
                                 error instanceof Error
                                   ? error.message
-                                  : "Unable to save this file.",
+                                  : "تعذّر حفظ هذا الملف.",
                             });
                           });
                         }}
                       >
-                        Retry
+                        إعادة المحاولة
                       </Button>
                     )}
                 </Flex>

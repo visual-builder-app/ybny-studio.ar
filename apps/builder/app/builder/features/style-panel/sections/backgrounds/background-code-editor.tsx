@@ -152,8 +152,8 @@ export const BackgroundCodeEditor = ({
   return (
     <>
       <PropertyInlineLabel
-        label="Code"
-        description="Paste a CSS gradient or image, for example: linear-gradient(...) or url('image.jpg'). If pasting from Figma, remove the 'background' property name."
+        label="الكود"
+        description="الصق تدرج CSS أو صورة، على سبيل المثال: linear-gradient(...) أو url('image.jpg'). إذا كنت تلصق من Figma، فأزل اسم الخاصية 'background'."
       />
       <InputErrorsTooltip errors={errors}>
         <CssFragmentEditor

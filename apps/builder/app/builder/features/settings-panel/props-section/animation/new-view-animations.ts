@@ -2,8 +2,8 @@ import { parseCssValue } from "@webstudio-is/css-data";
 import type { ViewAnimation } from "@webstudio-is/sdk";
 
 const newViewAnimation: ViewAnimation = {
-  name: "New animation",
-  description: "Create a new animation.",
+  name: "حركة جديدة",
+  description: "أنشئ حركة جديدة.",
 
   timing: {
     rangeStart: ["cover", { type: "unit", value: 0, unit: "%" }],
@@ -21,8 +21,8 @@ const newViewAnimation: ViewAnimation = {
 
 // @todo: visit https://github.com/argyleink/open-props/blob/main/src/props.animations.css
 const newFadeInViewAnimation: ViewAnimation = {
-  name: "Fade in",
-  description: "Fade in the element as it scrolls into view.",
+  name: "ظهور تدريجي",
+  description: "أظهر العنصر تدريجيًا أثناء تمريره إلى العرض.",
 
   timing: {
     rangeStart: ["entry", { type: "unit", value: 0, unit: "%" }],
@@ -41,8 +41,8 @@ const newFadeInViewAnimation: ViewAnimation = {
 };
 
 const newFadeOutViewAnimation: ViewAnimation = {
-  name: "Fade out",
-  description: "Fade out the element as it scrolls out of view.",
+  name: "اختفاء تدريجي",
+  description: "أخفِ العنصر تدريجيًا أثناء تمريره خارج العرض.",
 
   timing: {
     rangeStart: ["exit", { type: "unit", value: 0, unit: "%" }],
@@ -61,8 +61,8 @@ const newFadeOutViewAnimation: ViewAnimation = {
 };
 
 const newFlyInViewAnimation: ViewAnimation = {
-  name: "Fly in",
-  description: "A fly in animation moves an element as it scrolls into view.",
+  name: "دخول بانسياب",
+  description: "حركة الدخول بانسياب تحرّك العنصر أثناء تمريره إلى العرض.",
 
   timing: {
     rangeStart: ["entry", { type: "unit", value: 0, unit: "%" }],
@@ -81,9 +81,9 @@ const newFlyInViewAnimation: ViewAnimation = {
 };
 
 const newFlyOutViewAnimation: ViewAnimation = {
-  name: "Fly out",
+  name: "خروج بانسياب",
   description:
-    "A fly out animation moves an element as it scrolls out of view.",
+    "حركة الخروج بانسياب تحرّك العنصر أثناء تمريره خارج العرض.",
 
   timing: {
     rangeStart: ["exit", { type: "unit", value: 0, unit: "%" }],
@@ -102,9 +102,9 @@ const newFlyOutViewAnimation: ViewAnimation = {
 };
 
 const newWipeInViewAnimation: ViewAnimation = {
-  name: "Wipe in",
+  name: "مسح للداخل",
   description:
-    "A wipe in is an animation where one scene gradually replaces another as it scrolls into the view.",
+    "المسح للداخل حركة يستبدل فيها مشهدٌ مشهدًا آخر تدريجيًا أثناء التمرير إلى العرض.",
 
   timing: {
     rangeStart: ["contain", { type: "unit", value: 0, unit: "%" }],
@@ -129,9 +129,9 @@ const newWipeInViewAnimation: ViewAnimation = {
 };
 
 const newWipeOutViewAnimation: ViewAnimation = {
-  name: "Wipe out",
+  name: "مسح للخارج",
   description:
-    "A wipe out is an animation where one scene gradually replaces another as it scrolls out of view.",
+    "المسح للخارج حركة يستبدل فيها مشهدٌ مشهدًا آخر تدريجيًا أثناء التمرير خارج العرض.",
 
   timing: {
     rangeStart: ["contain", { type: "unit", value: 50, unit: "%" }],
@@ -157,8 +157,8 @@ const newWipeOutViewAnimation: ViewAnimation = {
 };
 
 const newParallaxInAnimation: ViewAnimation = {
-  name: "Parallax in",
-  description: "Parallax the element as it scrolls into the view.",
+  name: "Parallax للداخل",
+  description: "طبق تأثير Parallax على العنصر أثناء تمريره إلى العرض.",
 
   timing: {
     rangeStart: ["cover", { type: "unit", value: 0, unit: "%" }],
@@ -177,8 +177,8 @@ const newParallaxInAnimation: ViewAnimation = {
 };
 
 const newParallaxOutAnimation: ViewAnimation = {
-  name: "Parallax out",
-  description: "Parallax the element as it scrolls out of view.",
+  name: "Parallax للخارج",
+  description: "طبق تأثير Parallax على العنصر أثناء تمريره خارج العرض.",
 
   timing: {
     rangeStart: ["cover", { type: "unit", value: 50, unit: "%" }],

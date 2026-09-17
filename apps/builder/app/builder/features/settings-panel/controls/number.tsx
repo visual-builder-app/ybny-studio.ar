@@ -55,7 +55,7 @@ export const NumberControl = ({
         value={localValue.value}
         validate={(value) => {
           if (value !== undefined && typeof value !== "number") {
-            return `${label} expects a number value`;
+            return `${label} يتوقع قيمة رقمية`;
           }
         }}
         onChangeValue={(value) => {

@@ -27,71 +27,71 @@ export const openKeyboardShortcutsDialog = () => {
 const additionalShortcuts = [
   {
     name: "expandNavigatorItem",
-    label: "Expand Navigator item",
-    description: "Expand navigator item",
+    label: "توسيع عنصر في شجرة العناصر",
+    description: "توسيع عنصر في شجرة العناصر",
     category: "Navigator",
     defaultHotkeys: ["→"],
   },
   {
     name: "collapseNavigatorItem",
-    label: "Collapse Navigator item",
-    description: "Collapse navigator item",
+    label: "طيّ عنصر في شجرة العناصر",
+    description: "طيّ عنصر في شجرة العناصر",
     category: "Navigator",
     defaultHotkeys: ["←"],
   },
   {
     name: "toggleNavigatorSelection",
-    label: "Toggle Navigator selection",
-    description: "Add or remove an item from Navigator selection",
+    label: "تبديل تحديد شجرة العناصر",
+    description: "إضافة عنصر إلى تحديد شجرة العناصر أو إزالته منه",
     category: "Navigator",
     defaultHotkeys: ["meta+click", "ctrl+click"],
   },
   {
     name: "rangeNavigatorSelection",
-    label: "Range-select Navigator items",
-    description: "Select a range of Navigator items",
+    label: "تحديد نطاق من عناصر شجرة العناصر",
+    description: "تحديد نطاق من عناصر شجرة العناصر",
     category: "Navigator",
     defaultHotkeys: ["shift+click"],
   },
   {
     name: "extendNavigatorSelectionUp",
-    label: "Extend Navigator selection up",
-    description: "Extend Navigator selection up",
+    label: "تمديد تحديد شجرة العناصر لأعلى",
+    description: "تمديد تحديد شجرة العناصر لأعلى",
     category: "Navigator",
     defaultHotkeys: ["shift+arrowup"],
   },
   {
     name: "extendNavigatorSelectionDown",
-    label: "Extend Navigator selection down",
-    description: "Extend Navigator selection down",
+    label: "تمديد تحديد شجرة العناصر لأسفل",
+    description: "تمديد تحديد شجرة العناصر لأسفل",
     category: "Navigator",
     defaultHotkeys: ["shift+arrowdown"],
   },
   {
     name: "selectNavigatorSiblings",
-    label: "Select Navigator siblings",
-    description: "Select sibling Navigator items",
+    label: "تحديد العناصر الشقيقة",
+    description: "تحديد العناصر الشقيقة في شجرة العناصر",
     category: "Navigator",
     defaultHotkeys: ["meta+a", "ctrl+a"],
   },
   {
     name: "expandAllNavigatorNodes",
-    label: "Expand all items",
-    description: "Click on arrow to expand or collapse all child items",
+    label: "توسيع كل العناصر",
+    description: "انقر على السهم لتوسيع أو طيّ كل العناصر الفرعية",
     category: "Navigator",
     defaultHotkeys: ["alt+click"],
   },
   {
     name: "switchBreakpoint",
-    label: "Switch breakpoints",
-    description: "Switch to breakpoint by number (1-9)",
+    label: "تبديل نقاط التوقف",
+    description: "التبديل إلى نقطة توقف بالرقم (1-9)",
     category: "Top bar",
     defaultHotkeys: ["1-9"],
   },
   {
     name: "selectAllAssets",
-    label: "Select all assets and folders",
-    description: "Select all currently rendered assets and folders",
+    label: "تحديد كل الوسائط والمجلدات",
+    description: "تحديد كل الوسائط والمجلدات المعروضة حاليًا",
     category: "Panels",
     defaultHotkeys: ["meta+a", "ctrl+a"],
   },
@@ -323,7 +323,7 @@ export const KeyboardShortcutsDialog = () => {
           flexDirection: "column",
         }}
       >
-        <DialogTitle>Keyboard shortcuts</DialogTitle>
+        <DialogTitle>اختصارات لوحة المفاتيح</DialogTitle>
         <ScrollArea>
           <PanelContent as={Grid} columns={2} gap={3}>
             <Grid gap={5}>{leftCategories.map(renderCategory)}</Grid>

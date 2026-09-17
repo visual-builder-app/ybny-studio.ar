@@ -18,7 +18,7 @@ export const CloneButton = () => {
         sourceAuthToken: authToken,
       })}
     >
-      Clone
+      استنساخ
     </LinkButton>
   );
 };

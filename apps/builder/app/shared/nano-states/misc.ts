@@ -426,7 +426,7 @@ export const setBuilderMode = (mode: BuilderMode | null) => {
   if (mode === "content" && !$isContentModeAllowed.get()) {
     // This is content link from a non pro user, we don't allow content mode for such links
     toast.info(
-      "Content mode is not available for this link. The link’s author must have a Pro plan."
+      "وضع المحتوى غير متاح لهذا الرابط. يجب أن يكون منشئ الرابط مشتركًا في خطة Pro."
     );
 
     $builderMode.set("preview");
@@ -434,7 +434,7 @@ export const setBuilderMode = (mode: BuilderMode | null) => {
   }
 
   if (mode === "design" && !$isDesignModeAllowed.get()) {
-    toast.info("Design mode is not available for content edit links.");
+    toast.info("وضع التصميم غير متاح لروابط تعديل المحتوى.");
 
     $builderMode.set("content");
     lastEditableBuilderMode = "content";

@@ -64,13 +64,13 @@ export const DeleteDataVariableDialog = ({
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete confirmation</DialogTitle>
+        <DialogTitle>تأكيد الحذف</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           <Text>
             {variable &&
               (variable.usages > 0
-                ? `Delete "${variable.name}" variable from the project? It is used in ${variable.usages} ${variable.usages === 1 ? "expression" : "expressions"}.`
-                : `Delete "${variable.name}" variable from the project?`)}
+                ? `حذف المتغير "${variable.name}" من المشروع؟ إنه مستخدم في ${variable.usages} ${variable.usages === 1 ? "تعبير" : "تعبيرات"}.`
+                : `حذف المتغير "${variable.name}" من المشروع؟`)}
           </Text>
         </PanelContent>
         <DialogActions>
@@ -82,10 +82,10 @@ export const DeleteDataVariableDialog = ({
               onClose();
             }}
           >
-            Delete
+            حذف
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -200,7 +200,7 @@ export const RenameDataVariableDialog = ({
           }
         }}
       >
-        <DialogTitle>Rename variable</DialogTitle>
+        <DialogTitle>إعادة تسمية المتغير</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           <Flex direction="column" gap="1">
             <InputField
@@ -220,10 +220,10 @@ export const RenameDataVariableDialog = ({
         </PanelContent>
         <DialogActions>
           <Button color="primary" onClick={handleConfirm}>
-            Rename
+            إعادة تسمية
           </Button>
           <DialogClose>
-            <Button color="ghost">Cancel</Button>
+            <Button color="ghost">إلغاء</Button>
           </DialogClose>
         </DialogActions>
       </DialogContent>
@@ -269,16 +269,16 @@ export const DeleteUnusedDataVariablesDialog = () => {
           event.stopPropagation();
         }}
       >
-        <DialogTitle>Delete unused data variables</DialogTitle>
+        <DialogTitle>حذف متغيرات البيانات غير المستخدمة</DialogTitle>
         <PanelContent as={Flex} gap="3" direction="column">
           {unusedVariables.length === 0 ? (
-            <Text>There are no unused data variables to delete.</Text>
+            <Text>لا توجد متغيرات بيانات غير مستخدمة لحذفها.</Text>
           ) : (
             <>
               <Text>
-                Delete {unusedVariables.length} unused data{" "}
-                {unusedVariables.length === 1 ? "variable" : "variables"} from
-                the project?
+                حذف {unusedVariables.length}{" "}
+                {unusedVariables.length === 1 ? "متغير بيانات غير مستخدم" : "متغيرات بيانات غير مستخدمة"} من
+                المشروع؟
               </Text>
               <Text
                 variant="mono"
@@ -304,20 +304,20 @@ export const DeleteUnusedDataVariablesDialog = () => {
                 const deletedCount = deleteUnusedDataVariables();
                 handleClose();
                 if (deletedCount === 0) {
-                  toast.info("No unused data variables to delete");
+                  toast.info("لا توجد متغيرات بيانات غير مستخدمة لحذفها");
                 } else {
                   toast.success(
-                    `Deleted ${deletedCount} unused data ${deletedCount === 1 ? "variable" : "variables"}`
+                    `تم حذف ${deletedCount} ${deletedCount === 1 ? "متغير بيانات غير مستخدم" : "متغيرات بيانات غير مستخدمة"}`
                   );
                 }
               }}
             >
-              Delete
+              حذف
             </Button>
           )}
           <DialogClose>
             <Button color="ghost">
-              {unusedVariables.length > 0 ? "Cancel" : "Close"}
+              {unusedVariables.length > 0 ? "إلغاء" : "إغلاق"}
             </Button>
           </DialogClose>
         </DialogActions>

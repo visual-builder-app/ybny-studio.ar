@@ -103,7 +103,7 @@ const matchOrSuggestToCreate = (
   ) {
     matched.unshift({
       name: search.trim(),
-      label: `Create attribute: "${search.trim()}"`,
+      label: `إنشاء سمة: "${search.trim()}"`,
     });
   }
   return matched;
@@ -296,7 +296,7 @@ const AddPropertyOrAttribute = ({
       <Combobox<Item>
         autoFocus
         color={isValid ? undefined : "error"}
-        placeholder="Select or create"
+        placeholder="تحديد أو إنشاء"
         // lazily load available props to not bloat component renders
         getItems={() => $availableProps.get()}
         itemToString={itemToString}
@@ -319,7 +319,7 @@ const AddPropertyOrAttribute = ({
         getDescription={(item) => {
           return (
             <Box css={{ width: theme.spacing[28] }}>
-              {item?.description ?? "No description available"}
+              {item?.description ?? "لا يتوفر وصف"}
             </Box>
           );
         }}
@@ -430,7 +430,7 @@ export const PropsSection = (props: PropsSectionProps) => {
       <Separator />
       {showPropertiesSection && (
         <CollapsibleSectionWithAddButton
-          label="Properties & attributes"
+          label="الخصائص والسمات"
           onAdd={isDesignMode ? () => setAddingProp(true) : undefined}
           hasItems={hasItems}
         >
@@ -533,7 +533,7 @@ export const PropsSectionContainer = ({
                 renderedBlockInstanceId: candidateRoot?.blockInstanceId,
               });
         if (path !== undefined && externalEntry === undefined) {
-          toast.error("The MDX content source is not ready for editing.");
+          toast.error("مصدر محتوى MDX غير جاهز للتحرير.");
           return;
         }
         if (path === undefined || externalEntry === undefined) {
@@ -583,7 +583,7 @@ export const PropsSectionContainer = ({
           }
         }
         if (externalRoot.document === undefined) {
-          toast.error("The MDX content source is not ready for editing.");
+          toast.error("مصدر محتوى MDX غير جاهز للتحرير.");
           return;
         }
         if (
@@ -594,12 +594,12 @@ export const PropsSectionContainer = ({
             path: targetPath,
           }) === undefined
         ) {
-          toast.error("Open the referenced file to edit this value.");
+          toast.error("افتح الملف المشار إليه لتحرير هذه القيمة.");
           return;
         }
         if (update.type === "asset" && typeof nextValue !== "object") {
           toast.error(
-            "The selected Asset cannot be referenced from this file."
+            "لا يمكن الإشارة إلى الوسيط المحدد من هذا الملف."
           );
           return;
         }

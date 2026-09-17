@@ -109,7 +109,7 @@ export const PropertyInfo = ({
       : undefined;
     if (styleSource) {
       const styleSourceName =
-        styleSource.type === "token" ? styleSource.name : "Local";
+        styleSource.type === "token" ? styleSource.name : "محلي";
       if (source.state) {
         const stateLabel =
           meta?.states?.find((item) => item.selector === source.state)?.label ??
@@ -123,7 +123,7 @@ export const PropertyInfo = ({
       breakpointSet.add(
         breakpoint?.minWidth?.toString() ??
           breakpoint?.maxWidth?.toString() ??
-          "Base"
+          "الأساس"
       );
     }
     if (instance && meta) {
@@ -163,7 +163,7 @@ export const PropertyInfo = ({
           gap="1"
           css={{ paddingBottom: theme.spacing[5] }}
         >
-          <Text color="moreSubtle">Value comes from</Text>
+          <Text color="moreSubtle">مصدر القيمة</Text>
           <Flex gap="1" wrap="wrap">
             {Array.from(breakpointSet).map((label) => (
               <StyleSourceBadge key={label} source="breakpoint" variant="small">
@@ -173,7 +173,7 @@ export const PropertyInfo = ({
             {Array.from(styleSourceNameSet).map((label) => (
               <StyleSourceBadge
                 key={label}
-                source={label === "Local" ? "local" : "token"}
+                source={label === "محلي" ? "local" : "token"}
                 variant="small"
               >
                 {label}
@@ -199,7 +199,7 @@ export const PropertyInfo = ({
           css={{ gridTemplateColumns: "1fr max-content 1fr" }}
           onClick={onReset}
         >
-          {resetType === "delete" ? "Delete property" : "Reset value"}
+          {resetType === "delete" ? "حذف الخاصية" : "إعادة تعيين القيمة"}
         </Button>
       )}
     </Flex>
@@ -426,8 +426,8 @@ export const PropertyValueTooltip = ({
               {description}
               {isAdvanced && (
                 <Flex gap="1">
-                  <AlertIcon color={cssVar("--foreground-warning")} /> This
-                  value was defined in the Advanced section.
+                  <AlertIcon color={cssVar("--foreground-warning")} /> تم
+                  تعريف هذه القيمة في القسم المتقدم.
                 </Flex>
               )}
             </Flex>
