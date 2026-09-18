@@ -1,6 +1,7 @@
 import { Button, Flex, InputField, theme } from "@webstudio-is/design-system";
 import { useState } from "react";
 import { authPath } from "~/shared/router-utils";
+import { dict } from "~/i18n";
 
 type SecretLoginProps = {
   devPlanNames?: string[];
@@ -22,15 +23,15 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
             minLength={2}
             required
             autoFocus
-            placeholder="سر الدخول"
+            placeholder={dict.auth.secretLogin.secretPlaceholder}
           />
           <InputField
             name="email"
             type="email"
-            placeholder="البريد الإلكتروني (اختياري)"
+            placeholder={dict.auth.secretLogin.emailPlaceholder}
           />
           <select name="devPlan">
-            <option value="">الخطة الافتراضية</option>
+            <option value="">{dict.auth.secretLogin.defaultPlanOption}</option>
             {devPlanNames?.map((name) => (
               <option key={name} value={name}>
                 {name}
@@ -38,7 +39,7 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
             ))}
           </select>
           <Button color="primary" type="submit">
-            دخول
+            {dict.auth.secretLogin.submit}
           </Button>
         </Flex>
       </form>
@@ -47,9 +48,7 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
 
   return (
     <Button onClick={() => setShow(true)} css={{ height: theme.spacing[15] }}>
-      الدخول بالسر
+      {dict.auth.secretLogin.toggleButton}
     </Button>
   );
 };
-
-undefined;

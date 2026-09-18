@@ -10,6 +10,7 @@ import {
 import { GithubIcon, GoogleIcon, WebstudioIcon } from "@webstudio-is/icons";
 import { Form } from "@remix-run/react";
 import { authPath } from "~/shared/router-utils";
+import { dict } from "~/i18n";
 import { SecretLogin } from "./secret-login";
 
 export type LoginProps = {
@@ -51,7 +52,7 @@ export const Login = ({
       >
         <WebstudioIcon size={48} />
         <Text variant="brandSectionTitle" as="h1" align="center">
-          مرحبًا بك في Webstudio
+          {dict.auth.login.welcome}
         </Text>
 
         <TooltipProvider>
@@ -64,7 +65,7 @@ export const Login = ({
                 css={{ height: theme.spacing[15] }}
                 formAction={authPath({ provider: "google" })}
               >
-                تسجيل الدخول عبر Google
+                {dict.auth.login.continueWithGoogle}
               </Button>
               <Button
                 disabled={isGithubEnabled === false}
@@ -76,7 +77,7 @@ export const Login = ({
                 }}
                 formAction={authPath({ provider: "github" })}
               >
-                تسجيل الدخول عبر GitHub
+                {dict.auth.login.continueWithGithub}
               </Button>
             </Form>
             {isSecretLoginEnabled && (
