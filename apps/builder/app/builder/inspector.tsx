@@ -88,8 +88,8 @@ const $isDragging = computed([$dragAndDropState], (state) => state.isDragging);
 
 const getInspectorEmptyStateMessage = (selectedInstanceCount: number) =>
   selectedInstanceCount > 1
-    ? "Multiple instances selected"
-    : "Select an instance on the canvas";
+    ? "تم تحديد عناصر متعددة"
+    : "حدد عنصرًا على لوحة العمل";
 
 export const Inspector = ({ navigatorLayout }: InspectorProps) => {
   const selectedInstance = useStore($selectedInstance);
@@ -162,13 +162,13 @@ export const Inspector = ({ navigatorLayout }: InspectorProps) => {
                 variant="wrapped"
                 content={
                   <Text>
-                    CSS for the selected instance&nbsp;&nbsp;
+                    CSS للعنصر المحدد&nbsp;&nbsp;
                     <Kbd value={["S"]} color="moreSubtle" />
                   </Text>
                 }
               >
                 <div>
-                  <PanelTabsTrigger value="style">Style</PanelTabsTrigger>
+                  <PanelTabsTrigger value="style">الأنماط</PanelTabsTrigger>
                 </div>
               </Tooltip>
             )}
@@ -177,14 +177,13 @@ export const Inspector = ({ navigatorLayout }: InspectorProps) => {
                 variant="wrapped"
                 content={
                   <Text>
-                    Settings, properties and attributes of the selected
-                    instance&nbsp;&nbsp;
+                    الإعدادات والخصائص والسمات الخاصة بالعنصر المحدد&nbsp;&nbsp;
                     <Kbd value={["D"]} color="moreSubtle" />
                   </Text>
                 }
               >
                 <div>
-                  <PanelTabsTrigger value="settings">Settings</PanelTabsTrigger>
+                  <PanelTabsTrigger value="settings">الإعدادات</PanelTabsTrigger>
                 </div>
               </Tooltip>
             )}

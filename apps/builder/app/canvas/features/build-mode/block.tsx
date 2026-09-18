@@ -28,7 +28,7 @@ export const Block = React.forwardRef<
   );
 
   if (instance === undefined) {
-    return <div>Content Block instance is undefined</div>;
+    return <div>عنصر كتلة المحتوى غير معرّف</div>;
   }
 
   const templateInstances = findContentBlockTemplateContainers({
@@ -36,7 +36,7 @@ export const Block = React.forwardRef<
     instances,
   });
   if (templateInstances.length !== 1) {
-    return <div>Content Block must contain exactly one Templates list</div>;
+    return <div>يجب أن تحتوي كتلة المحتوى على قائمة قوالب واحدة فقط</div>;
   }
   const [templateInstance] = templateInstances;
   const templateInstanceId = templateInstance.id;
@@ -74,9 +74,7 @@ export const Block = React.forwardRef<
   return (
     <div ref={ref} style={editableBlockStyle} {...props}>
       {childArray}
-      {hasContent || isPreviewMode ? null : (
-        <div>Editable block you can edit</div>
-      )}
+      {hasContent || isPreviewMode ? null : <div>كتلة يمكنك تحرير محتواها</div>}
     </div>
   );
 }) as AnyComponent;
