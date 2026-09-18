@@ -5,11 +5,7 @@ const { getInspectorEmptyStateMessage } = __testing__;
 
 describe("getInspectorEmptyStateMessage", () => {
   test("describes empty and multi-selection states", () => {
-    expect(getInspectorEmptyStateMessage(0)).toBe(
-      "Select an instance on the canvas"
-    );
-    expect(getInspectorEmptyStateMessage(2)).toBe(
-      "Multiple instances selected"
-    );
+    expect(getInspectorEmptyStateMessage(0)).toBe("حدد عنصرًا على لوحة العمل");
+    expect(getInspectorEmptyStateMessage(2)).toBe("تم تحديد عناصر متعددة");
   });
 });

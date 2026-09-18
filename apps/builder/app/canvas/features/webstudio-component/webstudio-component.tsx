@@ -305,7 +305,7 @@ const MissingComponentStub = forwardRef<
 >((props, ref) => {
   return (
     <ErrorStub ref={ref} {...props}>
-      Component {props[componentAttribute as never]} does not exist
+      المكوّن {props[componentAttribute as never]} غير موجود
     </ErrorStub>
   );
 });
@@ -317,9 +317,9 @@ const InvalidCollectionDataStub = forwardRef<
 >((props, ref) => {
   return (
     <ErrorStub ref={ref} {...props}>
-      The Collection component requires an array in the data property. When
-      binding external data, it is likely that the array is nested somewhere
-      within, and you need to provide the correct path in the binding.{" "}
+      يتطلب مكوّن المجموعة (Collection) مصفوفة (array) في خاصية data. عند ربط
+      بيانات خارجية، من المرجح أن تكون المصفوفة متداخلة في مكان ما ضمنها، وتحتاج
+      إلى تحديد المسار الصحيح في الربط.{" "}
       <a
         style={{ color: "inherit" }}
         target="_blank"
@@ -327,7 +327,7 @@ const InvalidCollectionDataStub = forwardRef<
         // avoid preventing click by events interceptor
         onClickCapture={(event) => event.stopPropagation()}
       >
-        Learn more
+        معرفة المزيد
       </a>
     </ErrorStub>
   );
@@ -524,7 +524,7 @@ const getEditableComponentPlaceholder = (
     undefined !== findBlockSelector({ anchor: instanceSelector, instances });
   // The paragraph contains only an "editing" placeholder within the content block.
   if (tag === "p" && isContentBlockChild && mode === "editing") {
-    return "Write something or press '/' for commands...";
+    return "اكتب شيئًا أو اضغط '/' لإظهار الأوامر...";
   }
   return placeholder;
 };
@@ -611,9 +611,7 @@ const ExternalContentRootLoader = ({
       .catch((error) => {
         if (active) {
           toast.error(
-            error instanceof Error
-              ? error.message
-              : "Unable to load MDX content"
+            error instanceof Error ? error.message : "تعذّر تحميل محتوى MDX"
           );
         }
       });
