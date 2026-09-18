@@ -22,15 +22,15 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
             minLength={2}
             required
             autoFocus
-            placeholder="Auth secret"
+            placeholder="سر الدخول"
           />
           <InputField
             name="email"
             type="email"
-            placeholder="Email (optional)"
+            placeholder="البريد الإلكتروني (اختياري)"
           />
           <select name="devPlan">
-            <option value="">Default plan</option>
+            <option value="">الخطة الافتراضية</option>
             {devPlanNames?.map((name) => (
               <option key={name} value={name}>
                 {name}
@@ -38,7 +38,7 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
             ))}
           </select>
           <Button color="primary" type="submit">
-            Login
+            دخول
           </Button>
         </Flex>
       </form>
@@ -47,7 +47,7 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
 
   return (
     <Button onClick={() => setShow(true)} css={{ height: theme.spacing[15] }}>
-      Login with Secret
+      الدخول بالسر
     </Button>
   );
 };

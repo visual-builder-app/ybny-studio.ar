@@ -920,12 +920,12 @@ const WebstudioComponentCanvasInner = forwardRef<
         if (frontmatterPath !== undefined) {
           const value = getUpdatedText(instance.id, instancesList);
           if (externalEntry === undefined) {
-            toast.error("The MDX content source is not ready for editing.");
+            toast.error("مصدر محتوى MDX غير جاهز للتحرير.");
             return;
           }
           const [rootKey, externalRoot] = externalEntry;
           if (externalRoot.document === undefined) {
-            toast.error("The MDX content source is not ready for editing.");
+            toast.error("مصدر محتوى MDX غير جاهز للتحرير.");
             return;
           }
           if (
@@ -936,11 +936,11 @@ const WebstudioComponentCanvasInner = forwardRef<
               path: frontmatterPath,
             }) === undefined
           ) {
-            toast.error("Open the referenced file to edit this value.");
+            toast.error("افتح الملف المشار إليه لتعديل هذه القيمة.");
             return;
           }
           if (value === undefined) {
-            toast.error("This frontmatter value must remain plain text.");
+            toast.error("يجب أن تبقى قيمة الـ frontmatter نصاً عادياً.");
             return;
           }
           void updateExternalContentFrontmatter({
