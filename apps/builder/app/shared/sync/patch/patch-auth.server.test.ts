@@ -474,7 +474,7 @@ describe("authorizePatchEntries", () => {
     expect(result.rejected).toEqual([
       expect.objectContaining({
         entry: patch.entries[0],
-        errors: "You don't have permission to build this project.",
+        errors: "ليس لديك إذن لبناء هذا المشروع.",
       }),
     ]);
     expect(result.authorized).toEqual([
@@ -533,7 +533,7 @@ describe("authorizePatchEntries", () => {
     expect(result.authorized).toEqual([]);
     expect(result.rejected).toEqual([
       expect.objectContaining({
-        errors: "You don't have permission to build this project.",
+        errors: "ليس لديك إذن لبناء هذا المشروع.",
       }),
     ]);
   });
