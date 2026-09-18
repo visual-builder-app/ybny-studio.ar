@@ -50,7 +50,7 @@ describe("builder logout action", () => {
       new Response(null, {
         status: 302,
         headers: {
-          Location: `${dashboardOrigin}/login`,
+          Location: `${dashboardOrigin}/auth`,
           "Set-Cookie": "__Host-_session_builder_session_3=; Max-Age=0",
         },
       })
@@ -76,7 +76,7 @@ describe("builder logout action", () => {
       "true"
     );
     expect(logout).toHaveBeenCalledWith(expect.any(Request), {
-      redirectTo: `${dashboardOrigin}/login`,
+      redirectTo: `${dashboardOrigin}/auth`,
     });
   });
 
