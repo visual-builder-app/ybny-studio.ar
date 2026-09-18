@@ -118,7 +118,7 @@ test("does not commit an updated Asset after the active project changes", async 
   await expect(
     updateAssetContent({ asset, content: '{"a":1}' })
   ).rejects.toThrow(
-    "The file was updated in the previous project. Return to that project to view it."
+    "تم تحديث الملف في المشروع السابق. عُد إلى ذلك المشروع لعرضه."
   );
   expect(commitUpdatedAsset).not.toHaveBeenCalled();
 });

@@ -105,7 +105,7 @@ test.each([false, true])(
     );
 
     if (initialDeleteConfirmation) {
-      expect(document.activeElement?.textContent).toBe("Delete folder");
+      expect(document.activeElement?.textContent).toBe("حذف المجلد");
     } else {
       expect(document.activeElement).toBe(
         document.getElementById("asset-folder-name-folder")
@@ -211,7 +211,7 @@ test("shows the folder name and ID in settings", () => {
   expect(
     document.querySelector('label[for="asset-folder-name-folder-id"]')
       ?.textContent
-  ).toBe("Name");
+  ).toBe("الاسم");
   expect(
     document.querySelector<HTMLInputElement>("#asset-folder-id-folder-id")
       ?.value

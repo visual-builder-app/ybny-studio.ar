@@ -95,7 +95,7 @@ describe("discoverContentCollections", () => {
 
     expect(collections.get("folder")).toMatchObject({
       status: "unavailable",
-      message: "Collection files could not be loaded: Network request failed",
+      message: "تعذّر تحميل ملفات المجموعة: Network request failed",
     });
     expect(
       mergeLoadingContentCollections({
@@ -147,7 +147,7 @@ describe("discoverContentCollections", () => {
 
     expect(collections.get("folder")).toMatchObject({
       status: "invalid",
-      message: 'Collection file "collection.json" exceeds the editing limit',
+      message: 'تجاوز ملف المجموعة "collection.json" حد التعديل',
     });
     expect(read).toBe(false);
   });

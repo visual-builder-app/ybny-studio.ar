@@ -271,7 +271,7 @@ test("converts placeholder local style source to runtime-created token", () => {
     expect.objectContaining({
       type: "token",
       id: expect.any(String),
-      name: "Local (Copy)",
+      name: "محلي (نسخة)",
     }),
   ]);
   const tokenId = styleSources[0]?.id;

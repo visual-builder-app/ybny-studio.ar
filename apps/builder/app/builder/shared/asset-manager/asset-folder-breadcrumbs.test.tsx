@@ -74,9 +74,9 @@ const copyPath = () => {
 test("shows and copies the selected folder path", () => {
   renderBreadcrumbs({ type: "folder", id: child.id });
 
-  expect(document.body.textContent).toContain("RootDocumentsArticles");
+  expect(document.body.textContent).toContain("الجذرDocumentsArticles");
   copyPath();
-  expect(writeText).toHaveBeenCalledWith("Root / Documents / Articles");
+  expect(writeText).toHaveBeenCalledWith("الجذر / Documents / Articles");
 });
 
 test("shows and copies the selected asset path", () => {
@@ -87,10 +87,10 @@ test("shows and copies the selected asset path", () => {
   });
 
   expect(document.body.textContent).toContain(
-    "RootDocumentsArticleswelcome.md"
+    "الجذرDocumentsArticleswelcome.md"
   );
   copyPath();
   expect(writeText).toHaveBeenCalledWith(
-    "Root / Documents / Articles / welcome.md"
+    "الجذر / Documents / Articles / welcome.md"
   );
 });
