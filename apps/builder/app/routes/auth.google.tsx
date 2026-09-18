@@ -13,7 +13,7 @@ export default function Google() {
   return null;
 }
 
-export const loader = (_args: LoaderFunctionArgs) => redirect("/login");
+export const loader = (_args: LoaderFunctionArgs) => redirect("/auth");
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   if (false === isDashboard(request)) {
