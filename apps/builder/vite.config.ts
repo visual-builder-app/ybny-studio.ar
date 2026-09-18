@@ -41,7 +41,11 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       remix({
-        presets: [vercelPreset()],
+        // vercelPreset() emits Vercel's serverless build layout
+        // (build/server/nodejs-*/index.js), which remix-serve (used by
+        // non-Vercel hosts like Render) cannot run. Only apply it when
+        // actually building on Vercel, where VERCEL is set automatically.
+        presets: process.env.VERCEL ? [vercelPreset()] : [],
         future: {
           v3_lazyRouteDiscovery: false,
           v3_relativeSplatPath: false,
