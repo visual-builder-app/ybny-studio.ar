@@ -1,0 +1,62 @@
+# Render Blueprint — Webstudio المعرَّب (ybny-studio.ar)
+# أنشئ الخدمة عبر: Render Dashboard → New + → Blueprint → اختر هذا المستودع
+# سيقوم Render تلقائياً بإنشاء: قاعدة بيانات Postgres + خدمة PostgREST + تطبيق البناء (Builder)
+
+databases:
+  - name: ybny-db
+    databaseName: webstudio
+    user: webstudio
+    plan: free
+    postgresMajorVersion: "16"
+
+services:
+  # PostgREST — طبقة REST فوق قاعدة البيانات
+  - type: pserv
+    name: postgrest
+    runtime: docker
+    dockerfilePath: ./deploy/postgrest.Dockerfile
+    envVars:
+      - key: PGRST_DB_URI
+        fromDatabase:
+          name: ybny-db
+          property: connectionString
+      - key: PGRST_DB_SCHEMAS
+        value: public
+      - key: PGRST_DB_ANON_ROLE
+        value: webstudio
+      - key: PGRST_SERVER_PORT
+        value: "3000"
+
+  # Builder — تطبيق Webstudio المعرَّب (Remix)
+  - type: web
+    name: ybny-studio
+    runtime: node
+    plan: standard
+    region: frankfurt
+    buildCommand: ./deploy/render-build.sh
+    preDeployCommand: ./deploy/render-migrate.sh
+    startCommand: pnpm --filter=@webstudio-is/builder start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22.14.0"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ybny-db
+          property: connectionString
+      - key: DIRECT_URL
+        fromDatabase:
+          name: ybny-db
+          property: connectionString
+      - key: POSTGREST_URL
+        value: http://postgrest:3000
+      - key: POSTGREST_API_KEY
+        value: ""
+      - key: DEV_LOGIN
+        value: "true"
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: DEPLOYMENT_ENVIRONMENT
+        value: production
+      - key: PORT
+        value: "10000"

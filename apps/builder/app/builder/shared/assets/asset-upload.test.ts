@@ -46,7 +46,7 @@ describe("validateFiles", () => {
     expect(result).toHaveLength(1);
     expect(result).toContain(smallFile);
     expect(toastError).toHaveBeenCalledWith(
-      'Asset "large.jpg" cannot be bigger than 4.5MB'
+      'لا يمكن أن يتجاوز حجم الوسيط "large.jpg" ‏4.5MB'
     );
   });
 
@@ -70,10 +70,10 @@ describe("validateFiles", () => {
     expect(result).toHaveLength(0);
     expect(toastError).toHaveBeenCalledTimes(2);
     expect(toastError).toHaveBeenCalledWith(
-      'Asset "large1.jpg" cannot be bigger than 4.5MB'
+      'لا يمكن أن يتجاوز حجم الوسيط "large1.jpg" ‏4.5MB'
     );
     expect(toastError).toHaveBeenCalledWith(
-      'Asset "large2.jpg" cannot be bigger than 4.5MB'
+      'لا يمكن أن يتجاوز حجم الوسيط "large2.jpg" ‏4.5MB'
     );
   });
 });

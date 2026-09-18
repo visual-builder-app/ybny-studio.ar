@@ -95,7 +95,7 @@ describe("AssetsShell", () => {
       </AssetsShell>
     );
 
-    expect(container.textContent).toContain("Drop files or folders here");
+    expect(container.textContent).toContain("أفلت الملفات أو المجلدات هنا");
   });
 
   test("opens its context menu from panel chrome outside the asset list", () => {
