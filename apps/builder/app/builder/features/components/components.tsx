@@ -107,6 +107,18 @@ const findComponentIndex = (groups: Groups, selectedComponent?: string) => {
   return { index: -1, metas: [] };
 };
 
+const categoryArabicLabels: Record<string, string> = {
+  general: "الهيكل والعناصر العامة",
+  typography: "النصوص والخطوط",
+  media: "الوسائط والصور",
+  forms: "النماذج وحقول الإدخال",
+  radix: "المكوّنات التفاعلية",
+  data: "البيانات والمجموعات",
+  animations: "الرسوم المتحركة",
+  found: "نتائج البحث",
+  other: "مكوّنات أخرى",
+};
+
 export const ComponentsPanel = ({
   publish,
   onClose,
@@ -185,7 +197,7 @@ export const ComponentsPanel = ({
       <ScrollArea ref={draggableContainerRef}>
         {groups.map((group) => (
           <CollapsibleSection
-            label={titleCase(group.category)}
+            label={categoryArabicLabels[group.category] ?? titleCase(group.category)}
             key={group.category}
             fullWidth
           >
