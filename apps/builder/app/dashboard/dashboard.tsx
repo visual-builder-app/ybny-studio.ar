@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
 import {
-  Box,
   Flex,
   List,
   ListItem,
@@ -8,9 +7,6 @@ import {
   TooltipProvider,
   Toaster,
   theme,
-  PanelBanner,
-  Link,
-  LinkButton,
   Separator,
   Grid,
   IconButton,
@@ -36,7 +32,7 @@ import { ProfileMenu } from "./profile-menu";
 import { Projects } from "./projects/projects";
 import { Welcome } from "./welcome/welcome";
 import { Header } from "./shared/layout";
-import { help, socialLinks } from "~/shared/help";
+import { help } from "~/shared/help";
 import { SearchResults } from "./search/search-results";
 import type { DashboardData } from "./shared/types";
 import { Search } from "./search/search-field";
@@ -288,22 +284,6 @@ export const Dashboard = () => {
               </CollapsibleSection>
             )}
           </nav>
-          <Box css={{ paddingTop: theme.spacing[5] }}>
-            <PanelBanner variant="neutral">
-              <Text variant="titles">Inception متاح الآن</Text>
-              <Text color="subtle">
-                أداة تصميم مدعومة بالذكاء الاصطناعي لاستكشاف الأفكار وتوليد
-                HTML/CSS فورًا لمحرر Webstudio أو أي منصة أخرى.
-              </Text>
-              <LinkButton
-                color="primary"
-                href="https://wstd.us/inception"
-                target="_blank"
-              >
-                ابدأ الآن مع Inception
-              </LinkButton>
-            </PanelBanner>
-          </Box>
           <CollapsibleSection label="المساعدة والدعم" fullWidth>
             <NavigationItems
               items={help.map((item) => ({
@@ -313,29 +293,6 @@ export const Dashboard = () => {
                 children: item.label,
               }))}
             />
-            <Flex
-              align="center"
-              gap="2"
-              css={{
-                paddingInline: theme.panel.paddingInline,
-                paddingBlock: theme.spacing[5],
-              }}
-            >
-              <Text variant="labels" color="subtle">
-                تابعنا:
-              </Text>
-              {socialLinks.map(({ label, url, icon }) => (
-                <Link
-                  key={url}
-                  href={url}
-                  target="_blank"
-                  color="subtle"
-                  aria-label={label}
-                >
-                  {icon}
-                </Link>
-              ))}
-            </Flex>
           </CollapsibleSection>
         </Grid>
         {view === "projects" && (

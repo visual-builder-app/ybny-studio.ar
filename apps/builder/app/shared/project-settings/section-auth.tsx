@@ -6,7 +6,6 @@ import {
   Grid,
   InputErrorsTooltip,
   InputField,
-  LinkButton,
   List,
   ListItem,
   ProChip,
@@ -14,7 +13,6 @@ import {
   SearchField,
   SmallIconButton,
   Text,
-  theme,
   Tooltip,
   cssVar,
 } from "@webstudio-is/design-system";
@@ -153,29 +151,21 @@ export const SectionAuth = () => {
           content={
             <>
               <Text>
-                تطلب المصادقة من الزوار بيانات HTTP Basic Auth
-                قبل تحميل الصفحات المحمية على النطاقات المخصصة.
+                تطلب المصادقة من الزوار بيانات HTTP Basic Auth قبل تحميل الصفحات
+                المحمية على النطاقات المخصصة.
               </Text>
               <br />
               <Text>
-                تستخدم المسارات نفس بنية مسارات الصفحات، بما في ذلك :params
-                و* للبدل.
+                تستخدم المسارات نفس بنية مسارات الصفحات، بما في ذلك :params و*
+                للبدل.
               </Text>
               {allowAuth === false && (
                 <>
                   <br />
                   <Text>
-                    المصادقة ميزة Pro. يمكنك النشر إلى بيئة الاختبار
-                    مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
+                    المصادقة ميزة Pro. يمكنك النشر إلى بيئة الاختبار مجانًا؛ قم
+                    بالترقية إلى Pro للنشر على نطاقات مخصصة.
                   </Text>
-                  <LinkButton
-                    color="primary"
-                    css={{ marginTop: theme.spacing[5], width: "100%" }}
-                    target="_blank"
-                    href="https://webstudio.is/pricing"
-                  >
-                    ترقية
-                  </LinkButton>
                 </>
               )}
             </>

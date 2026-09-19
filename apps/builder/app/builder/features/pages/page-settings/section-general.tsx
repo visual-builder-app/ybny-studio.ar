@@ -9,12 +9,10 @@ import {
   InputField,
   Label,
   Link,
-  LinkButton,
   ProChip,
   Select,
   Text,
   Tooltip,
-  theme,
 } from "@webstudio-is/design-system";
 import { isLiteralExpression } from "@webstudio-is/expression";
 import { documentTypes, type Pages } from "@webstudio-is/sdk";
@@ -54,26 +52,18 @@ const PathField = ({
           content={
             <>
               <Text>
-                يمكن أن يتضمن المسار معاملات ديناميكية مثل :name، ويمكن
-                جعلها اختيارية باستخدام :name?، أو استخدام رمز شامل مثل /* أو
-                /:name* لتخزين الجزء المتبقي كاملاً في نهاية الرابط.
+                يمكن أن يتضمن المسار معاملات ديناميكية مثل :name، ويمكن جعلها
+                اختيارية باستخدام :name?، أو استخدام رمز شامل مثل /* أو /:name*
+                لتخزين الجزء المتبقي كاملاً في نهاية الرابط.
               </Text>
               {allowDynamicData === false && (
                 <>
                   <br />
                   <Text>
-                    لجعل المسار ديناميكيًا واستخدامه مع نظام إدارة المحتوى، يمكنك استخدام
-                    المعلمات والميزات الأخرى. يمكنك النشر على بيئة التجربة
-                    مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
+                    لجعل المسار ديناميكيًا واستخدامه مع نظام إدارة المحتوى، يمكنك
+                    استخدام المعلمات والميزات الأخرى. يمكنك النشر على بيئة
+                    التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
                   </Text>
-                  <LinkButton
-                    color="primary"
-                    css={{ marginTop: theme.spacing[5], width: "100%" }}
-                    target="_blank"
-                    href="https://webstudio.is/pricing"
-                  >
-                    ترقية
-                  </LinkButton>
                 </>
               )}
             </>
@@ -137,8 +127,7 @@ const StatusField = ({
               >
                 حالة HTTP
               </Link>{" "}
-              أو تعبيرًا يُرجع رمز الحالة للتعامل الديناميكي مع
-              الاستجابة.
+              أو تعبيرًا يُرجع رمز الحالة للتعامل الديناميكي مع الاستجابة.
             </Text>
           }
           variant="wrapped"
@@ -209,25 +198,16 @@ const RedirectField = ({
           content={
             <>
               <Text>
-                يمكن أن تكون قيمة إعادة التوجيه مسارًا أو تعبيرًا يُرجع
-                مسارًا للتعامل الديناميكي مع الاستجابة.
+                يمكن أن تكون قيمة إعادة التوجيه مسارًا أو تعبيرًا يُرجع مسارًا
+                للتعامل الديناميكي مع الاستجابة.
               </Text>
               {allowDynamicData === false && (
                 <>
                   <br />
                   <Text>
-                    إعادة التوجيه ميزة نشر احترافية. يمكنك النشر على
-                    بيئة التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات
-                    مخصصة.
+                    إعادة التوجيه ميزة نشر احترافية. يمكنك النشر على بيئة
+                    التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على نطاقات مخصصة.
                   </Text>
-                  <LinkButton
-                    color="primary"
-                    css={{ marginTop: theme.spacing[5], width: "100%" }}
-                    target="_blank"
-                    href="https://webstudio.is/pricing"
-                  >
-                    ترقية
-                  </LinkButton>
                 </>
               )}
             </>
@@ -359,8 +339,7 @@ export const GeneralSection = ({
                   }}
                   color="subtle"
                 >
-                  انقل هذه الصفحة إلى مجلد «الجذر» لتعيينها كصفحتك
-                  الرئيسية
+                  انقل هذه الصفحة إلى مجلد «الجذر» لتعيينها كصفحتك الرئيسية
                 </Text>
               </>
             ) : values.documentType !== "html" ? (

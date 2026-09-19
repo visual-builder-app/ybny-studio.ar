@@ -28,7 +28,6 @@ import {
   theme,
   TextArea,
   Link,
-  LinkButton,
   PanelBanner,
   toast,
   RadioGroup,
@@ -68,7 +67,6 @@ import {
   AlertIcon,
   CopyIcon,
   GearIcon,
-  UpgradeIcon,
   HelpIcon,
   InfoCircleIcon,
 } from "@webstudio-is/icons";
@@ -960,15 +958,8 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
     return (
       <PanelBanner>
         <Text variant="regularBold">
-          قم بالترقية للنشر أكثر من {maxDailyPublishesPerUser} مرة في اليوم:
+          قم بالترقية للنشر أكثر من {maxDailyPublishesPerUser} مرة في اليوم.
         </Text>
-        <LinkButton
-          color="primary"
-          href="https://webstudio.is/pricing"
-          target="_blank"
-        >
-          ترقية
-        </LinkButton>
       </PanelBanner>
     );
   }
@@ -1018,19 +1009,7 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
             )
           )}
         </Text>
-        <Text>
-          يمكنك حذف هذه الميزات أو الترقية للنشر على نطاقات مخصصة.
-        </Text>
-        <Flex align="center" gap={1}>
-          <UpgradeIcon />
-          <Link
-            color="inherit"
-            target="_blank"
-            href="https://webstudio.is/pricing"
-          >
-            الترقية إلى Pro
-          </Link>
-        </Flex>
+        <Text>يمكنك حذف هذه الميزات أو الترقية للنشر على نطاقات مخصصة.</Text>
       </PanelBanner>
     );
   }
@@ -1043,16 +1022,6 @@ const UpgradeBanner = ({ hasCustomDomains }: { hasCustomDomains: boolean }) => {
           </Text>{" "}
           لإضافة نطاقات غير محدودة والنشر على كل نطاق بشكل منفصل.
         </Text>
-        <Flex align="center" gap={1}>
-          <UpgradeIcon />
-          <Link
-            color="inherit"
-            target="_blank"
-            href="https://webstudio.is/pricing"
-          >
-            الترقية إلى Pro
-          </Link>
-        </Flex>
       </PanelBanner>
     );
   }
@@ -1125,10 +1094,7 @@ const Content = (props: {
               <InfoCircleIcon color={cssVar("--foreground-primary")} />
               <Text variant="regularBold">لا تنسَ النشر</Text>
             </Flex>
-            <Text>
-              لديك نطاق مخصص لم يتم نشره بعد. اضغط
-              نشر لجعله مباشرًا.
-            </Text>
+            <Text>لديك نطاق مخصص لم يتم نشره بعد. اضغط نشر لجعله مباشرًا.</Text>
           </PanelBanner>
         )}
         <Publish
@@ -1214,19 +1180,6 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
             projectId={props.projectId}
             templates={deployTargets[deployTarget].ssgTemplates}
           />
-          <div />
-          <Text color="subtle">
-            تعرف على نشر المواقع الثابتة{" "}
-            <Link
-              variant="inherit"
-              color="inherit"
-              href="https://wstd.us/ssg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              هنا
-            </Link>
-          </Text>
         </Grid>
       )}
 
@@ -1278,8 +1231,7 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
                 الخطوة 2
               </Text>
               <Text color="subtle">
-                شغّل هذا الأمر في الطرفية لتثبيت Webstudio CLI
-                ومزامنة مشروعك.
+                شغّل هذا الأمر في الطرفية لتثبيت Webstudio CLI ومزامنة مشروعك.
               </Text>
             </Grid>
             <Flex gap={2}>
@@ -1334,21 +1286,6 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
                 </Button>
               </CopyToClipboard>
             </Flex>
-          </Grid>
-
-          <Grid columns={1} gap={1}>
-            <Text color="subtle">
-              اقرأ التوثيق المفصّل{" "}
-              <Link
-                variant="inherit"
-                color="inherit"
-                href="https://wstd.us/cli"
-                target="_blank"
-                rel="noreferrer"
-              >
-                هنا
-              </Link>
-            </Text>
           </Grid>
         </Grid>
       )}
