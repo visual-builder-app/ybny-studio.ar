@@ -102,9 +102,72 @@ export const InstanceIcon = ({ size = 16, instance, icon }: Props) => {
   );
 };
 
+export const componentArabicLabels: Record<string, string> = {
+  // الهيكل والتخطيط
+  Box: "صندوق",
+  Section: "قسم",
+  Container: "حاوية",
+  Body: "جسم الصفحة",
+  Root: "الجذر",
+  Slot: "فتحة مكوّن",
+  Element: "عنصر",
+  Fragment: "مجموعة",
+  Separator: "فاصل",
+
+  // النصوص والخطوط
+  Heading: "عنوان",
+  Paragraph: "فقرة",
+  Text: "نص",
+  InlineText: "نص مدمج",
+  Blockquote: "اقتباس",
+  Bold: "عريض",
+  Italic: "مائل",
+  Link: "رابط",
+  CodeText: "نص برمجي",
+  HtmlEmbed: "تضمين كود HTML",
+
+  // الوسائط
+  Image: "صورة",
+  Video: "فيديو",
+  Audio: "ملف صوتي",
+  Icon: "أيقونة",
+  Svg: "رسم SVG",
+
+  // النماذج
+  Form: "نموذج",
+  Input: "حقل إدخال",
+  TextArea: "مربع نص",
+  Button: "زر",
+  Label: "تسمية",
+  Select: "قائمة اختيار",
+  Option: "خيار",
+  Checkbox: "مربع اختيار",
+  Radio: "زر اختيار",
+  RadioButton: "زر اختيار",
+
+  // القوائم والمجموعات
+  List: "قائمة",
+  ListItem: "عنصر قائمة",
+  Collection: "مجموعة بيانات",
+
+  // المكونات التفاعلية
+  Tabs: "تبويبات",
+  Accordion: "قائمة مطوية",
+  Dialog: "نافذة منبثقة",
+  Collapsible: "لوحة قابلة للطي",
+  Popover: "تلميح منبثق",
+  Tooltip: "تلميح",
+  DropdownMenu: "قائمة منسدلة",
+
+  // الوقت والبيانات
+  Time: "وقت وتاريخ",
+  ContentBlock: "كتلة محتوى",
+};
+
 const getLabelFromComponentName = (component: Instance["component"]) => {
   const [_namespace, componentName] = parseComponentName(component);
-  return humanizeString(componentName);
+  const humanized = humanizeString(componentName);
+  return componentArabicLabels[humanized] ?? componentArabicLabels[componentName] ?? humanized;
 };
 
 export const getInstanceLabel = (
@@ -122,10 +185,11 @@ export const getInstanceLabel = (
   }
 
   if (instanceOrInstanceId.label) {
-    return instanceOrInstanceId.label;
+    return componentArabicLabels[instanceOrInstanceId.label] ?? instanceOrInstanceId.label;
   }
   if (instanceOrInstanceId.name) {
-    return humanizeString(instanceOrInstanceId.name);
+    const humanized = humanizeString(instanceOrInstanceId.name);
+    return componentArabicLabels[humanized] ?? humanized;
   }
   if (
     instanceOrInstanceId.component === elementComponent &&
@@ -136,7 +200,6 @@ export const getInstanceLabel = (
   const meta = $registeredComponentMetas
     .get()
     .get(instanceOrInstanceId.component);
-  return (
-    meta?.label || getLabelFromComponentName(instanceOrInstanceId.component)
-  );
+  const rawLabel = meta?.label || getLabelFromComponentName(instanceOrInstanceId.component);
+  return componentArabicLabels[rawLabel] ?? rawLabel;
 };
