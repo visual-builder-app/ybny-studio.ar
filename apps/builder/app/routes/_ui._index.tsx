@@ -1,7 +1,7 @@
-import { type MetaFunction, json } from "@remix-run/server-runtime";
+import { type MetaFunction, type LoaderFunctionArgs, json } from "@remix-run/server-runtime";
 import { Link } from "@remix-run/react";
-import { Button, Flex, Text, theme, cssVar } from "@webstudio-is/design-system";
 import { dashboardPath, loginPath } from "~/shared/router-utils";
+import { preventCrossOriginCookie } from "~/services/no-cross-origin-cookie";
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,7 +14,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  preventCrossOriginCookie(request);
   return json({});
 };
 
