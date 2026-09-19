@@ -105,6 +105,16 @@ import { showPublishWarning } from "./publish-warning";
 import { flushExternalContentProject } from "~/shared/external-content-roots";
 import { getPrePublishErrorMessage } from "./publish-error";
 
+/**
+ * One-click hosted publishing (to `<project>.<PUBLISHER_HOST>` and to custom
+ * domains) needs a publisher backend. In this open-source build
+ * `deploymentRouter.publish` returns NOT_IMPLEMENTED, and the default
+ * PUBLISHER_HOST (`wstd.work`) belongs to Webstudio's cloud, so nothing
+ * published here is ever served. Keep this off until we run our own publisher.
+ * Export (Docker / Vercel / Netlify via the CLI) works without it.
+ */
+const isHostedPublishingAvailable: boolean = false;
+
 const PrePublishAuditMessage = ({
   finding,
 }: {
@@ -1153,6 +1163,14 @@ const ExportContent = (props: { projectId: Project["id"] }) => {
 
   return (
     <PanelContent as={Grid} columns={1} gap={3}>
+      {isHostedPublishingAvailable === false && (
+        <PanelBanner>
+          <Text variant="regularBold">النشر بنقرة واحدة غير متاح حالياً</Text>
+          <Text>
+            صدّر موقعك بإحدى الطرق التالية، ثم استضفه على الخدمة التي تفضّلها.
+          </Text>
+        </PanelBanner>
+      )}
       <Grid columns={1} gap={2}>
         <div />
         <Grid columns={2} gap={2} align={"center"}>
@@ -1298,7 +1316,13 @@ type PublishProps = {
 };
 
 export const PublishButton = ({ projectId }: PublishProps) => {
-  const publishDialog = useStore($publishDialog);
+  const storedPublishDialog = useStore($publishDialog);
+  // Without a publisher there is nothing to publish to, so every entry point
+  // (menu, shortcuts, button) that asks for "publish" lands on export instead.
+  const publishDialog =
+    storedPublishDialog === "publish" && isHostedPublishingAvailable === false
+      ? "export"
+      : storedPublishDialog;
   const authTokenPermissions = useStore($authTokenPermissions);
   const { canPublishToStagingOnly } = useStore($permissions);
   const isPublishEnabled =
@@ -1324,7 +1348,10 @@ export const PublishButton = ({ projectId }: PublishProps) => {
     >
       <Tooltip
         side="bottom"
-        content={tooltipContent ?? "النشر على Webstudio Cloud"}
+        content={
+          tooltipContent ??
+          (isHostedPublishingAvailable ? "نشر" : "تصدير الموقع")
+        }
         sideOffset={Number.parseFloat(rawTheme.spacing[5])}
       >
         <PopoverTrigger asChild>
