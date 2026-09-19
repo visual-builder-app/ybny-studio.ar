@@ -90,9 +90,9 @@ export const Menu = ({ defaultOpen }: { defaultOpen?: boolean } = {}) => {
   const cloneIsExternal = authToken !== undefined;
 
   return (
-    <DropdownMenu modal={false} defaultOpen={defaultOpen}>
+    <DropdownMenu dir="rtl" modal={false} defaultOpen={defaultOpen}>
       <MenuButton />
-      <DropdownMenuContent collisionPadding={4} width="regular">
+      <DropdownMenuContent collisionPadding={8} align="start" side="bottom" width="regular">
         <DropdownMenuItem
           onSelect={() => {
             window.location.href = dashboardUrl({ origin: window.origin });

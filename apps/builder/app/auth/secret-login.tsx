@@ -8,7 +8,7 @@ type SecretLoginProps = {
 };
 
 export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   if (show) {
     return (
       <form
@@ -18,26 +18,29 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
       >
         <Flex gap="2" direction="column">
           <InputField
-            name="secret"
-            type="text"
-            minLength={2}
-            required
-            autoFocus
-            placeholder={dict.auth.secretLogin.secretPlaceholder}
-          />
-          <InputField
             name="email"
             type="email"
+            required
+            autoFocus
             placeholder={dict.auth.secretLogin.emailPlaceholder}
           />
-          <select name="devPlan">
-            <option value="">{dict.auth.secretLogin.defaultPlanOption}</option>
-            {devPlanNames?.map((name) => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
+          <InputField
+            name="secret"
+            type="password"
+            minLength={2}
+            required
+            placeholder={dict.auth.secretLogin.secretPlaceholder}
+          />
+          {devPlanNames && devPlanNames.length > 0 && (
+            <select name="devPlan">
+              <option value="">{dict.auth.secretLogin.defaultPlanOption}</option>
+              {devPlanNames.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          )}
           <Button color="primary" type="submit">
             {dict.auth.secretLogin.submit}
           </Button>
