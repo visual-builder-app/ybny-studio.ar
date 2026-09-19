@@ -57,29 +57,33 @@ export const Login = ({
 
         <TooltipProvider>
           <Flex direction="column" gap="3" css={{ width: "100%" }}>
-            <Form method="post" style={{ display: "contents" }}>
-              <Button
-                disabled={isGoogleEnabled === false}
-                prefix={<GoogleIcon size={22} />}
-                color="primary"
-                css={{ height: theme.spacing[15] }}
-                formAction={authPath({ provider: "google" })}
-              >
-                {dict.auth.login.continueWithGoogle}
-              </Button>
-              <Button
-                disabled={isGithubEnabled === false}
-                prefix={<GithubIcon size={22} fill="currentColor" />}
-                color="ghost"
-                css={{
-                  border: `1px solid ${cssVar("--border-default")}`,
-                  height: theme.spacing[15],
-                }}
-                formAction={authPath({ provider: "github" })}
-              >
-                {dict.auth.login.continueWithGithub}
-              </Button>
-            </Form>
+            {(isGoogleEnabled || isGithubEnabled) && (
+              <Form method="post" style={{ display: "contents" }}>
+                {isGoogleEnabled && (
+                  <Button
+                    prefix={<GoogleIcon size={22} />}
+                    color="primary"
+                    css={{ height: theme.spacing[15] }}
+                    formAction={authPath({ provider: "google" })}
+                  >
+                    {dict.auth.login.continueWithGoogle}
+                  </Button>
+                )}
+                {isGithubEnabled && (
+                  <Button
+                    prefix={<GithubIcon size={22} fill="currentColor" />}
+                    color="ghost"
+                    css={{
+                      border: `1px solid ${cssVar("--border-default")}`,
+                      height: theme.spacing[15],
+                    }}
+                    formAction={authPath({ provider: "github" })}
+                  >
+                    {dict.auth.login.continueWithGithub}
+                  </Button>
+                )}
+              </Form>
+            )}
             {isSecretLoginEnabled && (
               <SecretLogin devPlanNames={devPlanNames} />
             )}
