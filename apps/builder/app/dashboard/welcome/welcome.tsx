@@ -1,4 +1,4 @@
-import { Flex, LinkButton, Text } from "@webstudio-is/design-system";
+import { Flex, Text } from "@webstudio-is/design-system";
 import { useStore } from "@nanostores/react";
 import { Main } from "../shared/layout";
 import { CreateProject } from "../projects/project-dialogs";
@@ -24,12 +24,6 @@ export const Welcome = ({
         </Text>
 
         <Flex align="center" gap="3">
-          <LinkButton
-            href="https://webstudio.is/marketplace/templates/"
-            target="_blank"
-          >
-            ابدأ من قالب
-          </LinkButton>
           {permissions.canCreateProject && (
             <CreateProject
               workspaceId={currentWorkspaceId}

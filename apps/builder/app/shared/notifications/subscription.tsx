@@ -11,7 +11,7 @@ import { createCrossTabPollingManager } from "~/shared/polly/cross-tab-manager";
 import type { Notifications, SubscriptionResponse } from "~/shared/polly/types";
 import { nativeClient } from "~/shared/trpc/trpc-client";
 import { notificationTypes } from "@webstudio-is/project";
-import { toast, Link } from "@webstudio-is/design-system";
+import { toast } from "@webstudio-is/design-system";
 import { showBrowserNotification } from "./browser-notification";
 import {
   SEAT_SUSPENDED_TOAST_ID,
@@ -121,26 +121,12 @@ export const startSubscription = () => {
   const NEW_VERSION_TOAST_ID = "new-builder-version";
   manager.subscribe("builderVersion", (serverVersion) => {
     if (serverVersion !== publicStaticEnv.VERSION) {
-      const message =
-        "يتوفر إصدار جديد من Webstudio. أعد التحميل للحصول على أحدث إصدار - اطّلع على الجديد في https://wstd.us/changelog";
-      toast.info(
-        <>
-          يتوفر إصدار جديد من Webstudio. أعد التحميل للحصول على أحدث إصدار —
-          اطّلع على الجديد في{" "}
-          <Link
-            href="https://wstd.us/changelog"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            wstd.us/changelog
-          </Link>
-        </>,
-        {
-          id: NEW_VERSION_TOAST_ID,
-          duration: Number.POSITIVE_INFINITY,
-          copyText: message,
-        }
-      );
+      const message = "يتوفر إصدار جديد. أعد التحميل للحصول على أحدث إصدار.";
+      toast.info(message, {
+        id: NEW_VERSION_TOAST_ID,
+        duration: Number.POSITIVE_INFINITY,
+        copyText: message,
+      });
     }
   });
 };

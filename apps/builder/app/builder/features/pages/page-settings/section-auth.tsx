@@ -7,11 +7,9 @@ import {
   InputErrorsTooltip,
   InputField,
   Label,
-  LinkButton,
   ProChip,
   Text,
   Tooltip,
-  theme,
 } from "@webstudio-is/design-system";
 import { InfoCircleIcon } from "@webstudio-is/icons";
 import type {
@@ -73,8 +71,8 @@ export const AuthSection = ({
             content={
               <>
                 <Text>
-                  يطلب التحقق من الزوار بيانات HTTP Basic Auth
-                  قبل تحميل الصفحات المحمية على النطاقات المخصصة.
+                  يطلب التحقق من الزوار بيانات HTTP Basic Auth قبل تحميل الصفحات
+                  المحمية على النطاقات المخصصة.
                 </Text>
                 {showUpgrade && (
                   <>
@@ -84,14 +82,6 @@ export const AuthSection = ({
                       بيئة التجربة مجانًا؛ قم بالترقية إلى Pro للنشر على النطاقات
                       المخصصة.
                     </Text>
-                    <LinkButton
-                      color="primary"
-                      css={{ marginTop: theme.spacing[5], width: "100%" }}
-                      target="_blank"
-                      href="https://webstudio.is/pricing"
-                    >
-                      ترقية
-                    </LinkButton>
                   </>
                 )}
               </>
@@ -108,8 +98,8 @@ export const AuthSection = ({
           <Text color="subtle">
             {isExpanded ? (
               <>
-                سيُطلب من الزوار على <b>النطاقات المخصصة</b> إدخال بيانات HTTP Basic
-                Auth قبل تحميل هذه الصفحة.
+                سيُطلب من الزوار على <b>النطاقات المخصصة</b> إدخال بيانات HTTP
+                Basic Auth قبل تحميل هذه الصفحة.
               </>
             ) : (
               "يمكن لأي شخص الوصول إلى هذه الصفحة حاليًا."

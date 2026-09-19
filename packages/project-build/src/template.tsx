@@ -4,7 +4,6 @@ import {
   type Pages,
   type WebstudioData,
 } from "@webstudio-is/sdk";
-import { coreTemplates } from "@webstudio-is/sdk-components-registry/core-templates";
 import { componentIds } from "@webstudio-is/sdk-components-registry/components";
 import { css, renderData } from "@webstudio-is/template";
 import { createRootFolder } from "./shared/pages-utils";
@@ -86,7 +85,6 @@ export const createPages = (): WebstudioData => {
             PAGE NOT FOUND
           </p>
         </div>
-        {coreTemplates.builtWithWebstudio.template}
       </body>
     </>,
     () => createId("nano"),

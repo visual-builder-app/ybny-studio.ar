@@ -14,10 +14,8 @@ import {
   Flex,
   toast,
   PanelBanner,
-  Link,
   rawTheme,
 } from "@webstudio-is/design-system";
-import { UpgradeIcon } from "@webstudio-is/icons";
 import { nativeClient, trpcClient } from "~/shared/trpc/trpc-client";
 import { $project } from "~/shared/sync/data-stores";
 import { $permissions } from "~/shared/nano-states";
@@ -102,8 +100,7 @@ export const SectionBackups = ({
           <DialogTitle>استعادة الإصدار المنشور</DialogTitle>
           <PanelContent as={Flex} direction="column" gap={2}>
             <Text>
-              هل أنت متأكد أنك تريد استعادة المشروع إلى إصداره
-              المنشور؟
+              هل أنت متأكد أنك تريد استعادة المشروع إلى إصداره المنشور؟
             </Text>
             {backupBuild?.createdAt && (
               <Text color="destructive">
@@ -132,17 +129,9 @@ export const SectionBackups = ({
             width={rawTheme.spacing[28]}
             style={{ aspectRatio: "4.1" }}
           />
-          <Text variant="regularBold">قم بالترقية للاستعادة من النسخ الاحتياطية</Text>
-          <Flex align="center" gap={1}>
-            <UpgradeIcon />
-            <Link
-              color="inherit"
-              target="_blank"
-              href="https://webstudio.is/pricing"
-            >
-              الترقية إلى Pro
-            </Link>
-          </Flex>
+          <Text variant="regularBold">
+            قم بالترقية للاستعادة من النسخ الاحتياطية
+          </Text>
         </PanelBanner>
       )}
     </Grid>

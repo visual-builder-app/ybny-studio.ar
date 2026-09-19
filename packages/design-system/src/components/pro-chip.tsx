@@ -2,8 +2,6 @@ import type { ReactNode } from "react";
 import type { CSS } from "../stitches.config";
 import { Chip } from "./chip";
 
-const pricingPageUrl = "https://webstudio.is/pricing";
-
 export const ProChip = ({
   css,
   children,
@@ -11,15 +9,5 @@ export const ProChip = ({
   children: ReactNode;
   css?: CSS;
 }) => {
-  return (
-    <Chip
-      as="a"
-      css={css}
-      href={pricingPageUrl}
-      target="_blank"
-      rel="noreferrer"
-    >
-      {children}
-    </Chip>
-  );
+  return <Chip css={css}>{children}</Chip>;
 };

@@ -4,7 +4,6 @@ import {
   Tooltip,
   Text,
   theme,
-  LinkButton,
   Checkbox,
 } from "@webstudio-is/design-system";
 
@@ -58,20 +57,12 @@ export const DomainCheckbox = (props: DomainCheckboxProps) => {
       <Text variant="titles">النشر على بيئة التجربة</Text>
       <Text>
         <Flex direction="column">
-          تتيح لك بيئة التجربة معاينة النسخة الإنتاجية من موقعك
-          دون تعريض ما يراه زوار الموقع الإنتاجي للخطر.
+          تتيح لك بيئة التجربة معاينة النسخة الإنتاجية من موقعك دون تعريض ما يراه
+          زوار الموقع الإنتاجي للخطر.
           <>
             <br />
             <br />
             قم بالترقية إلى حساب Pro للنشر على كل نطاق بشكل منفصل.
-            <br /> <br />
-            <LinkButton
-              color="primary"
-              href="https://webstudio.is/pricing"
-              target="_blank"
-            >
-              ترقية
-            </LinkButton>
           </>
         </Flex>
       </Text>
@@ -81,8 +72,8 @@ export const DomainCheckbox = (props: DomainCheckboxProps) => {
   const tooltipContentForBuilders =
     canPublishToStagingOnly && props.isCustomDomain ? (
       <Text>
-        يمكن للمحررين النشر على بيئة التجربة فقط. تواصل مع مالك المشروع أو
-        أحد المديرين للنشر على نطاقات مخصصة.
+        يمكن للمحررين النشر على بيئة التجربة فقط. تواصل مع مالك المشروع أو أحد
+        المديرين للنشر على نطاقات مخصصة.
       </Text>
     ) : undefined;
 

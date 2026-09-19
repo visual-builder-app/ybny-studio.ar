@@ -28,7 +28,6 @@ import {
   keyframes,
   Text,
   InputField,
-  Link,
   IconButton,
   Checkbox,
   Grid,
@@ -41,7 +40,6 @@ import {
   EllipsesIcon,
   PlusIcon,
   InfoCircleIcon,
-  UpgradeIcon,
 } from "@webstudio-is/icons";
 import { CopyToClipboard } from "~/shared/copy-to-clipboard";
 import { useIds } from "../form-utils";
@@ -51,22 +49,12 @@ const Item = (props: ComponentProps<typeof Flex>) => (
   <PanelContent as={Flex} direction="column" gap="1" {...props} />
 );
 
-const UpgradeLink = () => (
-  <Flex align="center" gap={1}>
-    <UpgradeIcon />
-    <Link color="inherit" target="_blank" href="https://webstudio.is/pricing">
-      ترقية
-    </Link>
-  </Flex>
-);
-
 export const ShareLinkSecurityNotice = () => (
   <PanelBanner variant="warning">
     <Text>
       مشاركة الروابط عبر قنوات غير آمنة قد تكشف الوصول إلى المشروع. قم بالترقية
       إلى خطة Team لتعاون أكثر أمانًا.
     </Text>
-    <UpgradeLink />
   </PanelBanner>
 );
 
@@ -92,20 +80,10 @@ const PermissionTooltip = ({
 
 const PermissionTooltipContent = ({
   children,
-  upgrade = false,
 }: {
   children: ReactNode;
   upgrade?: boolean;
-}) => (
-  <Flex direction="column">
-    {children}
-    {upgrade && (
-      <Box css={{ mt: theme.spacing[2] }}>
-        <UpgradeLink />
-      </Box>
-    )}
-  </Flex>
-);
+}) => <Flex direction="column">{children}</Flex>;
 
 const getApiPermissionDescription = ({
   canPublish,
