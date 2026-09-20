@@ -1,0 +1,25 @@
+name: Guard internal paths
+
+# هذا المستودع عام (لأجل مجتمع مطوري يبني وللامتثال لـ AGPL-3.0)، ولذلك يجب ألا
+# يدخله أي مستند داخلي أو ملف بيئة. الحادثة المرجعية (2026-09-20): تسرّب
+# docs/ybny/ (42 ملفاً) و apps/builder/.env علناً، ما أوجب إعادة كتابة التاريخ.
+on:
+  push:
+  pull_request:
+
+jobs:
+  guard:
+    name: منع المستندات الداخلية وملفات .env
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: فشل عند وجود مسار داخلي
+        run: |
+          set -euo pipefail
+          bad="$(git ls-files | grep -E '(^|/)docs/ybny/|(^|/)\.env$' || true)"
+          if [ -n "$bad" ]; then
+            echo "::error::مسارات داخلية ممنوعة في مستودع عام — انقلها إلى المستودع الخاص visual-builder-app/ybny-platform"
+            printf '%s\n' "$bad"
+            exit 1
+          fi
+          echo "OK: لا مسارات داخلية ولا ملفات .env في الشجرة."
