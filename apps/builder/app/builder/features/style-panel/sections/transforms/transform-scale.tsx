@@ -29,10 +29,12 @@ import {
   $availableUnitVariables,
   useComputedStyleDecl,
 } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
 
 const property: CssProperty = "scale";
 
 export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl(property);
   const tuple =
     styleDecl.cascadedValue.type === "tuple"
@@ -94,7 +96,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <XAxisIcon />
           <PropertyInlineLabel
-            label="تحجيم X"
+            label={dict.stylePanel.transformScale.scaleX}
             description={propertySyntaxes.scaleX}
           />
           <CssValueInput
@@ -139,7 +141,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <YAxisIcon />
           <PropertyInlineLabel
-            label="تحجيم Y"
+            label={dict.stylePanel.transformScale.scaleY}
             description={propertySyntaxes.scaleY}
           />
           <CssValueInput
@@ -184,7 +186,7 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         >
           <ZAxisIcon />
           <PropertyInlineLabel
-            label="تحجيم Z"
+            label={dict.stylePanel.transformScale.scaleZ}
             description={propertySyntaxes.scaleZ}
           />
           <CssValueInput
@@ -230,8 +232,8 @@ export const ScalePanelContent = ({ disabled }: { disabled?: boolean }) => {
         <EnhancedTooltip
           content={
             isScalingLocked === true
-              ? "إلغاء ربط قيمتَي scale-x و scale-y"
-              : "ربط قيمتَي scale-x و scale-y"
+              ? dict.stylePanel.transformScale.unlinkValues
+              : dict.stylePanel.transformScale.linkValues
           }
         >
           <SmallToggleButton

@@ -435,6 +435,48 @@ export const en = {
       varAddError: "Cannot add styles to a CSS variable",
       varReorderError: "Cannot reorder styles from a CSS variable",
     },
+    positionControl: {
+      position: "Position",
+      leftLabel: "Left",
+      leftDescription: "Left position offset",
+      topLabel: "Top",
+      topDescription: "Top position offset",
+    },
+    transformScale: {
+      scaleX: "Scale X",
+      scaleY: "Scale Y",
+      scaleZ: "Scale Z",
+      unlinkValues: "Unlink scale-x and scale-y values",
+      linkValues: "Link scale-x and scale-y values",
+    },
+    boxShadows: {
+      title: "Box shadows",
+      inner: "Inner:",
+      outer: "Outer:",
+      description: "Adds shadow effects around an element's frame.",
+    },
+    backgroundSize: {
+      size: "Size",
+      width: "Width",
+      widthDescription: "The width of the background image.",
+      height: "Height",
+      heightDescription: "The height of the background image.",
+    },
+    backgroundPosition: {
+      position: "Position",
+      leftLabel: "Left",
+      leftDescription: "Left position offset",
+      topLabel: "Top",
+      topDescription: "Top position offset",
+    },
+    borderColor: {
+      colorLabel: "Color",
+      colorDescription: "Sets the color of the border",
+    },
+    backgroundImage: {
+      assetNotFound: "Asset {url} is not found in project",
+      image: "Image",
+    },
     backgrounds: {
       sectionTitle: "Backgrounds",
       sectionDescription:

@@ -433,6 +433,48 @@ export const ar: Dictionary = {
       varAddError: "لا يمكن إضافة أنماط إلى متغير CSS",
       varReorderError: "لا يمكن إعادة ترتيب الأنماط من متغير CSS",
     },
+    positionControl: {
+      position: "الموضع",
+      leftLabel: "يسار",
+      leftDescription: "إزاحة الموضع من اليسار",
+      topLabel: "أعلى",
+      topDescription: "إزاحة الموضع من الأعلى",
+    },
+    transformScale: {
+      scaleX: "تحجيم X",
+      scaleY: "تحجيم Y",
+      scaleZ: "تحجيم Z",
+      unlinkValues: "إلغاء ربط قيمتَي scale-x و scale-y",
+      linkValues: "ربط قيمتَي scale-x و scale-y",
+    },
+    boxShadows: {
+      title: "ظلال الصندوق",
+      inner: "داخلي:",
+      outer: "خارجي:",
+      description: "يضيف تأثيرات ظل حول إطار العنصر.",
+    },
+    backgroundSize: {
+      size: "الحجم",
+      width: "العرض",
+      widthDescription: "عرض صورة الخلفية.",
+      height: "الارتفاع",
+      heightDescription: "ارتفاع صورة الخلفية.",
+    },
+    backgroundPosition: {
+      position: "الموضع",
+      leftLabel: "يسار",
+      leftDescription: "إزاحة الموضع الأيسر",
+      topLabel: "أعلى",
+      topDescription: "إزاحة الموضع العلوي",
+    },
+    borderColor: {
+      colorLabel: "اللون",
+      colorDescription: "يضبط لون الحدود",
+    },
+    backgroundImage: {
+      assetNotFound: "لم يتم العثور على الوسيط {url} في المشروع",
+      image: "صورة",
+    },
     backgrounds: {
       sectionTitle: "الخلفيات",
       sectionDescription:

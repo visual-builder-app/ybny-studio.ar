@@ -7,6 +7,9 @@ import { propertyDescriptions } from "@webstudio-is/css-data";
 import { BackgroundCodeEditor } from "./background-code-editor";
 import { $assets } from "~/shared/sync/data-stores";
 import { isAbsoluteUrl } from "@webstudio-is/sdk";
+import { useLocale } from "~/i18n/context";
+import { getActiveDictionary } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export const BackgroundImage = ({
   index,
@@ -15,6 +18,7 @@ export const BackgroundImage = ({
   index: number;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const elementRef = useRef<HTMLDivElement>(null);
 
   const handleValidate = useCallback(
@@ -45,7 +49,12 @@ export const BackgroundImage = ({
       );
 
       if (usedAsset === undefined) {
-        return [`لم يتم العثور على الوسيط ${url} في المشروع`];
+        return [
+          interpolate(
+            getActiveDictionary().stylePanel.backgroundImage.assetNotFound,
+            { url }
+          ),
+        ];
       }
 
       return;
@@ -57,7 +66,7 @@ export const BackgroundImage = ({
     <PanelContent as={Flex} direction="column" gap={1} ref={elementRef}>
       <Grid gap="2" columns="3" align="start">
         <PropertyInlineLabel
-          label="صورة"
+          label={dict.stylePanel.backgroundImage.image}
           description={propertyDescriptions.backgroundImage}
         />
         <Box

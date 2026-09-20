@@ -13,13 +13,14 @@ import {
   RepeatedStyle,
 } from "../../shared/repeated-style";
 import { parseCssFragment } from "../../shared/css-fragment";
+import { useLocale } from "~/i18n/context";
+import { getActiveDictionary } from "~/i18n/context";
 
 export const properties = ["box-shadow"] satisfies [
   CssProperty,
   ...CssProperty[],
 ];
 
-const label = "ظلال الصندوق";
 const initialBoxShadow = "0px 2px 5px 0px rgba(0, 0, 0, 0.2)";
 
 const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
@@ -31,9 +32,9 @@ const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
         : undefined;
   const labels = [];
   if (shadowValue?.position === "inset") {
-    labels.push("داخلي:");
+    labels.push(getActiveDictionary().stylePanel.boxShadows.inner);
   } else {
-    labels.push("خارجي:");
+    labels.push(getActiveDictionary().stylePanel.boxShadows.outer);
   }
   if (layer.type === "var") {
     labels.push(`--${layer.value}`);
@@ -50,12 +51,13 @@ const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("box-shadow");
 
   return (
     <RepeatedStyleSection
-      label={label}
-      description="يضيف تأثيرات ظل حول إطار العنصر."
+      label={dict.stylePanel.boxShadows.title}
+      description={dict.stylePanel.boxShadows.description}
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -65,7 +67,7 @@ export const Section = () => {
       }}
     >
       <RepeatedStyle
-        label={label}
+        label={dict.stylePanel.boxShadows.title}
         styles={[styleDecl]}
         getItemProps={(index, layer) =>
           getItemProps(layer, getComputedRepeatedItem(styleDecl, index))

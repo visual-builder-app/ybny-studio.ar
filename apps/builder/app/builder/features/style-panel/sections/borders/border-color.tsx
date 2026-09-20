@@ -10,6 +10,7 @@ import {
 import { createBatchUpdate } from "../../shared/use-style-data";
 import { useReadonly } from "../../shared/readonly";
 import { keywordValues } from "@webstudio-is/css-data";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "border-top-color",
@@ -19,6 +20,7 @@ export const properties = [
 ] satisfies [CssProperty, ...CssProperty[]];
 
 export const BorderColor = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styles = useComputedStyles(properties);
   const serialized = styles.map((styleDecl) =>
@@ -39,14 +41,14 @@ export const BorderColor = () => {
   return (
     <Grid css={rowCss}>
       <PropertyLabel
-        label="اللون"
-        description="يضبط لون الحدود"
+        label={dict.stylePanel.borderColor.colorLabel}
+        description={dict.stylePanel.borderColor.colorDescription}
         properties={properties}
       />
       <Box css={{ gridColumn: `span 2` }}>
         <PropertyValueTooltip
-          label="اللون"
-          description="يضبط لون الحدود"
+          label={dict.stylePanel.borderColor.colorLabel}
+          description={dict.stylePanel.borderColor.colorDescription}
           properties={properties}
           isAdvanced={isAdvanced}
         >

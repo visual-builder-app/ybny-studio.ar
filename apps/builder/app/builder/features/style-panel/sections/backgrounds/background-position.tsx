@@ -15,6 +15,7 @@ import {
 } from "../../shared/repeated-style";
 import type { UnitOption } from "../../shared/css-value-input/unit-select";
 import type { SetValue, StyleUpdateOptions } from "../../shared/use-style-data";
+import { useLocale } from "~/i18n/context";
 
 const keyworkToValue: Record<string, number> = {
   left: 0,
@@ -52,7 +53,7 @@ type AxisControlProps = {
 };
 
 export const BackgroundPositionControl = ({
-  label = "الموضع",
+  label,
   description = propertyDescriptions.backgroundPosition,
   disabled,
   xAxis,
@@ -66,6 +67,8 @@ export const BackgroundPositionControl = ({
   yAxis: AxisControlProps;
   onSelect: (position: { x: number; y: number }) => void;
 }) => {
+  const { dict } = useLocale();
+  const labelText = label ?? dict.stylePanel.backgroundPosition.position;
   const combinedProperties = (() => {
     if (xAxis.properties && yAxis.properties) {
       return [...xAxis.properties, ...yAxis.properties] as [
@@ -85,12 +88,12 @@ export const BackgroundPositionControl = ({
     <Flex direction="column" gap="1">
       {combinedProperties ? (
         <PropertyLabel
-          label={label}
+          label={labelText}
           description={description}
           properties={combinedProperties}
         />
       ) : (
-        <PropertyInlineLabel label={label} description={description} />
+        <PropertyInlineLabel label={labelText} description={description} />
       )}
       <Grid gap="2" columns={2}>
         <PositionGrid
@@ -163,6 +166,7 @@ export const BackgroundPosition = ({
   index: number;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const [backgroundPositionX, backgroundPositionY] = useComputedStyles([
     "background-position-x",
     "background-position-y",
@@ -189,8 +193,8 @@ export const BackgroundPosition = ({
     <BackgroundPositionControl
       disabled={disabled}
       xAxis={{
-        label: "يسار",
-        description: "إزاحة الموضع الأيسر",
+        label: dict.stylePanel.backgroundPosition.leftLabel,
+        description: dict.stylePanel.backgroundPosition.leftDescription,
         property: "background-position-x",
         properties: ["background-position-x"],
         value: xValue,
@@ -203,8 +207,8 @@ export const BackgroundPosition = ({
         onDelete: (options) => resetValue(xValue, setValueX, options),
       }}
       yAxis={{
-        label: "أعلى",
-        description: "إزاحة الموضع العلوي",
+        label: dict.stylePanel.backgroundPosition.topLabel,
+        description: dict.stylePanel.backgroundPosition.topDescription,
         property: "background-position-y",
         properties: ["background-position-y"],
         value: yValue,

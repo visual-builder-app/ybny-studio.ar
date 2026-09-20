@@ -14,6 +14,7 @@ import {
   getRepeatedStyleItem,
   setRepeatedStyleItem,
 } from "../../shared/repeated-style";
+import { useLocale } from "~/i18n/context";
 
 const autoKeyword = { type: "keyword" as const, value: "auto" };
 
@@ -56,6 +57,7 @@ export const BackgroundSize = ({
   index: number;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const property = "background-size";
   const styleDecl = useComputedStyleDecl(property);
   const styleValue = getRepeatedStyleItem(styleDecl, index);
@@ -86,7 +88,7 @@ export const BackgroundSize = ({
     <>
       <Grid columns={2} align="center" gap={2}>
         <PropertyLabel
-          label="الحجم"
+          label={dict.stylePanel.backgroundSize.size}
           description={propertyDescriptions.backgroundSize}
           properties={[property]}
         />
@@ -140,14 +142,14 @@ export const BackgroundSize = ({
         >
           <PropertyLabel
             properties={["background-size"]}
-            label="العرض"
-            description="عرض صورة الخلفية."
+            label={dict.stylePanel.backgroundSize.width}
+            description={dict.stylePanel.backgroundSize.widthDescription}
           />
 
           <PropertyLabel
             properties={["background-size"]}
-            label="الارتفاع"
-            description="ارتفاع صورة الخلفية."
+            label={dict.stylePanel.backgroundSize.height}
+            description={dict.stylePanel.backgroundSize.heightDescription}
           />
 
           <CssValueInputContainer

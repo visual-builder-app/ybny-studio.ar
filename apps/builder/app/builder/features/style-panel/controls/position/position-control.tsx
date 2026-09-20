@@ -20,6 +20,7 @@ import {
 } from "../../shared/use-style-data";
 import { PropertyInlineLabel } from "../../property-label";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 const toPosition = (value: TupleValue) => {
   // Should never actually happen, just for TS
@@ -61,6 +62,7 @@ export const PositionControl = ({
   property: CssProperty;
   styleDecl: ComputedStyleDecl;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const value = toTuple(styleDecl.cascadedValue);
   const keywords = (keywordValues[property] ?? []).map((value) => ({
@@ -83,7 +85,7 @@ export const PositionControl = ({
   return (
     <Flex direction="column" gap="1">
       <PropertyInlineLabel
-        label="الموضع"
+        label={dict.stylePanel.positionControl.position}
         description={propertyDescriptions[camelCaseProperty(property)]}
         properties={[property]}
       />
@@ -107,8 +109,8 @@ export const PositionControl = ({
           gapX="2"
         >
           <PropertyInlineLabel
-            label="يسار"
-            description="إزاحة الموضع من اليسار"
+            label={dict.stylePanel.positionControl.leftLabel}
+            description={dict.stylePanel.positionControl.leftDescription}
             properties={[property]}
           />
           <CssValueInputContainer
@@ -121,8 +123,8 @@ export const PositionControl = ({
             onDelete={(options) => deleteProperty(property, options)}
           />
           <PropertyInlineLabel
-            label="أعلى"
-            description="إزاحة الموضع من الأعلى"
+            label={dict.stylePanel.positionControl.topLabel}
+            description={dict.stylePanel.positionControl.topDescription}
             properties={[property]}
           />
           <CssValueInputContainer
