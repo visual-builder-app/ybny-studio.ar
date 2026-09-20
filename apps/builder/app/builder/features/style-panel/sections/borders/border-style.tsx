@@ -13,6 +13,7 @@ import {
 } from "@webstudio-is/css-data";
 import { rowCss } from "./utils";
 import { PropertyLabel } from "../../property-label";
+import { useLocale } from "~/i18n/context";
 
 export const properties: [CssProperty, ...CssProperty[]] = [
   "border-top-style",
@@ -22,16 +23,17 @@ export const properties: [CssProperty, ...CssProperty[]] = [
 ];
 
 export const BorderStyle = () => {
+  const { dict } = useLocale();
   return (
     <Grid css={rowCss}>
       <PropertyLabel
-        label="النمط"
+        label={dict.stylePanel.borderStyle.style}
         description={propertyDescriptions.borderBlockStyle}
         properties={properties}
       />
       <Box css={{ gridColumn: `span 2` }}>
         <ToggleGroupControl
-          label="النمط"
+          label={dict.stylePanel.borderStyle.style}
           properties={properties}
           items={[
             {

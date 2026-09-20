@@ -7,6 +7,7 @@ import { PropertyInlineLabel } from "../../property-label";
 import { useComputedStyleDecl } from "../../shared/model";
 import { updateTransformFunction } from "./transform-utils";
 import { extractSkewPropertiesFromTransform } from "./transform-extractors";
+import { useLocale } from "~/i18n/context";
 
 // We use fakeProperty to pass for the CssValueInputContainer.
 // https://developer.mozilla.org/en-US/docs/Web/CSS/rotate#formal_syntax
@@ -16,6 +17,7 @@ const fakeProperty = "rotate";
 const defaultAngle: StyleValue = { type: "unit", value: 0, unit: "deg" };
 
 export const SkewPanelContent = ({ disabled }: { disabled?: boolean }) => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("transform");
   const { skewX: skewXFn, skewY: skewYFn } = extractSkewPropertiesFromTransform(
     styleDecl.cascadedValue
@@ -32,7 +34,7 @@ export const SkewPanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisIcon />
         <PropertyInlineLabel
-          label="إمالة X"
+          label={dict.stylePanel.transformSkew.x}
           description={propertySyntaxes.skewX}
         />
         <CssValueInputContainer
@@ -52,7 +54,7 @@ export const SkewPanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisIcon />
         <PropertyInlineLabel
-          label="إمالة Y"
+          label={dict.stylePanel.transformSkew.y}
           description={propertySyntaxes.skewY}
         />
         <CssValueInputContainer

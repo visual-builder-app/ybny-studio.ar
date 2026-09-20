@@ -7,6 +7,7 @@ import {
   type HoverTarget,
   type SpaceStyleProperty,
 } from "./properties";
+import { useLocale } from "~/i18n/context";
 
 const VALUE_WIDTH = 36;
 const VALUE_HEIGHT = 24;
@@ -288,6 +289,7 @@ export const SpaceLayout = forwardRef(
     }: LayoutProps,
     ref: Ref<HTMLDivElement>
   ) => {
+    const { dict } = useLocale();
     const outerClipId = useId();
     const innerClipId = useId();
 
@@ -355,8 +357,8 @@ export const SpaceLayout = forwardRef(
           </defs>
         </svg>
         <Grid>
-          <Label>الهامش الخارجي</Label>
-          <Label inner>الهامش الداخلي</Label>
+          <Label>{dict.stylePanel.spaceLayout.margin}</Label>
+          <Label inner>{dict.stylePanel.spaceLayout.padding}</Label>
 
           {spaceProperties.map((property) => (
             <Cell property={property} key={property}>

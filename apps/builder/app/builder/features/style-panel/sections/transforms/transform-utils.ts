@@ -15,6 +15,8 @@ import {
   extractSkewPropertiesFromTransform,
 } from "./transform-extractors";
 import type { ComputedStyleDecl } from "~/shared/style-object-model";
+import { getActiveDictionary } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export const transformPanels = [
   "translate",
@@ -37,13 +39,23 @@ export const getHumanizedTextFromTransformLayer = (
   switch (panel) {
     case "translate":
       return {
-        label: `الإزاحة: ${toValue({ ...value, hidden: false })}`,
+        label: interpolate(
+          getActiveDictionary().stylePanel.transformUtils.translate,
+          {
+            value: toValue({ ...value, hidden: false }),
+          }
+        ),
         value,
       };
 
     case "scale":
       return {
-        label: `التحجيم: ${toValue({ ...value, hidden: false })}`,
+        label: interpolate(
+          getActiveDictionary().stylePanel.transformUtils.scale,
+          {
+            value: toValue({ ...value, hidden: false }),
+          }
+        ),
         value,
       };
 
@@ -59,7 +71,12 @@ export const getHumanizedTextFromTransformLayer = (
       }
 
       return {
-        label: `الدوران: ${toValue(rotateX.args)} ${toValue(rotateY.args)} ${toValue(rotateZ.args)}`,
+        label: interpolate(
+          getActiveDictionary().stylePanel.transformUtils.rotate,
+          {
+            value: `${toValue(rotateX.args)} ${toValue(rotateY.args)} ${toValue(rotateZ.args)}`,
+          }
+        ),
         value: {
           type: "tuple",
           value: [rotateX, rotateY, rotateZ],
@@ -77,7 +94,12 @@ export const getHumanizedTextFromTransformLayer = (
       }
 
       return {
-        label: `الإمالة: ${toValue(skewX.args)} ${toValue(skewY.args)}`,
+        label: interpolate(
+          getActiveDictionary().stylePanel.transformUtils.skew,
+          {
+            value: `${toValue(skewX.args)} ${toValue(skewY.args)}`,
+          }
+        ),
         value: {
           type: "tuple",
           value: [skewX, skewY],

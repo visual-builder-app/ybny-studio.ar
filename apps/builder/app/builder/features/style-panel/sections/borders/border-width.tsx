@@ -7,6 +7,7 @@ import {
   BorderWidthLeftIcon,
 } from "@webstudio-is/icons";
 import { BorderProperty } from "./border-property";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "border-top-width",
@@ -31,10 +32,11 @@ const borderPropertyOptions = {
 } as const satisfies Partial<{ [property in CssProperty]: unknown }>;
 
 export const BorderWidth = () => {
+  const { dict } = useLocale();
   return (
     <BorderProperty
-      label="العرض"
-      description="يضبط عرض الحدود"
+      label={dict.stylePanel.borderWidth.label}
+      description={dict.stylePanel.borderWidth.description}
       borderPropertyOptions={borderPropertyOptions}
       individualModeIcon={<BorderWidthIndividualIcon />}
     />

@@ -24,6 +24,7 @@ import {
 } from "@webstudio-is/css-engine";
 import { setUnion } from "~/shared/shim";
 import { $computedStyleDeclarations } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
 
 type AnimatableProperty = (typeof animatableProperties)[number];
 
@@ -83,6 +84,7 @@ export const TransitionProperty = ({
   disabled,
   onChange,
 }: TransitionPropertyProps) => {
+  const { dict } = useLocale();
   const animatableDefinedProperties = useStore($animatableDefinedProperties);
   const valueString = toValue(value);
   const [inputValue, setInputValue] = useState<string>(valueString);
@@ -218,7 +220,9 @@ export const TransitionProperty = ({
                 <>
                   {propertiesDefinedOnInstance.length > 0 && (
                     <>
-                      <ComboboxLabel>معرّفة</ComboboxLabel>
+                      <ComboboxLabel>
+                        {dict.stylePanel.transitionProperty.defined}
+                      </ComboboxLabel>
                       {propertiesDefinedOnInstance.map((property, index) =>
                         renderItem(property, index)
                       )}
@@ -226,7 +230,9 @@ export const TransitionProperty = ({
                     </>
                   )}
 
-                  <ComboboxLabel>شائعة</ComboboxLabel>
+                  <ComboboxLabel>
+                    {dict.stylePanel.transitionProperty.common}
+                  </ComboboxLabel>
                   {commonProperties.map((property, index) =>
                     renderItem(
                       property,

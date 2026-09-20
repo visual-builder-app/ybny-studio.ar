@@ -1,6 +1,8 @@
 import { useRef, useMemo } from "react";
 import { cssVar, theme, Grid, Tooltip, css } from "@webstudio-is/design-system";
 import type { AreaInfo } from "@webstudio-is/css-data";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 /**
  * Build a map from "col,row" keys to area names for cells occupied by other areas.
@@ -194,6 +196,7 @@ export const GridAreaPicker = ({
   otherAreas,
   disabled,
 }: GridAreaPickerProps) => {
+  const { dict } = useLocale();
   const anchorRef = useRef<{ col: number; row: number }>({
     col: value.columnStart,
     row: value.rowStart,
@@ -273,7 +276,10 @@ export const GridAreaPicker = ({
               });
             }}
             onMouseLeave={() => onHoverChange?.(undefined)}
-            aria-label={`الخلية ${col}، ${row}`}
+            aria-label={interpolate(dict.stylePanel.gridAreaPicker.cellAria, {
+              col,
+              row,
+            })}
           />
         );
       }
@@ -331,7 +337,9 @@ export const GridAreaPicker = ({
               }}
               onMouseEnter={() => onHoverChange?.(area)}
               onMouseLeave={() => onHoverChange?.(undefined)}
-              aria-label={`المنطقة ${area.name}`}
+              aria-label={interpolate(dict.stylePanel.gridAreaPicker.areaAria, {
+                name: area.name,
+              })}
             />
           </Tooltip>
         );

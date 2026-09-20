@@ -514,6 +514,81 @@ export const ar: Dictionary = {
       label: "عنصر القائمة",
       listStyleType: "نوع نمط القائمة",
     },
+    cssValueInput: {
+      customProperty: "خاصية CSS مخصصة (متغير)",
+      selectItem: "حدد عنصرًا",
+    },
+    transformUtils: {
+      translate: "الإزاحة: {value}",
+      scale: "التحجيم: {value}",
+      rotate: "الدوران: {value}",
+      skew: "الإمالة: {value}",
+    },
+    spaceLayout: {
+      margin: "الهامش الخارجي",
+      padding: "الهامش الداخلي",
+    },
+    positionSection: {
+      position: "الموضع",
+      zIndex: "الفهرس Z",
+    },
+    borderWidth: {
+      label: "العرض",
+      description: "يضبط عرض الحدود",
+    },
+    styleSourceSection: {
+      localCopy: "محلي (نسخة)",
+      local: "محلي",
+    },
+    transformTranslate: {
+      x: "إزاحة X",
+      y: "إزاحة Y",
+      z: "إزاحة Z",
+    },
+    transformRotate: {
+      x: "دوران X",
+      y: "دوران Y",
+      z: "دوران Z",
+    },
+    gridAreaPicker: {
+      cellAria: "الخلية {col}، {row}",
+      areaAria: "المنطقة {name}",
+    },
+    borderProperty: {
+      toggleAria: "تبديل قيم {label} الفردية",
+    },
+    showMore: {
+      showMore: "عرض المزيد",
+    },
+    transitionProperty: {
+      defined: "معرّفة",
+      common: "شائعة",
+    },
+    transformSkew: {
+      x: "إمالة X",
+      y: "إمالة Y",
+    },
+    borderStyle: {
+      style: "النمط",
+    },
+    selectControl: {
+      valueAria: "قيمة {property} هي {option}",
+    },
+    valueEditorDialog: {
+      cssValue: "قيمة CSS",
+    },
+    cssFragment: {
+      cssValue: "قيمة CSS",
+    },
+    spaceSection: {
+      label: "التباعد",
+    },
+    bordersSection: {
+      label: "الحدود",
+    },
+    advancedSection: {
+      label: "متقدم",
+    },
     backgrounds: {
       sectionTitle: "الخلفيات",
       sectionDescription:

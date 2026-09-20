@@ -18,6 +18,7 @@ import {
   getCodeEditorCssVars,
 } from "~/shared/code-editor-base";
 import { $availableVariables, $cssVarsMap } from "./model";
+import { useLocale } from "~/i18n/context";
 
 type ShorthandProperty = (typeof shorthandProperties)[number];
 
@@ -134,13 +135,14 @@ export const CssFragmentEditor = ({
   onOpenChange?: (newOpen: boolean) => void;
   css?: CSS;
 }) => {
+  const { dict } = useLocale();
   return (
     <div className={wrapperStyle({ css })}>
       <EditorDialogControl>
         {content}
         <EditorDialog
           onOpenChange={onOpenChange}
-          title="قيمة CSS"
+          title={dict.stylePanel.cssFragment.cssValue}
           content={content}
         >
           <EditorDialogButton />

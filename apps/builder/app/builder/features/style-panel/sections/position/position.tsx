@@ -9,6 +9,7 @@ import {
   useParentComputedStyleDecl,
 } from "../../shared/model";
 import { InsetControl } from "./inset-control";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "position",
@@ -20,6 +21,7 @@ export const properties = [
 ] satisfies CssProperty[];
 
 export const Section = () => {
+  const { dict } = useLocale();
   const position = useComputedStyleDecl("position");
   const positionValue = toValue(position.computedValue);
   const showInsetControl =
@@ -38,11 +40,14 @@ export const Section = () => {
     parentDisplayValue === "inline-grid";
 
   return (
-    <StyleSection label="الموضع" properties={properties}>
+    <StyleSection
+      label={dict.stylePanel.positionSection.position}
+      properties={properties}
+    >
       <Grid gap={2}>
         <Grid gap={2} css={{ gridTemplateColumns: `1fr ${theme.spacing[23]}` }}>
           <PropertyLabel
-            label="الموضع"
+            label={dict.stylePanel.positionSection.position}
             description={propertyDescriptions.position}
             properties={["position"]}
           />
@@ -50,7 +55,7 @@ export const Section = () => {
           {showZindexControl && showInsetControl === false && (
             <>
               <PropertyLabel
-                label="الفهرس Z"
+                label={dict.stylePanel.positionSection.zIndex}
                 description={propertyDescriptions.zIndex}
                 properties={["z-index"]}
               />
@@ -63,7 +68,7 @@ export const Section = () => {
             <InsetControl />
             <Grid gap={1}>
               <PropertyLabel
-                label="الفهرس Z"
+                label={dict.stylePanel.positionSection.zIndex}
                 description={propertyDescriptions.zIndex}
                 properties={["z-index"]}
               />

@@ -15,6 +15,7 @@ import { useComputedStyleDecl, useComputedStyles } from "../../shared/model";
 import { createBatchUpdate, deleteProperty } from "../../shared/use-style-data";
 import { useModifierKeys, type Modifiers } from "../../shared/modifier-keys";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 const movementMapSpace = {
   "margin-top": ["margin-bottom", "margin-right", "padding-top", "margin-left"],
@@ -142,6 +143,7 @@ const Cell = ({
 export { spaceProperties as properties };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styles = useComputedStyles(spaceProperties);
   const [hoverTarget, setHoverTarget] = useState<HoverTarget>();
@@ -211,7 +213,10 @@ export const Section = () => {
   };
 
   return (
-    <StyleSection label="التباعد" properties={spaceProperties}>
+    <StyleSection
+      label={dict.stylePanel.spaceSection.label}
+      properties={spaceProperties}
+    >
       <SpaceLayout
         disabled={readonly}
         ref={layoutRef}

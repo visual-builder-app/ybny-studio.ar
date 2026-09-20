@@ -516,6 +516,81 @@ export const en = {
       label: "List item",
       listStyleType: "List style type",
     },
+    cssValueInput: {
+      customProperty: "CSS custom property (variable)",
+      selectItem: "Select item",
+    },
+    transformUtils: {
+      translate: "Translate: {value}",
+      scale: "Scale: {value}",
+      rotate: "Rotate: {value}",
+      skew: "Skew: {value}",
+    },
+    spaceLayout: {
+      margin: "Margin",
+      padding: "Padding",
+    },
+    positionSection: {
+      position: "Position",
+      zIndex: "Z index",
+    },
+    borderWidth: {
+      label: "Width",
+      description: "Sets the width of the border",
+    },
+    styleSourceSection: {
+      localCopy: "Local (Copy)",
+      local: "Local",
+    },
+    transformTranslate: {
+      x: "Translate X",
+      y: "Translate Y",
+      z: "Translate Z",
+    },
+    transformRotate: {
+      x: "Rotate X",
+      y: "Rotate Y",
+      z: "Rotate Z",
+    },
+    gridAreaPicker: {
+      cellAria: "Cell {col}, {row}",
+      areaAria: "Area {name}",
+    },
+    borderProperty: {
+      toggleAria: "Toggle individual {label} values",
+    },
+    showMore: {
+      showMore: "Show more",
+    },
+    transitionProperty: {
+      defined: "Defined",
+      common: "Common",
+    },
+    transformSkew: {
+      x: "Skew X",
+      y: "Skew Y",
+    },
+    borderStyle: {
+      style: "Style",
+    },
+    selectControl: {
+      valueAria: "The {property} is {option}",
+    },
+    valueEditorDialog: {
+      cssValue: "CSS value",
+    },
+    cssFragment: {
+      cssValue: "CSS value",
+    },
+    spaceSection: {
+      label: "Space",
+    },
+    bordersSection: {
+      label: "Borders",
+    },
+    advancedSection: {
+      label: "Advanced",
+    },
     backgrounds: {
       sectionTitle: "Backgrounds",
       sectionDescription:

@@ -34,6 +34,7 @@ import { executeRuntimeMutation } from "~/shared/instance-utils/data";
 import { subscribe } from "~/shared/pubsub";
 import { $selectedInstance } from "~/shared/nano-states";
 import { $instanceTags } from "./shared/model";
+import { getActiveDictionary } from "~/i18n/context";
 
 // Declare command for this module
 declare module "~/shared/pubsub" {
@@ -145,7 +146,7 @@ const convertLocalStyleSourceToToken = (styleSourceId: StyleSource["id"]) => {
     input: {
       instanceId,
       styleSourceId,
-      name: "محلي (نسخة)",
+      name: getActiveDictionary().stylePanel.styleSourceSection.localCopy,
     },
   });
   const tokenId = result?.result.styleSourceId;
@@ -301,7 +302,10 @@ const convertToInputItem = (
 ): StyleSourceInputItem => {
   return {
     id: styleSource.id,
-    label: styleSource.type === "local" ? "محلي" : styleSource.name,
+    label:
+      styleSource.type === "local"
+        ? getActiveDictionary().stylePanel.styleSourceSection.local
+        : styleSource.name,
     disabled: false,
     source: styleSource.type,
     locked: styleSource.type === "token" && styleSource.locked === true,

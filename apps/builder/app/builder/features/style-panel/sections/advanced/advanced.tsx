@@ -23,6 +23,7 @@ import { CssEditor } from "../../../../shared/css-editor";
 import { $advancedStyleDeclarations } from "./stores";
 import { $selectedInstanceKey } from "~/shared/nano-states";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 // Only here to keep the same section module interface
 export const properties = [];
@@ -66,6 +67,7 @@ const AdvancedStyleSection = (props: {
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const advancedStyleDeclarations = useStore($advancedStyleDeclarations);
   const readonly = useReadonly();
   const properties = advancedStyleDeclarations.map(
@@ -132,7 +134,7 @@ export const Section = () => {
 
   return (
     <AdvancedStyleSection
-      label="متقدم"
+      label={dict.stylePanel.advancedSection.label}
       readonly={readonly}
       properties={properties}
       onAdd={() => {

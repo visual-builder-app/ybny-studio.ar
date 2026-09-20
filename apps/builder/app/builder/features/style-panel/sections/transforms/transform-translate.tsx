@@ -12,10 +12,12 @@ import {
   $availableUnitVariables,
   useComputedStyleDecl,
 } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
 
 const property: CssProperty = "translate";
 
 export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl(property);
   const tuple =
     styleDecl.cascadedValue.type === "tuple"
@@ -54,7 +56,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisIcon />
         <PropertyInlineLabel
-          label="إزاحة X"
+          label={dict.stylePanel.transformTranslate.x}
           description={propertySyntaxes.translateX}
         />
 
@@ -76,7 +78,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisIcon />
         <PropertyInlineLabel
-          label="إزاحة Y"
+          label={dict.stylePanel.transformTranslate.y}
           description={propertySyntaxes.translateY}
         />
         <CssValueInputContainer
@@ -97,7 +99,7 @@ export const TranslatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <ZAxisIcon />
         <PropertyInlineLabel
-          label="إزاحة Z"
+          label={dict.stylePanel.transformTranslate.z}
           description={propertySyntaxes.translateZ}
         />
         <CssValueInputContainer

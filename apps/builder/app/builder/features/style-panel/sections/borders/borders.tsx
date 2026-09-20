@@ -16,6 +16,7 @@ import {
   BorderColor,
   properties as borderColorProperties,
 } from "./border-color";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   ...borderColorProperties,
@@ -25,8 +26,12 @@ export const properties = [
 ] satisfies CssProperty[];
 
 export const Section = () => {
+  const { dict } = useLocale();
   return (
-    <StyleSection label="الحدود" properties={properties}>
+    <StyleSection
+      label={dict.stylePanel.bordersSection.label}
+      properties={properties}
+    >
       <BorderStyle />
       <BorderColor />
       <BorderWidth />

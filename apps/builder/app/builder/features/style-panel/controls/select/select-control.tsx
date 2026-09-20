@@ -21,6 +21,8 @@ import {
   getRepeatedStyleItem,
   setRepeatedStyleItem,
 } from "../../shared/repeated-style";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export const SelectControl = ({
   property,
@@ -33,6 +35,7 @@ export const SelectControl = ({
   items?: Array<{ label: string; name: string }>;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styleDecl = useComputedStyleDecl(property);
   const value =
@@ -102,7 +105,11 @@ export const SelectControl = ({
           declarationDescriptions[`${camelCaseProperty(property)}:${option}`];
         return (
           <Box css={{ width: theme.spacing[26] }}>
-            {description ?? `قيمة ${property} هي ${option}`}
+            {description ??
+              interpolate(dict.stylePanel.selectControl.valueAria, {
+                property,
+                option,
+              })}
           </Box>
         );
       }}

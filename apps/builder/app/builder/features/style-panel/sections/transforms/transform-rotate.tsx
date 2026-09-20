@@ -13,8 +13,10 @@ import {
   useComputedStyleDecl,
 } from "../../shared/model";
 import { updateTransformFunction } from "./transform-utils";
+import { useLocale } from "~/i18n/context";
 
 export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("transform");
   const tuple =
     styleDecl.cascadedValue.type === "tuple"
@@ -45,7 +47,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <XAxisRotateIcon />
         <PropertyInlineLabel
-          label="دوران X"
+          label={dict.stylePanel.transformRotate.x}
           description={propertySyntaxes.rotateX}
         />
         <CssValueInputContainer
@@ -66,7 +68,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <YAxisRotateIcon />
         <PropertyInlineLabel
-          label="دوران Y"
+          label={dict.stylePanel.transformRotate.y}
           description={propertySyntaxes.rotateY}
         />
         <CssValueInputContainer
@@ -87,7 +89,7 @@ export const RotatePanelContent = ({ disabled }: { disabled?: boolean }) => {
       >
         <ZAxisRotateIcon />
         <PropertyInlineLabel
-          label="دوران Z"
+          label={dict.stylePanel.transformRotate.z}
           description={propertySyntaxes.rotateZ}
         />
         <CssValueInputContainer

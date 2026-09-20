@@ -17,6 +17,8 @@ import {
 } from "../../shared/use-style-data";
 import { $availableUnitVariables, useComputedStyles } from "../../shared/model";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export const BorderProperty = ({
   individualModeIcon,
@@ -31,6 +33,7 @@ export const BorderProperty = ({
   label: string;
   description: string;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const borderProperties = Object.keys(borderPropertyOptions) as [
     CssProperty,
@@ -108,7 +111,9 @@ export const BorderProperty = ({
 
         {individualModeIcon && (
           <IconToggleButton
-            aria-label={`تبديل قيم ${label.toLowerCase()} الفردية`}
+            aria-label={interpolate(dict.stylePanel.borderProperty.toggleAria, {
+              label: label.toLowerCase(),
+            })}
             disabled={readonly}
             pressed={showIndividualMode}
             onPressedChange={setShowIndividualMode}

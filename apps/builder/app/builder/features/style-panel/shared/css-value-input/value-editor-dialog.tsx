@@ -18,6 +18,7 @@ import type {
   IntermediateStyleValue,
 } from "./css-value-input";
 import { parseIntermediateOrInvalidValue } from "./parse-intermediate-or-invalid-value";
+import { useLocale } from "~/i18n/context";
 
 export const cssValueInputMaximizeButtonDisplay = declareCssVar(
   "--css-value-input-maximize-button-display"
@@ -51,6 +52,7 @@ export const ValueEditorDialog = ({
   value: string;
   onChangeComplete: (value: StyleValue) => void;
 }) => {
+  const { dict } = useLocale();
   const [intermediateValue, setIntermediateValue] = useState<
     IntermediateStyleValue | InvalidValue | undefined
   >({ type: "intermediate", value });
@@ -92,7 +94,7 @@ export const ValueEditorDialog = ({
 
   return (
     <EditorDialog
-      title="قيمة CSS"
+      title={dict.stylePanel.valueEditorDialog.cssValue}
       placement="bottom-within"
       height={200}
       width={Number.parseFloat(rawTheme.sizes.sidebarWidth)}

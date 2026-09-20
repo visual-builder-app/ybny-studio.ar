@@ -1,12 +1,14 @@
 import { useState, type JSX } from "react";
 import { Flex, Button, Collapsible } from "@webstudio-is/design-system";
 import { ChevronDownIcon, ChevronRightIcon } from "@webstudio-is/icons";
+import { useLocale } from "~/i18n/context";
 
 export const ShowMore = ({
   styleConfigs,
 }: {
   styleConfigs: Array<JSX.Element | null>;
 }) => {
+  const { dict } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   if (styleConfigs.length === 0) {
     return null;
@@ -20,7 +22,7 @@ export const ShowMore = ({
             css={{ width: "100%" }}
             prefix={isOpen ? <ChevronDownIcon /> : <ChevronRightIcon />}
           >
-            عرض المزيد
+            {dict.stylePanel.showMore.showMore}
           </Button>
         </Collapsible.Trigger>
         <Collapsible.Content asChild>

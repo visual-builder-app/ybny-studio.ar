@@ -59,6 +59,7 @@ import {
 } from "./value-editor-dialog";
 import { useEffectEvent } from "~/shared/hook-utils/effect-event";
 import { scrollByPointer } from "../scroll-by-pointer";
+import { useLocale } from "~/i18n/context";
 
 // Subjective adjust ment based on how it feels on macbook/trackpad.
 // It won't be ideal for everyone with different input devices and preferences.
@@ -439,6 +440,7 @@ export const CssValueInput = ({
   minWidth = "2ch",
   ...props
 }: CssValueInputProps) => {
+  const { dict } = useLocale();
   const value = props.intermediateValue ?? props.value ?? initialValue;
   const valueRef = useRef(value);
   valueRef.current = value;
@@ -743,9 +745,9 @@ export const CssValueInput = ({
       description = declarationDescriptions[key];
     }
   } else if (highlightedValue?.type === "var") {
-    description = "خاصية CSS مخصصة (متغير)";
+    description = dict.stylePanel.cssValueInput.customProperty;
   } else if (highlightedValue === undefined) {
-    description = "حدد عنصرًا";
+    description = dict.stylePanel.cssValueInput.selectItem;
   }
 
   // Init with non breaking space to avoid jumping when description is empty
