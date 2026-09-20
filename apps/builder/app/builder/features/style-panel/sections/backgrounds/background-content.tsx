@@ -67,7 +67,6 @@ const ColorSwatchIcon = styled("div", {
 
 type BackgroundTypeOption = {
   value: BackgroundType;
-  label: string;
   code: string;
   icon: ReactNode;
   autoFocus?: boolean;

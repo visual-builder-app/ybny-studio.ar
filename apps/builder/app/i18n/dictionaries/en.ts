@@ -33,60 +33,60 @@ export const en = {
         featureSection: "Feature section",
         footerColumns: "Footer columns",
       },
-      backgrounds: {
-        typeLabel: "Type",
-        typeGroupLabel: "Background type",
-        otherProperties: "Additional properties",
-        blendMode: "Blend mode",
+    },
+    backgrounds: {
+      typeLabel: "Type",
+      typeGroupLabel: "Background type",
+      otherProperties: "Additional properties",
+      blendMode: "Blend mode",
+      repeat: "Repeat",
+      attachment: "Attachment",
+      clip: "Clip",
+      origin: "Origin",
+      repeatTitle: "Background repeat",
+      repeatAria: {
+        "no-repeat": "No repeat",
         repeat: "Repeat",
-        attachment: "Attachment",
-        clip: "Clip",
-        origin: "Origin",
-        repeatTitle: "Background repeat",
-        repeatAria: {
-          "no-repeat": "No repeat",
-          repeat: "Repeat",
-          "repeat-y": "Repeat vertically",
-          "repeat-x": "Repeat horizontally",
+        "repeat-y": "Repeat vertically",
+        "repeat-x": "Repeat horizontally",
+      },
+      repeatValues: {
+        "no-repeat":
+          "This value means the background image is not repeated; it appears once.",
+        repeat:
+          "This value means the background image repeats horizontally and vertically to fill the whole background area.",
+        "repeat-y":
+          "This value means the background image repeats vertically only.",
+        "repeat-x":
+          "This value means the background image repeats horizontally only.",
+      },
+      attachmentTitle: "Background attachment",
+      attachmentValues: { scroll: "Scroll", fixed: "Fixed" },
+      types: {
+        image: {
+          label: "Image",
+          description:
+            "Use an image asset, a remote URL or a data URI as the layer's background.",
         },
-        repeatValues: {
-          "no-repeat":
-            "This value means the background image is not repeated; it appears once.",
-          repeat:
-            "This value means the background image repeats horizontally and vertically to fill the whole background area.",
-          "repeat-y":
-            "This value means the background image repeats vertically only.",
-          "repeat-x":
-            "This value means the background image repeats horizontally only.",
+        solid: {
+          label: "Solid color",
+          description:
+            "Use a single-colour layer while keeping control over stacking order.",
         },
-        attachmentTitle: "Background attachment",
-        attachmentValues: { scroll: "Scroll", fixed: "Fixed" },
-        types: {
-          image: {
-            label: "Image",
-            description:
-              "Use an image asset, a remote URL or a data URI as the layer's background.",
-          },
-          solid: {
-            label: "Solid color",
-            description:
-              "Use a single-colour layer while keeping control over stacking order.",
-          },
-          linearGradient: {
-            label: "Linear gradient",
-            description:
-              "Blend several colours along a line for smooth transitions.",
-          },
-          radialGradient: {
-            label: "Radial gradient",
-            description:
-              "Blend several colours in a circular pattern for smooth transitions.",
-          },
-          conicGradient: {
-            label: "Conic gradient",
-            description:
-              "Wrap colours around a centre point for charts, dials and spotlight effects.",
-          },
+        linearGradient: {
+          label: "Linear gradient",
+          description:
+            "Blend several colours along a line for smooth transitions.",
+        },
+        radialGradient: {
+          label: "Radial gradient",
+          description:
+            "Blend several colours in a circular pattern for smooth transitions.",
+        },
+        conicGradient: {
+          label: "Conic gradient",
+          description:
+            "Wrap colours around a centre point for charts, dials and spotlight effects.",
         },
       },
     },
