@@ -10,6 +10,8 @@ import {
 import { PropertyLabel } from "../../property-label";
 import { ToggleGroupControl } from "../../controls/toggle-group/toggle-group-control";
 import { propertyDescriptions } from "@webstudio-is/css-data";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 type AlignSelfControlProps = {
   /**
@@ -20,51 +22,70 @@ type AlignSelfControlProps = {
 };
 
 export const AlignSelfControl = ({ variant }: AlignSelfControlProps) => {
+  const { dict } = useLocale();
   const startValue = variant === "flex" ? "flex-start" : "start";
   const endValue = variant === "flex" ? "flex-end" : "end";
-  const axisName = variant === "flex" ? "المحور المستعرض" : "المحور الكتلي";
+  const axisName =
+    variant === "flex"
+      ? dict.stylePanel.alignSelf.axisInline
+      : dict.stylePanel.alignSelf.axisBlock;
   const parentProperty =
     variant === "flex" ? "align-items" : "align-items or align-content";
 
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="محاذاة"
+        label={dict.stylePanel.alignSelf.label}
         description={propertyDescriptions.alignSelf}
         properties={["align-self"]}
       />
       <ToggleGroupControl
-        label="محاذاة"
+        label={dict.stylePanel.alignSelf.label}
         properties={["align-self"]}
         items={[
           {
             child: <XSmallIcon />,
-            description: `تُحدَّد محاذاة العنصر بواسطة خاصية ${parentProperty} في العنصر الأب.`,
+            description: interpolate(dict.stylePanel.alignSelf.values.auto, {
+              parentProperty,
+            }),
             value: "auto",
           },
           {
             child: <AlignSelfStartIcon />,
-            description: `تتم محاذأة العنصر عند بداية ${axisName}.`,
+            description: interpolate(dict.stylePanel.alignSelf.values.start, {
+              axis: axisName,
+            }),
             value: startValue,
           },
           {
             child: <AlignSelfCenterIcon />,
-            description: `يتم توسيط العنصر على طول ${axisName}.`,
+            description: interpolate(dict.stylePanel.alignSelf.values.center, {
+              axis: axisName,
+            }),
             value: "center",
           },
           {
             child: <AlignSelfEndIcon />,
-            description: `تتم محاذأة العنصر عند نهاية ${axisName}.`,
+            description: interpolate(dict.stylePanel.alignSelf.values.end, {
+              axis: axisName,
+            }),
             value: endValue,
           },
           {
             child: <AlignSelfStretchIcon />,
-            description: `يتمدد العنصر ليملأ ${axisName} بالكامل.`,
+            description: interpolate(dict.stylePanel.alignSelf.values.stretch, {
+              axis: axisName,
+            }),
             value: "stretch",
           },
           {
             child: <AlignSelfBaselineIcon />,
-            description: `تتم محاذأة العنصر إلى خط الأساس على طول ${axisName}.`,
+            description: interpolate(
+              dict.stylePanel.alignSelf.values.baseline,
+              {
+                axis: axisName,
+              }
+            ),
             value: "baseline",
           },
         ]}
@@ -74,58 +95,54 @@ export const AlignSelfControl = ({ variant }: AlignSelfControlProps) => {
 };
 
 export const JustifySelfControl = () => {
+  const { dict } = useLocale();
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="ضبط"
+        label={dict.stylePanel.alignSelf.justifyLabel}
         description={propertyDescriptions.justifySelf}
         properties={["justify-self"]}
       />
       <ToggleGroupControl
-        label="ضبط"
+        label={dict.stylePanel.alignSelf.justifyLabel}
         properties={["justify-self"]}
         items={[
           {
             child: <XSmallIcon />,
-            description:
-              "يُحدَّد ضبط العنصر بواسطة خاصية justify-items في العنصر الأب.",
+            description: dict.stylePanel.alignSelf.justifyValues.auto,
             value: "auto",
           },
           {
             child: (
               <AlignSelfStartIcon style={{ transform: "rotate(-90deg)" }} />
             ),
-            description:
-              "تتم محاذأة العنصر عند بداية المحور السطري.",
+            description: dict.stylePanel.alignSelf.justifyValues.start,
             value: "start",
           },
           {
             child: (
               <AlignSelfCenterIcon style={{ transform: "rotate(-90deg)" }} />
             ),
-            description: "يتم توسيط العنصر على طول المحور السطري.",
+            description: dict.stylePanel.alignSelf.justifyValues.center,
             value: "center",
           },
           {
             child: <AlignSelfEndIcon style={{ transform: "rotate(-90deg)" }} />,
-            description:
-              "تتم محاذأة العنصر عند نهاية المحور السطري.",
+            description: dict.stylePanel.alignSelf.justifyValues.end,
             value: "end",
           },
           {
             child: (
               <AlignSelfStretchIcon style={{ transform: "rotate(-90deg)" }} />
             ),
-            description:
-              "يتمدد العنصر ليملأ المحور السطري بالكامل.",
+            description: dict.stylePanel.alignSelf.justifyValues.stretch,
             value: "stretch",
           },
           {
             child: (
               <AlignSelfBaselineIcon style={{ transform: "rotate(-90deg)" }} />
             ),
-            description:
-              "تتم محاذأة العنصر إلى خط الأساس في العنصر الأب.",
+            description: dict.stylePanel.alignSelf.justifyValues.baseline,
             value: "baseline",
           },
         ]}

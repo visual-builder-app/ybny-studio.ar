@@ -50,6 +50,28 @@ export const en = {
       objectFit: "Object fit",
       objectPosition: "Object position",
     },
+    alignSelf: {
+      label: "Align",
+      justifyLabel: "Justify",
+      axisInline: "cross axis",
+      axisBlock: "block axis",
+      values: {
+        auto: "Alignment is determined by the {parentProperty} property of the parent element.",
+        start: "The item is aligned to the start of the {axis}.",
+        center: "The item is centered along the {axis}.",
+        end: "The item is aligned to the end of the {axis}.",
+        stretch: "The item stretches to fill the {axis}.",
+        baseline: "The item is aligned to the baseline along the {axis}.",
+      },
+      justifyValues: {
+        auto: "The item's justification is determined by the justify-items property of the parent.",
+        start: "The item is aligned to the start of the inline axis.",
+        center: "The item is centered along the inline axis.",
+        end: "The item is aligned to the end of the inline axis.",
+        stretch: "The item stretches to fill the inline axis.",
+        baseline: "The item is aligned to the baseline in the parent.",
+      },
+    },
     backgrounds: {
       typeLabel: "Type",
       typeGroupLabel: "Background type",
