@@ -11,6 +11,7 @@ import {
   toast,
 } from "@webstudio-is/design-system";
 import type { ItemSource } from "./style-source-control";
+import { useLocale } from "~/i18n/context";
 
 type UseSortable<Item> = {
   items: Array<Item>;
@@ -33,6 +34,7 @@ export const useSortable = <Item extends { id: string; source: ItemSource }>({
   items,
   onSort,
 }: UseSortable<Item>) => {
+  const { dict } = useLocale();
   const [dropTarget, setDropTarget] = useState<DropTarget<true>>();
   const [placementIndicator, setPlacementIndicator] = useState<
     undefined | Placement
@@ -104,7 +106,7 @@ export const useSortable = <Item extends { id: string; source: ItemSource }>({
     onStart({ data: itemId }) {
       const item = items.find((item) => item.id === itemId);
       if (items.at(-1) === item && item?.source === "local") {
-        toast.error("مصدر النمط المحلي يكون دائمًا في النهاية ولا يمكن نقله");
+        toast.error(dict.stylePanel.styleSource.localLastError);
         useDragHandlers.cancelCurrentDrag();
         return;
       }

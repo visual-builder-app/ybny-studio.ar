@@ -29,6 +29,8 @@ import {
   type ItemSource,
   type ItemSelector,
 } from "./style-source-control";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export type SelectorConfig = {
   type: "state" | "pseudoElement";
@@ -105,24 +107,15 @@ const selectorLabels = [
   "pseudoElement",
 ] satisfies SelectorConfig["type"][];
 
-const categoryLabels: Record<SelectorConfig["type"], string> = {
-  state: "الحالات",
-  pseudoElement: "العناصر الزائفة",
-};
-
-const menuActionDescriptions = {
-  rename: "غيّر اسم هذا الرمز ليصف غرضه بشكل أفضل.",
-  duplicate: "أنشئ نسخة من هذا الرمز بجميع أنماطه.",
-  convertToToken:
-    "حوّل الأنماط المحلية إلى رمز قابل لإعادة الاستخدام يمكنك تطبيقه على عناصر أخرى.",
-  clearStyles: "أزل جميع الأنماط من مصدر النمط المحلي هذا.",
-  lock: "احمِ هذا الرمز من تغييرات الأنماط العرضية حتى تلغي قفله.",
-  unlock: "اسمح بتغيير الأنماط على هذا الرمز مجددًا.",
-  detach: "أزل هذا الرمز من العنصر دون حذفه.",
-  delete: "احذف هذا الرمز وجميع أنماطه نهائيًا من المشروع.",
-} as const;
-
-type MenuAction = keyof typeof menuActionDescriptions;
+type MenuAction =
+  | "rename"
+  | "duplicate"
+  | "convertToToken"
+  | "clearStyles"
+  | "lock"
+  | "unlock"
+  | "detach"
+  | "delete";
 
 const canEditStyleSourceStyles = (item: IntermediateItem) =>
   item.source === "local" || item.locked === false;
@@ -251,6 +244,7 @@ type StyleSourceMenuProps = {
 };
 
 export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
+  const { dict } = useLocale();
   const [highlightedSelector, setHighlightedSelector] = useState<{
     selector: string;
     type: "state" | "pseudoElement";
@@ -276,7 +270,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
 
   // Priority: action description > selector description > source description
   const actionDescription = highlightedAction
-    ? menuActionDescriptions[highlightedAction]
+    ? dict.stylePanel.styleSource.actions[highlightedAction]
     : undefined;
 
   const selectorDescription = descriptionSelector
@@ -287,9 +281,9 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
   // Get source description based on item source
   const sourceDescription =
     props.item.source === "local"
-      ? "أنمط النسخ دون إنشاء رمز، أو تجاوز رمزًا محليًا."
+      ? dict.stylePanel.styleSource.sourceLocal
       : props.item.source === "token"
-        ? "أعد استخدام الأنماط عبر عدة نسخ بإنشاء رمز."
+        ? dict.stylePanel.styleSource.sourceToken
         : undefined;
 
   const description =
@@ -298,7 +292,11 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
   return (
     <DropdownMenu modal open={props.open} onOpenChange={props.onOpenChange}>
       <DropdownMenuTrigger asChild>
-        <MenuTrigger aria-label={`قائمة مصدر النمط ${props.item.label}`}>
+        <MenuTrigger
+          aria-label={interpolate(dict.stylePanel.styleSource.menuAria, {
+            label: props.item.label,
+          })}
+        >
           <MenuTriggerGradient />
           <ChevronDownIcon style={{ position: "relative" }} />
         </MenuTrigger>
@@ -326,7 +324,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onEdit?.(props.item.id)}
           >
-            إعادة تسمية
+            {dict.stylePanel.styleSource.labels.rename}
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -337,7 +335,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDuplicate?.(props.item.id)}
           >
-            إنشاء نسخة
+            {dict.stylePanel.styleSource.labels.duplicate}
           </DropdownMenuItem>
         )}
         {props.item.source === "token" && (
@@ -350,7 +348,11 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
               props.onToggleLock?.(props.item.id, props.item.locked === false)
             }
           >
-            {props.item.locked ? "إلغاء القفل" : "قفل"}
+            {
+              dict.stylePanel.styleSource.labels[
+                props.item.locked ? "unlock" : "lock"
+              ]
+            }
           </DropdownMenuItem>
         )}
         {props.item.source === "local" && (
@@ -361,7 +363,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onConvertToToken?.(props.item.id)}
           >
-            تحويل إلى رمز
+            {dict.stylePanel.styleSource.labels.convertToToken}
           </DropdownMenuItem>
         )}
         {props.item.source === "local" && (
@@ -373,7 +375,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onClearStyles?.(props.item.id)}
           >
-            مسح الأنماط
+            {dict.stylePanel.styleSource.labels.clearStyles}
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -384,7 +386,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDetach?.(props.item.id)}
           >
-            فصل
+            {dict.stylePanel.styleSource.labels.detach}
           </DropdownMenuItem>
         )}
         {props.item.source !== "local" && (
@@ -396,7 +398,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
             }}
             onSelect={() => props.onDelete?.(props.item.id)}
           >
-            حذف
+            {dict.stylePanel.styleSource.labels.delete}
           </DropdownMenuItem>
         )}
         {canEditStyles &&
@@ -411,7 +413,7 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
               <Fragment key={currentCategory}>
                 <DropdownMenuSeparator />
                 <DropdownMenuLabel>
-                  {categoryLabels[currentCategory]}
+                  {dict.stylePanel.styleSource.categories[currentCategory]}
                 </DropdownMenuLabel>
                 {categoryStates.map(
                   ({ label, selector, source, type, description }, index) => {
@@ -482,7 +484,9 @@ export const StyleSourceMenu = (props: StyleSourceMenuProps) => {
         {canEditStyles && (
           <>
             <DropdownMenuSeparator />
-            <DropdownMenuLabel>إضافة المزيد</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              {dict.stylePanel.styleSource.addMore}
+            </DropdownMenuLabel>
             <Box css={{ padding: theme.spacing[4] }}>
               <SelectorCombobox
                 existingSelectors={props.states.map((state) => state.selector)}

@@ -266,6 +266,45 @@ export const en = {
       learnMore: "Learn more on MDN",
       statusAria: "{property} — its status is {status}",
     },
+    styleSource: {
+      categories: { state: "States", pseudoElement: "Pseudo-elements" },
+      actions: {
+        rename: "Rename this token so its purpose is clearer.",
+        duplicate: "Create a copy of this token with all its styles.",
+        convertToToken:
+          "Convert local styles into a reusable token you can apply to other elements.",
+        clearStyles: "Remove all styles from this local style source.",
+        lock: "Protect this token from accidental style changes until you unlock it.",
+        unlock: "Allow style changes on this token again.",
+        detach: "Remove this token from the element without deleting it.",
+        delete:
+          "Delete this token and all its styles from the project permanently.",
+      },
+      labels: {
+        rename: "Rename",
+        duplicate: "Duplicate",
+        lock: "Lock",
+        unlock: "Unlock",
+        convertToToken: "Convert to token",
+        clearStyles: "Clear styles",
+        detach: "Detach",
+        delete: "Delete",
+      },
+      sourceLocal:
+        "Style this instance without creating a token, or override a local token.",
+      sourceToken: "Reuse styles across instances by creating a token.",
+      menuAria: "Style source menu {label}",
+      addMore: "Add more",
+      inputAria: "New style source input",
+      newToken: "New token",
+      create: "Create",
+      globalTokens: "Global tokens",
+      errors: {
+        minlength: "The token must be at least one character long",
+        duplicate: "The token already exists",
+      },
+      localLastError: "A local style source is always last and cannot be moved",
+    },
     backgrounds: {
       gradient: {
         angleLabel: "Angle",

@@ -267,6 +267,43 @@ export const ar: Dictionary = {
       learnMore: "اعرف المزيد على MDN",
       statusAria: "{property} — حالته {status}",
     },
+    styleSource: {
+      categories: { state: "الحالات", pseudoElement: "العناصر الزائفة" },
+      actions: {
+        rename: "غيّر اسم هذا الرمز ليصف غرضه بشكل أفضل.",
+        duplicate: "أنشئ نسخة من هذا الرمز بجميع أنماطه.",
+        convertToToken:
+          "حوّل الأنماط المحلية إلى رمز قابل لإعادة الاستخدام يمكنك تطبيقه على عناصر أخرى.",
+        clearStyles: "أزل جميع الأنماط من مصدر النمط المحلي هذا.",
+        lock: "احمِ هذا الرمز من تغييرات الأنماط العرضية حتى تلغي قفله.",
+        unlock: "اسمح بتغيير الأنماط على هذا الرمز مجددًا.",
+        detach: "أزل هذا الرمز من العنصر دون حذفه.",
+        delete: "احذف هذا الرمز وجميع أنماطه نهائيًا من المشروع.",
+      },
+      labels: {
+        rename: "إعادة تسمية",
+        duplicate: "إنشاء نسخة",
+        lock: "قفل",
+        unlock: "إلغاء القفل",
+        convertToToken: "تحويل إلى رمز",
+        clearStyles: "مسح الأنماط",
+        detach: "فصل",
+        delete: "حذف",
+      },
+      sourceLocal: "أنمط النسخ دون إنشاء رمز، أو تجاوز رمزًا محليًا.",
+      sourceToken: "أعد استخدام الأنماط عبر عدة نسخ بإنشاء رمز.",
+      menuAria: "قائمة مصدر النمط {label}",
+      addMore: "إضافة المزيد",
+      inputAria: "حقل إدخال مصدر نمط جديد",
+      newToken: "رمز جديد",
+      create: "إنشاء",
+      globalTokens: "الرموز العامة",
+      errors: {
+        minlength: "يجب ألا يقل طول الرمز عن حرف واحد",
+        duplicate: "الرمز موجود بالفعل",
+      },
+      localLastError: "مصدر النمط المحلي يكون دائمًا في النهاية ولا يمكن نقله",
+    },
     backgrounds: {
       gradient: {
         angleLabel: "الزاوية",

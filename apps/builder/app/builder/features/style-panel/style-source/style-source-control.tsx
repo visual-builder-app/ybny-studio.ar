@@ -13,6 +13,7 @@ import type { StyleSource } from "@webstudio-is/sdk";
 import { type ReactNode } from "react";
 import { useContentEditable } from "~/shared/dom-hooks";
 import { styleSourceColors } from "./color-recipes";
+import { useLocale } from "~/i18n/context";
 
 export const menuTriggerVisibilityVar = declareCssVar(
   "--style-source-menu-trigger-visibility"
@@ -202,13 +203,10 @@ const LocalStyleIcon = ({ size = 16, showDot = true }) => {
   );
 };
 
-const errors = {
-  minlength: "يجب ألا يقل طول الرمز عن حرف واحد",
-  duplicate: "الرمز موجود بالفعل",
-} as const;
+const errorTypes = ["minlength", "duplicate"] as const;
 
 export type StyleSourceError = {
-  type: keyof typeof errors;
+  type: (typeof errorTypes)[number];
   id: StyleSource["id"];
 };
 
@@ -251,6 +249,7 @@ export const StyleSourceControl = ({
   onSelect,
   onOpenMenu,
 }: StyleSourceControlProps) => {
+  const { dict } = useLocale();
   const showMenu = isEditing === false && isDragging === false;
 
   const handleContextMenu = (event: React.MouseEvent) => {
@@ -262,7 +261,7 @@ export const StyleSourceControl = ({
 
   return (
     <Tooltip
-      content={error ? errors[error.type] : ""}
+      content={error ? dict.stylePanel.styleSource.errors[error.type] : ""}
       open={error !== undefined}
     >
       <StyleSourceContainer

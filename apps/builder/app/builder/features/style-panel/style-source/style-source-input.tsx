@@ -56,6 +56,7 @@ import { StyleSourceBadge } from "./style-source-badge";
 import { $computedStyleDeclarations } from "../shared/model";
 import type { ComputedStyleDecl } from "~/shared/style-object-model";
 import { StyleSourceMenu, type SelectorConfig } from "./style-source-menu";
+import { useLocale } from "~/i18n/context";
 
 type IntermediateItem = {
   id: StyleSource["id"];
@@ -172,6 +173,7 @@ const TextFieldBase: ForwardRefRenderFunction<
   HTMLDivElement,
   TextFieldBaseWrapperProps<IntermediateItem>
 > = (props, forwardedRef) => {
+  const { dict } = useLocale();
   const {
     css,
     containerRef,
@@ -253,7 +255,7 @@ const TextFieldBase: ForwardRefRenderFunction<
         onClick={onClick}
         inputRef={mergeRefs(internalInputRef, inputRef)}
         spellCheck={false}
-        aria-label="حقل إدخال مصدر نمط جديد"
+        aria-label={dict.stylePanel.styleSource.inputAria}
       />
       {value.map((item) => (
         <StyleSourceControlWithMenu
@@ -376,6 +378,7 @@ const markAddedValues = <Item extends IntermediateItem>(
 export const StyleSourceInput = (
   props: StyleSourceInputProps<IntermediateItem>
 ) => {
+  const { dict } = useLocale();
   const value = props.value ?? [];
   const [label, setLabel] = useState("");
 
@@ -493,14 +496,16 @@ export const StyleSourceInput = (
                     const { key, ...itemProps } = getItemProps({ item, index });
                     return (
                       <Fragment key={index}>
-                        <ComboboxLabel>رمز جديد</ComboboxLabel>
+                        <ComboboxLabel>
+                          {dict.stylePanel.styleSource.newToken}
+                        </ComboboxLabel>
                         <ComboboxListboxItem
                           {...itemProps}
                           key={key}
                           selectable={false}
                         >
                           <div>
-                            إنشاء{" "}
+                            {dict.stylePanel.styleSource.create}{" "}
                             <StyleSourceBadge source="token">
                               {item.label}
                             </StyleSourceBadge>
@@ -516,7 +521,9 @@ export const StyleSourceInput = (
                     label = (
                       <>
                         {hasNewTokenItem && <ComboboxSeparator />}
-                        <ComboboxLabel>الرموز العامة</ComboboxLabel>
+                        <ComboboxLabel>
+                          {dict.stylePanel.styleSource.globalTokens}
+                        </ComboboxLabel>
                       </>
                     );
                   }
