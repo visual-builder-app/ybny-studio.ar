@@ -7,6 +7,7 @@ import {
   BorderRadiusBottomLeftIcon,
 } from "@webstudio-is/icons";
 import { BorderProperty } from "./border-property";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "border-top-left-radius",
@@ -31,10 +32,11 @@ const borderPropertyOptions = {
 } as const satisfies Partial<{ [property in CssProperty]: unknown }>;
 
 export const BorderRadius = () => {
+  const { dict } = useLocale();
   return (
     <BorderProperty
-      label="نصف القطر"
-      description="يضبط نصف قطر الحدود"
+      label={dict.stylePanel.borderRadius.label}
+      description={dict.stylePanel.borderRadius.description}
       borderPropertyOptions={borderPropertyOptions}
       individualModeIcon={<BorderRadiusIndividualIcon />}
     />

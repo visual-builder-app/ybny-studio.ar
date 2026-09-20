@@ -12,6 +12,7 @@ import { StyleSection } from "../../shared/style-section";
 import { PropertyLabel } from "../../property-label";
 import { useComputedStyleDecl } from "../../shared/model";
 import { ToggleGroupControl } from "../../controls/toggle-group/toggle-group-control";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "outline-style",
@@ -21,11 +22,15 @@ export const properties = [
 ] satisfies CssProperty[];
 
 export const Section = () => {
+  const { dict } = useLocale();
   const outlineStyle = useComputedStyleDecl("outline-style");
   const outlineStyleValue = toValue(outlineStyle.cascadedValue);
 
   return (
-    <StyleSection label="الحد الخارجي" properties={properties}>
+    <StyleSection
+      label={dict.stylePanel.outline.sectionLabel}
+      properties={properties}
+    >
       <Grid
         css={{
           gridTemplateColumns: `1fr ${theme.spacing[22]}`,
@@ -33,12 +38,12 @@ export const Section = () => {
         gap={2}
       >
         <PropertyLabel
-          label="النمط"
+          label={dict.stylePanel.outline.style}
           description={propertyDescriptions.outlineStyle}
           properties={["outline-style"]}
         />
         <ToggleGroupControl
-          label="النمط"
+          label={dict.stylePanel.outline.style}
           properties={["outline-style"]}
           items={[
             { child: <XSmallIcon />, value: "none" },
@@ -51,19 +56,19 @@ export const Section = () => {
         {outlineStyleValue !== "none" && (
           <>
             <PropertyLabel
-              label="اللون"
+              label={dict.stylePanel.outline.color}
               description={propertyDescriptions.outlineColor}
               properties={["outline-color"]}
             />
             <ColorControl property="outline-color" />
             <PropertyLabel
-              label="العرض"
+              label={dict.stylePanel.outline.width}
               description={propertyDescriptions.outlineWidth}
               properties={["outline-width"]}
             />
             <TextControl property="outline-width" />
             <PropertyLabel
-              label="الإزاحة"
+              label={dict.stylePanel.outline.offset}
               description={propertyDescriptions.outlineOffset}
               properties={["outline-offset"]}
             />

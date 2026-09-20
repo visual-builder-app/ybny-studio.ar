@@ -16,6 +16,7 @@ import {
 } from "../../shared/repeated-style";
 import { formatAssetName } from "@webstudio-is/project-build/runtime";
 import { AssetUpload } from "~/builder/shared/assets";
+import { useLocale } from "~/i18n/context";
 
 const isValidURL = (value: string) => {
   try {
@@ -39,6 +40,7 @@ export const ImageControl = ({
   index: number;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const assets = useStore($assets);
   const styleDecl = useComputedStyleDecl(property);
   const styleValue = getRepeatedStyleItem(styleDecl, index);
@@ -99,7 +101,7 @@ export const ImageControl = ({
         type="text"
         disabled={disabled}
         color={remoteImageURL?.type === "invalid" ? "error" : undefined}
-        placeholder="أدخل رابط الصورة..."
+        placeholder={dict.stylePanel.imageControl.placeholder}
         value={remoteImageURL?.value ?? ""}
         onChange={handleImageURLInput}
         onKeyDown={(event) => {
@@ -110,7 +112,7 @@ export const ImageControl = ({
         onBlur={handleImageURLComplete}
       />
       <FloatingPanel
-        title="الصور"
+        title={dict.stylePanel.imageControl.title}
         titleSuffix={disabled ? undefined : <AssetUpload type="image" />}
         content={
           <AssetManager
@@ -128,7 +130,9 @@ export const ImageControl = ({
           disabled={disabled}
           css={{ maxWidth: "100%", justifySelf: "right" }}
         >
-          {asset ? formatAssetName(asset) : "اختيار صورة..."}
+          {asset
+            ? formatAssetName(asset)
+            : dict.stylePanel.imageControl.chooseImage}
         </Button>
       </FloatingPanel>
     </Flex>

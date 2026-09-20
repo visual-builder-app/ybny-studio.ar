@@ -477,6 +477,45 @@ export const en = {
       assetNotFound: "Asset {url} is not found in project",
       image: "Image",
     },
+    textShadows: {
+      title: "Text shadows",
+      description: "Adds shadow effects around a text.",
+    },
+    outline: {
+      sectionLabel: "Outline",
+      style: "Style",
+      color: "Color",
+      width: "Width",
+      offset: "Offset",
+    },
+    gridPositionInputs: {
+      columnSpan: "Column: start/end",
+      rowSpan: "Row: start/end",
+    },
+    borderRadius: {
+      label: "Radius",
+      description: "Sets the radius of border",
+    },
+    imageControl: {
+      placeholder: "Enter image URL...",
+      title: "Images",
+      chooseImage: "Choose image...",
+    },
+    fontFamily: {
+      customFont: 'Custom Font: "{search}"',
+      title: "Fonts",
+      openManager: "Open font manager",
+    },
+    filterContent: {
+      functionLabel: "Function",
+      selectFilter: "Select filter",
+      value: "Value",
+      code: "Code",
+    },
+    listItem: {
+      label: "List item",
+      listStyleType: "List style type",
+    },
     backgrounds: {
       sectionTitle: "Backgrounds",
       sectionDescription:

@@ -475,6 +475,45 @@ export const ar: Dictionary = {
       assetNotFound: "لم يتم العثور على الوسيط {url} في المشروع",
       image: "صورة",
     },
+    textShadows: {
+      title: "ظلال النص",
+      description: "يضيف تأثيرات ظل حول النص.",
+    },
+    outline: {
+      sectionLabel: "الحد الخارجي",
+      style: "النمط",
+      color: "اللون",
+      width: "العرض",
+      offset: "الإزاحة",
+    },
+    gridPositionInputs: {
+      columnSpan: "العمود: البداية/النهاية",
+      rowSpan: "الصف: البداية/النهاية",
+    },
+    borderRadius: {
+      label: "نصف القطر",
+      description: "يضبط نصف قطر الحدود",
+    },
+    imageControl: {
+      placeholder: "أدخل رابط الصورة...",
+      title: "الصور",
+      chooseImage: "اختيار صورة...",
+    },
+    fontFamily: {
+      customFont: 'خط مخصص: "{search}"',
+      title: "الخطوط",
+      openManager: "فتح مدير الخطوط",
+    },
+    filterContent: {
+      functionLabel: "الدالة",
+      selectFilter: "حدد مرشحًا",
+      value: "القيمة",
+      code: "الكود",
+    },
+    listItem: {
+      label: "عنصر القائمة",
+      listStyleType: "نوع نمط القائمة",
+    },
     backgrounds: {
       sectionTitle: "الخلفيات",
       sectionDescription:

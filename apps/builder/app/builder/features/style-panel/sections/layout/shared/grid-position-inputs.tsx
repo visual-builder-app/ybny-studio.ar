@@ -5,6 +5,7 @@ import {
   Text,
   theme,
 } from "@webstudio-is/design-system";
+import { useLocale } from "~/i18n/context";
 
 export type GridPosition = {
   columnStart: number;
@@ -150,6 +151,7 @@ export const GridPositionInputs = ({
   inclusiveEnd = false,
   disabled,
 }: GridPositionInputsProps) => {
+  const { dict } = useLocale();
   const validation = validateGridPosition(value, gridColumns, gridRows, {
     checkBounds,
     inclusiveEnd,
@@ -175,7 +177,7 @@ export const GridPositionInputs = ({
         maxStart={gridColumns}
         minEnd={minEnd}
         maxEnd={colMaxEnd}
-        label="العمود: البداية/النهاية"
+        label={dict.stylePanel.gridPositionInputs.columnSpan}
       />
       <PositionInputGroup
         disabled={disabled}
@@ -191,7 +193,7 @@ export const GridPositionInputs = ({
         maxStart={gridRows}
         minEnd={minEnd}
         maxEnd={rowMaxEnd}
-        label="الصف: البداية/النهاية"
+        label={dict.stylePanel.gridPositionInputs.rowSpan}
       />
     </Flex>
   );

@@ -26,6 +26,7 @@ import type { StyleUpdateOptions } from "../shared/use-style-data";
 import { ShadowContent } from "./shadow-content";
 import { parseCssFragment } from "./css-fragment";
 import { useReadonly } from "./readonly";
+import { useLocale } from "~/i18n/context";
 
 // filters can't be validated directly in the css-engine. Because, these are not properties
 // but functions that proeprties accept. So, we need to validate them manually using fake proeprties
@@ -101,6 +102,7 @@ export const FilterSectionContent = ({
   tooltip,
   layer,
 }: FilterContentProps) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const [intermediateValue, setIntermediateValue] = useState<
     IntermediateStyleValue | InvalidValue | undefined
@@ -182,12 +184,12 @@ export const FilterSectionContent = ({
           }}
         >
           <Flex align="center">
-            <Label>الدالة</Label>
+            <Label>{dict.stylePanel.filterContent.functionLabel}</Label>
           </Flex>
           <Select
             disabled={readonly}
             name="filterFunction"
-            placeholder="حدد مرشحًا"
+            placeholder={dict.stylePanel.filterContent.selectFilter}
             options={Object.keys(filterFunctions) as FilterFunction[]}
             value={filterFunction ?? "blur"}
             onChange={handleFilterFunctionChange}
@@ -202,7 +204,7 @@ export const FilterSectionContent = ({
             }}
           >
             <Flex align="center">
-              <Label>القيمة</Label>
+              <Label>{dict.stylePanel.filterContent.value}</Label>
             </Flex>
             <CssValueInputContainer
               disabled={readonly}
@@ -254,7 +256,7 @@ export const FilterSectionContent = ({
       >
         <Label>
           <Flex align={"center"} gap={1}>
-            الكود
+            {dict.stylePanel.filterContent.code}
             {tooltip}
           </Flex>
         </Label>

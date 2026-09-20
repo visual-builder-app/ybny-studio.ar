@@ -16,6 +16,8 @@ import { toItems } from "~/builder/shared/fonts-manager";
 import { useComputedStyleDecl } from "../../shared/model";
 import { setProperty } from "../../shared/use-style-data";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 type Item = { value: string; label?: string };
 
@@ -24,6 +26,7 @@ const matchOrSuggestToCreate = (
   items: Array<Item>,
   itemToString: (item: Item) => string
 ): Array<Item> => {
+  const { dict } = useLocale();
   const matched = matchSorter(items, search, {
     keys: [itemToString],
   });
@@ -35,13 +38,16 @@ const matchOrSuggestToCreate = (
   ) {
     matched.unshift({
       value: search.trim(),
-      label: `خط مخصص: "${search.trim()}"`,
+      label: interpolate(dict.stylePanel.fontFamily.customFont, {
+        search: search.trim(),
+      }),
     });
   }
   return matched;
 };
 
 export const FontFamilyControl = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const fontFamily = useComputedStyleDecl("font-family");
   const value = fontFamily.cascadedValue;
@@ -71,7 +77,7 @@ export const FontFamilyControl = () => {
         suffix={
           <FloatingPanel
             placement="left-start"
-            title="الخطوط"
+            title={dict.stylePanel.fontFamily.title}
             titleSuffix={readonly ? undefined : <AssetUpload type="font" />}
             onOpenChange={setIsFontMangerOpen}
             content={
@@ -124,8 +130,9 @@ const FontsManagerButton = forwardRef<
   HTMLButtonElement,
   ComponentProps<typeof NestedInputButton>
 >((props, ref) => {
+  const { dict } = useLocale();
   return (
-    <EnhancedTooltip content="فتح مدير الخطوط">
+    <EnhancedTooltip content={dict.stylePanel.fontFamily.openManager}>
       <NestedInputButton {...props} ref={ref} tabIndex={-1}>
         <UploadIcon />
       </NestedInputButton>

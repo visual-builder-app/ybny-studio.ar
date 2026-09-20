@@ -13,13 +13,13 @@ import {
 } from "../../shared/repeated-style";
 import { parseCssFragment } from "../../shared/css-fragment";
 import { useComputedStyleDecl } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
 
 export const properties = ["text-shadow"] satisfies [
   CssProperty,
   ...CssProperty[],
 ];
 
-const label = "ظلال النص";
 const initialTextShadow = "0px 2px 5px rgba(0, 0, 0, 0.2)";
 
 const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
@@ -44,12 +44,13 @@ const getItemProps = (layer: StyleValue, computedLayer?: StyleValue) => {
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("text-shadow");
 
   return (
     <RepeatedStyleSection
-      label={label}
-      description="يضيف تأثيرات ظل حول النص."
+      label={dict.stylePanel.textShadows.title}
+      description={dict.stylePanel.textShadows.description}
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -59,7 +60,7 @@ export const Section = () => {
       }}
     >
       <RepeatedStyle
-        label={label}
+        label={dict.stylePanel.textShadows.title}
         styles={[styleDecl]}
         getItemProps={(index, layer) =>
           getItemProps(layer, getComputedRepeatedItem(styleDecl, index))
