@@ -55,6 +55,7 @@ import {
   type BackgroundType,
 } from "./gradient-utils";
 import { CollapsibleSectionRoot } from "~/builder/shared/collapsible-section";
+import { useLocale } from "~/i18n/context";
 
 const ColorSwatchIcon = styled("div", {
   width: theme.spacing[7],
@@ -67,7 +68,6 @@ const ColorSwatchIcon = styled("div", {
 type BackgroundTypeOption = {
   value: BackgroundType;
   label: string;
-  description: string;
   code: string;
   icon: ReactNode;
   autoFocus?: boolean;
@@ -80,42 +80,27 @@ type BackgroundTypeOption = {
 const backgroundTypeOptions: BackgroundTypeOption[] = [
   {
     value: "image",
-    label: "صورة",
-    description:
-      "استخدم وسيط صورة أو رابطًا بعيدًا أو data URI كخلفية للطبقة.",
     code: "background-image: url(...);",
     icon: <ImageIcon />,
     autoFocus: true,
   },
   {
     value: "solid",
-    label: "لون ثابت",
-    description:
-      "استخدم طبقة بلون واحد مع الاحتفاظ بالتحكم في ترتيب التراص.",
     code: "background-image: linear-gradient(color, color);",
     icon: <ColorSwatchIcon />,
   },
   {
     value: "linearGradient",
-    label: "تدرج خطي",
-    description:
-      "امزج عدة ألوان على طول خط لإنشاء انتقالات سلسة.",
     code: "background-image: linear-gradient(...);",
     icon: <GradientLinearIcon />,
   },
   {
     value: "radialGradient",
-    label: "تدرج شعاعي",
-    description:
-      "امزج عدة ألوان بنمط دائري لإنشاء انتقالات سلسة.",
     code: "background-image: radial-gradient(...);",
     icon: <GradientRadialIcon />,
   },
   {
     value: "conicGradient",
-    label: "تدرج مخروطي",
-    description:
-      "لفّ الألوان حول نقطة مركزية للمخططات والأقراص وتأثيرات الإضاءة الموجهة.",
     code: "background-image: conic-gradient(...);",
     icon: <GradientConicIcon />,
   },
@@ -185,16 +170,19 @@ const BackgroundTypeToggle = ({
     [backgroundStyleItem, index, onChange, styleDecl, value, cachedValues]
   );
 
+  const { dict } = useLocale();
   return (
     <ToggleGroup
       type="single"
       disabled={disabled}
       value={value}
-      aria-label="نوع الخلفية"
+      aria-label={dict.stylePanel.backgrounds.typeGroupLabel}
       onValueChange={handleValueChange}
     >
-      {backgroundTypeOptions.map(
-        ({ value: optionValue, label, icon, autoFocus }) => (
+      {backgroundTypeOptions.map((option) => {
+        const { value: optionValue, icon, autoFocus } = option;
+        const label = dict.stylePanel.backgrounds.types[optionValue].label;
+        return (
           <EnhancedTooltip key={optionValue} content={label}>
             <ToggleGroupButton
               value={optionValue}
@@ -204,8 +192,8 @@ const BackgroundTypeToggle = ({
               <Flex css={{ px: theme.spacing[3] }}>{icon}</Flex>
             </ToggleGroupButton>
           </EnhancedTooltip>
-        )
-      )}
+        );
+      })}
     </ToggleGroup>
   );
 };
@@ -219,30 +207,27 @@ const BackgroundRepeat = ({
 }) => {
   const styleDecl = useComputedStyleDecl("background-repeat");
   const value = getRepeatedStyleItem(styleDecl, index);
+  const { dict } = useLocale();
   const items = [
     {
       child: <XSmallIcon />,
-      description:
-        "تشير هذه القيمة إلى أن صورة الخلفية لن تُكرر وستظهر مرة واحدة فقط.",
-      value: "no-repeat",
+      description: dict.stylePanel.backgrounds.repeatValues["no-repeat"],
+      value: "no-repeat" as const,
     },
     {
       child: <RepeatGridIcon />,
-      description:
-        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا وعموديًا لتملأ منطقة الخلفية بالكامل.",
-      value: "repeat",
+      description: dict.stylePanel.backgrounds.repeatValues["repeat"],
+      value: "repeat" as const,
     },
     {
       child: <RepeatColumnIcon />,
-      description:
-        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر عموديًا فقط.",
-      value: "repeat-y",
+      description: dict.stylePanel.backgrounds.repeatValues["repeat-y"],
+      value: "repeat-y" as const,
     },
     {
       child: <RepeatRowIcon />,
-      description:
-        "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا فقط.",
-      value: "repeat-x",
+      description: dict.stylePanel.backgrounds.repeatValues["repeat-x"],
+      value: "repeat-x" as const,
     },
   ];
   // Issue: The tooltip's grace area is too big and overlaps with nearby buttons,
@@ -253,7 +238,7 @@ const BackgroundRepeat = ({
   const [activeTooltip, setActiveTooltip] = useState<undefined | string>();
   return (
     <PropertyValueTooltip
-      label="التكرار"
+      label={dict.stylePanel.backgrounds.repeat}
       description={propertyDescriptions.backgroundRepeat}
       properties={["background-repeat"]}
     >
@@ -261,7 +246,7 @@ const BackgroundRepeat = ({
         type="single"
         disabled={disabled}
         value={toValue(value)}
-        aria-label="تكرار الخلفية"
+        aria-label={dict.stylePanel.backgrounds.repeatTitle}
         onValueChange={(value) => {
           setRepeatedStyleItem(styleDecl, index, { type: "keyword", value });
         }}
@@ -274,22 +259,14 @@ const BackgroundRepeat = ({
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={false}
-            label="تكرار الخلفية"
+            label={dict.stylePanel.backgrounds.repeatTitle}
             code={`background-repeat: ${item.value};`}
             description={item.description}
             properties={["background-repeat"]}
           >
             <ToggleGroupButton
               value={item.value}
-              aria-label={
-                item.value === "no-repeat"
-                  ? "عدم تكرار الخلفية"
-                  : item.value === "repeat"
-                    ? "تكرار الخلفية"
-                    : item.value === "repeat-y"
-                      ? "تكرار الخلفية عموديًا"
-                      : "تكرار الخلفية أفقيًا"
-              }
+              aria-label={dict.stylePanel.backgrounds.repeatAria[item.value]}
               onMouseEnter={() =>
                 // reset only when highlighted is not active
                 setActiveTooltip((prevValue) =>
@@ -315,9 +292,10 @@ const BackgroundAttachment = ({
 }) => {
   const styleDecl = useComputedStyleDecl("background-attachment");
   const value = getRepeatedStyleItem(styleDecl, index);
+  const { dict } = useLocale();
   return (
     <PropertyValueTooltip
-      label="التثبيت"
+      label={dict.stylePanel.backgrounds.attachment}
       description={propertyDescriptions.backgroundAttachment}
       properties={["background-attachment"]}
     >
@@ -325,16 +303,20 @@ const BackgroundAttachment = ({
         type="single"
         disabled={disabled}
         value={toValue(value)}
-        aria-label="تثبيت الخلفية"
+        aria-label={dict.stylePanel.backgrounds.attachmentTitle}
         onValueChange={(value) => {
           setRepeatedStyleItem(styleDecl, index, { type: "keyword", value });
         }}
       >
         <ToggleGroupButton value={"scroll"}>
-          <Flex css={{ px: theme.spacing[3] }}>تمرير</Flex>
+          <Flex css={{ px: theme.spacing[3] }}>
+            {dict.stylePanel.backgrounds.attachmentValues.scroll}
+          </Flex>
         </ToggleGroupButton>
         <ToggleGroupButton value={"fixed"}>
-          <Flex css={{ px: theme.spacing[3] }}>ثابت</Flex>
+          <Flex css={{ px: theme.spacing[3] }}>
+            {dict.stylePanel.backgrounds.attachmentValues.fixed}
+          </Flex>
         </ToggleGroupButton>
       </ToggleGroup>
     </PropertyValueTooltip>
@@ -343,8 +325,12 @@ const BackgroundAttachment = ({
 
 const OtherLayerProperties = ({ index }: { index: number }) => {
   const readonly = useReadonly();
+  const { dict } = useLocale();
   return (
-    <CollapsibleSectionRoot label={"خصائص إضافية"} fullWidth={true}>
+    <CollapsibleSectionRoot
+      label={dict.stylePanel.backgrounds.otherProperties}
+      fullWidth={true}
+    >
       <Flex
         gap="2"
         direction="column"
@@ -352,7 +338,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
       >
         <Grid columns={2} gap={2}>
           <PropertyLabel
-            label="وضع المزج"
+            label={dict.stylePanel.backgrounds.blendMode}
             description={propertyDescriptions.backgroundBlendMode}
             properties={["background-blend-mode"]}
           />
@@ -366,14 +352,14 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
         <BackgroundPosition disabled={readonly} index={index} />
         <Grid columns={2} align="center" gap={2}>
           <PropertyLabel
-            label="التكرار"
+            label={dict.stylePanel.backgrounds.repeat}
             description={propertyDescriptions.backgroundRepeat}
             properties={["background-repeat"]}
           />
           <BackgroundRepeat disabled={readonly} index={index} />
 
           <PropertyLabel
-            label="التثبيت"
+            label={dict.stylePanel.backgrounds.attachment}
             description={propertyDescriptions.backgroundAttachment}
             properties={["background-attachment"]}
           />
@@ -381,7 +367,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
         </Grid>
         <Grid columns={2} align="center" gap={2}>
           <PropertyLabel
-            label="القص"
+            label={dict.stylePanel.backgrounds.clip}
             description={propertyDescriptions.backgroundClip}
             properties={["background-clip"]}
           />
@@ -392,7 +378,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
           />
 
           <PropertyLabel
-            label="المنشأ"
+            label={dict.stylePanel.backgrounds.origin}
             description={propertyDescriptions.backgroundOrigin}
             properties={["background-origin"]}
           />
@@ -409,6 +395,7 @@ const OtherLayerProperties = ({ index }: { index: number }) => {
 
 export const BackgroundContent = ({ index }: { index: number }) => {
   const readonly = useReadonly();
+  const { dict } = useLocale();
   const backgroundImage = useComputedStyleDecl("background-image");
   const backgroundStyleItem = getBackgroundStyleItem(backgroundImage, index);
 
@@ -431,7 +418,7 @@ export const BackgroundContent = ({ index }: { index: number }) => {
         shrink={false}
       >
         <PropertyInlineLabel
-          label="النوع"
+          label={dict.stylePanel.backgrounds.typeLabel}
           description={propertyDescriptions.backgroundImage}
         />
         <BackgroundTypeToggle

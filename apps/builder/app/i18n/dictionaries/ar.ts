@@ -35,6 +35,58 @@ export const ar: Dictionary = {
         featureSection: "قسم الميزات",
         footerColumns: "أعمدة التذييل",
       },
+      backgrounds: {
+        typeLabel: "النوع",
+        typeGroupLabel: "نوع الخلفية",
+        otherProperties: "خصائص إضافية",
+        blendMode: "وضع المزج",
+        repeat: "التكرار",
+        attachment: "التثبيت",
+        clip: "القص",
+        origin: "المنشأ",
+        repeatTitle: "تكرار الخلفية",
+        repeatAria: {
+          "no-repeat": "عدم تكرار الخلفية",
+          repeat: "تكرار الخلفية",
+          "repeat-y": "تكرار الخلفية عموديًا",
+          "repeat-x": "تكرار الخلفية أفقيًا",
+        },
+        repeatValues: {
+          "no-repeat":
+            "تشير هذه القيمة إلى أن صورة الخلفية لن تُكرر وستظهر مرة واحدة فقط.",
+          repeat:
+            "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا وعموديًا لتملأ منطقة الخلفية بالكامل.",
+          "repeat-y": "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر عموديًا فقط.",
+          "repeat-x": "تشير هذه القيمة إلى أن صورة الخلفية ستُكرر أفقيًا فقط.",
+        },
+        attachmentTitle: "تثبيت الخلفية",
+        attachmentValues: { scroll: "تمرير", fixed: "ثابت" },
+        types: {
+          image: {
+            label: "صورة",
+            description:
+              "استخدم وسيط صورة أو رابطًا بعيدًا أو data URI كخلفية للطبقة.",
+          },
+          solid: {
+            label: "لون ثابت",
+            description:
+              "استخدم طبقة بلون واحد مع الاحتفاظ بالتحكم في ترتيب التراص.",
+          },
+          linearGradient: {
+            label: "تدرج خطي",
+            description: "امزج عدة ألوان على طول خط لإنشاء انتقالات سلسة.",
+          },
+          radialGradient: {
+            label: "تدرج شعاعي",
+            description: "امزج عدة ألوان بنمط دائري لإنشاء انتقالات سلسة.",
+          },
+          conicGradient: {
+            label: "تدرج مخروطي",
+            description:
+              "لفّ الألوان حول نقطة مركزية للمخططات والأقراص وتأثيرات الإضاءة الموجهة.",
+          },
+        },
+      },
     },
   },
   locale: {
