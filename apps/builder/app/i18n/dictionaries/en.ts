@@ -1,17 +1,11 @@
 /**
- * Canonical dictionary shape and English reference strings. This build only
- * ever renders `ar` (see ../dictionaries/index.ts) — English exists here so
- * `Dictionary = typeof en` gives every other dictionary compile-time key
- * parity, and so translators have a source string to work from.
+ * Canonical dictionary shape and English reference strings.
+ * Every other dictionary must satisfy `Dictionary = typeof en`.
  */
-// Deliberately no `as const`: that would freeze every leaf to its own string
-// literal type, so ar.ts (a different string per key, same shape) would fail
-// to type-check against `Dictionary = typeof en`. Plain `string` keeps the
-// key-shape check without pinning the values.
 export const en = {
   auth: {
     login: {
-      welcome: "Welcome to Webstudio",
+      welcome: "Welcome to YBNY Studio",
       continueWithGoogle: "Log in with Google",
       continueWithGithub: "Log in with GitHub",
     },
@@ -21,6 +15,57 @@ export const en = {
       emailPlaceholder: "Email (optional)",
       defaultPlanOption: "Default plan",
       submit: "Log in",
+    },
+  },
+  common: {
+    save: "Save",
+    saved: "Saved",
+    cancel: "Cancel",
+    delete: "Delete",
+    edit: "Edit",
+    create: "Create",
+    back: "Back",
+    loading: "Loading...",
+    close: "Close",
+    publish: "Publish",
+    share: "Share",
+    preview: "Preview",
+  },
+  sidebar: {
+    components: "Components",
+    pages: "Pages",
+    navigator: "Navigator",
+    assets: "Assets",
+    marketplace: "Marketplace",
+    help: "Learn or get help",
+  },
+  components: {
+    title: "Components",
+    searchPlaceholder: "Search components",
+    noResults: "No matching components",
+    categories: {
+      general: "Structure & General",
+      typography: "Typography & Text",
+      media: "Media & Images",
+      forms: "Forms & Inputs",
+      radix: "Interactive Components",
+      data: "Data & Collections",
+      animations: "Animations",
+      localization: "Languages & Localization",
+      found: "Search Results",
+      other: "Other Components",
+    },
+  },
+  marketplace: {
+    title: "Marketplace",
+    categories: {
+      sectionTemplates: "Sections",
+      pageTemplates: "Pages & Themes",
+      integrationTemplates: "Integrations",
+    },
+    emptyState: {
+      title: "No approved themes or templates in this section yet",
+      description: "Approved YBNY Arabic templates will appear here once authored and published.",
     },
   },
 };
