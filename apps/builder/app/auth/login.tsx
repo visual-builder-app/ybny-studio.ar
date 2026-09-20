@@ -10,7 +10,8 @@ import {
 import { GithubIcon, GoogleIcon, WebstudioIcon } from "@webstudio-is/icons";
 import { Form } from "@remix-run/react";
 import { authPath } from "~/shared/router-utils";
-import { dict } from "~/i18n";
+import { useLocale } from "~/i18n/context";
+import { LanguageSwitcher } from "~/i18n/language-switcher";
 import { SecretLogin } from "./secret-login";
 
 export type LoginProps = {
@@ -28,16 +29,27 @@ export const Login = ({
   isSecretLoginEnabled,
   devPlanNames,
 }: LoginProps) => {
+  const { dict } = useLocale();
   return (
     <Flex
       align="center"
       justify="center"
       css={{
         height: "100vh",
+        position: "relative",
         color: cssVar("--foreground-primary"),
         background: webstudioBrand.backgroundGradient,
       }}
     >
+      <Flex
+        css={{
+          position: "absolute",
+          insetBlockStart: theme.spacing[4],
+          insetInlineEnd: theme.spacing[4],
+        }}
+      >
+        <LanguageSwitcher />
+      </Flex>
       <Flex
         direction="column"
         align="center"

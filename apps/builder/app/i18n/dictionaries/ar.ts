@@ -5,6 +5,9 @@ import type { Dictionary } from "./index";
  * Any missing or extraneous key is a TypeScript compile error.
  */
 export const ar: Dictionary = {
+  locale: {
+    switchLabel: "تغيير اللغة",
+  },
   auth: {
     login: {
       welcome: "مرحبًا بك في استوديو يبني",
@@ -67,7 +70,8 @@ export const ar: Dictionary = {
     },
     emptyState: {
       title: "لا توجد ثيمات أو قوالب معتمدة في هذا القسم حالياً",
-      description: "ستظهر هنا قوالب يبني العربية فور تصميمها واعتمادها في النظام.",
+      description:
+        "ستظهر هنا قوالب يبني العربية فور تصميمها واعتمادها في النظام.",
     },
   },
 };

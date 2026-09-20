@@ -1,13 +1,14 @@
 import { Button, Flex, InputField, theme } from "@webstudio-is/design-system";
 import { useState } from "react";
 import { authPath } from "~/shared/router-utils";
-import { dict } from "~/i18n";
+import { useLocale } from "~/i18n/context";
 
 type SecretLoginProps = {
   devPlanNames?: string[];
 };
 
 export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
+  const { dict } = useLocale();
   const [show, setShow] = useState(true);
   if (show) {
     return (
@@ -33,7 +34,9 @@ export const SecretLogin = ({ devPlanNames }: SecretLoginProps) => {
           />
           {devPlanNames && devPlanNames.length > 0 && (
             <select name="devPlan">
-              <option value="">{dict.auth.secretLogin.defaultPlanOption}</option>
+              <option value="">
+                {dict.auth.secretLogin.defaultPlanOption}
+              </option>
               {devPlanNames.map((name) => (
                 <option key={name} value={name}>
                   {name}

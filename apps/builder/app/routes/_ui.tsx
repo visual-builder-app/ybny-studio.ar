@@ -31,6 +31,13 @@ import {
   parseColorSchemeCookie,
   type ColorSchemePreference,
 } from "~/shared/color-scheme";
+import { LocaleProvider } from "~/i18n/context";
+import {
+  defaultLocale,
+  dirFor,
+  parseLocaleCookie,
+  type Locale,
+} from "~/i18n/locale";
 
 export const links: LinksFunction = () => {
   // `links` returns an array of objects whose
@@ -41,9 +48,11 @@ export const links: LinksFunction = () => {
 const Document = (props: {
   children: React.ReactNode;
   colorScheme?: ColorSchemePreference;
+  locale?: Locale;
 }) => {
+  const locale = props.locale ?? defaultLocale;
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang={locale} dir={dirFor(locale)} suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -77,12 +86,18 @@ const Document = (props: {
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const [csrfToken, setCookieValue] = await getCsrfTokenAndCookie(request);
+  // The interface locale is cookie-driven: Arabic unless the visitor chose
+  // English through the switcher. Read server-side so the very first response
+  // already carries the right <html lang dir> with no flash.
+  const locale =
+    parseLocaleCookie(request.headers.get("Cookie")) ?? defaultLocale;
 
   if (request.headers.get("sec-fetch-mode") !== "navigate") {
     return json(
       {
         csrfToken: "",
         colorScheme: parseColorSchemeCookie(request.headers.get("Cookie")),
+        locale,
       },
       { headers: privateNoStoreResponseHeaders }
     );
@@ -98,6 +113,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     {
       csrfToken,
       colorScheme: parseColorSchemeCookie(request.headers.get("Cookie")),
+      locale,
     },
     {
       headers,
@@ -126,16 +142,20 @@ clientLoader.hydrate = true;
 export const ErrorBoundary = () => {
   return (
     <Document>
-      <ErrorBoundaryComponent />
+      <LocaleProvider>
+        <ErrorBoundaryComponent />
+      </LocaleProvider>
     </Document>
   );
 };
 
 export default function Layout() {
-  const { colorScheme } = useLoaderData<typeof loader>();
+  const { colorScheme, locale } = useLoaderData<typeof loader>();
   return (
-    <Document colorScheme={colorScheme}>
-      <Outlet />
+    <Document colorScheme={colorScheme} locale={locale}>
+      <LocaleProvider initialLocale={locale}>
+        <Outlet />
+      </LocaleProvider>
     </Document>
   );
 }

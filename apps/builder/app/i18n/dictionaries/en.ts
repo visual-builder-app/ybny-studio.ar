@@ -3,6 +3,9 @@
  * Every other dictionary must satisfy `Dictionary = typeof en`.
  */
 export const en = {
+  locale: {
+    switchLabel: "Switch language",
+  },
   auth: {
     login: {
       welcome: "Welcome to YBNY Studio",
@@ -65,7 +68,8 @@ export const en = {
     },
     emptyState: {
       title: "No approved themes or templates in this section yet",
-      description: "Approved YBNY Arabic templates will appear here once authored and published.",
+      description:
+        "Approved YBNY Arabic templates will appear here once authored and published.",
     },
   },
 };
