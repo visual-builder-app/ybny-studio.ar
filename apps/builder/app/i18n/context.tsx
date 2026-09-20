@@ -35,6 +35,16 @@ const fallbackContext: LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue>(fallbackContext);
 
+/**
+ * Active dictionary for non-React call sites — plain helper functions that
+ * show toasts and cannot call a hook. `LocaleProvider` publishes its
+ * dictionary here on every render; outside the provider the default-locale
+ * dictionary is returned, so a helper always gets a complete dictionary.
+ */
+let activeDictionary: Dictionary = fallbackContext.dict;
+
+export const getActiveDictionary = (): Dictionary => activeDictionary;
+
 const oneYearInSeconds = 60 * 60 * 24 * 365;
 
 export const LocaleProvider = ({
@@ -59,15 +69,11 @@ export const LocaleProvider = ({
     document.cookie = `${localeCookieName}=${next}; path=/; max-age=${oneYearInSeconds}; samesite=lax`;
   }, []);
 
-  const value = useMemo<LocaleContextValue>(
-    () => ({
-      locale,
-      dir: dirFor(locale),
-      dict: getDictionary(locale),
-      setLocale,
-    }),
-    [locale, setLocale]
-  );
+  const value = useMemo<LocaleContextValue>(() => {
+    const dict = getDictionary(locale);
+    activeDictionary = dict;
+    return { locale, dir: dirFor(locale), dict, setLocale };
+  }, [locale, setLocale]);
 
   return (
     <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>

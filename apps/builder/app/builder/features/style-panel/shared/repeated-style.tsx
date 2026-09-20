@@ -25,6 +25,7 @@ import { repeatUntil } from "~/shared/array-utils";
 import type { ComputedStyleDecl } from "~/shared/style-object-model";
 import { useReadonly } from "./readonly";
 import { createBatchUpdate, type StyleUpdateOptions } from "./use-style-data";
+import { getActiveDictionary } from "~/i18n/context";
 
 const isRepeatedValue = (
   styleValue: StyleValue
@@ -139,7 +140,7 @@ export const addRepeatedStyleItem = (
   if (styles[0].cascadedValue.type === "var") {
     const primaryValue = reparseComputedValue(styles[0]);
     if (isRepeatedValue(primaryValue) && primaryValue.value.length > 1) {
-      toast.error("لا يمكن إضافة أنماط إلى متغير CSS");
+      toast.error(getActiveDictionary().stylePanel.repeatedStyle.varAddError);
       return;
     }
   }
@@ -334,7 +335,7 @@ export const swapRepeatedStyleItems = (
   newIndex: number
 ) => {
   if (styles[0].cascadedValue.type === "var") {
-    toast.error("لا يمكن إعادة ترتيب الأنماط من متغير CSS");
+    toast.error(getActiveDictionary().stylePanel.repeatedStyle.varReorderError);
     return;
   }
   const batch = createBatchUpdate();

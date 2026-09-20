@@ -30,6 +30,7 @@ import { StyleSourceBadge } from "./style-source";
 import { createBatchUpdate } from "./shared/use-style-data";
 import { $virtualInstances } from "~/shared/nano-states";
 import { getInstanceLabel } from "~/builder/shared/instance-label";
+import { useLocale } from "~/i18n/context";
 
 const $isAltPressed = atom(false);
 if (typeof window !== "undefined") {
@@ -76,6 +77,7 @@ export const PropertyInfo = ({
   onReset?: () => void;
   resetType?: "reset" | "delete";
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const breakpoints = useStore($breakpoints);
   const instances = useStore($instances);
@@ -109,9 +111,19 @@ export const PropertyInfo = ({
       : undefined;
     if (styleSource) {
       const styleSourceName =
-        styleSource.type === "token" ? styleSource.name : "محلي";
+        styleSource.type === "token"
+          ? styleSource.name
+          : dict.stylePanel.propertyLabel.local;
       if (source.state) {
         const stateLabel =
+          (source.state
+            ? (
+                dict.stylePanel.styleSourceStates as Record<
+                  string,
+                  string | undefined
+                >
+              )[source.state]
+            : undefined) ??
           meta?.states?.find((item) => item.selector === source.state)?.label ??
           humanizeString(source.state);
         styleSourceNameSet.add(`${styleSourceName} (${stateLabel})`);
@@ -123,7 +135,7 @@ export const PropertyInfo = ({
       breakpointSet.add(
         breakpoint?.minWidth?.toString() ??
           breakpoint?.maxWidth?.toString() ??
-          "الأساس"
+          dict.stylePanel.propertyLabel.baseBreakpoint
       );
     }
     if (instance && meta) {
@@ -163,7 +175,9 @@ export const PropertyInfo = ({
           gap="1"
           css={{ paddingBottom: theme.spacing[5] }}
         >
-          <Text color="moreSubtle">مصدر القيمة</Text>
+          <Text color="moreSubtle">
+            {dict.stylePanel.propertyLabel.valueSource}
+          </Text>
           <Flex gap="1" wrap="wrap">
             {Array.from(breakpointSet).map((label) => (
               <StyleSourceBadge key={label} source="breakpoint" variant="small">
@@ -173,7 +187,11 @@ export const PropertyInfo = ({
             {Array.from(styleSourceNameSet).map((label) => (
               <StyleSourceBadge
                 key={label}
-                source={label === "محلي" ? "local" : "token"}
+                source={
+                  label === dict.stylePanel.propertyLabel.local
+                    ? "local"
+                    : "token"
+                }
                 variant="small"
               >
                 {label}
@@ -199,7 +217,9 @@ export const PropertyInfo = ({
           css={{ gridTemplateColumns: "1fr max-content 1fr" }}
           onClick={onReset}
         >
-          {resetType === "delete" ? "حذف الخاصية" : "إعادة تعيين القيمة"}
+          {resetType === "delete"
+            ? dict.stylePanel.propertyLabel.deleteProperty
+            : dict.stylePanel.propertyLabel.resetValue}
         </Button>
       )}
     </Flex>
@@ -386,6 +406,7 @@ export const PropertyValueTooltip = ({
   isAdvanced?: boolean;
   children: ReactNode;
 }) => {
+  const { dict } = useLocale();
   const styles = useComputedStyles(properties);
   const readonly = useReadonly();
   const [isOpen, setIsOpen] = useState(false);
@@ -426,8 +447,8 @@ export const PropertyValueTooltip = ({
               {description}
               {isAdvanced && (
                 <Flex gap="1">
-                  <AlertIcon color={cssVar("--foreground-warning")} /> تم
-                  تعريف هذه القيمة في القسم المتقدم.
+                  <AlertIcon color={cssVar("--foreground-warning")} />{" "}
+                  {dict.stylePanel.propertyLabel.advancedValueWarning}
                 </Flex>
               )}
             </Flex>

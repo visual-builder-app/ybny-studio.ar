@@ -36,11 +36,13 @@ import {
   setRepeatedStyleItem,
 } from "../../shared/repeated-style";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 const getLayer = (value: undefined | StyleValue, index: number) =>
   value?.type === "layers" ? value.value[index] : undefined;
 
 export const TransitionContent = ({ index }: { index: number }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styles = useComputedStyles([
     "transition-property",
@@ -131,7 +133,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         }}
       >
         <PropertyInlineLabel
-          label="الخاصية"
+          label={dict.stylePanel.transitions.property}
           description={propertyDescriptions.transitionProperty}
           properties={["transition-property"]}
         />
@@ -145,7 +147,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="المدة"
+          label={dict.stylePanel.transitions.duration}
           description={propertyDescriptions.transitionDuration}
           properties={["transition-duration"]}
         />
@@ -171,7 +173,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="التأخير"
+          label={dict.stylePanel.transitions.delay}
           description={propertyDescriptions.transitionDelay}
           properties={["transition-delay"]}
         />
@@ -197,7 +199,7 @@ export const TransitionContent = ({ index }: { index: number }) => {
         />
 
         <PropertyInlineLabel
-          label="التخفيف"
+          label={dict.stylePanel.transitions.timingFunction}
           description={propertyDescriptions.transitionTimingFunction}
           properties={["transition-timing-function"]}
         />
@@ -256,13 +258,13 @@ export const TransitionContent = ({ index }: { index: number }) => {
       >
         <Label>
           <Flex align="center" gap="1">
-            الكود
+            {dict.stylePanel.transitions.code}
             <Tooltip
               variant="wrapped"
               content={
                 <Text>
-                  الصق كود CSS لانتقال كامل أو جزء من انتقال، على سبيل
-                  المثال:
+                  {dict.stylePanel.transitions.codeHint}
+
                   <br />
                   <br />
                   <Text variant="monoBold">opacity 200ms ease 0s</Text>
