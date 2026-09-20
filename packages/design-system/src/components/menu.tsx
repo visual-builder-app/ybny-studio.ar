@@ -41,7 +41,7 @@ export const menuItemIndicatorCss = css({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  left: theme.spacing[3],
+  insetInlineStart: theme.spacing[3],
   width: indicatorSize,
   height: indicatorSize,
 });
@@ -76,7 +76,7 @@ export const menuItemCss = css({
     },
     withIndicator: {
       true: {
-        paddingLeft: `calc(${theme.spacing[3]} + ${indicatorSize} + ${theme.spacing[3]})`,
+        paddingInlineStart: `calc(${theme.spacing[3]} + ${indicatorSize} + ${theme.spacing[3]})`,
       },
     },
     destructive: {

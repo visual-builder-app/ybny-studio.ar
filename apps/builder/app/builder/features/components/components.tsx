@@ -81,7 +81,12 @@ const filterAndGroupComponents = ({
   if (search.length > 0) {
     const metas = groups.map((group) => group.metas).flat();
     const matched = matchSorter(metas, search, {
-      keys: ["label"],
+      keys: [
+        "label",
+        "name",
+        ({ name }) => $registeredComponentMetas.get().get(name)?.label ?? "",
+        ({ name }) => $registeredTemplates.get().get(name)?.label ?? "",
+      ],
     });
     groups = [{ category: "found", metas: matched }];
   }
@@ -93,7 +98,7 @@ const filterAndGroupComponents = ({
 
 const findComponentIndex = (groups: Groups, selectedComponent?: string) => {
   if (selectedComponent === undefined) {
-    return { index: -1, metas: groups[0].metas };
+    return { index: -1, metas: groups[0]?.metas ?? [] };
   }
 
   for (const { metas } of groups) {
@@ -115,6 +120,7 @@ const categoryArabicLabels: Record<string, string> = {
   radix: "المكوّنات التفاعلية",
   data: "البيانات والمجموعات",
   animations: "الرسوم المتحركة",
+  localization: "اللغات والترجمة",
   found: "نتائج البحث",
   other: "مكوّنات أخرى",
 };
@@ -141,7 +147,7 @@ export const ComponentsPanel = ({
     // When user didn't select a component but they have search input,
     // we want to always have the first component selected, so that user can just hit enter.
     if (selectedComponent === undefined && searchFieldProps.value) {
-      return groups[0].metas[0].name;
+      return groups[0]?.metas[0]?.name;
     }
     return selectedComponent;
   };
@@ -195,9 +201,16 @@ export const ComponentsPanel = ({
       <Separator />
 
       <ScrollArea ref={draggableContainerRef}>
+        {groups.length === 0 && (
+          <Flex grow justify="center" css={{ py: theme.spacing[10] }}>
+            <Text role="status">لا يوجد مكوّن مطابق</Text>
+          </Flex>
+        )}
         {groups.map((group) => (
           <CollapsibleSection
-            label={categoryArabicLabels[group.category] ?? titleCase(group.category)}
+            label={
+              categoryArabicLabels[group.category] ?? titleCase(group.category)
+            }
             key={group.category}
             fullWidth
           >
@@ -242,11 +255,6 @@ export const ComponentsPanel = ({
                   </ListItem>
                 ))}
                 {dragCard}
-                {group.metas.length === 0 && (
-                  <Flex grow justify="center" css={{ py: theme.spacing[10] }}>
-                    <Text>لا يوجد مكوّن مطابق</Text>
-                  </Flex>
-                )}
               </Flex>
             </List>
           </CollapsibleSection>

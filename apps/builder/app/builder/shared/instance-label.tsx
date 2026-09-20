@@ -154,20 +154,54 @@ export const componentArabicLabels: Record<string, string> = {
   Tabs: "تبويبات",
   Accordion: "قائمة مطوية",
   Dialog: "نافذة منبثقة",
+  Sheet: "لوحة جانبية منبثقة",
   Collapsible: "لوحة قابلة للطي",
   Popover: "تلميح منبثق",
   Tooltip: "تلميح",
   DropdownMenu: "قائمة منسدلة",
+  Switch: "مفتاح تبديل",
+  RadioGroup: "مجموعة خيارات",
+  NavigationMenu: "قائمة تنقل",
 
   // الوقت والبيانات
   Time: "وقت وتاريخ",
   ContentBlock: "كتلة محتوى",
+
+  // Namespaced identifiers must be matched exactly, never by a short name.
+  "ws:element": "عنصر",
+  "ws:collection": "مجموعة بيانات",
+  "@webstudio-is/sdk-components-react-radix:Tabs": "تبويبات",
+  "@webstudio-is/sdk-components-react-radix:Accordion": "قائمة مطوية",
+  "@webstudio-is/sdk-components-react-radix:Dialog": "نافذة منبثقة",
+  "@webstudio-is/sdk-components-react-radix:Sheet": "لوحة جانبية منبثقة",
+  "@webstudio-is/sdk-components-react-radix:Collapsible": "لوحة قابلة للطي",
+  "@webstudio-is/sdk-components-react-radix:Popover": "تلميح منبثق",
+  "@webstudio-is/sdk-components-react-radix:Tooltip": "تلميح",
+  "@webstudio-is/sdk-components-react-radix:Select": "قائمة اختيار",
+  "@webstudio-is/sdk-components-react-radix:Checkbox": "مربع اختيار",
+  "@webstudio-is/sdk-components-react-radix:Switch": "مفتاح تبديل",
+  "@webstudio-is/sdk-components-react-radix:RadioGroup": "مجموعة خيارات",
+  "@webstudio-is/sdk-components-react-radix:NavigationMenu": "قائمة تنقل",
+  "@webstudio-is/sdk-components-react-radix:DropdownMenu": "قائمة منسدلة",
+  "@webstudio-is/sdk-components-react-radix:Label": "تسمية",
 };
 
-const getLabelFromComponentName = (component: Instance["component"]) => {
-  const [_namespace, componentName] = parseComponentName(component);
+const getLabelFromComponentName = (
+  component: Instance["component"],
+  fallback?: string
+) => {
+  const [namespace, componentName] = parseComponentName(component);
   const humanized = humanizeString(componentName);
-  return componentArabicLabels[humanized] ?? componentArabicLabels[componentName] ?? humanized;
+  if (Object.hasOwn(componentArabicLabels, component)) {
+    return componentArabicLabels[component];
+  }
+  if (
+    namespace === undefined &&
+    Object.hasOwn(componentArabicLabels, humanized)
+  ) {
+    return componentArabicLabels[humanized];
+  }
+  return fallback || humanized;
 };
 
 export const getInstanceLabel = (
@@ -185,11 +219,10 @@ export const getInstanceLabel = (
   }
 
   if (instanceOrInstanceId.label) {
-    return componentArabicLabels[instanceOrInstanceId.label] ?? instanceOrInstanceId.label;
+    return instanceOrInstanceId.label;
   }
   if (instanceOrInstanceId.name) {
-    const humanized = humanizeString(instanceOrInstanceId.name);
-    return componentArabicLabels[humanized] ?? humanized;
+    return humanizeString(instanceOrInstanceId.name);
   }
   if (
     instanceOrInstanceId.component === elementComponent &&
@@ -200,6 +233,5 @@ export const getInstanceLabel = (
   const meta = $registeredComponentMetas
     .get()
     .get(instanceOrInstanceId.component);
-  const rawLabel = meta?.label || getLabelFromComponentName(instanceOrInstanceId.component);
-  return componentArabicLabels[rawLabel] ?? rawLabel;
+  return getLabelFromComponentName(instanceOrInstanceId.component, meta?.label);
 };

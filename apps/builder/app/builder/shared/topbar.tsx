@@ -1,4 +1,6 @@
 import { useStore } from "@nanostores/react";
+import { SettingsIcon } from "@webstudio-is/icons";
+import { $isCompactEditor, $isCompactInspectorOpen, compactEditorMediaQuery } from "./responsive-layout";
 import {
   Box,
   Flex,
@@ -15,7 +17,7 @@ import {
 import type { Project } from "@webstudio-is/project";
 import { isPage, isPageTemplate } from "@webstudio-is/sdk";
 import { $pages } from "~/shared/sync/data-stores";
-import { $editingPageId, $editingTemplateId } from "~/shared/nano-states";
+import { $editingPageId, $editingTemplateId, $isPreviewMode } from "~/shared/nano-states";
 
 import { ShareButton } from "~/builder/features/share";
 import { PublishButton } from "~/builder/features/publish";
@@ -27,6 +29,7 @@ import { AddressBarPopover } from "~/builder/features/address-bar";
 import {
   $activeSidebarPanel,
   toggleActiveSidebarPanel,
+  setActiveSidebarPanel,
 } from "~/builder/shared/nano-states";
 import {
   useEffect,
@@ -52,6 +55,11 @@ const topbarContainerStyle = css({
   height: theme.spacing[15],
   paddingRight: theme.panel.paddingInline,
   color: cssVar("--foreground-primary"),
+  [`@media ${compactEditorMediaQuery}`]: {
+    flexWrap: "wrap",
+    height: "auto",
+    minHeight: theme.spacing[15],
+  },
 });
 
 type TopbarLayoutProps = Omit<ComponentProps<"nav">, "className"> & {
@@ -73,7 +81,7 @@ export const TopbarLayout = ({
   ...navProps
 }: TopbarLayoutProps) => (
   <nav {...navProps} className={topbarContainerStyle({ css })}>
-    <Flex css={{ flexBasis: "20%" }}>
+    <Flex css={{ flexBasis: "20%", [`@media ${compactEditorMediaQuery}`]: { flexBasis: "auto" } }}>
       <Flex
         grow={false}
         shrink={false}
@@ -161,6 +169,37 @@ const PagesButton = () => {
   );
 };
 
+const CompactInspectorToggle = () => {
+  const isCompact = useStore($isCompactEditor);
+  const isOpen = useStore($isCompactInspectorOpen);
+  const isPreviewMode = useStore($isPreviewMode);
+  if (!isCompact || isPreviewMode) {
+    return null;
+  }
+  return (
+    <Tooltip content="الأنماط والإعدادات">
+      <IconButton
+        id="builder-inspector-toggle"
+        type="button"
+        aria-label="الأنماط والإعدادات"
+        aria-controls="builder-inspector-panel"
+        aria-expanded={isOpen}
+        onClick={() => {
+          setActiveSidebarPanel("none");
+          $isCompactInspectorOpen.set(!isOpen);
+          if (!isOpen) {
+            requestAnimationFrame(() => {
+              document.getElementById("builder-inspector-panel")?.focus();
+            });
+          }
+        }}
+      >
+        <SettingsIcon />
+      </IconButton>
+    </Tooltip>
+  );
+};
+
 type TopbarProps = {
   project: Project;
   loading: ReactNode;
@@ -237,12 +276,15 @@ export const Topbar = ({ project, css, loading, isUiHidden }: TopbarProps) => {
         {...pointerHandlers}
         menu={<Menu />}
         left={
-          pages ? (
-            <>
-              <PagesButton />
-              <AddressBarPopover />
-            </>
-          ) : undefined
+          <>
+            <CompactInspectorToggle />
+            {pages && (
+              <>
+                <PagesButton />
+                <AddressBarPopover />
+              </>
+            )}
+          </>
         }
         center={<BreakpointsContainer />}
         right={

@@ -5,6 +5,8 @@ import {
   theme,
   Box,
   Toaster,
+  IconButton,
+  Text,
   type CSS,
   Flex,
   Grid,
@@ -88,6 +90,11 @@ import {
 import type { SidebarPanelName } from "./sidebar-left/types";
 import { SidebarLeft } from "./sidebar-left/sidebar-left";
 import { useDisableContextMenu } from "./shared/use-disable-context-menu";
+import {
+  $effectiveNavigatorLayout,
+  $isCompactEditor,
+  $isCompactInspectorOpen,
+} from "./shared/responsive-layout";
 
 const useSetWindowTitle = () => {
   const project = useStore($project);
@@ -109,9 +116,26 @@ const SidePanel = ({
   gridArea,
   css,
 }: SidePanelProps) => {
+  const isCompact = useStore($isCompactEditor);
+  const isInspectorOpen = useStore($isCompactInspectorOpen);
+  const isCompactInspector = isCompact && gridArea === "inspector";
+  const closeInspector = () => {
+    $isCompactInspectorOpen.set(false);
+    document.getElementById("builder-inspector-toggle")?.focus();
+  };
   return (
     <Box
       as="aside"
+      id={gridArea === "inspector" ? "builder-inspector-panel" : undefined}
+      aria-label={gridArea === "inspector" ? "الأنماط والإعدادات" : undefined}
+      tabIndex={isCompactInspector ? -1 : undefined}
+      onKeyDown={(event) => {
+        if (isCompactInspector && event.key === "Escape" && !event.defaultPrevented) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeInspector();
+        }
+      }}
       css={{
         position: "relative",
         isolation: "isolate",
@@ -124,9 +148,27 @@ const SidePanel = ({
         //overflowY: "auto",
         backgroundColor: cssVar("--background-primary"),
         height: "100%",
+        minWidth: 0,
+        minHeight: 0,
         ...css,
+        ...(isCompactInspector && {
+          gridArea: "main",
+          position: "absolute",
+          insetBlock: 0,
+          insetInlineEnd: 0,
+          zIndex: 2,
+          width: `min(${theme.sizes.sidebarWidth}, 100%)`,
+          display: !isInspectorOpen || isPreviewMode || css?.display === "none" ? "none" : "flex",
+          boxShadow: `0 0 0 1px ${cssVar("--border-default")}`,
+        }),
       }}
     >
+      {isCompactInspector && (
+        <Flex align="center" justify="between" css={{ flexShrink: 0, padding: theme.spacing[3] }}>
+          <Text variant="titles">الأنماط والإعدادات</Text>
+          <IconButton aria-label="إغلاق لوحة الخصائص" onClick={closeInspector}>×</IconButton>
+        </Flex>
+      )}
       {children}
     </Box>
   );
@@ -138,6 +180,8 @@ const Main = ({ children, css }: { children: ReactNode; css?: CSS }) => (
     direction="column"
     css={{
       gridArea: "main",
+      minWidth: 0,
+      minHeight: 0,
       position: "relative",
       isolation: "isolate",
       ...css,
@@ -161,12 +205,14 @@ const getChromeLayout = ({
   navigatorLayout,
   activeSidebarPanel,
   leftSidebarWidth,
+  isCompact = false,
 }: {
   isPreviewMode: boolean;
   isUiHidden: boolean;
   navigatorLayout: Settings["navigatorLayout"];
   activeSidebarPanel?: SidebarPanelName;
   leftSidebarWidth: number;
+  isCompact?: boolean;
 }) => {
   if (isUiHidden) {
     return {
@@ -179,9 +225,9 @@ const getChromeLayout = ({
     };
   }
 
-  if (isPreviewMode) {
+  if (isPreviewMode || isCompact) {
     return {
-      gridTemplateColumns: "auto 1fr",
+      gridTemplateColumns: "auto minmax(0, 1fr)",
       gridTemplateAreas: `
             "header header"
             "sidebar main"
@@ -192,7 +238,7 @@ const getChromeLayout = ({
 
   if (navigatorLayout === "undocked" && activeSidebarPanel !== "none") {
     return {
-      gridTemplateColumns: `auto ${leftSidebarWidth}px 1fr ${theme.sizes.sidebarWidth}`,
+      gridTemplateColumns: `auto ${leftSidebarWidth}px minmax(0, 1fr) ${theme.sizes.sidebarWidth}`,
       gridTemplateAreas: `
             "header header header header"
             "sidebar navigator main inspector"
@@ -202,7 +248,7 @@ const getChromeLayout = ({
   }
 
   return {
-    gridTemplateColumns: `auto 1fr ${theme.sizes.sidebarWidth}`,
+    gridTemplateColumns: `auto minmax(0, 1fr) ${theme.sizes.sidebarWidth}`,
     gridTemplateAreas: `
           "header header header"
           "sidebar main inspector"
@@ -220,6 +266,7 @@ const ChromeWrapper = ({
   isUiHidden,
   navigatorLayout,
 }: ChromeWrapperProps) => {
+  const isCompact = useStore($isCompactEditor);
   const activeSidebarPanel = useStore($activeSidebarPanel);
   const settings = useStore($settings);
   const leftSidebarWidth =
@@ -234,6 +281,7 @@ const ChromeWrapper = ({
     navigatorLayout,
     activeSidebarPanel,
     leftSidebarWidth,
+    isCompact,
   });
 
   return (
@@ -243,7 +291,7 @@ const ChromeWrapper = ({
         height: "100vh",
         overflow: "hidden",
         display: "grid",
-        gridTemplateRows: `${isUiHidden ? "0" : "auto"} 1fr ${
+        gridTemplateRows: `${isUiHidden ? "0" : "auto"} minmax(0, 1fr) ${
           isFooterVisible ? "auto" : "0"
         }`,
         ...gridLayout,
@@ -253,6 +301,9 @@ const ChromeWrapper = ({
     </Grid>
   );
 };
+
+// Shared by browser regression tests and isolated editor-shell stories.
+export const __testing__ = { ChromeWrapper, Main, SidePanel };
 
 export type BuilderProps = {
   projectId: string;
@@ -363,7 +414,7 @@ export const Builder = (props: BuilderProps) => {
     [publishRef]
   );
 
-  const { navigatorLayout } = useStore($settings);
+  const navigatorLayout = useStore($effectiveNavigatorLayout);
   const [loadingState, setLoadingState] = useState(() => $loadingState.get());
 
   useEffect(() => {
@@ -431,7 +482,7 @@ export const Builder = (props: BuilderProps) => {
             data-dialog-boundary
             css={{
               display: isUiHidden ? "none" : "block",
-              gridArea: "sidebar / sidebar / main / inspector",
+              gridArea: "2 / 1 / 3 / -1",
               pointerEvents: "none",
             }}
           />

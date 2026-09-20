@@ -103,12 +103,9 @@ if (env.DEV_LOGIN === "true") {
           : "hello@webstudio.is";
 
       const isAuthorized =
-        (env.AUTH_SECRET !== undefined &&
-          env.AUTH_SECRET !== "" &&
-          secret === env.AUTH_SECRET) ||
-        secret === "ybny2026" ||
-        secret === "admin" ||
-        secret === "123456";
+        env.AUTH_SECRET !== undefined &&
+        env.AUTH_SECRET !== "" &&
+        secret === env.AUTH_SECRET;
 
       if (isAuthorized) {
         try {

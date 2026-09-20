@@ -52,6 +52,7 @@ import { NavigatorPanel } from "~/builder/features/navigator";
 import { AssetsPanel } from "~/builder/features/assets";
 import { MarketplacePanel } from "~/builder/features/marketplace";
 import type { SidebarPanelName } from "./types";
+import { $effectiveNavigatorLayout, $isCompactEditor } from "../shared/responsive-layout";
 
 const none = { Panel: () => null };
 
@@ -190,6 +191,8 @@ type SidebarLeftProps = {
 
 export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
   const activePanel = useStore($activeSidebarPanel);
+  const isCompact = useStore($isCompactEditor);
+  const navigatorLayout = useStore($effectiveNavigatorLayout);
   const dragAndDropState = useStore($dragAndDropState);
   const { Panel } = panels.find((item) => item.name === activePanel) ?? none;
   const isPreviewMode = useStore($isPreviewMode);
@@ -247,6 +250,7 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
 
   return (
     <SidebarTabs
+      dir="rtl"
       activationMode="manual"
       value={activePanel}
       orientation="vertical"
@@ -259,7 +263,7 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
         <Flex
           grow
           direction="column"
-          css={{ borderRight: `1px solid ${cssVar("--border-default")}` }}
+          css={{ borderInlineEnd: `1px solid ${cssVar("--border-default")}` }}
         >
           <ExternalDragDropMonitor />
           <div ref={tabsWrapperRef} style={{ display: "contents" }}>
@@ -292,7 +296,7 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
 
       <SidebarTabsContent
         value={activePanel === "none" ? "" : activePanel}
-        onResize={({ width }) => {
+        onResize={isCompact ? undefined : ({ width }) => {
           if (activePanel !== "none") {
             setSidebarPanelWidth(activePanel, width);
           }
@@ -302,18 +306,18 @@ export const SidebarLeft = ({ publish }: SidebarLeftProps) => {
             setActiveSidebarPanel("none");
           }
         }}
-        resizable
+        resizable={!isCompact}
         css={{
           [treeActionBoundary]: `${getSidebarPanelWidth(activePanel)}`,
           width: cssVar(treeActionBoundary),
-          minWidth: theme.sizes.sidebarWidth,
-          maxWidth: theme.spacing[35],
+          minWidth: `min(${theme.sizes.sidebarWidth}, calc(100vw - 100% - 8px))`,
+          maxWidth: `min(${theme.spacing[35]}, calc(100vw - 100% - 8px))`,
           // We need the node to be rendered but hidden
           // to keep receiving the drag events.
           visibility:
             dragAndDropState.isDragging &&
             dragAndDropState.dragPayload?.origin === "panel" &&
-            getSetting("navigatorLayout") !== "undocked"
+            navigatorLayout !== "undocked"
               ? "hidden"
               : "visible",
         }}

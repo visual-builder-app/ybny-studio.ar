@@ -5,7 +5,7 @@ import {
 } from "~/shared/nano-states/misc";
 import { $canvasIframeState } from "~/shared/nano-states/canvas";
 import type { SidebarPanelName } from "~/builder/sidebar-left/types";
-import { $settings, getSetting } from "./client-settings";
+import { $effectiveNavigatorLayout, $isCompactInspectorOpen } from "./responsive-layout";
 
 export const $isShareDialogOpen = atom<boolean>(false);
 
@@ -110,8 +110,8 @@ export const $loadingState = computed(
 const $activeSidebarPanel_ = atom<SidebarPanelName | undefined>();
 
 export const $activeSidebarPanel = computed(
-  [$activeSidebarPanel_, $isPreviewMode, $loadingState, $settings],
-  (currentPanel, isPreviewMode, loadingState, { navigatorLayout }) => {
+  [$activeSidebarPanel_, $isPreviewMode, $loadingState, $effectiveNavigatorLayout],
+  (currentPanel, isPreviewMode, loadingState, navigatorLayout) => {
     if (loadingState.state !== "ready") {
       return "none";
     }
@@ -129,6 +129,9 @@ export const $activeSidebarPanel = computed(
  * auto shows default panel when sidepanel is undocked and hides when docked
  */
 export const setActiveSidebarPanel = (nextPanel: "auto" | SidebarPanelName) => {
+  if (nextPanel !== "none") {
+    $isCompactInspectorOpen.set(false);
+  }
   const currentPanel = $activeSidebarPanel.get();
   // - When navigator is open, user is trying to close the navigator.
   // - Navigator is closed, user is trying to close some other panel, and if navigator is undocked, it needs to be opened.
@@ -137,7 +140,7 @@ export const setActiveSidebarPanel = (nextPanel: "auto" | SidebarPanelName) => {
       $activeSidebarPanel_.set("none");
       return;
     }
-    if (getSetting("navigatorLayout") === "undocked") {
+    if ($effectiveNavigatorLayout.get() === "undocked") {
       $activeSidebarPanel_.set("navigator");
       return;
     }

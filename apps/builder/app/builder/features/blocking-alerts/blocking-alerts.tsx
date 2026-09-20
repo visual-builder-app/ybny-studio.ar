@@ -16,12 +16,13 @@ import {
 import { $isPreviewMode } from "~/shared/nano-states";
 import { useStore } from "@nanostores/react";
 import { $loadingState } from "~/builder/shared/nano-states";
+import { minimumEditorViewportWidth } from "~/builder/shared/responsive-layout";
 
 const useTooSmallMessage = () => {
   const [message, setMessage] = useState<string>();
   const check = () => {
-    // To have more space for Chrome DevTools, we allow a smaller window size in development
-    const minWidth = process.env.NODE_ENV === "production" ? 900 : 700;
+    // The compact shell uses overlay panels at the same widths in every build.
+    const minWidth = minimumEditorViewportWidth;
     const message =
       window.innerWidth >= minWidth
         ? undefined
@@ -37,7 +38,10 @@ const useTooSmallMessage = () => {
 const useIsUnsupportedBrowser = () => {
   const [isUnsupportedBrowser, setIsUnsupportedBrowser] = useState(false);
   useEffect(() => {
-    if ("chrome" in window || isFeatureEnabled("unsupportedBrowsers")) {
+    // Embedded Chromium views can omit the non-standard window.chrome global.
+    const isChromium =
+      "chrome" in window || /(?:Chrome|Chromium)[/][0-9]/.test(navigator.userAgent);
+    if (isChromium || isFeatureEnabled("unsupportedBrowsers")) {
       return;
     }
 

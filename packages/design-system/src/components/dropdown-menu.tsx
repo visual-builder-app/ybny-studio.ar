@@ -58,12 +58,14 @@ export const DropdownMenuContent = forwardRef<
 });
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
-const SubContentStyled = styled(DropdownMenuPrimitive.SubContent, subMenuCss);
+const SubContentStyled = styled(DropdownMenuPrimitive.SubContent, subMenuCss, {
+  maxWidth: "var(--radix-popper-available-width)",
+});
 export const DropdownMenuSubContent = forwardRef<
   ElementRef<typeof SubContentStyled>,
   ComponentProps<typeof SubContentStyled>
 >((props, forwardedRef) => (
-  <SubContentStyled {...subContentProps} {...props} ref={forwardedRef} />
+  <SubContentStyled {...subContentProps} collisionPadding={8} {...props} ref={forwardedRef} />
 ));
 DropdownMenuSubContent.displayName = "DropdownMenuSubContent";
 
@@ -103,12 +105,13 @@ export const DropdownMenuItem = forwardRef<
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
 export const DropdownMenuItemRightSlot = styled("span", {
-  marginLeft: "auto",
+  marginInlineStart: "auto",
   display: "flex",
 });
 
 const SubTriggerStyled = styled(DropdownMenuPrimitive.SubTrigger, menuItemCss, {
   defaultVariants: { withIndicator: true },
+  "&:dir(rtl) > span:last-child > svg": { transform: "scaleX(-1)" },
 });
 export const DropdownMenuSubTrigger = forwardRef<
   ElementRef<typeof SubTriggerStyled>,
