@@ -46,6 +46,7 @@ import { $selectedInstancePath } from "~/shared/nano-states";
 import { selectInstance } from "~/shared/nano-states";
 import { $isStylePanelGridVisible } from "~/builder/shared/nano-states";
 import { ExternalLinkIcon } from "@webstudio-is/icons";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "grid-column-start",
@@ -130,6 +131,7 @@ const GridChildGuides = () => {
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const [columnStart, columnEnd, rowStart, rowEnd] = useComputedStyles([
     "grid-column-start",
     "grid-column-end",
@@ -225,11 +227,11 @@ export const Section = () => {
 
   return (
     <StyleSection
-      label="عنصر الشبكة"
+      label={dict.stylePanel.gridChild.title}
       properties={properties}
       suffix={
         parentInstance && (
-          <Tooltip content="تحديد حاوية الشبكة">
+          <Tooltip content={dict.stylePanel.gridChild.selectParentTooltip}>
             <SectionTitleButton
               prefix={<ExternalLinkIcon />}
               onClick={() => selectInstance(parentInstance.instanceSelector)}
@@ -262,24 +264,19 @@ const GridChildPositionMode = ({
 }) => {
   const readonly = useReadonly();
   const [activeTooltip, setActiveTooltip] = useState<string | undefined>();
+  const { dict } = useLocale();
 
   const items = [
     {
       value: "auto" as const,
-      label: "تلقائي",
-      description: "اترك الشبكة تضع هذا العنصر تلقائيًا.",
       code: "grid-column: auto;\ngrid-row: auto;",
     },
     {
       value: "area" as const,
-      label: "منطقة",
-      description: "ضع العنصر في منطقة شبكة مسماة.",
       code: "grid-area: <area-name>;",
     },
     {
       value: "manual" as const,
-      label: "يدوي",
-      description: "حدّد موضع العنصر يدويًا باستخدام خطوط الشبكة.",
       code: "grid-column: <start> / <end>;\ngrid-row: <start> / <end>;",
     },
   ];
@@ -287,8 +284,8 @@ const GridChildPositionMode = ({
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="الموضع"
-        description="كيفية وضع عنصر الشبكة داخل الشبكة"
+        label={dict.stylePanel.gridChild.positionLabel}
+        description={dict.stylePanel.gridChild.positionDescription}
         properties={[
           "grid-column-start",
           "grid-column-end",
@@ -314,9 +311,9 @@ const GridChildPositionMode = ({
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={item.value === value}
-            label={item.label}
+            label={dict.stylePanel.gridChild.modes[item.value]}
             code={item.code}
-            description={item.description}
+            description={dict.stylePanel.gridChild.modeDescriptions[item.value]}
             properties={["grid-column-start", "grid-row-start"]}
           >
             <ToggleGroupButton
@@ -327,7 +324,9 @@ const GridChildPositionMode = ({
                 )
               }
             >
-              <Box css={{ paddingInline: theme.spacing[4] }}>{item.label}</Box>
+              <Box css={{ paddingInline: theme.spacing[4] }}>
+                {dict.stylePanel.gridChild.modes[item.value]}
+              </Box>
             </ToggleGroupButton>
           </ToggleGroupTooltip>
         ))}
@@ -337,6 +336,7 @@ const GridChildPositionMode = ({
 };
 
 const GridChildPositionAuto = () => {
+  const { dict } = useLocale();
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <div />
@@ -347,13 +347,13 @@ const GridChildPositionAuto = () => {
             startProperty="grid-column-start"
           />
           <Text variant="small" color="subtle">
-            امتداد الأعمدة
+            {dict.stylePanel.gridChild.columnSpan}
           </Text>
         </Grid>
         <Grid css={{ gap: theme.spacing[3] }}>
           <SpanInput property="grid-row-end" startProperty="grid-row-start" />
           <Text variant="small" color="subtle">
-            امتداد الصفوف
+            {dict.stylePanel.gridChild.rowSpan}
           </Text>
         </Grid>
       </Grid>
@@ -500,6 +500,7 @@ const SpanInput = ({
 };
 
 const GridChildPositionArea = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const parentGridTemplateAreas = useParentComputedStyleDecl(
     "grid-template-areas"
@@ -528,11 +529,7 @@ const GridChildPositionArea = () => {
   };
 
   if (areaNames.length === 0) {
-    return (
-      <Text color="moreSubtle">
-        لا توجد مناطق مسماة. أضف مناطق في قالب الشبكة الأب.
-      </Text>
-    );
+    return <Text color="moreSubtle">{dict.stylePanel.gridChild.noAreas}</Text>;
   }
 
   return (
@@ -543,7 +540,7 @@ const GridChildPositionArea = () => {
         options={areaNames}
         value={selectedArea}
         onChange={handleAreaChange}
-        placeholder="اختر منطقة"
+        placeholder={dict.stylePanel.gridChild.selectArea}
       />
     </Grid>
   );

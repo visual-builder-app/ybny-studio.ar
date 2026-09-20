@@ -91,6 +91,22 @@ export const en = {
       shrinkLabel: "Shrink",
       basisLabel: "Basis",
     },
+    gridChild: {
+      title: "Grid child",
+      selectParentTooltip: "Select grid container",
+      positionLabel: "Position",
+      positionDescription: "How the grid item is placed inside the grid",
+      modes: { auto: "Auto", area: "Area", manual: "Manual" },
+      modeDescriptions: {
+        auto: "Let the grid place this item automatically.",
+        area: "Place the item in a named grid area.",
+        manual: "Place the item manually using grid lines.",
+      },
+      columnSpan: "Column span",
+      rowSpan: "Row span",
+      noAreas: "No named areas. Add areas to the parent grid template.",
+      selectArea: "Select area",
+    },
     backgrounds: {
       typeLabel: "Type",
       typeGroupLabel: "Background type",

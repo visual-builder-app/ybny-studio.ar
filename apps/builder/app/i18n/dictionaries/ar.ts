@@ -93,6 +93,22 @@ export const ar: Dictionary = {
       shrinkLabel: "الانكماش",
       basisLabel: "الأساس",
     },
+    gridChild: {
+      title: "عنصر الشبكة",
+      selectParentTooltip: "تحديد حاوية الشبكة",
+      positionLabel: "الموضع",
+      positionDescription: "كيفية وضع عنصر الشبكة داخل الشبكة",
+      modes: { auto: "تلقائي", area: "منطقة", manual: "يدوي" },
+      modeDescriptions: {
+        auto: "اترك الشبكة تضع هذا العنصر تلقائيًا.",
+        area: "ضع العنصر في منطقة شبكة مسماة.",
+        manual: "حدّد موضع العنصر يدويًا باستخدام خطوط الشبكة.",
+      },
+      columnSpan: "امتداد الأعمدة",
+      rowSpan: "امتداد الصفوف",
+      noAreas: "لا توجد مناطق مسماة. أضف مناطق في قالب الشبكة الأب.",
+      selectArea: "اختر منطقة",
+    },
     backgrounds: {
       typeLabel: "النوع",
       typeGroupLabel: "نوع الخلفية",
