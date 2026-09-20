@@ -64,6 +64,7 @@ import { GridSettings } from "./shared/grid-settings";
 import { GridAlignment } from "./shared/grid-alignment";
 import { $isStylePanelGridVisible } from "~/builder/shared/nano-states";
 import { humanizeString } from "~/shared/string-utils";
+import { useLocale } from "~/i18n/context";
 import { DEFAULT_GRID_TRACK_COUNT, DEFAULT_GRID_GAP } from "./shared/constants";
 
 const GapLinked = ({
@@ -74,17 +75,26 @@ const GapLinked = ({
   isLinked: boolean;
   onChange: (isLinked: boolean) => void;
   disabled?: boolean;
-}) => (
-  <EnhancedTooltip content={isLinked ? "إلغاء ربط قيم التباعد" : "ربط قيم التباعد"}>
-    <SmallToggleButton
-      disabled={disabled}
-      pressed={isLinked}
-      onPressedChange={onChange}
-      variant="normal"
-      icon={isLinked ? <Link2Icon /> : <Link2UnlinkedIcon />}
-    />
-  </EnhancedTooltip>
-);
+}) => {
+  const { dict } = useLocale();
+  return (
+    <EnhancedTooltip
+      content={
+        isLinked
+          ? dict.stylePanel.layout.unlinkGapValues
+          : dict.stylePanel.layout.linkGapValues
+      }
+    >
+      <SmallToggleButton
+        disabled={disabled}
+        pressed={isLinked}
+        onPressedChange={onChange}
+        variant="normal"
+        icon={isLinked ? <Link2Icon /> : <Link2UnlinkedIcon />}
+      />
+    </EnhancedTooltip>
+  );
+};
 
 const GapTooltip = ({
   label,
@@ -390,6 +400,7 @@ const AlignmentControls = ({
 }: {
   showAlignContent?: boolean;
 }) => {
+  const { dict } = useLocale();
   return (
     <Grid
       css={{
@@ -402,23 +413,27 @@ const AlignmentControls = ({
         items={[
           {
             name: "start",
-            label: "البداية",
+            label: dict.stylePanel.layout.align.start,
             icon: AlignStartHorizontalIcon,
           },
           {
             name: "center",
-            label: "الوسط",
+            label: dict.stylePanel.layout.align.center,
             icon: AlignCenterHorizontalIcon,
           },
-          { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
+          {
+            name: "end",
+            label: dict.stylePanel.layout.align.end,
+            icon: AlignEndHorizontalIcon,
+          },
           {
             name: "stretch",
-            label: "تمديد",
+            label: dict.stylePanel.layout.align.stretch,
             icon: StretchVerticalIcon,
           },
           {
             name: "baseline",
-            label: "خط الأساس",
+            label: dict.stylePanel.layout.align.baseline,
             icon: AlignBaselineIcon,
           },
         ]}
@@ -428,27 +443,27 @@ const AlignmentControls = ({
         items={[
           {
             name: "start",
-            label: "البداية",
+            label: dict.stylePanel.layout.align.start,
             icon: AlignHorizontalJustifyStartIcon,
           },
           {
             name: "center",
-            label: "الوسط",
+            label: dict.stylePanel.layout.align.center,
             icon: AlignHorizontalJustifyCenterIcon,
           },
           {
             name: "end",
-            label: "النهاية",
+            label: dict.stylePanel.layout.align.end,
             icon: AlignHorizontalJustifyEndIcon,
           },
           {
             name: "space-between",
-            label: "مسافات بينية",
+            label: dict.stylePanel.layout.align.spaceBetween,
             icon: AlignHorizontalSpaceBetweenIcon,
           },
           {
             name: "space-around",
-            label: "مسافات محيطة",
+            label: dict.stylePanel.layout.align.spaceAround,
             icon: AlignHorizontalSpaceAroundIcon,
           },
         ]}
@@ -459,28 +474,32 @@ const AlignmentControls = ({
           items={[
             {
               name: "start",
-              label: "البداية",
+              label: dict.stylePanel.layout.align.start,
               icon: AlignContentStartIcon,
             },
             {
               name: "center",
-              label: "الوسط",
+              label: dict.stylePanel.layout.align.center,
               icon: AlignContentCenterIcon,
             },
-            { name: "end", label: "النهاية", icon: AlignContentEndIcon },
+            {
+              name: "end",
+              label: dict.stylePanel.layout.align.end,
+              icon: AlignContentEndIcon,
+            },
             {
               name: "stretch",
-              label: "تمديد",
+              label: dict.stylePanel.layout.align.stretch,
               icon: AlignContentStretchIcon,
             },
             {
               name: "space-between",
-              label: "مسافات بينية",
+              label: dict.stylePanel.layout.align.spaceBetween,
               icon: AlignContentSpaceBetweenIcon,
             },
             {
               name: "space-around",
-              label: "مسافات محيطة",
+              label: dict.stylePanel.layout.align.spaceAround,
               icon: AlignContentSpaceAroundIcon,
             },
           ]}
@@ -491,6 +510,7 @@ const AlignmentControls = ({
 };
 
 const LayoutSectionFlex = () => {
+  const { dict } = useLocale();
   const flexWrap = useComputedStyleDecl("flex-wrap");
   const flexWrapValue = toValue(flexWrap.cascadedValue);
 
@@ -513,16 +533,24 @@ const LayoutSectionFlex = () => {
           <MenuControl
             property="flex-direction"
             items={[
-              { name: "row", label: "صف", icon: ArrowRightIcon },
+              {
+                name: "row",
+                label: dict.stylePanel.layout.axis.row,
+                icon: ArrowRightIcon,
+              },
               {
                 name: "row-reverse",
-                label: "صف عكسي",
+                label: dict.stylePanel.layout.direction.rowReverse,
                 icon: ArrowLeftIcon,
               },
-              { name: "column", label: "عمود", icon: ArrowDownIcon },
+              {
+                name: "column",
+                label: dict.stylePanel.layout.axis.column,
+                icon: ArrowDownIcon,
+              },
               {
                 name: "column-reverse",
-                label: "عمود عكسي",
+                label: dict.stylePanel.layout.direction.columnReverse,
                 icon: ArrowUpIcon,
               },
             ]}
@@ -530,8 +558,16 @@ const LayoutSectionFlex = () => {
           <ToggleControl
             property="flex-wrap"
             items={[
-              { name: "nowrap", label: "بدون التفاف", icon: NoWrapIcon },
-              { name: "wrap", label: "التفاف", icon: WrapIcon },
+              {
+                name: "nowrap",
+                label: dict.stylePanel.layout.wrap.nowrap,
+                icon: NoWrapIcon,
+              },
+              {
+                name: "wrap",
+                label: dict.stylePanel.layout.wrap.wrap,
+                icon: WrapIcon,
+              },
             ]}
           />
           <Box css={{ gridColumn: "1 / -1" }}>
@@ -584,6 +620,7 @@ const applyDefaultGridStyles = (columnsValue: string, rowsValue: string) => {
 };
 
 const LayoutSectionGrid = () => {
+  const { dict } = useLocale();
   const [openPanel, setOpenPanel] = useState({
     generator: false,
     settings: false,
@@ -619,12 +656,24 @@ const LayoutSectionGrid = () => {
             <MenuControl
               property="grid-auto-flow"
               items={[
-                { name: "row", label: "صف", icon: ArrowRightIcon },
-                { name: "column", label: "عمود", icon: ArrowDownIcon },
-                { name: "row dense", label: "صف كثيف", icon: RepeatGridIcon },
+                {
+                  name: "row",
+                  label: dict.stylePanel.layout.axis.row,
+                  icon: ArrowRightIcon,
+                },
+                {
+                  name: "column",
+                  label: dict.stylePanel.layout.axis.column,
+                  icon: ArrowDownIcon,
+                },
+                {
+                  name: "row dense",
+                  label: dict.stylePanel.layout.gridAutoFlow.rowDense,
+                  icon: RepeatGridIcon,
+                },
                 {
                   name: "column dense",
-                  label: "عمود كثيف",
+                  label: dict.stylePanel.layout.gridAutoFlow.columnDense,
                   icon: RepeatGridIcon,
                 },
               ]}
@@ -634,28 +683,32 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "البداية",
+                  label: dict.stylePanel.layout.align.start,
                   icon: AlignContentStartIcon,
                 },
                 {
                   name: "center",
-                  label: "الوسط",
+                  label: dict.stylePanel.layout.align.center,
                   icon: AlignContentCenterIcon,
                 },
-                { name: "end", label: "النهاية", icon: AlignContentEndIcon },
+                {
+                  name: "end",
+                  label: dict.stylePanel.layout.align.end,
+                  icon: AlignContentEndIcon,
+                },
                 {
                   name: "stretch",
-                  label: "تمديد",
+                  label: dict.stylePanel.layout.align.stretch,
                   icon: AlignContentStretchIcon,
                 },
                 {
                   name: "space-between",
-                  label: "مسافات بينية",
+                  label: dict.stylePanel.layout.align.spaceBetween,
                   icon: AlignContentSpaceBetweenIcon,
                 },
                 {
                   name: "space-around",
-                  label: "مسافات محيطة",
+                  label: dict.stylePanel.layout.align.spaceAround,
                   icon: AlignContentSpaceAroundIcon,
                 },
               ]}
@@ -667,23 +720,27 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "البداية",
+                  label: dict.stylePanel.layout.align.start,
                   icon: AlignStartHorizontalIcon,
                 },
                 {
                   name: "center",
-                  label: "الوسط",
+                  label: dict.stylePanel.layout.align.center,
                   icon: AlignCenterHorizontalIcon,
                 },
-                { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
+                {
+                  name: "end",
+                  label: dict.stylePanel.layout.align.end,
+                  icon: AlignEndHorizontalIcon,
+                },
                 {
                   name: "stretch",
-                  label: "تمديد",
+                  label: dict.stylePanel.layout.align.stretch,
                   icon: StretchVerticalIcon,
                 },
                 {
                   name: "baseline",
-                  label: "خط الأساس",
+                  label: dict.stylePanel.layout.align.baseline,
                   icon: AlignBaselineIcon,
                 },
               ]}
@@ -693,23 +750,27 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "البداية",
+                  label: dict.stylePanel.layout.align.start,
                   icon: AlignStartHorizontalIcon,
                 },
                 {
                   name: "center",
-                  label: "الوسط",
+                  label: dict.stylePanel.layout.align.center,
                   icon: AlignCenterHorizontalIcon,
                 },
-                { name: "end", label: "النهاية", icon: AlignEndHorizontalIcon },
+                {
+                  name: "end",
+                  label: dict.stylePanel.layout.align.end,
+                  icon: AlignEndHorizontalIcon,
+                },
                 {
                   name: "stretch",
-                  label: "تمديد",
+                  label: dict.stylePanel.layout.align.stretch,
                   icon: StretchVerticalIcon,
                 },
                 {
                   name: "baseline",
-                  label: "خط الأساس",
+                  label: dict.stylePanel.layout.align.baseline,
                   icon: AlignBaselineIcon,
                 },
               ]}
@@ -719,27 +780,27 @@ const LayoutSectionGrid = () => {
               items={[
                 {
                   name: "start",
-                  label: "البداية",
+                  label: dict.stylePanel.layout.align.start,
                   icon: AlignHorizontalJustifyStartIcon,
                 },
                 {
                   name: "center",
-                  label: "الوسط",
+                  label: dict.stylePanel.layout.align.center,
                   icon: AlignHorizontalJustifyCenterIcon,
                 },
                 {
                   name: "end",
-                  label: "النهاية",
+                  label: dict.stylePanel.layout.align.end,
                   icon: AlignHorizontalJustifyEndIcon,
                 },
                 {
                   name: "space-between",
-                  label: "مسافات بينية",
+                  label: dict.stylePanel.layout.align.spaceBetween,
                   icon: AlignHorizontalSpaceBetweenIcon,
                 },
                 {
                   name: "space-around",
-                  label: "مسافات محيطة",
+                  label: dict.stylePanel.layout.align.spaceAround,
                   icon: AlignHorizontalSpaceAroundIcon,
                 },
               ]}
@@ -785,6 +846,7 @@ const isGridDisplay = (value: string) =>
   value === "grid" || value === "inline-grid";
 
 export const Section = () => {
+  const { dict } = useLocale();
   const display = useComputedStyleDecl("display");
   const displayValue = toValue(display.cascadedValue);
   const instanceKey = useStore($selectedInstanceKey);
@@ -815,7 +877,10 @@ export const Section = () => {
   }, [displayValue, instanceKey, columnsValue, rowsValue]);
 
   return (
-    <StyleSection label="التخطيط" properties={properties}>
+    <StyleSection
+      label={dict.stylePanel.layout.sectionTitle}
+      properties={properties}
+    >
       <Flex direction="column" gap="2">
         <Grid
           css={{
@@ -824,7 +889,7 @@ export const Section = () => {
           }}
         >
           <PropertyLabel
-            label="العرض (Display)"
+            label={dict.stylePanel.layout.displayLabel}
             description={propertyDescriptions.display}
             properties={["display"]}
           />

@@ -3,6 +3,38 @@
  * Every other dictionary must satisfy `Dictionary = typeof en`.
  */
 export const en = {
+  stylePanel: {
+    layout: {
+      sectionTitle: "Layout",
+      displayLabel: "Display",
+      linkGapValues: "Link gap values",
+      unlinkGapValues: "Unlink gap values",
+      align: {
+        start: "Start",
+        center: "Center",
+        end: "End",
+        stretch: "Stretch",
+        baseline: "Baseline",
+        spaceBetween: "Space Between",
+        spaceAround: "Space Around",
+      },
+      axis: { row: "Row", column: "Column" },
+      direction: { rowReverse: "Row Reverse", columnReverse: "Column Reverse" },
+      wrap: { nowrap: "No Wrap", wrap: "Wrap" },
+      gridAutoFlow: { rowDense: "Row Dense", columnDense: "Column Dense" },
+      gridGeneratorTitle: "Grid generator",
+      fillGrid: "Fill grid",
+      gridLayoutAria: "Grid layout: {columns} columns and {rows} rows",
+      gridPresets: {
+        fluidSidebar: "Fluid sidebar",
+        pageStack: "Page stack",
+        holyGrail: "Holy grail",
+        responsiveCards: "Responsive cards",
+        featureSection: "Feature section",
+        footerColumns: "Footer columns",
+      },
+    },
+  },
   locale: {
     switchLabel: "Switch language",
   },

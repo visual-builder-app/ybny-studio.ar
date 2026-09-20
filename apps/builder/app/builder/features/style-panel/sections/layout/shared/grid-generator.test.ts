@@ -6,7 +6,7 @@ const { gridPresets, computeFillGridItemsCount } = __testing__;
 describe("gridPresets", () => {
   test("each preset has required fields", () => {
     for (const preset of gridPresets) {
-      expect(preset.label).toBeTruthy();
+      expect(preset.id).toBeTruthy();
       expect(preset.columns).toBeTruthy();
       expect(preset.rows).toBeTruthy();
       expect(preset.previewColumns).toBeTruthy();
@@ -25,19 +25,19 @@ describe("gridPresets", () => {
   });
 
   test("fluid sidebar uses fit-content", () => {
-    const sidebar = gridPresets.find((p) => p.label === "Fluid sidebar");
+    const sidebar = gridPresets.find((p) => p.id === "fluidSidebar");
     expect(sidebar).toBeDefined();
     expect(sidebar?.columns).toContain("fit-content");
   });
 
   test("page stack has auto-sized header and footer rows", () => {
-    const stack = gridPresets.find((p) => p.label === "Page stack");
+    const stack = gridPresets.find((p) => p.id === "pageStack");
     expect(stack).toBeDefined();
     expect(stack?.rows).toBe("auto 1fr auto");
   });
 
   test("holy grail preset has named areas", () => {
-    const holyGrail = gridPresets.find((p) => p.label === "Holy grail");
+    const holyGrail = gridPresets.find((p) => p.id === "holyGrail");
     expect(holyGrail).toBeDefined();
     expect(holyGrail?.areas).toBeDefined();
     expect(holyGrail?.areas).toContain("header");
@@ -47,21 +47,21 @@ describe("gridPresets", () => {
   });
 
   test("responsive cards uses auto-fit with 250px minimum", () => {
-    const cards = gridPresets.find((p) => p.label === "Responsive cards");
+    const cards = gridPresets.find((p) => p.id === "responsiveCards");
     expect(cards).toBeDefined();
     expect(cards?.columns).toContain("auto-fit");
     expect(cards?.columns).toContain("250px");
   });
 
   test("feature section uses auto-fit with 350px minimum", () => {
-    const feature = gridPresets.find((p) => p.label === "Feature section");
+    const feature = gridPresets.find((p) => p.id === "featureSection");
     expect(feature).toBeDefined();
     expect(feature?.columns).toContain("auto-fit");
     expect(feature?.columns).toContain("350px");
   });
 
   test("footer columns uses auto-fit with 150px minimum", () => {
-    const footer = gridPresets.find((p) => p.label === "Footer columns");
+    const footer = gridPresets.find((p) => p.id === "footerColumns");
     expect(footer).toBeDefined();
     expect(footer?.columns).toContain("auto-fit");
     expect(footer?.columns).toContain("150px");

@@ -32,6 +32,8 @@ import { $breakpoints } from "~/shared/sync/data-stores";
 import { $instances } from "~/shared/sync/data-stores";
 import { executeRuntimeMutation } from "~/shared/instance-utils/data";
 import { DEFAULT_GRID_TRACK_COUNT } from "./constants";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 /**
  * Parse track count from a computed CSS value.
@@ -149,8 +151,16 @@ const GridGeneratorSelector = ({
   );
 };
 
+export type GridPresetId =
+  | "fluidSidebar"
+  | "pageStack"
+  | "holyGrail"
+  | "responsiveCards"
+  | "featureSection"
+  | "footerColumns";
+
 type GridPreset = {
-  label: string;
+  id: GridPresetId;
   columns: string;
   rows: string;
   areas?: string;
@@ -161,21 +171,21 @@ type GridPreset = {
 
 const gridPresets: GridPreset[] = [
   {
-    label: "شريط جانبي مرن",
+    id: "fluidSidebar",
     columns: "fit-content(300px) 1fr",
     rows: "1fr",
     previewColumns: "1fr 3fr",
     previewRows: "1fr",
   },
   {
-    label: "تكديس الصفحة",
+    id: "pageStack",
     columns: "1fr",
     rows: "auto 1fr auto",
     previewColumns: "1fr",
     previewRows: "1fr 4fr 1fr",
   },
   {
-    label: "الكأس المقدسة",
+    id: "holyGrail",
     columns: "1fr 3fr 1fr",
     rows: "auto 1fr auto",
     areas: `"header header header" "sidebar main aside" "footer footer footer"`,
@@ -183,21 +193,21 @@ const gridPresets: GridPreset[] = [
     previewRows: "1fr 3fr 1fr",
   },
   {
-    label: "بطاقات متجاوبة",
+    id: "responsiveCards",
     columns: "repeat(auto-fit, minmax(250px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr 1fr",
     previewRows: "1fr 1fr",
   },
   {
-    label: "قسم الميزات",
+    id: "featureSection",
     columns: "repeat(auto-fit, minmax(350px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr",
     previewRows: "1fr",
   },
   {
-    label: "أعمدة التذييل",
+    id: "footerColumns",
     columns: "repeat(auto-fit, minmax(150px, 1fr))",
     rows: "auto",
     previewColumns: "1fr 1fr 1fr 1fr",
@@ -236,6 +246,7 @@ type GridPresetsPickerProps = {
 };
 
 const GridPresetsPicker = ({ onSelect }: GridPresetsPickerProps) => {
+  const { dict } = useLocale();
   return (
     <Grid
       css={{
@@ -243,42 +254,45 @@ const GridPresetsPicker = ({ onSelect }: GridPresetsPickerProps) => {
         gap: theme.spacing[3],
       }}
     >
-      {gridPresets.map((preset) => (
-        <Tooltip key={preset.label} content={preset.label}>
-          <button
-            className={presetButtonStyle()}
-            onClick={() => onSelect(preset)}
-          >
-            <Grid
-              className={presetPreviewStyle()}
-              css={{
-                gridTemplateColumns: preset.previewColumns,
-                gridTemplateRows: preset.previewRows,
-                gap: 1,
-                padding: 2,
-              }}
+      {gridPresets.map((preset) => {
+        const label = dict.stylePanel.layout.gridPresets[preset.id];
+        return (
+          <Tooltip key={preset.id} content={label}>
+            <button
+              className={presetButtonStyle()}
+              onClick={() => onSelect(preset)}
             >
-              {Array.from({
-                length:
-                  preset.previewColumns.split(" ").length *
-                  preset.previewRows.split(" ").length,
-              }).map((_, i) => (
-                <Box
-                  key={i}
-                  css={{
-                    backgroundColor: cssVar("--background-secondary"),
-                    borderRadius: theme.borderRadius[1],
-                    border: `1px solid ${cssVar("--border-default")}`,
-                  }}
-                />
-              ))}
-            </Grid>
-            <Text variant="small" align="center">
-              {preset.label}
-            </Text>
-          </button>
-        </Tooltip>
-      ))}
+              <Grid
+                className={presetPreviewStyle()}
+                css={{
+                  gridTemplateColumns: preset.previewColumns,
+                  gridTemplateRows: preset.previewRows,
+                  gap: 1,
+                  padding: 2,
+                }}
+              >
+                {Array.from({
+                  length:
+                    preset.previewColumns.split(" ").length *
+                    preset.previewRows.split(" ").length,
+                }).map((_, i) => (
+                  <Box
+                    key={i}
+                    css={{
+                      backgroundColor: cssVar("--background-secondary"),
+                      borderRadius: theme.borderRadius[1],
+                      border: `1px solid ${cssVar("--border-default")}`,
+                    }}
+                  />
+                ))}
+              </Grid>
+              <Text variant="small" align="center">
+                {label}
+              </Text>
+            </button>
+          </Tooltip>
+        );
+      })}
     </Grid>
   );
 };
@@ -324,6 +338,7 @@ type GridGeneratorProps = {
 
 export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
   const readonly = useReadonly();
+  const { dict } = useLocale();
   const gridTemplateColumns = useComputedStyleDecl("grid-template-columns");
   const gridTemplateRows = useComputedStyleDecl("grid-template-rows");
   const gridTemplateAreas = useComputedStyleDecl("grid-template-areas");
@@ -488,7 +503,7 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
 
   return (
     <FloatingPanel
-      title="مولّد الشبكة"
+      title={dict.stylePanel.layout.gridGeneratorTitle}
       placement="left-start"
       content={
         <Flex direction="column">
@@ -506,7 +521,7 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
           <Separator />
           <PanelContent as={Flex}>
             <Button css={{ width: "100%" }} onClick={handleFillGrid}>
-              ملء الشبكة
+              {dict.stylePanel.layout.fillGrid}
             </Button>
           </PanelContent>
         </Flex>
@@ -518,7 +533,10 @@ export const GridGenerator = ({ open, onOpenChange }: GridGeneratorProps) => {
       {/* Visual grid preview - similar to Figma's style */}
       <button
         disabled={readonly}
-        aria-label={`تخطيط الشبكة: ${columnCount} أعمدة و ${rowCount} صفوف`}
+        aria-label={interpolate(dict.stylePanel.layout.gridLayoutAria, {
+          columns: columnCount,
+          rows: rowCount,
+        })}
         className={gridGeneratorButtonStyle()}
         style={{
           gridTemplateColumns: `repeat(${displayColumnCount}, 1fr)`,

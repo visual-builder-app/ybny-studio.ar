@@ -5,6 +5,38 @@ import type { Dictionary } from "./index";
  * Any missing or extraneous key is a TypeScript compile error.
  */
 export const ar: Dictionary = {
+  stylePanel: {
+    layout: {
+      sectionTitle: "التخطيط",
+      displayLabel: "العرض (Display)",
+      linkGapValues: "ربط قيم التباعد",
+      unlinkGapValues: "إلغاء ربط قيم التباعد",
+      align: {
+        start: "البداية",
+        center: "الوسط",
+        end: "النهاية",
+        stretch: "تمديد",
+        baseline: "خط الأساس",
+        spaceBetween: "مسافات بينية",
+        spaceAround: "مسافات محيطة",
+      },
+      axis: { row: "صف", column: "عمود" },
+      direction: { rowReverse: "صف عكسي", columnReverse: "عمود عكسي" },
+      wrap: { nowrap: "بدون التفاف", wrap: "التفاف" },
+      gridAutoFlow: { rowDense: "صف كثيف", columnDense: "عمود كثيف" },
+      gridGeneratorTitle: "مولّد الشبكة",
+      fillGrid: "ملء الشبكة",
+      gridLayoutAria: "تخطيط الشبكة: {columns} أعمدة و {rows} صفوف",
+      gridPresets: {
+        fluidSidebar: "شريط جانبي مرن",
+        pageStack: "تكديس الصفحة",
+        holyGrail: "الكأس المقدسة",
+        responsiveCards: "بطاقات متجاوبة",
+        featureSection: "قسم الميزات",
+        footerColumns: "أعمدة التذييل",
+      },
+    },
+  },
   locale: {
     switchLabel: "تغيير اللغة",
   },
