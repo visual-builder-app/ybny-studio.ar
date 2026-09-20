@@ -395,6 +395,15 @@ export const en = {
       editArea: "Edit area",
     },
     backgrounds: {
+      sectionTitle: "Backgrounds",
+      sectionDescription:
+        "Add one or more backgrounds to the instance, such as a color, an image or a gradient.",
+      layerLabel: "Background layer",
+      solidColorLabel: "Color",
+      codeLabel: "Code",
+      codeDescription:
+        "Paste a CSS gradient or an image, for example: linear-gradient(...) or url('image.jpg'). If you paste from Figma, remove the 'background' property name.",
+      thumbnail: { none: "None", gradient: "Gradient" },
       gradient: {
         angleLabel: "Angle",
         angleDescription:

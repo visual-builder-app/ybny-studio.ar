@@ -16,6 +16,7 @@ import {
 import { useComputedStyleDecl } from "../../shared/model";
 import { InputErrorsTooltip, toast } from "@webstudio-is/design-system";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 type IntermediateValue = {
   type: "intermediate";
@@ -40,6 +41,7 @@ export const BackgroundCodeEditor = ({
   index,
   onValidate,
 }: BackgroundCodeEditorProps) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styleDecl = useComputedStyleDecl("background-image");
   let styleValue = styleDecl.cascadedValue;
@@ -152,8 +154,8 @@ export const BackgroundCodeEditor = ({
   return (
     <>
       <PropertyInlineLabel
-        label="الكود"
-        description="الصق تدرج CSS أو صورة، على سبيل المثال: linear-gradient(...) أو url('image.jpg'). إذا كنت تلصق من Figma، فأزل اسم الخاصية 'background'."
+        label={dict.stylePanel.backgrounds.codeLabel}
+        description={dict.stylePanel.backgrounds.codeDescription}
       />
       <InputErrorsTooltip errors={errors}>
         <CssFragmentEditor

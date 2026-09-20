@@ -394,6 +394,15 @@ export const ar: Dictionary = {
       editArea: "تعديل المنطقة",
     },
     backgrounds: {
+      sectionTitle: "الخلفيات",
+      sectionDescription:
+        "أضف خلفية واحدة أو أكثر إلى النسخة مثل لون أو صورة أو تدرج.",
+      layerLabel: "طبقة الخلفية",
+      solidColorLabel: "اللون",
+      codeLabel: "الكود",
+      codeDescription:
+        "الصق تدرج CSS أو صورة، على سبيل المثال: linear-gradient(...) أو url('image.jpg'). إذا كنت تلصق من Figma، فأزل اسم الخاصية 'background'.",
+      thumbnail: { none: "بلا", gradient: "تدرج" },
       gradient: {
         angleLabel: "الزاوية",
         angleDescription:

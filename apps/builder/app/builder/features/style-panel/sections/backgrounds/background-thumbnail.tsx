@@ -9,7 +9,6 @@ import {
 } from "@webstudio-is/css-engine";
 import { $assets } from "~/shared/sync/data-stores";
 import brokenImage from "~/shared/images/broken-image-placeholder.svg";
-import { humanizeString } from "~/shared/string-utils";
 import { useComputedStyles } from "../../shared/model";
 import {
   getComputedRepeatedItem,
@@ -17,6 +16,7 @@ import {
 } from "../../shared/repeated-style";
 import { formatAssetName } from "@webstudio-is/project-build/runtime";
 import { parseAnyGradient, isSolidLinearGradient } from "./gradient-utils";
+import type { Dictionary } from "~/i18n/dictionaries";
 
 export const repeatedProperties = [
   "background-image",
@@ -81,7 +81,19 @@ const gradientNames = [
   "repeating-radial-gradient",
 ];
 
+type GradientTypeKey = "linearGradient" | "radialGradient" | "conicGradient";
+
+const gradientNameToTypeKey: Record<string, GradientTypeKey> = {
+  "linear-gradient": "linearGradient",
+  "radial-gradient": "radialGradient",
+  "conic-gradient": "conicGradient",
+  "repeating-linear-gradient": "linearGradient",
+  "repeating-radial-gradient": "radialGradient",
+  "repeating-conic-gradient": "conicGradient",
+};
+
 export const getBackgroundLabel = (
+  dict: Dictionary,
   backgroundImageStyle: undefined | StyleValue,
   assets: Assets
 ) => {
@@ -111,14 +123,20 @@ export const getBackgroundLabel = (
     // Check if it's a solid color gradient using cached parsing
     const parsed = parseAnyGradient(value);
     if (parsed?.type === "linear" && isSolidLinearGradient(parsed)) {
-      return "لون ثابت";
+      return dict.stylePanel.backgrounds.types.solid.label;
     }
 
     const gradientName = gradientNames.find((name) => value.includes(name));
-    return gradientName ? humanizeString(gradientName) : "تدرج";
+    const typeKey =
+      gradientName === undefined
+        ? undefined
+        : gradientNameToTypeKey[gradientName];
+    return typeKey === undefined
+      ? dict.stylePanel.backgrounds.thumbnail.gradient
+      : dict.stylePanel.backgrounds.types[typeKey].label;
   }
 
-  return "بلا";
+  return dict.stylePanel.backgrounds.thumbnail.none;
 };
 
 type RepeatedProperty = (typeof repeatedProperties)[number];

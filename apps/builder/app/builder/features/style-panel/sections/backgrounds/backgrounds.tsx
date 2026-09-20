@@ -18,6 +18,7 @@ import {
   BackgroundThumbnail,
   repeatedProperties,
 } from "./background-thumbnail";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   ...repeatedProperties,
@@ -25,13 +26,14 @@ export const properties = [
 ] satisfies [CssProperty, ...CssProperty[]];
 
 export const Section = () => {
+  const { dict } = useLocale();
   const styles = useComputedStyles(repeatedProperties);
   const assets = useStore($assets);
 
   return (
     <RepeatedStyleSection
-      label="الخلفيات"
-      description="أضف خلفية واحدة أو أكثر إلى النسخة مثل لون أو صورة أو تدرج."
+      label={dict.stylePanel.backgrounds.sectionTitle}
+      description={dict.stylePanel.backgrounds.sectionDescription}
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -43,11 +45,11 @@ export const Section = () => {
     >
       <Flex gap={1} direction="column">
         <RepeatedStyle
-          label="طبقة الخلفية"
+          label={dict.stylePanel.backgrounds.layerLabel}
           styles={styles}
           floatingPanelOffset={{ alignmentAxis: -100 }}
           getItemProps={(_index, primaryValue) => ({
-            label: getBackgroundLabel(primaryValue, assets),
+            label: getBackgroundLabel(dict, primaryValue, assets),
           })}
           renderThumbnail={(index) => <BackgroundThumbnail index={index} />}
           renderItemContent={(index) => <BackgroundContent index={index} />}
@@ -59,7 +61,7 @@ export const Section = () => {
           }}
         >
           <PropertyLabel
-            label="اللون"
+            label={dict.stylePanel.backgrounds.solidColorLabel}
             description={propertyDescriptions.backgroundColor}
             properties={["background-color"]}
           />
