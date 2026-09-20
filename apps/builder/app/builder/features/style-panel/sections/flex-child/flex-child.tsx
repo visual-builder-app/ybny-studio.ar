@@ -35,6 +35,7 @@ import { AlignSelfControl } from "../shared/align-self";
 import { OrderControl } from "../shared/order";
 import { $selectedInstancePath } from "~/shared/nano-states";
 import { selectInstance } from "~/shared/nano-states";
+import { useLocale } from "~/i18n/context";
 
 export const properties = [
   "flex-shrink",
@@ -45,17 +46,18 @@ export const properties = [
 ] satisfies [CssProperty, ...CssProperty[]];
 
 export const Section = () => {
+  const { dict } = useLocale();
   const instancePath = useStore($selectedInstancePath);
   // Get the parent instance (second item in the path, index 1)
   const parentInstance = instancePath?.[1];
 
   return (
     <StyleSection
-      label="عنصر مرن"
+      label={dict.stylePanel.flexChild.title}
       properties={properties}
       suffix={
         parentInstance && (
-          <Tooltip content="تحديد الحاوية المرنة">
+          <Tooltip content={dict.stylePanel.flexChild.selectParentTooltip}>
             <SectionTitleButton
               prefix={<ExternalLinkIcon />}
               onClick={() => selectInstance(parentInstance.instanceSelector)}
@@ -91,6 +93,7 @@ const getSizingValue = (flexGrow: string, flexShrink: string) => {
 };
 
 const FlexChildSectionSizing = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styles = useComputedStyles(["flex-grow", "flex-shrink", "flex-basis"]);
   const [flexGrow, flexShrink, flexBasis] = styles;
@@ -102,31 +105,28 @@ const FlexChildSectionSizing = () => {
   const items = [
     {
       child: <XSmallIcon />,
-      description: "بدون نمو أو انكماش",
+      description: dict.stylePanel.flexChild.sizing.none,
       value: "none",
       codeLines: ["flex-grow: 0;", "flex-shrink: 0;"],
     },
     {
       child: <GrowIcon />,
-      title: "Flex",
-      description:
-        "سيتمدد العنصر لشغل المساحة المتاحة داخل الحاوية المرنة عند الحاجة، لكنه لن ينكمش إذا كانت المساحة محدودة.",
+      title: dict.stylePanel.flexChild.groupLabel,
+      description: dict.stylePanel.flexChild.sizing.grow,
       value: "grow",
       codeLines: ["flex-grow: 1;", "flex-shrink: 0;"],
     },
     {
       child: <ShrinkIcon />,
-      title: "Flex",
-      description:
-        "لن ينمو العنصر لشغل المساحة المتاحة داخل الحاوية المرنة، لكنه سينكمش إذا كانت المساحة محدودة",
+      title: dict.stylePanel.flexChild.groupLabel,
+      description: dict.stylePanel.flexChild.sizing.shrink,
       value: "shrink",
       codeLines: ["flex-grow: 0;", "flex-shrink: 1;"],
     },
     {
       child: <FlexChildSectionSizingPopover />,
-      title: "Flex",
-      description:
-        "خيارات تحجيم إضافية، اضبط flex-basis و flex-grow و flex-shrink بشكل فردي",
+      title: dict.stylePanel.flexChild.groupLabel,
+      description: dict.stylePanel.flexChild.sizing.custom,
       value: "",
       codeLines: [
         `flex-basis: ${toValue(flexBasis.cascadedValue)};`,
@@ -144,8 +144,8 @@ const FlexChildSectionSizing = () => {
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="التحجيم"
-        description="يحدّد قدرة العنصر المرن على النمو أو الانكماش أو ضبط حجمه الأولي داخل الحاوية المرنة."
+        label={dict.stylePanel.flexChild.sizingLabel}
+        description={dict.stylePanel.flexChild.sizingDescription}
         properties={["flex-grow", "flex-shrink", "flex-basis"]}
       />
 
@@ -195,7 +195,7 @@ const FlexChildSectionSizing = () => {
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={item.value === selectedValue}
-            label="التحجيم"
+            label={dict.stylePanel.flexChild.sizingLabel}
             code={item.codeLines.join("\n")}
             description={item.description}
             properties={["flex-grow", "flex-shrink", "flex-basis"]}
@@ -220,9 +220,10 @@ const FlexChildSectionSizing = () => {
 };
 
 const FlexChildSectionSizingPopover = () => {
+  const { dict } = useLocale();
   return (
     <FloatingPanel
-      title="التحجيم"
+      title={dict.stylePanel.flexChild.sizingLabel}
       placement="bottom-within"
       content={
         <PanelContent
@@ -236,13 +237,13 @@ const FlexChildSectionSizingPopover = () => {
             <PropertyLabel
               properties={["flex-grow"]}
               description={propertyDescriptions.flexGrow}
-              label="النمو"
+              label={dict.stylePanel.flexChild.growLabel}
             />
             <TextControl property="flex-grow" />
           </Grid>
           <Grid css={{ gridTemplateColumns: "auto", gap: theme.spacing[3] }}>
             <PropertyLabel
-              label="الانكماش"
+              label={dict.stylePanel.flexChild.shrinkLabel}
               description={propertyDescriptions.flexShrink}
               properties={["flex-shrink"]}
             />
@@ -250,7 +251,7 @@ const FlexChildSectionSizingPopover = () => {
           </Grid>
           <Grid css={{ gridTemplateColumns: "auto", gap: theme.spacing[3] }}>
             <PropertyLabel
-              label="الأساس"
+              label={dict.stylePanel.flexChild.basisLabel}
               description={propertyDescriptions.flexBasis}
               properties={["flex-basis"]}
             />

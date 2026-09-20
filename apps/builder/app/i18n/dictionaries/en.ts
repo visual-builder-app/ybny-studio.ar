@@ -72,6 +72,25 @@ export const en = {
         baseline: "The item is aligned to the baseline in the parent.",
       },
     },
+    flexChild: {
+      title: "Flex child",
+      selectParentTooltip: "Select flex container",
+      sizingLabel: "Sizing",
+      sizingDescription:
+        "Sets how the flex item grows, shrinks, or sets its initial size inside the flex container.",
+      groupLabel: "Flex",
+      sizing: {
+        none: "No grow or shrink",
+        grow: "The item grows to fill available space in the flex container when needed, but does not shrink when space is limited.",
+        shrink:
+          "The item does not grow to fill available space in the flex container, but shrinks when space is limited.",
+        custom:
+          "Additional sizing options: set flex-basis, flex-grow and flex-shrink individually.",
+      },
+      growLabel: "Grow",
+      shrinkLabel: "Shrink",
+      basisLabel: "Basis",
+    },
     backgrounds: {
       typeLabel: "Type",
       typeGroupLabel: "Background type",

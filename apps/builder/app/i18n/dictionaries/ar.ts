@@ -74,6 +74,25 @@ export const ar: Dictionary = {
         baseline: "تتم محاذاة العنصر إلى خط الأساس في العنصر الأب.",
       },
     },
+    flexChild: {
+      title: "عنصر مرن",
+      selectParentTooltip: "تحديد الحاوية المرنة",
+      sizingLabel: "التحجيم",
+      sizingDescription:
+        "يحدّد قدرة العنصر المرن على النمو أو الانكماش أو ضبط حجمه الأولي داخل الحاوية المرنة.",
+      groupLabel: "Flex",
+      sizing: {
+        none: "بدون نمو أو انكماش",
+        grow: "سيتمدد العنصر لشغل المساحة المتاحة داخل الحاوية المرنة عند الحاجة، لكنه لن ينكمش إذا كانت المساحة محدودة.",
+        shrink:
+          "لن ينمو العنصر لشغل المساحة المتاحة داخل الحاوية المرنة، لكنه سينكمش إذا كانت المساحة محدودة",
+        custom:
+          "خيارات تحجيم إضافية، اضبط flex-basis و flex-grow و flex-shrink بشكل فردي",
+      },
+      growLabel: "النمو",
+      shrinkLabel: "الانكماش",
+      basisLabel: "الأساس",
+    },
     backgrounds: {
       typeLabel: "النوع",
       typeGroupLabel: "نوع الخلفية",
