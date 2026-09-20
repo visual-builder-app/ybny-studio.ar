@@ -1,3 +1,10 @@
+> ### ملاحظة ترخيص وتعديل — يبني
+>
+> هذا المستودع **نسخة معدّلة (فرع)** من مشروع Webstudio (<https://github.com/webstudio-is/webstudio>)، ويُوزَّع تحت **GNU AGPL-3.0** كما في ملف `LICENSE`.
+> التعديلات في هذا الفرع تبدأ من **سبتمبر 2026** وتركّز على التعريب الكامل واتجاه RTL وتحسين لوحة المكوّنات والسوق، إضافة إلى خدمات داخلية خاصة بمنصة يبني.
+> **الكود المصدري المقابل للنسخة الجارية** من خدمة `ybny.net` متاح في هذا المستودع. عند النشر يُدوَّن التزام النسخة الجارية في `docs/ybny/studio-roadmap.md`.
+> سياسة الترخيص والامتثال وحدود الكود: [`docs/ybny/licensing-policy.md`](docs/ybny/licensing-policy.md).
+
 <img width="1512" alt="builder-screenshot" src="https://github.com/webstudio-is/.github/blob/main/assets/builder-screenshot.png?raw=true">
 <br /><br />
 
