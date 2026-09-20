@@ -20,8 +20,9 @@ import type { StyleValueSourceColor } from "~/shared/style-object-model";
 import { $availableUnitVariables } from "../../shared/model";
 import type { Modifiers } from "../../shared/modifier-keys";
 import { PropertyLabel } from "../../property-label";
-import { humanizeString } from "~/shared/string-utils";
 import { getChangeCompleteModifiers } from "./input-popover-utils";
+import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 const slideUpAndFade = keyframes({
   "0%": { opacity: 0, transform: "scale(0.8)" },
@@ -155,6 +156,7 @@ export const InputPopover = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
+  const { dict } = useLocale();
   return (
     <Popover
       open={isOpen}
@@ -174,7 +176,7 @@ export const InputPopover = ({
         onClick={(event) => event.stopPropagation()}
       >
         <PropertyLabel
-          label={humanizeString(property)}
+          label={resolvePropertyLabel(dict, property)}
           description={propertyDescriptions[property]}
           properties={[property]}
         />

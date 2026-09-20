@@ -63,9 +63,9 @@ import { GridGenerator } from "./shared/grid-generator";
 import { GridSettings } from "./shared/grid-settings";
 import { GridAlignment } from "./shared/grid-alignment";
 import { $isStylePanelGridVisible } from "~/builder/shared/nano-states";
-import { humanizeString } from "~/shared/string-utils";
 import { useLocale } from "~/i18n/context";
 import { DEFAULT_GRID_TRACK_COUNT, DEFAULT_GRID_GAP } from "./shared/constants";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 const GapLinked = ({
   isLinked,
@@ -163,6 +163,7 @@ const GapInput = ({
   onReset: () => void;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   return (
     <Box>
       <CssValueInput
@@ -170,7 +171,7 @@ const GapInput = ({
         styleSource={styleDecl.source.name}
         icon={
           <GapTooltip
-            label={humanizeString(property)}
+            label={resolvePropertyLabel(dict, property)}
             styleDecl={styleDecl}
             onReset={onReset}
           >

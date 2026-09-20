@@ -12,7 +12,6 @@ import {
   Tooltip,
 } from "@webstudio-is/design-system";
 import { toValue, type CssProperty } from "@webstudio-is/css-engine";
-import { humanizeString } from "~/shared/string-utils";
 import { useComputedStyles } from "../../shared/model";
 import { createBatchUpdate } from "../../shared/use-style-data";
 import {
@@ -20,6 +19,8 @@ import {
   PropertyInfo,
 } from "../../property-label";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 export const ToggleGroupTooltip = ({
   isOpen,
@@ -42,6 +43,7 @@ export const ToggleGroupTooltip = ({
   isAdvanced?: boolean;
   children: ReactNode;
 }) => {
+  const { dict } = useLocale();
   const styles = useComputedStyles(properties);
   const resetProperty = () => {
     const batch = createBatchUpdate();
@@ -67,15 +69,15 @@ export const ToggleGroupTooltip = ({
       }}
       content={
         <PropertyInfo
-          title={label ?? humanizeString(properties[0])}
+          title={label ?? resolvePropertyLabel(dict, properties[0])}
           code={code}
           description={
             <Flex gap="2" direction="column">
               {description}
               {isAdvanced && (
                 <Flex gap="1">
-                  <AlertIcon color={cssVar("--foreground-warning")} /> تم
-                  تعريف هذه القيمة في القسم المتقدم.
+                  <AlertIcon color={cssVar("--foreground-warning")} /> تم تعريف
+                  هذه القيمة في القسم المتقدم.
                 </Flex>
               )}
             </Flex>

@@ -20,7 +20,8 @@ import {
 } from "../../shared/use-style-data";
 import { PropertyInlineLabel, PropertyLabel } from "../../property-label";
 import { useComputedStyleDecl } from "../../shared/model";
-import { humanizeString } from "~/shared/string-utils";
+import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 // Fake properties to use in the CssValueInputContainer
 // x, y axis takes length | percentage | keyword
@@ -60,6 +61,7 @@ export const TransformAndPerspectiveOrigin = ({
   property: CssProperty;
   disabled?: boolean;
 }) => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl(property);
   const value = styleDecl.cascadedValue;
   const origin = useMemo((): {
@@ -157,7 +159,7 @@ export const TransformAndPerspectiveOrigin = ({
   return (
     <Grid gap="2">
       <PropertyLabel
-        label={humanizeString(property)}
+        label={resolvePropertyLabel(dict, property)}
         description={propertyDescriptions[camelCaseProperty(property)]}
         properties={[property]}
       />
@@ -177,7 +179,9 @@ export const TransformAndPerspectiveOrigin = ({
               <PropertyInlineLabel
                 label="X"
                 title={
-                  property === "transform-origin" ? "إزاحة X" : "موضع X"
+                  property === "transform-origin"
+                    ? dict.stylePanel.transforms.offsetX
+                    : dict.stylePanel.transforms.positionX
                 }
                 description={
                   property === "transform-origin"
@@ -205,7 +209,9 @@ export const TransformAndPerspectiveOrigin = ({
               <PropertyInlineLabel
                 label="Y"
                 title={
-                  property === "transform-origin" ? "إزاحة Y" : "موضع Y"
+                  property === "transform-origin"
+                    ? dict.stylePanel.transforms.offsetY
+                    : dict.stylePanel.transforms.positionY
                 }
                 description={
                   property === "transform-origin"
@@ -233,7 +239,7 @@ export const TransformAndPerspectiveOrigin = ({
               >
                 <PropertyInlineLabel
                   label="Z"
-                  title="إزاحة Z"
+                  title={dict.stylePanel.transforms.offsetZ}
                   description={propertySyntaxes.transformOriginZ}
                 />
                 <CssValueInputContainer

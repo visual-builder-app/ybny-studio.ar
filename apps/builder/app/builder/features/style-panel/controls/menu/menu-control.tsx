@@ -19,11 +19,12 @@ import {
   camelCaseProperty,
   declarationDescriptions,
 } from "@webstudio-is/css-data";
-import { humanizeString } from "~/shared/string-utils";
 import { setProperty } from "../../shared/use-style-data";
 import { useComputedStyleDecl } from "../../shared/model";
 import { PropertyValueTooltip } from "../../property-label";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 export const MenuControl = ({
   property,
@@ -36,6 +37,7 @@ export const MenuControl = ({
     icon: IconComponent;
   }>;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const computedStyleDecl = useComputedStyleDecl(property);
   const [descriptionValue, setDescriptionValue] = useState<string>();
@@ -58,7 +60,7 @@ export const MenuControl = ({
   return (
     <DropdownMenu modal={false}>
       <PropertyValueTooltip
-        label={currentItem?.label ?? humanizeString(property)}
+        label={currentItem?.label ?? resolvePropertyLabel(dict, property)}
         description={description}
         properties={[property]}
         isAdvanced={isAdvanced}

@@ -23,18 +23,19 @@ import {
 } from "@webstudio-is/icons";
 import { StyleSection } from "../../shared/style-section";
 import { ToggleGroupControl } from "../../controls/toggle-group/toggle-group-control";
-import { humanizeString } from "~/shared/string-utils";
 import { PropertyLabel } from "../../property-label";
 import { useComputedStyleDecl } from "../../shared/model";
 import { deleteProperty } from "../../shared/use-style-data";
 import { useReadonly } from "../../shared/readonly";
 import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 const SizeProperty = ({ property }: { property: CssProperty }) => {
+  const { dict } = useLocale();
   return (
     <Grid gap={1}>
       <PropertyLabel
-        label={humanizeString(property)}
+        label={resolvePropertyLabel(dict, property)}
         description={propertyDescriptions[camelCaseProperty(property)]}
         properties={[property]}
       />

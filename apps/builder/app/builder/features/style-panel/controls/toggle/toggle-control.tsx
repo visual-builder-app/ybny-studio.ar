@@ -5,11 +5,12 @@ import {
 } from "@webstudio-is/css-data";
 import { toValue, type CssProperty } from "@webstudio-is/css-engine";
 import type { IconComponent } from "@webstudio-is/icons";
-import { humanizeString } from "~/shared/string-utils";
 import { setProperty } from "../../shared/use-style-data";
 import { useComputedStyleDecl } from "../../shared/model";
 import { PropertyValueTooltip } from "../../property-label";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { resolvePropertyLabel } from "~/i18n/style-properties";
 
 export const ToggleControl = ({
   property,
@@ -22,6 +23,7 @@ export const ToggleControl = ({
     icon: IconComponent;
   }>;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const computedStyleDecl = useComputedStyleDecl(property);
   const currentValue = toValue(computedStyleDecl.cascadedValue);
@@ -40,13 +42,13 @@ export const ToggleControl = ({
 
   return (
     <PropertyValueTooltip
-      label={currentItem?.label ?? humanizeString(property)}
+      label={currentItem?.label ?? resolvePropertyLabel(dict, property)}
       description={description}
       properties={[property]}
       isAdvanced={isAdvanced}
     >
       <IconToggleButton
-        aria-label={currentItem?.label ?? humanizeString(property)}
+        aria-label={currentItem?.label ?? resolvePropertyLabel(dict, property)}
         disabled={readonly}
         aria-disabled={isAdvanced}
         variant={computedStyleDecl.source.name}
