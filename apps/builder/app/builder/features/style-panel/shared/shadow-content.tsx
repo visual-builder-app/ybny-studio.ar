@@ -46,6 +46,8 @@ import {
 import { ColorPickerControl } from "./color-picker";
 import { $availableColorVariables, $availableUnitVariables } from "./model";
 import { useReadonly } from "./readonly";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 /*
   When it comes to checking and validating individual CSS properties for the box-shadow,
@@ -125,6 +127,7 @@ export const ShadowContent = ({
   hideCodeEditor = false,
   onEditLayer,
 }: ShadowContentProps) => {
+  const { dict } = useLocale();
   const [intermediateValue, setIntermediateValue] = useState<
     IntermediateStyleValue | InvalidValue | undefined
   >({ type: "intermediate", value: propertyValue });
@@ -228,7 +231,7 @@ export const ShadowContent = ({
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
             label="X"
-            title="الإزاحة X"
+            title={dict.stylePanel.shadow.offsetX}
             description={shadowPropertySyntaxes[property].x}
           />
           <CssValueInputContainer
@@ -252,7 +255,7 @@ export const ShadowContent = ({
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
             label="Y"
-            title="الإزاحة Y"
+            title={dict.stylePanel.shadow.offsetY}
             description={shadowPropertySyntaxes[property].y}
           />
           <CssValueInputContainer
@@ -275,8 +278,8 @@ export const ShadowContent = ({
 
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="التمويه"
-            title="نصف قطر التمويه"
+            label={dict.stylePanel.shadow.blurLabel}
+            title={dict.stylePanel.shadow.blurTitle}
             description={shadowPropertySyntaxes[property].blur}
           />
           <CssValueInputContainer
@@ -300,8 +303,8 @@ export const ShadowContent = ({
         {property === "box-shadow" ? (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="الانتشار"
-              title="نصف قطر الانتشار"
+              label={dict.stylePanel.shadow.spreadLabel}
+              title={dict.stylePanel.shadow.spreadTitle}
               description={shadowPropertySyntaxes["box-shadow"].spread}
             />
             <CssValueInputContainer
@@ -337,7 +340,7 @@ export const ShadowContent = ({
       >
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="اللون"
+            label={dict.stylePanel.shadow.colorLabel}
             description={shadowPropertySyntaxes[property].color}
           />
           <ColorPickerControl
@@ -390,12 +393,12 @@ export const ShadowContent = ({
                 updateShadow({ position: value as ShadowValue["position"] })
               }
             >
-              <Tooltip content="خارجي">
+              <Tooltip content={dict.stylePanel.shadow.outer}>
                 <ToggleGroupButton value="outset">
                   <ShadowNormalIcon />
                 </ToggleGroupButton>
               </Tooltip>
-              <Tooltip content="داخلي">
+              <Tooltip content={dict.stylePanel.shadow.inner}>
                 <ToggleGroupButton value="inset">
                   <ShadowInsetIcon />
                 </ToggleGroupButton>
@@ -418,13 +421,14 @@ export const ShadowContent = ({
           >
             <Label>
               <Flex align={"center"} gap={1}>
-                الكود
+                {dict.stylePanel.shadow.code}
                 <Tooltip
                   variant="wrapped"
                   content={
                     <Text>
-                      الصق كود CSS الخاص بـ {property} دون اسم الخاصية، على
-                      سبيل المثال:
+                      {interpolate(dict.stylePanel.shadow.codeHint, {
+                        property,
+                      })}
                       <br /> <br />
                       <Text variant="monoBold">
                         0px 2px 5px 0px rgba(0, 0, 0, 0.2)

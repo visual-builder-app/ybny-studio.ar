@@ -38,6 +38,8 @@ import {
 } from "~/builder/shared/collapsible-section";
 import { GridAreas } from "./grid-areas";
 import { $gridEditingTrack } from "~/builder/shared/nano-states";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 /**
  * Compute how many auto tracks are created when children exceed
@@ -55,10 +57,7 @@ const computeAutoTrackCount = (
       flowAxisTrackCount
   );
 
-const trackTypeLabels = {
-  column: { singular: "عمود", plural: "أعمدة" },
-  row: { singular: "صف", plural: "صفوف" },
-} as const;
+type TrackType = "column" | "row";
 
 const serializeTrackList = (tracks: GridTrack[]): StyleValue => {
   const value = serializeGridTemplateTrackList(tracks);
@@ -109,6 +108,7 @@ const TrackItem = ({
   onHoverStart,
   onHoverEnd,
 }: TrackItemProps) => {
+  const { dict } = useLocale();
   const minmaxParts = parseMinmax(track);
   const [isMinmax, setIsMinmax] = useState(minmaxParts !== undefined);
   const [minValue, setMinValue] = useState(minmaxParts?.min ?? "0");
@@ -152,13 +152,15 @@ const TrackItem = ({
   return (
     <FloatingPanel
       placement="bottom-within"
-      title={`تعديل ${trackTypeLabels[trackType].singular}`}
+      title={interpolate(dict.stylePanel.gridSettings.editTrack, {
+        track: dict.stylePanel.gridSettings.tracks[trackType].singular,
+      })}
       content={
         <PanelContent as={Flex} direction="column" gap="2">
           {isMinmax ? (
             <Grid columns={2} gap="2">
               <Flex direction="column" gap="1">
-                <Label>الأدنى</Label>
+                <Label>{dict.stylePanel.gridSettings.min}</Label>
                 <CssValueInputContainer
                   disabled={disabled}
                   styleSource="local"
@@ -178,7 +180,7 @@ const TrackItem = ({
                 />
               </Flex>
               <Flex direction="column" gap="1">
-                <Label>الأقصى</Label>
+                <Label>{dict.stylePanel.gridSettings.max}</Label>
                 <CssValueInputContainer
                   disabled={disabled}
                   styleSource="local"
@@ -200,7 +202,7 @@ const TrackItem = ({
             </Grid>
           ) : (
             <Flex direction="column" gap="1">
-              <Label>القيمة</Label>
+              <Label>{dict.stylePanel.gridSettings.value}</Label>
               <CssValueInputContainer
                 disabled={disabled}
                 styleSource="local"
@@ -227,7 +229,9 @@ const TrackItem = ({
               checked={isMinmax}
               onCheckedChange={handleMinmaxToggle}
             />
-            <Label htmlFor={`minmax-${id}`}>استخدام الأدنى/الأقصى</Label>
+            <Label htmlFor={`minmax-${id}`}>
+              {dict.stylePanel.gridSettings.useMinMax}
+            </Label>
           </Flex>
         </PanelContent>
       }
@@ -267,7 +271,7 @@ const TrackItem = ({
 
 type TrackEditorProps = {
   property: GridTrackProperty;
-  trackType: keyof typeof trackTypeLabels;
+  trackType: TrackType;
   label?: string;
   defaultTrackValue?: string;
   autoTrackCount?: number;
@@ -282,8 +286,9 @@ const TrackEditor = ({
   autoTrackCount,
   disabled = false,
 }: TrackEditorProps) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
-  const { plural } = trackTypeLabels[trackType];
+  const { plural } = dict.stylePanel.gridSettings.tracks[trackType];
   const isAuto =
     property === "grid-auto-columns" || property === "grid-auto-rows";
   const label = labelOverride ?? plural;
@@ -411,7 +416,9 @@ const TrackEditor = ({
         <Flex direction="column" ref={sortableRefCallback}>
           {tracks.length === 0 && (
             <PanelContent as={Text} color="subtle" align="center">
-              {trackType === "row" ? "لا توجد صفوف" : "لا توجد أعمدة"}
+              {trackType === "row"
+                ? dict.stylePanel.gridSettings.noRows
+                : dict.stylePanel.gridSettings.noColumns}
             </PanelContent>
           )}
           {tracks.map((track, index) => {
@@ -456,6 +463,7 @@ type GridSettingsProps = {
 };
 
 export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const selectedInstance = useStore($selectedInstance);
   const gridTemplateColumns = useComputedStyleDecl("grid-template-columns");
@@ -488,13 +496,13 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
 
   const editGridButton = (
     <Button disabled={readonly} css={{ width: "100%" }}>
-      تكوين الشبكة
+      {dict.stylePanel.gridSettings.gridConfiguration}
     </Button>
   );
 
   return (
     <FloatingPanel
-      title="إعدادات الشبكة"
+      title={dict.stylePanel.gridSettings.settingsTitle}
       placement="bottom-within"
       content={
         <Flex
@@ -510,7 +518,7 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
           <TrackEditor
             property="grid-auto-columns"
             trackType="column"
-            label="أعمدة تلقائية"
+            label={dict.stylePanel.gridSettings.autoColumns}
             autoTrackCount={autoColumnCount}
           />
           <TrackEditor
@@ -521,7 +529,7 @@ export const GridSettings = ({ open, onOpenChange }: GridSettingsProps) => {
           <TrackEditor
             property="grid-auto-rows"
             trackType="row"
-            label="صفوف تلقائية"
+            label={dict.stylePanel.gridSettings.autoRows}
             defaultTrackValue="auto"
             autoTrackCount={autoRowCount}
           />

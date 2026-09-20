@@ -41,6 +41,7 @@ import {
 import { sections } from "./sections";
 import { StyleSourcesSection } from "./style-source-section";
 import { $instanceTags, useParentComputedStyleDecl } from "./shared/model";
+import { useLocale } from "~/i18n/context";
 
 const $selectedInstanceTag = computed(
   [$selectedInstance, $instanceTags],
@@ -53,6 +54,7 @@ const $selectedInstanceTag = computed(
 );
 
 export const ModeMenu = () => {
+  const { dict } = useLocale();
   const value = getSetting("stylePanelMode");
   const [focusedValue, setFocusedValue] = useState<string>(value);
 
@@ -78,7 +80,7 @@ export const ModeMenu = () => {
             icon={<MenuCheckedIcon />}
             onFocus={() => setFocusedValue("default")}
           >
-            افتراضي
+            {dict.stylePanel.panel.default}
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem
             value="focus"
@@ -86,7 +88,7 @@ export const ModeMenu = () => {
             onFocus={() => setFocusedValue("focus")}
           >
             <Flex justify="between" grow>
-              <Text variant="labels">وضع التركيز</Text>
+              <Text variant="labels">{dict.stylePanel.panel.focusMode}</Text>
               <Kbd value={["alt", "shift", "s"]} />
             </Flex>
           </DropdownMenuRadioItem>
@@ -96,7 +98,7 @@ export const ModeMenu = () => {
             onFocus={() => setFocusedValue("advanced")}
           >
             <Flex justify="between" grow>
-              <Text variant="labels">الوضع المتقدم</Text>
+              <Text variant="labels">{dict.stylePanel.panel.advancedMode}</Text>
               <Kbd value={["alt", "shift", "a"]} />
             </Flex>
           </DropdownMenuRadioItem>
@@ -105,16 +107,18 @@ export const ModeMenu = () => {
 
         {focusedValue === "default" && (
           <DropdownMenuItem hint>
-            جميع الأقسام مفتوحة بشكل افتراضي.
+            {dict.stylePanel.panel.defaultHint}
           </DropdownMenuItem>
         )}
         {focusedValue === "focus" && (
           <DropdownMenuItem hint>
-            يُفتح قسم واحد فقط في كل مرة.
+            {dict.stylePanel.panel.focusHint}
           </DropdownMenuItem>
         )}
         {focusedValue === "advanced" && (
-          <DropdownMenuItem hint>القسم المتقدم فقط.</DropdownMenuItem>
+          <DropdownMenuItem hint>
+            {dict.stylePanel.panel.advancedHint}
+          </DropdownMenuItem>
         )}
       </DropdownMenuContent>
     </DropdownMenu>
@@ -122,6 +126,7 @@ export const ModeMenu = () => {
 };
 
 export const StylePanel = () => {
+  const { dict } = useLocale();
   const { stylePanelMode } = useStore($settings);
   const selectedInstanceRenderState = useStore($selectedInstanceRenderState);
   const readonly = isStyleSourceLocked(useStore($selectedStyleSource));
@@ -137,7 +142,7 @@ export const StylePanel = () => {
     return (
       <Box css={{ p: theme.spacing[5] }}>
         <Card css={{ p: theme.spacing[9], width: "100%" }}>
-          <Text>حدد نسخة على لوحة الرسم</Text>
+          <Text>{dict.stylePanel.panel.selectInstance}</Text>
         </Card>
       </Box>
     );
@@ -174,7 +179,7 @@ export const StylePanel = () => {
     <ReadonlyProvider value={readonly}>
       <PanelContent as={Box}>
         <Text variant="titles" css={{ paddingBlock: theme.panel.paddingBlock }}>
-          مصادر الأنماط
+          {dict.stylePanel.panel.styleSources}
         </Text>
         <StyleSourcesSection />
       </PanelContent>
@@ -182,7 +187,11 @@ export const StylePanel = () => {
       <ScrollArea>
         <CollapsibleProvider
           accordion={stylePanelMode === "focus"}
-          initialOpen={stylePanelMode === "focus" ? "التخطيط" : "*"}
+          initialOpen={
+            stylePanelMode === "focus"
+              ? dict.stylePanel.layout.sectionTitle
+              : "*"
+          }
         >
           {all}
         </CollapsibleProvider>
