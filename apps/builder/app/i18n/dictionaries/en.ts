@@ -43,6 +43,13 @@ export const en = {
         custom: "Custom order",
       },
     },
+    size: {
+      title: "Size",
+      aspectRatio: "Aspect ratio",
+      overflow: "Overflow",
+      objectFit: "Object fit",
+      objectPosition: "Object position",
+    },
     backgrounds: {
       typeLabel: "Type",
       typeGroupLabel: "Background type",

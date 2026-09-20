@@ -28,6 +28,7 @@ import { PropertyLabel } from "../../property-label";
 import { useComputedStyleDecl } from "../../shared/model";
 import { deleteProperty } from "../../shared/use-style-data";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 const SizeProperty = ({ property }: { property: CssProperty }) => {
   return (
@@ -43,12 +44,13 @@ const SizeProperty = ({ property }: { property: CssProperty }) => {
 };
 
 const ObjectPosition = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styleDecl = useComputedStyleDecl("object-position");
   return (
     <Flex justify="end">
       <FloatingPanel
-        title="موضع الكائن"
+        title={dict.stylePanel.size.objectPosition}
         placement="bottom-within"
         content={
           <PanelContent as={Flex}>
@@ -94,8 +96,13 @@ const SectionLayout = styled(Grid, {
 });
 
 export const Section = () => {
+  const { dict } = useLocale();
   return (
-    <StyleSection label="الحجم" properties={properties} fullWidth>
+    <StyleSection
+      label={dict.stylePanel.size.title}
+      properties={properties}
+      fullWidth
+    >
       <SectionLayout columns={2}>
         <SizeProperty property="width" />
         <SizeProperty property="height" />
@@ -104,7 +111,7 @@ export const Section = () => {
         <SizeProperty property="max-width" />
         <SizeProperty property="max-height" />
         <PropertyLabel
-          label="نسبة الأبعاد"
+          label={dict.stylePanel.size.aspectRatio}
           description={propertyDescriptions.aspectRatio}
           properties={["aspect-ratio"]}
         />
@@ -113,12 +120,12 @@ export const Section = () => {
       <Separator />
       <SectionLayout columns={2}>
         <PropertyLabel
-          label="الفيضان"
+          label={dict.stylePanel.size.overflow}
           description={propertyDescriptions.overflow}
           properties={["overflow-x", "overflow-y"]}
         />
         <ToggleGroupControl
-          label="الفيضان"
+          label={dict.stylePanel.size.overflow}
           properties={["overflow-x", "overflow-y"]}
           items={[
             {
@@ -144,13 +151,13 @@ export const Section = () => {
           ]}
         />
         <PropertyLabel
-          label="ملاءمة الكائن"
+          label={dict.stylePanel.size.objectFit}
           description={propertyDescriptions.objectFit}
           properties={["object-fit"]}
         />
         <SelectControl property="object-fit" />
         <PropertyLabel
-          label="موضع الكائن"
+          label={dict.stylePanel.size.objectPosition}
           description={propertyDescriptions.objectPosition}
           properties={["object-position"]}
         />

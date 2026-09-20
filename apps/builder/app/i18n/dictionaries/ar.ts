@@ -45,6 +45,13 @@ export const ar: Dictionary = {
         custom: "تخصيص الترتيب",
       },
     },
+    size: {
+      title: "الحجم",
+      aspectRatio: "نسبة الأبعاد",
+      overflow: "الفيضان",
+      objectFit: "ملاءمة الكائن",
+      objectPosition: "موضع الكائن",
+    },
     backgrounds: {
       typeLabel: "النوع",
       typeGroupLabel: "نوع الخلفية",
