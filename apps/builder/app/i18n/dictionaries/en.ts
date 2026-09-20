@@ -34,6 +34,15 @@ export const en = {
         footerColumns: "Footer columns",
       },
     },
+    order: {
+      label: "Order",
+      values: {
+        default: "Leave unchanged",
+        first: "Make it first",
+        last: "Make it last",
+        custom: "Custom order",
+      },
+    },
     backgrounds: {
       typeLabel: "Type",
       typeGroupLabel: "Background type",

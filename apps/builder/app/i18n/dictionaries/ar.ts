@@ -36,6 +36,15 @@ export const ar: Dictionary = {
         footerColumns: "أعمدة التذييل",
       },
     },
+    order: {
+      label: "الترتيب",
+      values: {
+        default: "بدون تغيير",
+        first: "جعله أولًا",
+        last: "جعله آخرًا",
+        custom: "تخصيص الترتيب",
+      },
+    },
     backgrounds: {
       typeLabel: "النوع",
       typeGroupLabel: "نوع الخلفية",

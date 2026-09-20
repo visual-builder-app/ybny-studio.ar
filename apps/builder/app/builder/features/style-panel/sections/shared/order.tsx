@@ -21,11 +21,13 @@ import { propertyDescriptions } from "@webstudio-is/css-data";
 import { useComputedStyleDecl } from "../../shared/model";
 import { setProperty } from "../../shared/use-style-data";
 import { useReadonly } from "../../shared/readonly";
+import { useLocale } from "~/i18n/context";
 
 const OrderPopover = () => {
+  const { dict } = useLocale();
   return (
     <FloatingPanel
-      title="الترتيب"
+      title={dict.stylePanel.order.label}
       placement="bottom-within"
       content={
         <PanelContent
@@ -36,7 +38,7 @@ const OrderPopover = () => {
           gap={2}
         >
           <PropertyLabel
-            label="الترتيب"
+            label={dict.stylePanel.order.label}
             description={propertyDescriptions.order}
             properties={["order"]}
           />
@@ -53,30 +55,31 @@ const OrderPopover = () => {
 
 export const OrderControl = () => {
   const readonly = useReadonly();
+  const { dict } = useLocale();
   const order = useComputedStyleDecl("order");
   const selectedValue = toValue(order.cascadedValue);
   const items = [
     {
       child: <XSmallIcon />,
-      description: "بدون تغيير",
+      description: dict.stylePanel.order.values.default,
       value: "0",
       code: "order: 0;",
     },
     {
       child: <OrderFirstIcon />,
-      description: "جعله أولًا",
+      description: dict.stylePanel.order.values.first,
       value: "-1",
       code: "order: -1;",
     },
     {
       child: <OrderLastIcon />,
-      description: "جعله آخرًا",
+      description: dict.stylePanel.order.values.last,
       value: "1",
       code: "order: 1;",
     },
     {
       child: <OrderPopover />,
-      description: "تخصيص الترتيب",
+      description: dict.stylePanel.order.values.custom,
       value: "",
       code: `order: ${selectedValue};`,
     },
@@ -90,7 +93,7 @@ export const OrderControl = () => {
   return (
     <Grid css={{ gridTemplateColumns: "3fr 8fr" }}>
       <PropertyLabel
-        label="الترتيب"
+        label={dict.stylePanel.order.label}
         description={propertyDescriptions.order}
         properties={["order"]}
       />
@@ -122,7 +125,7 @@ export const OrderControl = () => {
               setActiveTooltip(isOpen ? item.value : undefined)
             }
             isSelected={item.value === selectedValue}
-            label="الترتيب"
+            label={dict.stylePanel.order.label}
             code={item.code}
             description={item.description}
             properties={["order"]}
