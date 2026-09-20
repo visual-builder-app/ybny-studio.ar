@@ -10,6 +10,8 @@ import {
   PanelTabsTrigger,
   ScrollArea,
   Tooltip,
+  Text,
+  theme,
 } from "@webstudio-is/design-system";
 import { EllipsesIcon } from "@webstudio-is/icons";
 import type { Project } from "@webstudio-is/project";
@@ -18,6 +20,27 @@ import { marketplaceCategories } from "@webstudio-is/project-build";
 import { mapGroupBy } from "~/shared/shim";
 import type { MarketplaceOverviewItem } from "~/shared/marketplace/types";
 import { Card } from "./card";
+
+const marketplaceCategoryArabicLabels: Record<
+  string,
+  { label: string; description: string }
+> = {
+  sectionTemplates: {
+    label: "الأقسام الجاهزة",
+    description:
+      "قوالب أقسام مصممة مسبقاً لإضافتها مباشرة وبسرعة داخل صفحاتك.",
+  },
+  pageTemplates: {
+    label: "الصفحات والثيمات",
+    description:
+      "قوالب صفحات وثيمات كاملة جاهزة لإنشاء موقع متكامل بنقرة واحدة.",
+  },
+  integrationTemplates: {
+    label: "التكاملات",
+    description:
+      "نماذج ربط وتكامل جاهزة للخدمات والمنصات الخارجية.",
+  },
+};
 
 const GalleryOverviewItem = ({
   item,
@@ -96,15 +119,18 @@ export const Overview = ({
       <Flex direction="column">
         <PanelTabsList>
           {Array.from(marketplaceCategories.keys()).map((category) => {
+            const localized =
+              marketplaceCategoryArabicLabels[category] ??
+              marketplaceCategories.get(category);
             return (
               <Tooltip
                 key={category}
                 variant="wrapped"
-                content={marketplaceCategories.get(category)?.description}
+                content={localized?.description}
               >
                 <div>
                   <PanelTabsTrigger value={category}>
-                    {marketplaceCategories.get(category)?.label}
+                    {localized?.label}
                   </PanelTabsTrigger>
                 </div>
               </Tooltip>
@@ -113,9 +139,32 @@ export const Overview = ({
         </PanelTabsList>
         <PanelTabsContent value={selectedCategory} tabIndex={-1}>
           <ScrollArea>
-            <List asChild>
-              <Flex direction="column">
-                {categoryItems?.map((item, index) => {
+            {!categoryItems || categoryItems.length === 0 ? (
+              <Flex
+                direction="column"
+                align="center"
+                justify="center"
+                gap="3"
+                css={{
+                  padding: theme.spacing[9],
+                  textAlign: "center",
+                  marginTop: theme.spacing[12],
+                }}
+              >
+                <Text color="subtle">
+                  لا توجد ثيمات أو قوالب معتمدة في هذا القسم حالياً
+                </Text>
+                <Text
+                  color="moreSubtle"
+                  css={{ maxWidth: 220, fontSize: 12, lineHeight: 1.5 }}
+                >
+                  ستظهر هنا قوالب باني العربية فور تصميمها واعتمادها في النظام.
+                </Text>
+              </Flex>
+            ) : (
+              <List asChild>
+                <Flex direction="column">
+                  {categoryItems.map((item, index) => {
                   return (
                     <ListItem
                       asChild
@@ -139,6 +188,7 @@ export const Overview = ({
                 })}
               </Flex>
             </List>
+            )}
           </ScrollArea>
         </PanelTabsContent>
       </Flex>
