@@ -16,3 +16,15 @@ export const resolvePropertyLabel = (
   >;
   return labels[property] ?? humanizeString(property);
 };
+
+/**
+ * اسم دالة CSS (مرشح) معروضاً للمستخدم: القاموس أولاً ثم التسمية المولّدة.
+ * مفتاح القاموس هو اسم الدالة كما في CSS — لا يُترجم أبداً.
+ */
+export const resolveFilterLabel = (dict: Dictionary, name: string): string => {
+  const labels = dict.stylePanel.filters.functions as Record<
+    string,
+    string | undefined
+  >;
+  return labels[name] ?? humanizeString(name);
+};

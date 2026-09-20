@@ -14,28 +14,30 @@ import {
 } from "../../shared/repeated-style";
 import { parseCssFragment } from "../../shared/css-fragment";
 import { useComputedStyleDecl } from "../../shared/model";
-import { humanizeString } from "~/shared/string-utils";
+import { useLocale } from "~/i18n/context";
+import { resolveFilterLabel } from "~/i18n/style-properties";
+import type { Dictionary } from "~/i18n/dictionaries";
 
 export const properties = ["filter"] satisfies [CssProperty, ...CssProperty[]];
 
-const label = "المرشحات";
 const initialFilter = "blur(0px)";
 
-const getItemProps = (_index: number, value: StyleValue) => {
+const getItemProps = (dict: Dictionary, _index: number, value: StyleValue) => {
   const label =
     value.type === "function"
-      ? `${humanizeString(value.name)}: ${toValue(value.args)}`
-      : "مرشح غير معروف";
+      ? `${resolveFilterLabel(dict, value.name)}: ${toValue(value.args)}`
+      : dict.stylePanel.filters.unknown;
   return { label };
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("filter");
 
   return (
     <RepeatedStyleSection
-      label={label}
-      description="تتيح لك تأثيرات المرشحات تطبيق مؤثرات رسومية مثل التمويه وتغيير الألوان وغيرها على العناصر."
+      label={dict.stylePanel.filters.label}
+      description={dict.stylePanel.filters.description}
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -45,9 +47,9 @@ export const Section = () => {
       }}
     >
       <RepeatedStyle
-        label={label}
+        label={dict.stylePanel.filters.label}
         styles={[styleDecl]}
-        getItemProps={getItemProps}
+        getItemProps={(index, value) => getItemProps(dict, index, value)}
         renderItemContent={(index, primaryValue) => (
           <FilterSectionContent
             index={index}
@@ -67,11 +69,12 @@ export const Section = () => {
                 variant="wrapped"
                 content={
                   <Flex gap="2" direction="column">
-                    <Text variant="regularBold">{label}</Text>
+                    <Text variant="regularBold">
+                      {dict.stylePanel.filters.label}
+                    </Text>
                     <Text variant="monoBold">filter</Text>
                     <Text>
-                      يطبّق مؤثرات رسومية مثل التمويه أو تغيير اللون على
-                      العنصر، على سبيل المثال:
+                      {dict.stylePanel.filters.syntaxHint}
                       <br /> <br />
                       <Text variant="mono">{initialFilter}</Text>
                     </Text>

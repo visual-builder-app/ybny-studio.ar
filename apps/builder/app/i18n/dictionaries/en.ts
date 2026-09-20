@@ -305,6 +305,31 @@ export const en = {
       },
       localLastError: "A local style source is always last and cannot be moved",
     },
+    filters: {
+      label: "Filters",
+      description:
+        "Filter effects let you apply graphic effects such as blur and color changes to elements.",
+      unknown: "Unknown filter",
+      syntaxHint:
+        "Applies graphic effects such as blur or color change to the element, for example:",
+      backdropLabel: "Backdrop filters",
+      backdropDescription:
+        "Backdrop filters are similar to filters, but are applied to the area behind the element. Useful for frosted glass effects.",
+      backdropSyntaxHint:
+        "Applies graphic effects such as blur or color change to the area behind the element",
+      functions: {
+        blur: "Blur",
+        brightness: "Brightness",
+        contrast: "Contrast",
+        "drop-shadow": "Drop shadow",
+        grayscale: "Grayscale",
+        "hue-rotate": "Hue rotate",
+        invert: "Invert",
+        opacity: "Opacity",
+        saturate: "Saturate",
+        sepia: "Sepia",
+      },
+    },
     backgrounds: {
       gradient: {
         angleLabel: "Angle",

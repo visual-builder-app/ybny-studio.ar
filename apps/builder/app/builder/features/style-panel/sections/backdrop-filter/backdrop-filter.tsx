@@ -5,7 +5,6 @@ import {
 } from "@webstudio-is/css-engine";
 import { Tooltip, Flex, Text, cssVar } from "@webstudio-is/design-system";
 import { InfoCircleIcon } from "@webstudio-is/icons";
-import { humanizeString } from "~/shared/string-utils";
 import { RepeatedStyleSection } from "../../shared/style-section";
 import { FilterSectionContent } from "../../shared/filter-content";
 import { parseCssFragment } from "../../shared/css-fragment";
@@ -15,30 +14,33 @@ import {
   RepeatedStyle,
 } from "../../shared/repeated-style";
 import { useComputedStyleDecl } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
+import { resolveFilterLabel } from "~/i18n/style-properties";
+import type { Dictionary } from "~/i18n/dictionaries";
 
 export const properties = ["backdrop-filter"] satisfies [
   CssProperty,
   ...CssProperty[],
 ];
 
-const label = "مرشحات الخلفية";
 const initialBackdropFilter = "blur(0px)";
 
-const getItemProps = (_index: number, value: StyleValue) => {
+const getItemProps = (dict: Dictionary, _index: number, value: StyleValue) => {
   const label =
     value.type === "function"
-      ? `${humanizeString(value.name)}: ${toValue(value.args)}`
-      : "مرشح غير معروف";
+      ? `${resolveFilterLabel(dict, value.name)}: ${toValue(value.args)}`
+      : dict.stylePanel.filters.unknown;
   return { label };
 };
 
 export const Section = () => {
+  const { dict } = useLocale();
   const styleDecl = useComputedStyleDecl("backdrop-filter");
 
   return (
     <RepeatedStyleSection
-      label={label}
-      description="مرشحات الخلفية مشابهة للمرشحات، لكنها تُطبَّق على المنطقة خلف العنصر. تفيد في إنشاء تأثير الزجاج المصنفر."
+      label={dict.stylePanel.filters.backdropLabel}
+      description={dict.stylePanel.filters.backdropDescription}
       properties={properties}
       onAdd={() => {
         addRepeatedStyleItem(
@@ -48,9 +50,9 @@ export const Section = () => {
       }}
     >
       <RepeatedStyle
-        label={label}
+        label={dict.stylePanel.filters.backdropLabel}
         styles={[styleDecl]}
-        getItemProps={getItemProps}
+        getItemProps={(index, value) => getItemProps(dict, index, value)}
         renderItemContent={(index, primaryValue) => (
           <FilterSectionContent
             index={index}
@@ -70,11 +72,12 @@ export const Section = () => {
                 variant="wrapped"
                 content={
                   <Flex gap="2" direction="column">
-                    <Text variant="regularBold">{label}</Text>
+                    <Text variant="regularBold">
+                      {dict.stylePanel.filters.backdropLabel}
+                    </Text>
                     <Text variant="monoBold">backdrop-filter</Text>
                     <Text>
-                      يطبّق مؤثرات رسومية مثل التمويه أو تغيير اللون على
-                      المنطقة خلف العنصر
+                      {dict.stylePanel.filters.backdropSyntaxHint}
                       <br /> <br />
                       <Text variant="mono">{initialBackdropFilter}</Text>
                     </Text>
