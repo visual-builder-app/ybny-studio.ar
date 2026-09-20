@@ -72,3 +72,9 @@ packages/prisma-client/src/__generated__
 
 # copilot instructions
 .github/instructions
+
+# الوثائق الداخلية تُحفظ في المستودع الخاص visual-builder-app/ybny-platform
+docs/ybny/
+
+# متغيرات البيئة المحلية
+apps/builder/.env
