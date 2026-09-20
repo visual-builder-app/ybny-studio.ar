@@ -95,6 +95,8 @@ import type {
   IntermediateColorValue,
   PercentUnitValue,
 } from "./gradient-utils";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 const radialSizeOptions = [
   "closest-side",
@@ -115,18 +117,6 @@ const leftToRightAngle = {
   unit: "deg",
   value: 90,
 } satisfies UnitValue;
-
-const radialSizeDescriptions: Record<RadialSizeOption, string> = {
-  "closest-side": "يمتد إلى أقرب حافة للحاوية",
-  "closest-corner": "يمتد إلى أقرب زاوية للحاوية",
-  "farthest-side": "يمتد إلى أبعد حافة للحاوية",
-  "farthest-corner": "يمتد إلى أبعد زاوية للحاوية",
-};
-
-const radialShapeDescriptions = {
-  ellipse: "استخدم شكل نهاية بيضاويًا (radial-gradient ellipse).",
-  circle: "استخدم شكل نهاية دائريًا (radial-gradient circle).",
-} as const;
 
 type GradientEditorApplyFn = (
   nextGradient: ParsedGradient,
@@ -419,6 +409,7 @@ const OtherGradientPropertiesSection = ({
   isRepeating,
   setIsRepeating,
 }: OtherGradientPropertiesSectionProps) => {
+  const { dict } = useLocale();
   const isLinear = isLinearGradient(gradient);
   const isConic = isConicGradient(gradient);
   const isRadial = isRadialGradient(gradient);
@@ -562,8 +553,10 @@ const OtherGradientPropertiesSection = ({
         {supportsAngle && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="الزاوية"
-              description="اتجاه خط التدرج. 0deg للأعلى، و90deg لليمين، و180deg للأسفل، و270deg لليسار."
+              label={dict.stylePanel.backgrounds.gradient.angleLabel}
+              description={
+                dict.stylePanel.backgrounds.gradient.angleDescription
+              }
             />
             <CssValueInputContainer
               disabled={disabled}
@@ -580,8 +573,8 @@ const OtherGradientPropertiesSection = ({
         {isRadial && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="الحجم"
-              description="حجم التدرج الشعاعي الذي يحدد مدى امتداد التدرج من مركزه."
+              label={dict.stylePanel.backgrounds.gradient.sizeLabel}
+              description={dict.stylePanel.backgrounds.gradient.sizeDescription}
             />
             <Select
               disabled={disabled}
@@ -589,36 +582,53 @@ const OtherGradientPropertiesSection = ({
               value={radialSizeValue}
               fullWidth
               onChange={(size) => handleRadialSizeChange(size)}
-              getDescription={(option) => radialSizeDescriptions[option]}
+              getLabel={(option: RadialSizeOption) =>
+                dict.stylePanel.backgrounds.gradient.radialSizeLabels[option]
+              }
+              getDescription={(option: RadialSizeOption) =>
+                dict.stylePanel.backgrounds.gradient.radialSizes[option]
+              }
             />
           </Flex>
         )}
         {isRadial && (
           <Flex direction="column" gap="1">
             <PropertyInlineLabel
-              label="الشكل"
-              description="شكل نهاية التدرج الشعاعي."
+              label={dict.stylePanel.backgrounds.gradient.shapeLabel}
+              description={
+                dict.stylePanel.backgrounds.gradient.shapeDescription
+              }
             />
             <ToggleGroup
               disabled={disabled}
               type="single"
               value={radialShapeValue}
-              aria-label="شكل نهاية التدرج الشعاعي"
+              aria-label={dict.stylePanel.backgrounds.gradient.shapeAria}
               onValueChange={handleEndingShapeChange}
             >
               <Tooltip
                 variant="wrapped"
-                content={radialShapeDescriptions.ellipse}
+                content={
+                  dict.stylePanel.backgrounds.gradient.radialShapes.ellipse
+                }
               >
-                <ToggleGroupButton value="ellipse" aria-label="بيضاوي">
+                <ToggleGroupButton
+                  value="ellipse"
+                  aria-label={dict.stylePanel.backgrounds.gradient.ellipseAria}
+                >
                   <EllipseIcon />
                 </ToggleGroupButton>
               </Tooltip>
               <Tooltip
                 variant="wrapped"
-                content={radialShapeDescriptions.circle}
+                content={
+                  dict.stylePanel.backgrounds.gradient.radialShapes.circle
+                }
               >
-                <ToggleGroupButton value="circle" aria-label="دائري">
+                <ToggleGroupButton
+                  value="circle"
+                  aria-label={dict.stylePanel.backgrounds.gradient.circleAria}
+                >
                   <CircleIcon />
                 </ToggleGroupButton>
               </Tooltip>
@@ -627,29 +637,45 @@ const OtherGradientPropertiesSection = ({
         )}
         <Flex direction="column" gap="1">
           <PropertyInlineLabel
-            label="التكرار"
-            description="ما إذا كان سيتم تكرار نمط التدرج."
+            label={dict.stylePanel.backgrounds.gradient.repeatLabel}
+            description={dict.stylePanel.backgrounds.gradient.repeatDescription}
           />
           <ToggleGroup
             disabled={disabled}
             type="single"
             value={isRepeating ? "repeat" : "no-repeat"}
-            aria-label="تكرار التدرج"
+            aria-label={dict.stylePanel.backgrounds.gradient.repeatGroupAria}
             onValueChange={handleRepeatChange}
           >
             <Tooltip
               variant="wrapped"
-              content={`اعرض التدرج مرة واحدة (${gradientTypeName}).`}
+              content={interpolate(
+                dict.stylePanel.backgrounds.gradient.noRepeatTooltip,
+                {
+                  type: gradientTypeName,
+                }
+              )}
             >
-              <ToggleGroupButton value="no-repeat" aria-label="بدون تكرار">
+              <ToggleGroupButton
+                value="no-repeat"
+                aria-label={dict.stylePanel.backgrounds.gradient.noRepeatAria}
+              >
                 <XSmallIcon />
               </ToggleGroupButton>
             </Tooltip>
             <Tooltip
               variant="wrapped"
-              content={`كرر نمط التدرج (${repeatingGradientTypeName}).`}
+              content={interpolate(
+                dict.stylePanel.backgrounds.gradient.repeatTooltip,
+                {
+                  type: repeatingGradientTypeName,
+                }
+              )}
             >
-              <ToggleGroupButton value="repeat" aria-label="تكرار">
+              <ToggleGroupButton
+                value="repeat"
+                aria-label={dict.stylePanel.backgrounds.gradient.repeatAria}
+              >
                 <RepeatGridIcon />
               </ToggleGroupButton>
             </Tooltip>
@@ -671,6 +697,7 @@ const SolidColorControls = ({
   gradient,
   applyGradient,
 }: SolidColorControlsProps) => {
+  const { dict } = useLocale();
   const solidColor: StyleValue = (gradient.stops[0]?.color ??
     fallbackStopColor) as StyleValue;
 
@@ -707,8 +734,8 @@ const SolidColorControls = ({
   return (
     <Grid gap="2" columns="3" align="end">
       <PropertyInlineLabel
-        label="اللون"
-        description="اللون الثابت لطبقة الخلفية هذه. يُعرض كتدرج خطي باللون نفسه عند 0% و100%."
+        label={dict.stylePanel.backgrounds.gradient.solidColorLabel}
+        description={dict.stylePanel.backgrounds.gradient.solidColorDescription}
       />
       <Flex css={{ gridColumn: "span 2" }}>
         <ColorPickerControl
@@ -748,6 +775,7 @@ const GradientStopControls = ({
   setHintOverrides,
   applyGradient,
 }: GradientStopControlsProps) => {
+  const { dict } = useLocale();
   const reverseDisabled = gradient.stops.length <= 1;
 
   const handleReverseStops = useCallback(() => {
@@ -822,25 +850,28 @@ const GradientStopControls = ({
     <Flex direction="column" gap="2">
       <Flex align="center" justify="between">
         <PropertyInlineLabel
-          label="نقاط التوقف"
-          description="نقاط توقف ألوان التدرج ومواضعها على طول خط التدرج."
+          label={dict.stylePanel.backgrounds.gradient.stopsLabel}
+          description={dict.stylePanel.backgrounds.gradient.stopsDescription}
         />
         <Flex gap="1">
           <Tooltip
             variant="wrapped"
-            content="اعكس ترتيب جميع نقاط توقف التدرج."
+            content={dict.stylePanel.backgrounds.gradient.reverseTooltip}
           >
             <IconButton
-              aria-label="عكس نقاط توقف التدرج"
+              aria-label={dict.stylePanel.backgrounds.gradient.reverseAria}
               onClick={handleReverseStops}
               disabled={disabled || reverseDisabled}
             >
               <ArrowRightLeftIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip content="إضافة نقطة توقف للتدرج" variant="wrapped">
+          <Tooltip
+            content={dict.stylePanel.backgrounds.gradient.addStopTooltip}
+            variant="wrapped"
+          >
             <IconButton
-              aria-label="إضافة نقطة توقف"
+              aria-label={dict.stylePanel.backgrounds.gradient.addStopAria}
               disabled={disabled}
               onClick={handleAddStop}
             >
@@ -1004,7 +1035,9 @@ const GradientStopControls = ({
               css={{ gridTemplateColumns: "1fr 1fr 2fr" }}
             >
               <Tooltip
-                content="موضع نقطة التوقف هذه على طول خط التدرج."
+                content={
+                  dict.stylePanel.backgrounds.gradient.stopPositionTooltip
+                }
                 variant="wrapped"
               >
                 <Box>
@@ -1021,7 +1054,9 @@ const GradientStopControls = ({
                 </Box>
               </Tooltip>
               <Tooltip
-                content="موضع منتصف انتقال اللون بين نقطة التوقف هذه والتالية."
+                content={
+                  dict.stylePanel.backgrounds.gradient.stopMidpointTooltip
+                }
                 variant="wrapped"
               >
                 <Box>
@@ -1037,7 +1072,10 @@ const GradientStopControls = ({
                   />
                 </Box>
               </Tooltip>
-              <Tooltip content="لون نقطة التوقف هذه في التدرج." variant="wrapped">
+              <Tooltip
+                content={dict.stylePanel.backgrounds.gradient.stopColorTooltip}
+                variant="wrapped"
+              >
                 <Box>
                   <ColorPickerControl
                     disabled={disabled}
@@ -1053,9 +1091,12 @@ const GradientStopControls = ({
                 </Box>
               </Tooltip>
             </Grid>
-            <Tooltip content="حذف نقطة التوقف" variant="wrapped">
+            <Tooltip
+              content={dict.stylePanel.backgrounds.gradient.deleteStopTooltip}
+              variant="wrapped"
+            >
               <IconButton
-                aria-label="حذف نقطة التوقف"
+                aria-label={dict.stylePanel.backgrounds.gradient.deleteStopAria}
                 onClick={() => handleDeleteStop(stopIndex)}
                 disabled={disabled || gradient.stops.length <= 2}
               >
@@ -1080,6 +1121,7 @@ const GradientPositionControls = ({
   gradient,
   applyGradient,
 }: GradientPositionControlsProps) => {
+  const { dict } = useLocale();
   const supportsPosition =
     isRadialGradient(gradient) || isConicGradient(gradient);
 
@@ -1163,10 +1205,10 @@ const GradientPositionControls = ({
   return (
     <BackgroundPositionControl
       disabled={disabled}
-      label="الموضع"
+      label={dict.stylePanel.backgrounds.gradient.positionLabel}
       xAxis={{
-        label: "يسار",
-        description: "إزاحة الموضع الأيسر",
+        label: dict.stylePanel.backgrounds.gradient.xLabel,
+        description: dict.stylePanel.backgrounds.gradient.xDescription,
         property: "--gradient-position-x",
         value: xValue,
         getOptions: () => gradientPositionXOptions,
@@ -1175,8 +1217,8 @@ const GradientPositionControls = ({
         onDelete: handleAxisDelete("x"),
       }}
       yAxis={{
-        label: "أعلى",
-        description: "إزاحة الموضع العلوي",
+        label: dict.stylePanel.backgrounds.gradient.yLabel,
+        description: dict.stylePanel.backgrounds.gradient.yDescription,
         property: "--gradient-position-y",
         value: yValue,
         getOptions: () => gradientPositionYOptions,
