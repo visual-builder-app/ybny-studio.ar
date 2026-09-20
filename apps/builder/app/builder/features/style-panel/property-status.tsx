@@ -1,17 +1,8 @@
 import { AlertIcon } from "@webstudio-is/icons";
 import { propertiesData, propertyStatuses } from "@webstudio-is/css-data";
 import { cssVar, Flex, Link, Text, Tooltip } from "@webstudio-is/design-system";
-
-type PropertyStatus = (typeof propertyStatuses)[keyof typeof propertyStatuses];
-
-const statusDescriptions = {
-  experimental:
-    "خاصية CSS هذه تجريبية. قد يكون دعم المتصفحات محدودًا، وقد يتغير سلوكها.",
-  nonstandard:
-    "خاصية CSS هذه غير قياسية. قد تعمل فقط في متصفحات محددة، ويمكن أن تتغير أو تُزال دون إشعار.",
-  obsolete:
-    "خاصية CSS هذه قديمة. قد لا تدعمها المتصفحات بعد الآن، ولا ينبغي استخدامها في المشاريع الجديدة.",
-} satisfies Record<Exclude<PropertyStatus, "standard">, string>;
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export const getPropertyStatusDetails = (property: string) => {
   const status = propertyStatuses[property as keyof typeof propertyStatuses];
@@ -21,7 +12,6 @@ export const getPropertyStatusDetails = (property: string) => {
 
   return {
     status,
-    description: statusDescriptions[status],
     mdnUrl:
       propertiesData[property as keyof typeof propertiesData]?.mdnUrl ??
       `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(property)}`,
@@ -33,6 +23,7 @@ export const PropertyStatusDescription = ({
 }: {
   property: string;
 }) => {
+  const { dict } = useLocale();
   const details = getPropertyStatusDetails(property);
   if (details === undefined) {
     return;
@@ -40,20 +31,21 @@ export const PropertyStatusDescription = ({
 
   return (
     <Flex direction="column" gap="1">
-      <Text>{details.description}</Text>
+      <Text>{dict.stylePanel.propertyStatus[details.status]}</Text>
       <Link
         href={details.mdnUrl}
         target="_blank"
         rel="noreferrer"
         color="inherit"
       >
-        اعرف المزيد على MDN
+        {dict.stylePanel.propertyStatus.learnMore}
       </Link>
     </Flex>
   );
 };
 
 export const PropertyStatusIcon = ({ property }: { property: string }) => {
+  const { dict } = useLocale();
   const details = getPropertyStatusDetails(property);
   if (details === undefined) {
     return;
@@ -63,7 +55,10 @@ export const PropertyStatusIcon = ({ property }: { property: string }) => {
     <Flex
       as="span"
       align="center"
-      aria-label={`${property} حالته ${details.status}`}
+      aria-label={interpolate(dict.stylePanel.propertyStatus.statusAria, {
+        property,
+        status: dict.stylePanel.propertyStatus.statusLabels[details.status],
+      })}
       css={{ color: cssVar("--foreground-warning") }}
     >
       <AlertIcon size={12} />

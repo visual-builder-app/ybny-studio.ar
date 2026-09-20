@@ -215,6 +215,57 @@ export const en = {
       width: "Width",
       "z-index": "Z Index",
     },
+    space: {
+      labels: {
+        paddingVertical: "Vertical padding",
+        paddingHorizontal: "Horizontal padding",
+        paddingAll: "Padding",
+        marginVertical: "Vertical margin",
+        marginHorizontal: "Horizontal margin",
+        marginAll: "Margin",
+      },
+      descriptions: {
+        paddingVertical:
+          "Sets the space between the element content and its top and bottom edges. It can affect the layout height.",
+        paddingHorizontal:
+          "Sets the space between the element content and its left and right edges. It can affect the layout width.",
+        paddingAll:
+          "Sets the space between the element content and its edges. It can affect the layout size.",
+        marginVertical: "Sets the margin above and below the element.",
+        marginHorizontal:
+          "Sets the margin to the left and right of the element.",
+        marginAll: "Sets the margin of the element.",
+      },
+    },
+    inset: {
+      labels: {
+        vertical: "Vertical position",
+        horizontal: "Horizontal position",
+        all: "Inset position",
+      },
+      descriptions: {
+        vertical:
+          "Sets the top and bottom position of the element relative to the nearest positioned ancestor.",
+        horizontal:
+          "Sets the left and right position of the element relative to the nearest positioned ancestor.",
+        all: "Sets the top, right, bottom and left positions of the element relative to the nearest positioned ancestor.",
+      },
+    },
+    propertyStatus: {
+      experimental:
+        "This CSS property is experimental. Browser support may be limited and its behavior may change.",
+      nonstandard:
+        "This CSS property is non-standard. It may work only in specific browsers and can change or be removed without notice.",
+      obsolete:
+        "This CSS property is obsolete. Browsers may no longer support it and it should not be used in new projects.",
+      statusLabels: {
+        experimental: "experimental",
+        nonstandard: "non-standard",
+        obsolete: "obsolete",
+      },
+      learnMore: "Learn more on MDN",
+      statusAria: "{property} — its status is {status}",
+    },
     backgrounds: {
       gradient: {
         angleLabel: "Angle",

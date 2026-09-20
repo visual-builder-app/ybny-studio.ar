@@ -6,6 +6,7 @@ import { createBatchUpdate } from "../../shared/use-style-data";
 import type { InsetProperty } from "./inset-layout";
 import { PropertyInfo } from "../../property-label";
 import { useComputedStyles } from "../../shared/model";
+import { useLocale } from "~/i18n/context";
 
 const opposingInsetGroups = [
   ["top", "bottom"],
@@ -38,31 +39,15 @@ const sides = {
   left: "left",
 } as const;
 
+type InsetContentId = "vertical" | "horizontal" | "all";
+
 const propertyContents: {
   properties: CssProperty[];
-  label: string;
-  description: string;
+  id: InsetContentId;
 }[] = [
-  {
-    properties: ["top", "bottom"],
-    label: "الموضع العمودي",
-    description:
-      "يضبط الموضع العلوي والسفلي للعنصر نسبةً إلى أقرب سلف محدد الموضع.",
-  },
-
-  {
-    properties: ["left", "right"],
-    label: "الموضع الأفقي",
-    description:
-      "يضبط الموضع الأيسر والأيمن للعنصر نسبةً إلى أقرب سلف محدد الموضع.",
-  },
-
-  {
-    properties: ["top", "right", "bottom", "left"],
-    label: "موضع الإدراج",
-    description:
-      "يضبط مواضع العنصر العليا واليمنى والسفلى واليسرى نسبةً إلى أقرب سلف محدد الموضع.",
-  },
+  { properties: ["top", "bottom"], id: "vertical" },
+  { properties: ["left", "right"], id: "horizontal" },
+  { properties: ["top", "right", "bottom", "left"], id: "all" },
 ];
 
 const isSameUnorderedArrays = <Item,>(
@@ -86,6 +71,7 @@ export const InsetTooltip = ({
   children: ReactElement;
   preventOpen: boolean;
 }) => {
+  const { dict } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
 
   const modifiers = useModifierKeys();
@@ -130,8 +116,16 @@ export const InsetTooltip = ({
       }}
       content={
         <PropertyInfo
-          title={propertyContent?.label ?? ""}
-          description={propertyContent?.description}
+          title={
+            propertyContent === undefined
+              ? ""
+              : dict.stylePanel.inset.labels[propertyContent.id]
+          }
+          description={
+            propertyContent === undefined
+              ? undefined
+              : dict.stylePanel.inset.descriptions[propertyContent.id]
+          }
           styles={styles}
           onReset={() => {
             resetProperties();

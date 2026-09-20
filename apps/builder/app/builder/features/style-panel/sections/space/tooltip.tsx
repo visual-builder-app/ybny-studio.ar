@@ -4,6 +4,7 @@ import { Tooltip } from "@webstudio-is/design-system";
 import { PropertyInfo } from "../../property-label";
 import { useComputedStyles } from "../../shared/model";
 import type { SpaceStyleProperty } from "./properties";
+import { useLocale } from "~/i18n/context";
 
 const sides = {
   "padding-top": "top",
@@ -16,26 +17,20 @@ const sides = {
   "margin-left": "right",
 } as const;
 
+type SpaceContentId =
+  | "paddingVertical"
+  | "paddingHorizontal"
+  | "paddingAll"
+  | "marginVertical"
+  | "marginHorizontal"
+  | "marginAll";
+
 const propertyContents: {
   properties: SpaceStyleProperty[];
-  label: string;
-  description: string;
+  id: SpaceContentId;
 }[] = [
-  // Padding
-  {
-    properties: ["padding-top", "padding-bottom"],
-    label: "الهامش الداخلي العمودي",
-    description:
-      "يحدّد المسافة بين محتوى العنصر وحدّه العلوي والسفلي. قد يؤثر على ارتفاع التخطيط.",
-  },
-
-  {
-    properties: ["padding-left", "padding-right"],
-    label: "الهامش الداخلي الأفقي",
-    description:
-      "يحدّد المسافة بين محتوى العنصر وحدّه الأيسر والأيمن. قد يؤثر على عرض التخطيط.",
-  },
-
+  { properties: ["padding-top", "padding-bottom"], id: "paddingVertical" },
+  { properties: ["padding-left", "padding-right"], id: "paddingHorizontal" },
   {
     properties: [
       "padding-top",
@@ -43,27 +38,13 @@ const propertyContents: {
       "padding-left",
       "padding-right",
     ],
-    label: "الهامش الداخلي",
-    description:
-      "يحدّد المسافة بين محتوى العنصر وحدّه. قد يؤثر على حجم التخطيط.",
+    id: "paddingAll",
   },
-  // Margin
-  {
-    properties: ["margin-top", "margin-bottom"],
-    label: "الهامش الخارجي العمودي",
-    description: "يضبط الهامش الخارجي أعلى العنصر وأسفله.",
-  },
-
-  {
-    properties: ["margin-left", "margin-right"],
-    label: "الهامش الخارجي الأفقي",
-    description: "يضبط الهامش الخارجي على يسار العنصر ويمينه.",
-  },
-
+  { properties: ["margin-top", "margin-bottom"], id: "marginVertical" },
+  { properties: ["margin-left", "margin-right"], id: "marginHorizontal" },
   {
     properties: ["margin-top", "margin-bottom", "margin-left", "margin-right"],
-    label: "الهامش الخارجي",
-    description: "يضبط الهامش الخارجي للعنصر.",
+    id: "marginAll",
   },
 ];
 
@@ -88,6 +69,7 @@ export const SpaceTooltip = ({
   children: ReactElement;
   preventOpen: boolean;
 }) => {
+  const { dict } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const properties = [property];
   const styles = useComputedStyles(properties);
@@ -121,8 +103,16 @@ export const SpaceTooltip = ({
       }}
       content={
         <PropertyInfo
-          title={propertyContent?.label ?? ""}
-          description={propertyContent?.description}
+          title={
+            propertyContent === undefined
+              ? ""
+              : dict.stylePanel.space.labels[propertyContent.id]
+          }
+          description={
+            propertyContent === undefined
+              ? undefined
+              : dict.stylePanel.space.descriptions[propertyContent.id]
+          }
           styles={styles}
           onReset={() => {
             deleteProperty(property);
