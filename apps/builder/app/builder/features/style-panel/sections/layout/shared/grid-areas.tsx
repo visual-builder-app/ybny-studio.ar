@@ -31,6 +31,8 @@ import { GridPositionInputs } from "./grid-position-inputs";
 import { GridAreaPicker } from "./grid-area-picker";
 import { $gridEditingArea } from "~/builder/shared/nano-states";
 import { useReadonly } from "../../../shared/readonly";
+import { useLocale } from "~/i18n/context";
+import { interpolate } from "~/i18n";
 
 export { parseGridAreas, type AreaInfo } from "@webstudio-is/css-data";
 
@@ -242,6 +244,7 @@ const AreaEditor = ({
   onSave,
   onClose,
 }: AreaEditorProps) => {
+  const { dict } = useLocale();
   const [value, setValue] = useState<AreaInfo>(
     area || {
       name: "Area",
@@ -331,7 +334,7 @@ const AreaEditor = ({
           alignItems: "center",
         }}
       >
-        <Label>الاسم</Label>
+        <Label>{dict.stylePanel.gridAreas.name}</Label>
         <InputField
           disabled={disabled}
           css={{ gridColumn: "span 2" }}
@@ -358,7 +361,9 @@ const AreaEditor = ({
           alignItems: "start",
         }}
       >
-        <Label css={{ paddingTop: theme.spacing[3] }}>الموضع</Label>
+        <Label css={{ paddingTop: theme.spacing[3] }}>
+          {dict.stylePanel.gridAreas.position}
+        </Label>
         <GridPositionInputs
           disabled={disabled}
           value={{
@@ -421,12 +426,12 @@ const AreaEditor = ({
 
       {hasDuplicateName && (
         <Text variant="labels" color="destructive">
-          اسم المنطقة موجود بالفعل
+          {dict.stylePanel.gridAreas.nameExists}
         </Text>
       )}
       {hasOverlap && (
         <Text variant="labels" color="destructive">
-          المنطقة تتداخل مع منطقة أخرى
+          {dict.stylePanel.gridAreas.overlap}
         </Text>
       )}
     </PanelContent>
@@ -434,6 +439,7 @@ const AreaEditor = ({
 };
 
 export const GridAreas = () => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const [isOpen, setIsOpen] = useOpenState("Areas");
   const [editingAreaIndex, setEditingAreaIndex] = useState<number | undefined>(
@@ -602,7 +608,9 @@ export const GridAreas = () => {
 
   return (
     <CollapsibleSectionRoot
-      label={`المناطق (${areas.length})`}
+      label={interpolate(dict.stylePanel.gridAreas.areasCount, {
+        count: areas.length,
+      })}
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       fullWidth
@@ -613,7 +621,9 @@ export const GridAreas = () => {
           css={{ padding: theme.spacing[5] }}
         >
           <Text variant="labels" color="subtle">
-            المناطق ({areas.length})
+            {interpolate(dict.stylePanel.gridAreas.areasCount, {
+              count: areas.length,
+            })}
           </Text>
           <IconButton
             disabled={readonly}
@@ -631,14 +641,14 @@ export const GridAreas = () => {
         <Flex direction="column">
           {areas.length === 0 && (
             <PanelContent as={Text} color="subtle" align="center">
-              لا توجد مناطق
+              {dict.stylePanel.gridAreas.empty}
             </PanelContent>
           )}
           {areas.map((area, index) => (
             <FloatingPanel
               key={area.name}
               placement="left-start"
-              title="تعديل المنطقة"
+              title={dict.stylePanel.gridAreas.editArea}
               content={
                 <AreaEditor
                   disabled={readonly}

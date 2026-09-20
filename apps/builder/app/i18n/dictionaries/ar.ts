@@ -109,13 +109,6 @@ export const ar: Dictionary = {
       noAreas: "لا توجد مناطق مسماة. أضف مناطق في قالب الشبكة الأب.",
       selectArea: "اختر منطقة",
     },
-    transforms: {
-      offsetX: "إزاحة X",
-      offsetY: "إزاحة Y",
-      offsetZ: "إزاحة Z",
-      positionX: "موضع X",
-      positionY: "موضع Y",
-    },
     properties: {
       "align-content": "محاذاة المحتوى",
       "align-items": "محاذاة العناصر",
@@ -369,6 +362,36 @@ export const ar: Dictionary = {
       code: "الكود",
       codeHint:
         "الصق كود CSS الخاص بـ {property} دون اسم الخاصية، على سبيل المثال:",
+    },
+    transitions: {
+      label: "الانتقالات",
+      add: "إضافة انتقال",
+      addDisabled:
+        "لا يمكن إضافة الانتقالات إلا في الحالة المحلية أو العناصر الزائفة",
+      description: "حرّك الانتقال بين الحالات على هذه النسخة.",
+    },
+    transforms: {
+      label: "التحويلات",
+      inlineWarning:
+        "لا تعمل التحويلات مع display: inline. غيّر العرض (display) إلى inline-block أو block.",
+      advancedOptions: "خيارات تحويل متقدمة",
+      advancedTitle: "تحويل متقدم",
+      backfaceVisibility: "ظهور الوجه الخلفي",
+      perspective: "المنظور",
+      offsetX: "إزاحة X",
+      offsetY: "إزاحة Y",
+      offsetZ: "إزاحة Z",
+      positionX: "موضع X",
+      positionY: "موضع Y",
+    },
+    gridAreas: {
+      name: "الاسم",
+      position: "الموضع",
+      nameExists: "اسم المنطقة موجود بالفعل",
+      overlap: "المنطقة تتداخل مع منطقة أخرى",
+      areasCount: "المناطق ({count})",
+      empty: "لا توجد مناطق",
+      editArea: "تعديل المنطقة",
     },
     backgrounds: {
       gradient: {

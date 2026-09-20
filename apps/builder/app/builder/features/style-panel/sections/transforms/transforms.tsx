@@ -68,11 +68,7 @@ import { ScalePanelContent } from "./transform-scale";
 import { RotatePanelContent } from "./transform-rotate";
 import { SkewPanelContent } from "./transform-skew";
 import { TransformAndPerspectiveOrigin } from "./transform-and-perspective-origin";
-
-const label = "التحويلات";
-
-const transformUnavailableTooltip =
-  "لا تعمل التحويلات مع display: inline. غيّر العرض (display) إلى inline-block أو block.";
+import { useLocale } from "~/i18n/context";
 
 const $selectedInstanceTag = computed(
   [$selectedInstance, $instanceTags],
@@ -118,11 +114,12 @@ const TransformAdvancedButton = forwardRef<
   ElementRef<"button">,
   ComponentProps<"button"> & { unavailable?: boolean }
 >(({ unavailable, ...props }, ref) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   const styles = useComputedStyles(advancedProperties);
   const styleValueSourceColor = getPriorityStyleValueSource(styles);
   return (
-    <Tooltip content="خيارات تحويل متقدمة">
+    <Tooltip content={dict.stylePanel.transforms.advancedOptions}>
       <IconButton
         {...props}
         ref={ref}
@@ -151,16 +148,17 @@ const TransformAdvancedPopover = ({
 }: {
   unavailable?: boolean;
 }) => {
+  const { dict } = useLocale();
   const readonly = useReadonly();
   return (
     <FloatingPanel
-      title="تحويل متقدم"
+      title={dict.stylePanel.transforms.advancedTitle}
       placement="bottom-within"
       content={
         <PanelContent as={Grid} gap="2">
           <Grid css={{ gridTemplateColumns: `2fr 1fr` }}>
             <PropertyLabel
-              label="ظهور الوجه الخلفي"
+              label={dict.stylePanel.transforms.backfaceVisibility}
               description={propertyDescriptions.backfaceVisibility}
               properties={["backface-visibility"]}
             />
@@ -172,7 +170,7 @@ const TransformAdvancedPopover = ({
           />
           <Grid css={{ gridTemplateColumns: `2fr 1fr` }}>
             <PropertyLabel
-              label="المنظور"
+              label={dict.stylePanel.transforms.perspective}
               description={propertyDescriptions.perspective}
               properties={["perspective"]}
             />
@@ -191,7 +189,8 @@ const TransformAdvancedPopover = ({
 };
 
 export const Section = () => {
-  const [isOpen, setIsOpen] = useOpenState(label);
+  const { dict } = useLocale();
+  const [isOpen, setIsOpen] = useOpenState(dict.stylePanel.transforms.label);
   const readonly = useReadonly();
   const tag = useStore($selectedInstanceTag);
   const display = toValue(useComputedStyleDecl("display").computedValue);
@@ -213,7 +212,7 @@ export const Section = () => {
   return (
     <CollapsibleSectionRoot
       fullWidth
-      label={label}
+      label={dict.stylePanel.transforms.label}
       isOpen={unavailable ? false : isOpen}
       onOpenChange={setIsOpen}
       trigger={
@@ -226,7 +225,7 @@ export const Section = () => {
               <TransformAdvancedPopover unavailable={unavailable} />
               {unavailable ? (
                 <Tooltip
-                  content={transformUnavailableTooltip}
+                  content={dict.stylePanel.transforms.inlineWarning}
                   variant="wrapped"
                 >
                   <Box>
@@ -270,7 +269,7 @@ export const Section = () => {
           }
         >
           <PropertySectionLabel
-            label={label}
+            label={dict.stylePanel.transforms.label}
             description={propertyDescriptions.transform}
             properties={properties}
           />

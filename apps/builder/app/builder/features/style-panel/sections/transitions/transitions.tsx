@@ -29,6 +29,7 @@ import { PropertySectionLabel } from "../../property-label";
 import { useComputedStyles } from "../../shared/model";
 import { TransitionContent } from "./transition-content";
 import { parseCssFragment } from "../../shared/css-fragment";
+import { useLocale } from "~/i18n/context";
 
 const transitionLongHandProperties = [
   "transition-property",
@@ -39,8 +40,6 @@ const transitionLongHandProperties = [
 ] as const satisfies CssProperty[];
 
 export { transitionLongHandProperties as properties };
-
-const label = "الانتقالات";
 
 const canAddTransitionToStyleState = (state: undefined | string): boolean =>
   state === undefined || isPseudoElement(state);
@@ -89,7 +88,8 @@ const getLayerLabel = ({
 };
 
 export const Section = () => {
-  const [isOpen, setIsOpen] = useOpenState(label);
+  const { dict } = useLocale();
+  const [isOpen, setIsOpen] = useOpenState(dict.stylePanel.transitions.label);
   const readonly = useReadonly();
 
   const selectedOrLastStyleSourceSelector = useStore(
@@ -105,7 +105,7 @@ export const Section = () => {
   return (
     <CollapsibleSectionRoot
       fullWidth
-      label={label}
+      label={dict.stylePanel.transitions.label}
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       trigger={
@@ -117,8 +117,8 @@ export const Section = () => {
             <Tooltip
               content={
                 canAddTransition === false
-                  ? "لا يمكن إضافة الانتقالات إلا في الحالة المحلية أو العناصر الزائفة"
-                  : "إضافة انتقال"
+                  ? dict.stylePanel.transitions.addDisabled
+                  : dict.stylePanel.transitions.add
               }
             >
               <SectionTitleButton
@@ -138,15 +138,15 @@ export const Section = () => {
           }
         >
           <PropertySectionLabel
-            label={label}
-            description="حرّك الانتقال بين الحالات على هذه النسخة."
+            label={dict.stylePanel.transitions.label}
+            description={dict.stylePanel.transitions.description}
             properties={transitionLongHandProperties}
           />
         </SectionTitle>
       }
     >
       <RepeatedStyle
-        label={label}
+        label={dict.stylePanel.transitions.label}
         styles={styles}
         getItemProps={(index) => ({
           label: getLayerLabel({ styles, index }),

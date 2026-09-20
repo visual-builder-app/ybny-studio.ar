@@ -107,13 +107,6 @@ export const en = {
       noAreas: "No named areas. Add areas to the parent grid template.",
       selectArea: "Select area",
     },
-    transforms: {
-      offsetX: "X offset",
-      offsetY: "Y offset",
-      offsetZ: "Z offset",
-      positionX: "X position",
-      positionY: "Y position",
-    },
     properties: {
       "align-content": "Align Content",
       "align-items": "Align Items",
@@ -370,6 +363,36 @@ export const en = {
       code: "Code",
       codeHint:
         "Paste the CSS code for {property} without the property name, for example:",
+    },
+    transitions: {
+      label: "Transitions",
+      add: "Add transition",
+      addDisabled:
+        "Transitions can only be added on the local state or pseudo-elements",
+      description: "Animate the transition between states on this instance.",
+    },
+    transforms: {
+      label: "Transforms",
+      inlineWarning:
+        "Transforms do not work with display: inline. Change display to inline-block or block.",
+      advancedOptions: "Advanced transform options",
+      advancedTitle: "Advanced transform",
+      backfaceVisibility: "Backface visibility",
+      perspective: "Perspective",
+      offsetX: "X offset",
+      offsetY: "Y offset",
+      offsetZ: "Z offset",
+      positionX: "X position",
+      positionY: "Y position",
+    },
+    gridAreas: {
+      name: "Name",
+      position: "Position",
+      nameExists: "The area name already exists",
+      overlap: "The area overlaps another area",
+      areasCount: "Areas ({count})",
+      empty: "No areas",
+      editArea: "Edit area",
     },
     backgrounds: {
       gradient: {
