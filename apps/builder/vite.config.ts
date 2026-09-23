@@ -148,10 +148,15 @@ export default defineConfig(({ mode }) => {
           ws: true,
         },
       },
-      https: {
-        key: readFileSync("../../https/privkey.pem"),
-        cert: readFileSync("../../https/fullchain.pem"),
-      },
+      ...(existsSync("../../https/privkey.pem") &&
+      existsSync("../../https/fullchain.pem")
+        ? {
+            https: {
+              key: readFileSync("../../https/privkey.pem"),
+              cert: readFileSync("../../https/fullchain.pem"),
+            },
+          }
+        : {}),
       cors: ((
         req: IncomingMessage,
         callback: (error: Error | null, options: CorsOptions | null) => void
