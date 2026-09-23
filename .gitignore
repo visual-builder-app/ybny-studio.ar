@@ -78,3 +78,4 @@ docs/ybny/
 
 # متغيرات البيئة المحلية
 apps/builder/.env
+https/*.pem
